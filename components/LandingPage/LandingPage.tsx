@@ -79,6 +79,9 @@ export const LandingPage = () => {
           </article>
         );
       })}
+      <footer className='pl-8 py-3 sm:pl-20 text-orange-250 sm:py-4 font-medium text-[8px] sm:text-xs relative z-[110] bg-lg-main'>
+        © 2022 movie quotes. All rights reserved.
+      </footer>
     </div>
   );
 };
