@@ -6,7 +6,6 @@ export const LandingPage = () => {
   const {
     changeIndex,
     isBackgroundIntersected,
-    isMobile,
     shouldAnimate,
     show,
     backgrounfRef,
@@ -32,10 +31,10 @@ export const LandingPage = () => {
             classes='sm:px-4 sm:py-2 px-2 py-2'
           />
         </div>
-        {!isMobile && isBackgroundIntersected && (
+        {isBackgroundIntersected && (
           <button
             onClick={changeIndex.bind(null, 0)}
-            className='absolute bottom-0 left-0 bg-transparent w-full h-[280px] z-[100]'
+            className='hidden absolute sm:block  bottom-0 left-0 bg-transparent w-full h-[280px] z-[100]'
           ></button>
         )}
       </article>
@@ -45,7 +44,7 @@ export const LandingPage = () => {
           <article
             key={url}
             className=' relative w-full h-[430px] sm:h-[1200px] 
-              overflow-hidden bg-fixed bg-cover bg-bottom bg-no-repeat flex items-center'
+              overflow-hidden bg-fixed bg-cover  sm:bg-bottom bg-right bg-no-repeat flex items-center'
             style={{
               backgroundImage: `url(${url})`,
               backgroundAttachment: show ? 'fixed' : 'scroll',
@@ -68,14 +67,12 @@ export const LandingPage = () => {
               </div>
             </div>
 
-            {!isMobile && (
-              <button
-                onClick={changeIndex.bind(null, index + 1)}
-                className={`${
-                  index === 1 ? 'bg-lg-landing-third' : ''
-                } absolute left-0 top-0 bg-transparent w-full h-full z-50`}
-              ></button>
-            )}
+            <button
+              onClick={changeIndex.bind(null, index + 1)}
+              className={`${
+                index === 1 ? 'bg-lg-landing-third' : ''
+              } hidden absolute sm:block  left-0 top-0 bg-transparent w-full h-full z-50`}
+            ></button>
           </article>
         );
       })}

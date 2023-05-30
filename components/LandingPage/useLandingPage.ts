@@ -13,7 +13,6 @@ export const useLandingPage = () => {
   const isBackgroundIntersected = backgroundEntry?.isIntersecting;
   const isMobile =
     (backgroundEntry?.target.getBoundingClientRect().width || 0) < 768;
-
   const show = !isMobile && !isBackgroundIntersected;
   const changeIndex = (index: number) => {
     setShouldAnimate(true);
@@ -25,7 +24,6 @@ export const useLandingPage = () => {
     shouldAnimate,
     show,
     changeIndex,
-    isMobile,
     isBackgroundIntersected,
     backgrounfRef,
     imageRefs,
