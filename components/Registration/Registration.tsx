@@ -1,21 +1,9 @@
 import { Button, GoogleIcon, Input } from '@/components';
 import { useRegistration } from './useRegistration';
-import { Login } from '@/components';
 
 export const Registration = () => {
-  const {
-    errors,
-    handleSubmit,
-    onSubmit,
-    register,
-    onShowLoginChange,
-    showLogin,
-    showNotification,
-  } = useRegistration();
-
-  if (showLogin) return <Login />;
-
-  if (showNotification) return <>showNotification</>;
+  const { errors, handleSubmit, onSubmit, register, onShowLogin } =
+    useRegistration();
 
   return (
     <div
@@ -81,7 +69,7 @@ export const Registration = () => {
           <span className='text-gray-550'>Already have an account?</span>{' '}
           <button
             className='text-blue-650 underline'
-            onClick={onShowLoginChange}
+            onClick={onShowLogin}
             type='button'
           >
             Log in

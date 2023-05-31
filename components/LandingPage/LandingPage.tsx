@@ -11,16 +11,15 @@ export const LandingPage = () => {
     show,
     backgrounfRef,
     imageRefs,
-    onShowRegisterChange,
-    showRegister,
+    onClose,
+    currentModal,
+    modal,
+    onShowRegister,
   } = useLandingPage();
+
   return (
     <div className='overflow-hidden relative pt-107  sm:pt-200 text-white font-helvetica-neue'>
-      {showRegister && (
-        <Modal onClose={onShowRegisterChange}>
-          <Registration />
-        </Modal>
-      )}
+      {modal()}
       <div className='absolute z-[100] top-0 left-0 w-full'>
         <Header />
       </div>
@@ -36,7 +35,7 @@ export const LandingPage = () => {
             content='Get started'
             isTransparent={false}
             classes='sm:px-4 sm:py-2 px-2 py-2'
-            onClick={onShowRegisterChange}
+            onClick={onShowRegister}
           />
         </div>
         {isBackgroundIntersected && (

@@ -1,10 +1,4 @@
-import {
-  Button,
-  ForgotPassword,
-  GoogleIcon,
-  Input,
-  Registration,
-} from '@/components';
+import { Button, GoogleIcon, Input } from '@/components';
 import { useLogin } from './useLogin';
 
 export const Login = () => {
@@ -13,18 +7,9 @@ export const Login = () => {
     handleSubmit,
     onSubmit,
     register,
-    showNotification,
-    showPasswordReset,
     onShowPasswordReset,
-    showRegistration,
-    onShowRegistrationChange,
+    onShowRegistration,
   } = useLogin();
-
-  if (showNotification) return <>showNotification</>;
-
-  if (showPasswordReset) return <ForgotPassword />;
-
-  if (showRegistration) return <Registration />;
 
   return (
     <div
@@ -93,7 +78,7 @@ export const Login = () => {
           <span className='text-gray-550'>Dont have account yet?</span>{' '}
           <button
             className='text-blue-650 underline'
-            onClick={onShowRegistrationChange}
+            onClick={onShowRegistration}
           >
             Sign up
           </button>

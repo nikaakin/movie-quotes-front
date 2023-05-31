@@ -1,20 +1,9 @@
-import { ArrowIcon, Button, Input, Login } from '@/components';
+import { ArrowIcon, Button, Input } from '@/components';
 import { useForgotPassword } from './useForgotPassword';
 
 export const ForgotPassword = () => {
-  const {
-    errors,
-    handleSubmit,
-    onSubmit,
-    register,
-    showNotification,
-    onShowLoginChange,
-    showLogin,
-  } = useForgotPassword();
-
-  if (showNotification) return <>showNotification</>;
-
-  if (showLogin) return <Login />;
+  const { errors, handleSubmit, onSubmit, register, onShowLogin } =
+    useForgotPassword();
 
   return (
     <div
@@ -44,10 +33,7 @@ export const ForgotPassword = () => {
         />
 
         <p className='text-center'>
-          <button
-            className='relative text-gray-550'
-            onClick={onShowLoginChange}
-          >
+          <button className='relative text-gray-550' onClick={onShowLogin}>
             <span className='absolute top-1/2 -left-5 -translate-y-1/2'>
               <ArrowIcon />
             </span>

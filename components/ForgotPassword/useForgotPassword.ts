@@ -1,12 +1,12 @@
 import { forgotPasswordSchema } from '@/schema';
+import { setCurrentModal } from '@/store';
 import { forgotPasswordSchemaType } from '@/types';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
+import { useDispatch } from 'react-redux';
 
 export const useForgotPassword = () => {
-  const [showNotification, setShowNotification] = useState(false);
-  const [showLogin, setShowLogin] = useState(false);
   const {
     register,
     handleSubmit,
@@ -16,20 +16,19 @@ export const useForgotPassword = () => {
     resolver: zodResolver(forgotPasswordSchema),
   });
 
+  const dispatch = useDispatch();
   const onSubmit = (data: forgotPasswordSchemaType) => {
     console.log(data);
-    setShowNotification(true);
+    dispatch(setCurrentModal('forgot-password-notification'));
   };
 
-  const onShowLoginChange = () => setShowLogin(!showLogin);
+  const onShowLogin = () => dispatch(setCurrentModal('login'));
 
   return {
     register,
     handleSubmit,
     errors,
     onSubmit,
-    showNotification,
-    showLogin,
-    onShowLoginChange,
+    onShowLogin,
   };
 };

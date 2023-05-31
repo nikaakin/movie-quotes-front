@@ -1,12 +1,12 @@
 import { registrationSchema } from '@/schema';
+import { RootState, setCurrentModal } from '@/store';
 import { registrationSchemaType } from '@/types';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
+import { useDispatch, useSelector } from 'react-redux';
 
 export const useRegistration = () => {
-  const [showLogin, setShowLogin] = useState(false);
-  const [showNotification, setShowNotification] = useState(false);
   const {
     register,
     handleSubmit,
@@ -16,20 +16,20 @@ export const useRegistration = () => {
     resolver: zodResolver(registrationSchema),
   });
 
+  const disaptch = useDispatch();
+
   const onSubmit = (data: registrationSchemaType) => {
     console.log(data);
-    setShowNotification(true);
+    disaptch(setCurrentModal('register-notification'));
   };
 
-  const onShowLoginChange = () => setShowLogin((prev) => !prev);
+  const onShowLogin = () => disaptch(setCurrentModal('login'));
 
   return {
     register,
     handleSubmit,
     errors,
     onSubmit,
-    showLogin,
-    onShowLoginChange,
-    showNotification,
+    onShowLogin,
   };
 };
