@@ -26,7 +26,7 @@ export const Registration = () => {
         Create an account
       </h1>
       <h3 className='text-gray-550 text-center mb-6'>Start your journey!</h3>
-      <form className='w-[360px]' onSubmit={handleSubmit(onSubmit)}>
+      <form className='w-90' onSubmit={handleSubmit(onSubmit)}>
         <Input
           required
           title='Name'

@@ -15,7 +15,7 @@ export const LandingPage = () => {
     showRegister,
   } = useLandingPage();
   return (
-    <div className='overflow-hidden relative pt-[430px]  sm:pt-[800px] text-white font-helvetica-neue'>
+    <div className='overflow-hidden relative pt-107  sm:pt-200 text-white font-helvetica-neue'>
       {showRegister && (
         <Modal onClose={onShowRegisterChange}>
           <Registration />
@@ -28,7 +28,7 @@ export const LandingPage = () => {
         className='h-screen w-full absolute bg-lg-landing-first top-0 '
         ref={backgrounfRef}
       >
-        <div className='top-1/3  left-1/2 -translate-x-1/2 absolute w-72 sm:w-[700px] z-[50] text-center'>
+        <div className='top-1/3  left-1/2 -translate-x-1/2 absolute w-72 sm:w-175 z-50 text-center'>
           <h1 className='mb-8 sm:mb-6 text-2xl sm:text-6xl font-bold text-orange-250'>
             Find any quote in millions of movie lines
           </h1>
@@ -42,7 +42,7 @@ export const LandingPage = () => {
         {isBackgroundIntersected && (
           <button
             onClick={changeIndex.bind(null, 0)}
-            className='hidden absolute sm:block  bottom-0 left-0 bg-transparent w-full h-[280px] z-[100]'
+            className='hidden absolute sm:block  bottom-0 left-0 bg-transparent w-full h-70 z-[100]'
           ></button>
         )}
       </article>
@@ -51,7 +51,7 @@ export const LandingPage = () => {
         return (
           <article
             key={url}
-            className=' relative w-full h-[430px] sm:h-[1200px] 
+            className=' relative w-full h-107 sm:h-300 
               overflow-hidden bg-fixed bg-cover  sm:bg-bottom bg-right bg-no-repeat flex items-center'
             style={{
               backgroundImage: `url(${url})`,
@@ -66,7 +66,7 @@ export const LandingPage = () => {
             >
               <span className='border-[1px] border-white h-0 sm:w-14 w-4 mt-4 sm:mt-10 sm:mr-4 mr-2 '></span>
               <div className='leading-10'>
-                <h1 className='text-xl font-bold w-[270px] sm:text-5xl sm:w-1/2 !leading-normal mb-2'>
+                <h1 className='text-xl font-bold w-68 sm:text-5xl sm:w-1/2 !leading-normal mb-2'>
                   {quote}
                 </h1>
                 <h3 className='text-zinc-350 font-bold text-base sm:text-3xl'>
