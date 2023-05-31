@@ -1,7 +1,6 @@
-import { Header, Button, Registration } from '@/components';
+import { Header, Button } from '@/components';
 import { useLandingPage } from './useLandingPage';
 import { imageUrls } from '@/config';
-import { Modal } from '@/components';
 
 export const LandingPage = () => {
   const {
@@ -11,8 +10,6 @@ export const LandingPage = () => {
     show,
     backgrounfRef,
     imageRefs,
-    onClose,
-    currentModal,
     modal,
     onShowRegister,
   } = useLandingPage();

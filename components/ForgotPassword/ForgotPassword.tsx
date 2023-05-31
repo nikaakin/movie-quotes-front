@@ -20,7 +20,7 @@ export const ForgotPassword = () => {
       <form className='w-90' onSubmit={handleSubmit(onSubmit)}>
         <Input
           required
-          title='Name'
+          title='Email'
           errors={errors}
           name='email'
           placeholder='Enter email or username'

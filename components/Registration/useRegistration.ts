@@ -1,10 +1,9 @@
 import { registrationSchema } from '@/schema';
-import { RootState, setCurrentModal } from '@/store';
+import { setCurrentModal } from '@/store';
 import { registrationSchemaType } from '@/types';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 
 export const useRegistration = () => {
   const {

@@ -79,6 +79,7 @@ export const Login = () => {
           <button
             className='text-blue-650 underline'
             onClick={onShowRegistration}
+            type='button'
           >
             Sign up
           </button>

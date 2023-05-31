@@ -1,9 +1,9 @@
-import { imageUrls, modals } from '@/config';
+import { modals } from '@/config';
 import { useIntersectionObserver } from '@/hooks';
 import { RootState, setCurrentModal } from '@/store';
 import { Suspense, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Modal, Registration } from '../shared';
+import { Modal } from '../shared';
 
 export const useLandingPage = () => {
   const [shouldAnimate, setShouldAnimate] = useState(false);
@@ -13,7 +13,11 @@ export const useLandingPage = () => {
   const disaptch = useDispatch();
 
   const backgrounfRef = useRef<HTMLDivElement>(null);
-  const imageRefs = imageUrls.map(() => useRef<HTMLDivElement>(null));
+  const imageRefs = [
+    useRef<HTMLDivElement>(null),
+    useRef<HTMLDivElement>(null),
+    useRef<HTMLDivElement>(null),
+  ];
   const backgroundEntry = useIntersectionObserver(
     { threshold: 0, rootMargin: '-180px' },
     backgrounfRef
@@ -25,10 +29,12 @@ export const useLandingPage = () => {
     !isBackgroundIntersected;
 
   const changeIndex = (index: number) => {
+    if (index > 2) return;
     setShouldAnimate(true);
     setTimeout(() => setShouldAnimate(false), 1000);
     const bottom = imageRefs[index]?.current?.getBoundingClientRect()?.bottom;
-    bottom && scrollTo({ behavior: 'smooth', top: 1200 * (index + 1) - 280 });
+    bottom &&
+      window.scrollTo({ behavior: 'smooth', top: 1200 * (index + 1) - 280 });
   };
 
   const onClose = () => disaptch(setCurrentModal(null));
