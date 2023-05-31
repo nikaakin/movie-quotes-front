@@ -1,6 +1,7 @@
-import { Header, Button } from '@/components';
+import { Header, Button, Registration } from '@/components';
 import { useLandingPage } from './useLandingPage';
 import { imageUrls } from '@/config';
+import { Modal } from '@/components';
 
 export const LandingPage = () => {
   const {
@@ -10,13 +11,19 @@ export const LandingPage = () => {
     show,
     backgrounfRef,
     imageRefs,
+    onShowRegisterChange,
+    showRegister,
   } = useLandingPage();
   return (
-    <div className='overflow-hidden relative pt-[430px]  sm:pt-[800px] text-white'>
+    <div className='overflow-hidden relative pt-[430px]  sm:pt-[800px] text-white font-helvetica-neue'>
+      {showRegister && (
+        <Modal onClose={onShowRegisterChange}>
+          <Registration />
+        </Modal>
+      )}
       <div className='absolute z-[100] top-0 left-0 w-full'>
         <Header />
       </div>
-
       <article
         className='h-screen w-full absolute bg-lg-landing-first top-0 '
         ref={backgrounfRef}
@@ -29,6 +36,7 @@ export const LandingPage = () => {
             content='Get started'
             isTransparent={false}
             classes='sm:px-4 sm:py-2 px-2 py-2'
+            onClick={onShowRegisterChange}
           />
         </div>
         {isBackgroundIntersected && (
@@ -56,7 +64,7 @@ export const LandingPage = () => {
                 shouldAnimate ? 'quote-fade' : ''
               }`}
             >
-              <span className='border-[1px] border-white h-0 sm:w-14 w-4  mt-4 sm:mr-4 mr-2 '></span>
+              <span className='border-[1px] border-white h-0 sm:w-14 w-4 mt-4 sm:mt-10 sm:mr-4 mr-2 '></span>
               <div className='leading-10'>
                 <h1 className='text-xl font-bold w-[270px] sm:text-5xl sm:w-1/2 !leading-normal mb-2'>
                   {quote}

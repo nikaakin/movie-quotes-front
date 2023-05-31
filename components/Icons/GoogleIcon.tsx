@@ -1,4 +1,4 @@
-export const GoogleIcon = () => {
+export const GoogleIcon = () => (
   <svg
     width='16'
     height='16'
@@ -23,5 +23,5 @@ export const GoogleIcon = () => {
         <rect width='16' height='16' fill='white' />
       </clipPath>
     </defs>
-  </svg>;
-};
+  </svg>
+);

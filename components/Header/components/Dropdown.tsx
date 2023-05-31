@@ -32,7 +32,7 @@ export const Dropdown = () => {
           <ul className='py-2 text-sm text-gray-700 dark:text-gray-200'>
             <li>
               <button className='block px-10 py-2 w-full hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white'>
-                ka
+                Ka
               </button>
             </li>
             <li>

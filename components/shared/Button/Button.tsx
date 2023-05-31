@@ -2,8 +2,11 @@ import { buttonProps } from './type';
 
 export const Button = ({
   content,
-  isTransparent = true,
+  isTransparent = false,
   classes = '',
+  onClick,
+  type = 'button',
+  icon,
 }: buttonProps) => {
   const background = isTransparent
     ? ' border-white border-solid bg-transparent'
@@ -11,10 +14,15 @@ export const Button = ({
 
   return (
     <button
-      className={` px-3 py-1  font-normal 
-      text-sm sm:text-s border rounded text-white ${background} ${classes}`}
+      type={type}
+      onClick={onClick}
+      className={` font-normal 
+      text-base sm:text-xl border rounded text-white ${background} ${classes}`}
     >
-      {content}
+      <span className='flex  justify-center gap-2 items-center'>
+        {icon ? icon : ''}
+        {content}
+      </span>
     </button>
   );
 };
