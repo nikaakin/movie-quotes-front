@@ -20,9 +20,9 @@ export const Dropdown = () => {
           xmlns='http://www.w3.org/2000/svg'
         >
           <path
-            stroke-linecap='round'
-            stroke-linejoin='round'
-            stroke-width='2'
+            strokeLinecap='round'
+            strokeLinejoin='round'
+            strokeWidth='2'
             d='M19 9l-7 7-7-7'
           ></path>
         </svg>
@@ -32,7 +32,7 @@ export const Dropdown = () => {
           <ul className='py-2 text-sm text-gray-700 dark:text-gray-200'>
             <li>
               <button className='block px-10 py-2 w-full hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white'>
-                ka
+                Ka
               </button>
             </li>
             <li>

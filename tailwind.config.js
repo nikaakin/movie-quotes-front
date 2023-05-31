@@ -77,6 +77,21 @@ module.exports = {
           550: '#EC4C57',
         },
       },
+      width: {
+        68: '17rem',
+        90: '22.5rem',
+        175: '43.75rem',
+      },
+
+      padding: {
+        107: '26.75rem',
+        200: '50rem',
+      },
+      height: {
+        70: '17.5rem',
+        107: '26.75rem',
+        300: '75rem',
+      },
     },
   },
   plugins: [],
