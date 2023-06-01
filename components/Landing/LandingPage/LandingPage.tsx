@@ -1,4 +1,4 @@
-import { Header, Button } from '@/components';
+import { Header, Button, Modal } from '@/components';
 import { useLandingPage } from './useLandingPage';
 import { imageUrls } from '@/config';
 
@@ -12,11 +12,12 @@ export const LandingPage = () => {
     imageRefs,
     modal,
     onShowRegister,
+    onClose,
   } = useLandingPage();
 
   return (
     <div className='overflow-hidden relative pt-107  sm:pt-200 text-white font-helvetica-neue'>
-      {modal()}
+      {modal && <Modal onClose={onClose}>{modal}</Modal>}
       <div className='absolute z-[100] top-0 left-0 w-full'>
         <Header />
       </div>

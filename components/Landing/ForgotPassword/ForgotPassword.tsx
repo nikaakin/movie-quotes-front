@@ -33,7 +33,11 @@ export const ForgotPassword = () => {
         />
 
         <p className='text-center'>
-          <button className='relative text-gray-550' onClick={onShowLogin}>
+          <button
+            className='relative text-gray-550'
+            onClick={onShowLogin}
+            type='button'
+          >
             <span className='absolute top-1/2 -left-5 -translate-y-1/2'>
               <ArrowIcon />
             </span>
