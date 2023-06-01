@@ -1,4 +1,14 @@
-import { Button, Header, Modal } from '@/components';
+import {
+  Button,
+  CheckEmailIcon,
+  CheckMarkIcon,
+  ForgotPassword,
+  Header,
+  Login,
+  Modal,
+  NotificationModal,
+  Registration,
+} from '@/components';
 import { imageUrls } from '@/config';
 import { useLandingPage } from '@/hooks';
 
@@ -10,14 +20,68 @@ export default function Home() {
     show,
     backgrounfRef,
     imageRefs,
-    modal,
     onShowRegister,
     onClose,
+    currentModal,
   } = useLandingPage();
 
   return (
     <div className='overflow-hidden relative pt-107  sm:pt-200 text-white font-helvetica-neue'>
-      {modal && <Modal onClose={onClose}>{modal}</Modal>}
+      {currentModal && (
+        <Modal onClose={onClose}>
+          {currentModal === 'login' ? (
+            <Login />
+          ) : currentModal === 'register' ? (
+            <Registration />
+          ) : currentModal === 'forgot-password' ? (
+            <ForgotPassword />
+          ) : currentModal === 'register-notification' ? (
+            <NotificationModal
+              image={<CheckEmailIcon />}
+              title='Thank you!'
+              text='Please check your email and follow the instructions to activate your account.'
+              buttonText='Go to my email'
+            />
+          ) : currentModal === 'forgot-password-notification' ? (
+            <NotificationModal
+              image={<CheckEmailIcon />}
+              title='Check your email'
+              text='We have sent a password recover instructions to your email'
+              buttonText='Go to my email'
+              skip
+            />
+          ) : currentModal === 'account-activated' ? (
+            <NotificationModal
+              image={<CheckMarkIcon />}
+              title='Thank you!'
+              text='Your account has been activated.'
+              buttonText='Go to my news feed'
+            />
+          ) : currentModal === 'password-changed' ? (
+            <NotificationModal
+              image={<CheckMarkIcon />}
+              title='Success!'
+              text='Your Password changed successfully'
+              buttonText='Log in'
+            />
+          ) : currentModal === 'email-changed' ? (
+            <NotificationModal
+              image={<CheckMarkIcon />}
+              title='Success!'
+              text='Your Email changed successfully'
+              buttonText='Log in'
+            />
+          ) : currentModal === 'link-expired' ? (
+            <NotificationModal
+              image='/assets/images/link-expired.png'
+              title='Link expired!'
+              text='Login link has expired, because you haven’t used it'
+              buttonText='Request another link'
+            />
+          ) : null}
+        </Modal>
+      )}
+
       <div className='absolute z-[100] top-0 left-0 w-full'>
         <Header />
       </div>
