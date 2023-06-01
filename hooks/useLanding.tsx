@@ -17,7 +17,6 @@ export const useLandingPage = () => {
     (state: RootState) => state.currentModal.currentModal
   );
   const disaptch = useDispatch();
-
   const backgrounfRef = useRef<HTMLDivElement>(null);
   const imageRefs = [
     useRef<HTMLDivElement>(null),
