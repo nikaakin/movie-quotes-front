@@ -1,0 +1,16 @@
+{
+  "button": {
+    "login_text": "შესვლა",
+    "register_text": "რეგისტრაცია",
+    "get_started_text": "დაიწყე დარეგისტრირებით"
+  },
+  "header": { "title": "ფილმის ციტატები" },
+  "locale": {
+    "en": "ინგლისური",
+    "ka": "ქართული"
+  },
+  "landing": {
+    "main_title": "იპოვე ციტატები მილიონობით ფილმიდან",
+    "footer_text": " © 2022 movie quotes. All rights reserved."
+  }
+}

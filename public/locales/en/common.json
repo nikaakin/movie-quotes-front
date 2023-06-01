@@ -1,0 +1,16 @@
+{
+  "button": {
+    "login_text": "Log in",
+    "register_text": "Sign up",
+    "get_started_text": "Get started"
+  },
+  "header": { "title": "Movie quotes" },
+  "locale": {
+    "en": "English",
+    "ka": "Georgian"
+  },
+  "landing": {
+    "main_title": "Find any quote in millions of movie lines",
+    "footer_text": " © 2022 movie quotes. All rights reserved."
+  }
+}

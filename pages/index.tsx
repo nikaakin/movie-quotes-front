@@ -11,6 +11,7 @@ import {
 } from '@/components';
 import { imageUrls } from '@/config';
 import { useLandingPage } from '@/hooks';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
 export default function Home() {
   const {
@@ -23,6 +24,7 @@ export default function Home() {
     onShowRegister,
     onClose,
     currentModal,
+    t,
   } = useLandingPage();
 
   return (
@@ -91,10 +93,10 @@ export default function Home() {
       >
         <div className='top-1/3  left-1/2 -translate-x-1/2 absolute w-72 sm:w-175 z-50 text-center'>
           <h1 className='mb-8 sm:mb-6 text-2xl sm:text-6xl font-bold text-orange-250'>
-            Find any quote in millions of movie lines
+            {t('landing.main_title')}
           </h1>
           <Button
-            content='Get started'
+            content={t('button.get_started_text')}
             isTransparent={false}
             classes='sm:px-4 sm:py-2 px-2 py-2'
             onClick={onShowRegister}
@@ -146,8 +148,16 @@ export default function Home() {
         );
       })}
       <footer className='pl-8 py-3 sm:pl-20 text-orange-250 sm:py-4 font-medium text-[8px] sm:text-xs relative z-[110] bg-lg-main'>
-        © 2022 movie quotes. All rights reserved.
+        {t('landing.footer_text')}
       </footer>
     </div>
   );
+}
+
+export async function getStaticProps({ locale }: { locale: string }) {
+  return {
+    props: {
+      ...(await serverSideTranslations(locale ?? 'en', ['common'])),
+    },
+  };
 }
