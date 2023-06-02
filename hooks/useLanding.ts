@@ -1,6 +1,7 @@
 import { useIntersectionObserver } from '@/hooks';
 import { RootState, setCurrentModal } from '@/store';
 import { useRef, useState } from 'react';
+import { useTranslation } from 'next-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 
 export const useLandingPage = () => {
@@ -8,6 +9,9 @@ export const useLandingPage = () => {
   const currentModal = useSelector(
     (state: RootState) => state.currentModal.currentModal
   );
+
+  const { t } = useTranslation('common');
+
   const disaptch = useDispatch();
   const backgrounfRef = useRef<HTMLDivElement>(null);
   const imageRefs = [
@@ -48,5 +52,6 @@ export const useLandingPage = () => {
     currentModal,
     onClose,
     onShowRegister,
+    t,
   };
 };
