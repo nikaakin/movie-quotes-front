@@ -10,7 +10,7 @@ export const useLandingPage = () => {
     (state: RootState) => state.currentModal.currentModal
   );
 
-  const { t } = useTranslation('common');
+  const { t } = useTranslation(['common', 'modals']);
 
   const disaptch = useDispatch();
   const backgrounfRef = useRef<HTMLDivElement>(null);

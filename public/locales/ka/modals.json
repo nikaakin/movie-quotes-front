@@ -1,0 +1,47 @@
+{
+  "form": {
+    "login": {
+      "title": "",
+      "text": "",
+      "button_text": ""
+    },
+    "register": {
+      "title": "",
+      "text": "",
+      "button_text": ""
+    },
+    "forgot-password": {
+      "title": "",
+      "text": "",
+      "button_text": ""
+    }
+  },
+
+  "notification": {
+    "register-notification": {
+      "title": "ელ-ფოსტაზე გადასვლა!",
+      "text": "გთხოვთ, შეამოწმოთ თქვენი ელფოსტა და მიჰყევით ინსტრუქციას ანგარიშის გასააქტიურებლად",
+      "button_text": "ელ-ფოსტაზე გადასვლა"
+    },
+    "forgot-password-notification": {
+      "title": "შეამოწმე ელ-ფოსტა!",
+      "text": "ჩვენ გამოვაგზნეთ პაროლის აღდგენის ინსტრუქცია ელ ფოსტაზე",
+      "button_text": "ელ-ფოსტაზე გადასვლა"
+    },
+    "accont-activated": {
+      "title": "მადლობა!",
+      "text": "შენი პროფილი გააქტიურებულია",
+      "button_text": "შესვლა"
+    },
+    "password-changed": {
+      "title": "წარმატება",
+      "text": "თქვენი პაროლი წარმატებით შეიცვალა.",
+      "button_text": "შესვლა"
+    },
+    "link-expired": {
+      "title": "ლინკი ვადაგასულია!",
+      "text": "შესვლის ლინკი  ვადაგასულია, რადგან არ გამოგიყენებიათ ადრე",
+      "button_text": "ახალი ლინკის მოთხოვნა"
+    }
+  }
+}
