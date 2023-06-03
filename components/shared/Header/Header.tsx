@@ -2,9 +2,8 @@ import React from 'react';
 import { Dropdown } from './components';
 import { Button } from '@/components';
 import { useHeader } from './useHeader';
-import dynamic from 'next/dynamic';
 
-function Component() {
+export const Header = () => {
   const { t, onShowLogin, onShowRegister } = useHeader();
 
   return (
@@ -28,8 +27,4 @@ function Component() {
       </div>
     </header>
   );
-}
-
-export const Header = dynamic(() => Promise.resolve(Component), {
-  ssr: false,
-});
+};

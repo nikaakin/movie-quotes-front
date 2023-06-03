@@ -1,48 +1,41 @@
+import { TFunction } from 'next-i18next';
 import { z } from 'zod';
 
-const username = z
-  .string()
-  .min(3, 'Username must be at least 3 characters long')
-  .max(15, 'Username must be at most 15 characters long')
-  .regex(
-    /^[a-z0-9]+$/,
-    'Username must contain only lowercase letters and numbers'
-  );
+export const registrationSchema = (t: TFunction) =>
+  z
+    .object({
+      username: z
+        .string()
+        .min(3, t('form.register.errors.username.min')!)
+        .max(15, t('form.register.errors.username.max')!)
+        .regex(/^[a-z0-9]+$/, t('form.register.errors.username.regex')!),
+      email: z.string().email(t('form.register.errors.email.email')!),
+      password: z
+        .string()
+        .min(8, t('form.register.errors.password.min')!)
+        .max(15, t('form.register.errors.password.max')!)
+        .regex(/^[a-z0-9]+$/, t('form.register.errors.password.regex')!),
+      passwordRepeat: z.string(),
+    })
+    .refine((data) => data.password === data.passwordRepeat, {
+      message: t('form.register.errors.confirm_password.match')!,
+      path: ['passwordRepeat'],
+    });
 
-const email = z.string().email('Invalid email address');
-
-const emailOrUsername = z.string();
-
-const password = z
-  .string()
-  .min(8, 'Password must be at least 8 characters long')
-  .max(15, 'Password must be at most 15 characters long')
-  .regex(
-    /^[a-z0-9]+$/,
-    'Password must contain only lowercase letters and numbers'
-  );
-
-const passwordRepeat = z.string();
-const remember = z.boolean().optional();
-
-export const registrationSchema = z
-  .object({
-    username,
-    email,
-    password,
-    passwordRepeat,
-  })
-  .refine((data) => data.password === data.passwordRepeat, {
-    message: 'Passwords do not match',
-    path: ['passwordRepeat'],
+export const loginSchema = (t: TFunction) =>
+  z.object({
+    emailOrUsername: z
+      .string()
+      .nonempty(t('form.login.errors.emailOrUsername.required')!),
+    password: z
+      .string()
+      .min(8, t('form.login.errors.password.min')!)
+      .max(15, t('form.login.errors.password.max')!)
+      .regex(/^[a-z0-9]+$/, t('form.login.errors.password.regex')!),
+    remember: z.boolean().optional(),
   });
 
-export const loginSchema = z.object({
-  emailOrUsername,
-  password,
-  remember,
-});
-
-export const forgotPasswordSchema = z.object({
-  email,
-});
+export const forgotPasswordSchema = (t: TFunction) =>
+  z.object({
+    email: z.string().email(t('form.forgot-password.errors.email.email')!),
+  });

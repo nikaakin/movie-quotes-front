@@ -1,5 +1,5 @@
 import { setCurrentModal } from '@/store';
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from 'next-i18next';
 import { useDispatch } from 'react-redux';
 
 export const useHeader = () => {

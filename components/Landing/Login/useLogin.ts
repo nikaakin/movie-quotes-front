@@ -4,17 +4,21 @@ import { loginSchemaType } from '@/types';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useRouter } from 'next/router';
 import { useForm } from 'react-hook-form';
+import { useTranslation } from 'next-i18next';
 import { useDispatch } from 'react-redux';
 
 export const useLogin = () => {
+  const { t } = useTranslation('modals');
+
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm({
     mode: 'onChange',
-    resolver: zodResolver(loginSchema),
+    resolver: zodResolver(loginSchema(t)),
   });
+
   const router = useRouter();
   const disaptch = useDispatch();
 
@@ -35,5 +39,6 @@ export const useLogin = () => {
     onSubmit,
     onShowPasswordReset,
     onShowRegistration,
+    t,
   };
 };

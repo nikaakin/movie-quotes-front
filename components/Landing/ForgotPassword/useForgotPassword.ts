@@ -3,16 +3,19 @@ import { setCurrentModal } from '@/store';
 import { forgotPasswordSchemaType } from '@/types';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
+import { useTranslation } from 'next-i18next';
 import { useDispatch } from 'react-redux';
 
 export const useForgotPassword = () => {
+  const { t } = useTranslation('modals');
+
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm({
     mode: 'onChange',
-    resolver: zodResolver(forgotPasswordSchema),
+    resolver: zodResolver(forgotPasswordSchema(t)),
   });
 
   const dispatch = useDispatch();
@@ -29,5 +32,6 @@ export const useForgotPassword = () => {
     errors,
     onSubmit,
     onShowLogin,
+    t,
   };
 };

@@ -3,16 +3,19 @@ import { setCurrentModal } from '@/store';
 import { registrationSchemaType } from '@/types';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
+import { useTranslation } from 'next-i18next';
 import { useDispatch } from 'react-redux';
 
 export const useRegistration = () => {
+  const { t } = useTranslation('modals');
+
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm({
     mode: 'onChange',
-    resolver: zodResolver(registrationSchema),
+    resolver: zodResolver(registrationSchema(t)),
   });
 
   const disaptch = useDispatch();
@@ -30,5 +33,6 @@ export const useRegistration = () => {
     errors,
     onSubmit,
     onShowLogin,
+    t,
   };
 };

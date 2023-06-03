@@ -1,8 +1,7 @@
 import Link from 'next/link';
 import { useDropdown } from './useDropdown';
-import dynamic from 'next/dynamic';
 
-function Component() {
+export const Dropdown = () => {
   const { setShow, show, t, locale } = useDropdown();
 
   return (
@@ -36,7 +35,7 @@ function Component() {
         ></div>
       )}
       {show && (
-        <div className='z-10 absolute top-0 left-1/2 translate-y-14 -translate-x-1/2 bg-white divide-y divide-gray-100 rounded-lg shadow  dark:bg-gray-700'>
+        <div className='z-[700] absolute top-0 left-1/2 translate-y-14 -translate-x-1/2 bg-white divide-y divide-gray-100 rounded-lg shadow  dark:bg-gray-700'>
           <ul className='py-2 text-sm text-gray-700 dark:text-gray-200'>
             <li>
               <Link
@@ -45,7 +44,7 @@ function Component() {
                 onClick={() => setShow(!show)}
                 className='block px-10 py-2 w-full hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white'
               >
-                {t('locale.ka_full')}
+                {t('locale.ka')}
               </Link>
             </li>
             <li>
@@ -55,7 +54,7 @@ function Component() {
                 onClick={() => setShow(!show)}
                 className='block px-10 py-2 w-full hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white'
               >
-                {t('locale.en_full')}
+                {t('locale.en')}
               </Link>
             </li>
           </ul>
@@ -63,8 +62,4 @@ function Component() {
       )}
     </div>
   );
-}
-
-export const Dropdown = dynamic(() => Promise.resolve(Component), {
-  ssr: false,
-});
+};
