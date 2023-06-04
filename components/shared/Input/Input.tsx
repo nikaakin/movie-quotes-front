@@ -31,7 +31,9 @@ export const Input = ({
           placeholder={placeholder}
           value={value}
           {...register}
-          className={`px-3 py-2 border w-full border-gray-350 text-neutral-850 text-base rounded-[4px] placeholder:text-gray-550  bg-gray-350 ${classNames}`}
+          className={`px-3 py-2 pr-8 border w-full border-gray-350 text-neutral-850 text-base rounded-[4px] placeholder:text-gray-550  bg-gray-350 ${classNames} ${
+            shouldHide ? 'pr-14' : ''
+          }`}
         />
         {shouldHide && (
           <button

@@ -1,1 +1,144 @@
-{}
+{
+  "form": {
+    "login": {
+      "title": "Log in to your account",
+      "second_title": "Welcome back! Please enter your details.",
+      "text": "Dont have account yet?",
+      "button_text": "Sign up",
+      "remember_me": "Remember me",
+      "forgot_password": "Forgot password?",
+      "inputs": {
+        "emailOrUsername": {
+          "placeholder": "Email or username",
+          "title": "Email or username"
+        },
+        "password": {
+          "placeholder": "Password",
+          "title": "Password"
+        }
+      },
+      "buttons": {
+        "login": "Log in",
+        "login_google": "Sign in with Google"
+      },
+      "errors": {
+        "emailOrUsername": {
+          "required": "email or username is required"
+        },
+        "password": {
+          "min": "Password must be at least 8 characters long",
+          "max": "Password must be at most 15 characters long",
+          "regex": "Password must contain only lowercase letters and numbers"
+        }
+      }
+    },
+    "register": {
+      "title": "Create an account",
+      "second_title": "Start your journey!",
+      "text": "Already have an account?",
+      "button_text": "Log in",
+      "inputs": {
+        "username": {
+          "placeholder": "Enter your username",
+          "title": "Name"
+        },
+        "email": {
+          "placeholder": "Enter your email",
+          "title": "Email"
+        },
+        "password": {
+          "placeholder": "At least 8 & max.15 lower case characters",
+          "title": "Password"
+        },
+        "password_confirm": {
+          "placeholder": "Confirm password",
+          "title": "Confirm password"
+        }
+      },
+      "buttons": {
+        "signup": "Sign up",
+        "signup_google": "Sign up with Google"
+      },
+      "errors": {
+        "email": {
+          "email": "Please enter a valid email address"
+        },
+        "password": {
+          "min": "Password must be at least 8 characters long",
+          "max": "Password must be at most 15 characters long",
+          "regex": "Password must contain only lowercase letters and numbers"
+        },
+        "username": {
+          "min": "Username must be at least 3 characters long",
+          "max": "Username must be at most 15 characters long",
+          "regex": "Username must contain only lowercase letters and numbers"
+        },
+        "confirm_password": {
+          "match": "Passwords do not match"
+        }
+      }
+    },
+    "forgot_password": {
+      "title": "Forgot password?",
+      "second_title": "Enter the email and we’ll send an email with instructions to reset your password",
+      "back": "Back to log in",
+      "inputs": {
+        "email": {
+          "placeholder": "Enter your email",
+          "title": "Email"
+        }
+      },
+      "buttons": {
+        "send": "Send instructions"
+      },
+      "errors": {
+        "email": {
+          "email": "Please enter a valid email address"
+        }
+      }
+    }
+  },
+
+  "input": {
+    "email": {
+      "placeholder": "Email",
+      "error": "Please enter a valid email address"
+    },
+    "password": {
+      "placeholder": "Password",
+      "error": "Please enter a valid password"
+    },
+    "confirm_password": {
+      "placeholder": "Confirm password",
+      "error": "Please enter a valid password"
+    }
+  },
+
+  "notification": {
+    "register-notification": {
+      "title": "Thank you!",
+      "text": "Please check your email and follow the instructions to activate your account.",
+      "button_text": "Go to my email"
+    },
+    "forgot-password-notification": {
+      "title": "Check your email",
+      "text": "We have sent a password recover instructions to your email",
+      "button_text": "Go to my email"
+    },
+    "accont-activated": {
+      "title": "Thank you!",
+      "text": "Your account has been activated.",
+      "button_text": "Go to my news feed"
+    },
+    "password-changed": {
+      "title": "Success!",
+      "text": "Your Password changed successfully",
+      "button_text": "Log in"
+    },
+    "link-expired": {
+      "title": "Link expired!",
+      "text": "Login link has expired, because you haven’t used it",
+      "button_text": "Request another link"
+    }
+  }
+}

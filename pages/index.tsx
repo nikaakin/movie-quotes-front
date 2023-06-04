@@ -25,10 +25,15 @@ export default function Home() {
     onClose,
     currentModal,
     t,
+    locale,
   } = useLandingPage();
 
   return (
-    <div className='overflow-hidden relative pt-107  sm:pt-200 text-white font-helvetica-neue'>
+    <div
+      className={`overflow-hidden relative pt-107  sm:pt-200 text-white ${
+        locale === 'en' ? 'font-helvetica-neue' : 'font-helvetica-georgian'
+      }`}
+    >
       {currentModal && (
         <Modal onClose={onClose}>
           {currentModal === 'login' ? (
@@ -40,45 +45,44 @@ export default function Home() {
           ) : currentModal === 'register-notification' ? (
             <NotificationModal
               image={<CheckEmailIcon />}
-              title='Thank you!'
-              text='Please check your email and follow the instructions to activate your account.'
-              buttonText='Go to my email'
+              title={t('modals:notification.register-notification.title')}
+              text={t('modals:notification.register-notification.text')}
+              buttonText={t(
+                'modals:notification.register-notification.button_text'
+              )}
             />
           ) : currentModal === 'forgot-password-notification' ? (
             <NotificationModal
               image={<CheckEmailIcon />}
-              title='Check your email'
-              text='We have sent a password recover instructions to your email'
-              buttonText='Go to my email'
+              title={t(
+                'modals:notification.forgot-password-notification.title'
+              )}
+              text={t('modals:notification.forgot-password-notification.text')}
+              buttonText={t(
+                'modals:notification.forgot-password-notification.button_text'
+              )}
               skip
             />
           ) : currentModal === 'account-activated' ? (
             <NotificationModal
               image={<CheckMarkIcon />}
-              title='Thank you!'
-              text='Your account has been activated.'
-              buttonText='Go to my news feed'
+              title={t('modals:notification.accont-activated.title')}
+              text={t('modals:notification.accont-activated.text')}
+              buttonText={t('modals:notification.accont-activated.button_text')}
             />
           ) : currentModal === 'password-changed' ? (
             <NotificationModal
               image={<CheckMarkIcon />}
-              title='Success!'
-              text='Your Password changed successfully'
-              buttonText='Log in'
-            />
-          ) : currentModal === 'email-changed' ? (
-            <NotificationModal
-              image={<CheckMarkIcon />}
-              title='Success!'
-              text='Your Email changed successfully'
-              buttonText='Log in'
+              title={t('modals:notification.password-changed.title')}
+              text={t('modals:notification.password-changed.text')}
+              buttonText={t('modals:notification.password-changed.button_text')}
             />
           ) : currentModal === 'link-expired' ? (
             <NotificationModal
               image='/assets/images/link-expired.png'
-              title='Link expired!'
-              text='Login link has expired, because you haven’t used it'
-              buttonText='Request another link'
+              title={t('modals:notification.link-expired.title')}
+              text={t('modals:notification.link-expired.text')}
+              buttonText={t('modals:notification.link-expired.button_text')}
             />
           ) : null}
         </Modal>
@@ -157,7 +161,7 @@ export default function Home() {
 export async function getStaticProps({ locale }: { locale: string }) {
   return {
     props: {
-      ...(await serverSideTranslations(locale ?? 'en', ['common'])),
+      ...(await serverSideTranslations(locale ?? 'en', ['common', 'modals'])),
     },
   };
 }

@@ -9,6 +9,7 @@ export const Login = () => {
     register,
     onShowPasswordReset,
     onShowRegistration,
+    t,
   } = useLogin();
 
   return (
@@ -17,16 +18,18 @@ export const Login = () => {
      sm:px-32 text-white sm:rounded-[10px] flex items-center flex-col '
     >
       <h1 className='mx-auto font-medium text-3xl  text-center mb-3'>
-        Create an account
+        {t('form.login.title')}
       </h1>
-      <h3 className='text-gray-550 text-center mb-6 '>Start your journey!</h3>
+      <h3 className='text-gray-550 text-center mb-6 '>
+        {t('form.login.second_title')}
+      </h3>
       <form className='w-90' onSubmit={handleSubmit(onSubmit)}>
         <Input
           required
-          title='Email'
+          title={t('form.login.inputs.emailOrUsername.title')!}
           errors={errors}
           name='emailOrUsername'
-          placeholder='Enter email or username'
+          placeholder={t('form.login.inputs.emailOrUsername.placeholder')!}
           register={register('emailOrUsername')}
         />
 
@@ -34,10 +37,10 @@ export const Login = () => {
           required
           shouldHide
           type='password'
-          title='Password'
+          title={t('form.login.inputs.password.title')!}
           errors={errors}
           name='password'
-          placeholder='At least 8 & max.15 lower case characters'
+          placeholder={t('form.login.inputs.password.placeholder')!}
           register={register('password')}
         />
 
@@ -50,7 +53,7 @@ export const Login = () => {
               {...register('remember')}
             />
             <label htmlFor='remember' className=' text-base font-normal'>
-              Remember me
+              {t('form.login.remember_me')}
             </label>
           </div>
           <button
@@ -58,30 +61,30 @@ export const Login = () => {
             type='button'
             onClick={onShowPasswordReset}
           >
-            Forgot password
+            {t('form.login.forgot_password')}
           </button>
         </div>
 
         <Button
           classes='w-full py-2 font-normal text-base mb-4'
-          content='Sign in'
+          content={t('form.login.button_text')}
           type='submit'
         />
         <Button
           classes='w-full py-2 font-normal text-base mb-8'
-          content='Sign in with Google'
+          content={t('form.login.buttons.login_google')}
           icon={<GoogleIcon />}
           isTransparent
         />
 
         <p className='text-center'>
-          <span className='text-gray-550'>Dont have account yet?</span>{' '}
+          <span className='text-gray-550'>{t('form.login.text')}</span>{' '}
           <button
             className='text-blue-650 underline'
             onClick={onShowRegistration}
             type='button'
           >
-            Sign up
+            {t('form.login.button_text')}
           </button>
         </p>
       </form>

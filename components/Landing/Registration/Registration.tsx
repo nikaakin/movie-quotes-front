@@ -2,7 +2,7 @@ import { Button, GoogleIcon, Input } from '@/components';
 import { useRegistration } from './useRegistration';
 
 export const Registration = () => {
-  const { errors, handleSubmit, onSubmit, register, onShowLogin } =
+  const { errors, handleSubmit, onSubmit, register, onShowLogin, t } =
     useRegistration();
 
   return (
@@ -11,68 +11,70 @@ export const Registration = () => {
      sm:px-32 text-white sm:rounded-[10px] flex items-center flex-col '
     >
       <h1 className='mx-auto font-medium text-3xl  text-center mb-3'>
-        Create an account
+        {t('form.register.title')!}
       </h1>
-      <h3 className='text-gray-550 text-center mb-6'>Start your journey!</h3>
+      <h3 className='text-gray-550 text-center mb-6'>
+        {t('form.register.second_title')!}
+      </h3>
       <form className='w-90' onSubmit={handleSubmit(onSubmit)}>
         <Input
           required
-          title='Name'
+          title={t('form.register.inputs.username.title')!}
           errors={errors}
           name='username'
-          placeholder='At least 3 & max.15 lower case characters'
+          placeholder={t('form.register.inputs.username.placeholder')!}
           register={register('username')}
         />
         <Input
           required
-          title='Email'
+          title={t('form.register.inputs.email.title')!}
           type='email'
           errors={errors}
           name='email'
-          placeholder='Enter your email'
+          placeholder={t('form.register.inputs.email.placeholder')!}
           register={register('email')}
         />
         <Input
           required
           shouldHide
           type='password'
-          title='Password'
+          title={t('form.register.inputs.password.title')!}
           errors={errors}
           name='password'
-          placeholder='At least 8 & max.15 lower case characters'
+          placeholder={t('form.register.inputs.password.placeholder')!}
           register={register('password')}
         />
         <Input
           required
           shouldHide
           type='password'
-          title='Confirm password'
+          title={t('form.register.inputs.password_confirm.title')!}
           errors={errors}
           name='passwordRepeat'
-          placeholder='Confirm password'
+          placeholder={t('form.register.inputs.password_confirm.placeholder')!}
           register={register('passwordRepeat')}
         />
 
         <Button
           classes='w-full py-2 font-normal text-base mb-4'
-          content='Get started'
+          content={t('form.register.buttons.signup')!}
           type='submit'
         />
         <Button
           classes='w-full py-2 font-normal text-base mb-8'
-          content='Sign up with Google'
+          content={t('form.register.buttons.signup_google')!}
           icon={<GoogleIcon />}
           isTransparent
         />
 
         <p className='text-center'>
-          <span className='text-gray-550'>Already have an account?</span>{' '}
+          <span className='text-gray-550'>{t('form.register.text')}</span>{' '}
           <button
             className='text-blue-650 underline'
             onClick={onShowLogin}
             type='button'
           >
-            Log in
+            {t('form.register.button_text')}
           </button>
         </p>
       </form>

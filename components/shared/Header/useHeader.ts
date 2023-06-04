@@ -1,17 +1,17 @@
-import { useState } from 'react';
-import { useTranslation } from 'react-i18next';
+import { setCurrentModal } from '@/store';
+import { useTranslation } from 'next-i18next';
+import { useDispatch } from 'react-redux';
 
 export const useHeader = () => {
-  const [showRegister, setShowRegister] = useState(false);
-  const [showLogin, setShowLogin] = useState(false);
+  const disaptch = useDispatch();
   const { t } = useTranslation('common');
-  const onShowRegisterChange = () => setShowRegister(!showRegister);
-  const onShowLoginChange = () => setShowLogin(!showLogin);
+
+  const onShowLogin = () => disaptch(setCurrentModal('login'));
+  const onShowRegister = () => disaptch(setCurrentModal('register'));
+
   return {
-    showRegister,
-    onShowRegisterChange,
-    showLogin,
-    onShowLoginChange,
+    onShowLogin,
+    onShowRegister,
     t,
   };
 };

@@ -3,6 +3,7 @@ import { RootState, setCurrentModal } from '@/store';
 import { useRef, useState } from 'react';
 import { useTranslation } from 'next-i18next';
 import { useDispatch, useSelector } from 'react-redux';
+import { useRouter } from 'next/router';
 
 export const useLandingPage = () => {
   const [shouldAnimate, setShouldAnimate] = useState(false);
@@ -10,7 +11,8 @@ export const useLandingPage = () => {
     (state: RootState) => state.currentModal.currentModal
   );
 
-  const { t } = useTranslation('common');
+  const { t } = useTranslation(['common', 'modals']);
+  const { locale } = useRouter();
 
   const disaptch = useDispatch();
   const backgrounfRef = useRef<HTMLDivElement>(null);
@@ -53,5 +55,6 @@ export const useLandingPage = () => {
     onClose,
     onShowRegister,
     t,
+    locale,
   };
 };
