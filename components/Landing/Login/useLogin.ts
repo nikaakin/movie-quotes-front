@@ -6,6 +6,8 @@ import { useRouter } from 'next/router';
 import { useForm } from 'react-hook-form';
 import { useTranslation } from 'next-i18next';
 import { useDispatch } from 'react-redux';
+import { useMutation } from '@tanstack/react-query';
+import { getCsrf, login } from '@/services';
 
 export const useLogin = () => {
   const { t } = useTranslation('modals');
@@ -20,17 +22,28 @@ export const useLogin = () => {
   });
 
   const router = useRouter();
-  const disaptch = useDispatch();
+  const dispatch = useDispatch();
+
+  const { mutate } = useMutation({
+    mutationFn: login,
+    onSuccess: () => {
+      router.push('/news-feed');
+    },
+    onError: (error) => {
+      console.log(error);
+    },
+  });
 
   const onSubmit = (data: loginSchemaType) => {
-    console.log(data);
-    router.push('/news-feed');
+    getCsrf().then(() => {
+      mutate(data);
+    });
   };
 
   const onShowPasswordReset = () =>
-    disaptch(setCurrentModal('forgot-password'));
+    dispatch(setCurrentModal('forgot-password'));
 
-  const onShowRegistration = () => disaptch(setCurrentModal('register'));
+  const onShowRegistration = () => dispatch(setCurrentModal('register'));
 
   return {
     register,

@@ -5,6 +5,8 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import { useTranslation } from 'next-i18next';
 import { useDispatch } from 'react-redux';
+import { useMutation } from '@tanstack/react-query';
+import { forgotPassword, getCsrf } from '@/services';
 
 export const useForgotPassword = () => {
   const { t } = useTranslation('modals');
@@ -19,9 +21,20 @@ export const useForgotPassword = () => {
   });
 
   const dispatch = useDispatch();
+  const { mutate } = useMutation({
+    mutationFn: forgotPassword,
+    onSuccess: () => {
+      dispatch(setCurrentModal('forgot-password-notification'));
+    },
+    onError: (error) => {
+      console.log(error);
+    },
+  });
+
   const onSubmit = (data: forgotPasswordSchemaType) => {
-    console.log(data);
-    dispatch(setCurrentModal('forgot-password-notification'));
+    getCsrf().then(() => {
+      mutate(data);
+    });
   };
 
   const onShowLogin = () => dispatch(setCurrentModal('login'));
