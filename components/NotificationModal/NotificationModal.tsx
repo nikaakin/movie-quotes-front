@@ -7,6 +7,7 @@ export const NotificationModal = ({
   text,
   buttonText,
   skip = false,
+  onClick = () => {},
 }: NotificationModalProps) => {
   return (
     <div
@@ -18,7 +19,7 @@ export const NotificationModal = ({
       </div>
       <h1 className='text-white text-3xl font-medium mb-8'>{title}</h1>
       <p className='font-normal text-base text-center mb-8 w-90'>{text}</p>
-      <Button classes='w-90 py-2' content={buttonText} />
+      <Button classes='w-90 py-2' content={buttonText} onClick={onClick} />
       {skip && <p className='text-gray-550'>Skip, I’ll confirm later</p>}
     </div>
   );
