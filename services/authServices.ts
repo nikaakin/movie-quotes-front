@@ -1,10 +1,10 @@
 import { registrationSchemaType } from '@/types';
-import instance from './axios';
+import axios from './axios';
 
-export const login = () => instance.post('/api/login');
-export const logout = () => instance.get('/api/logout');
+export const login = () => axios.post('/api/login');
+export const logout = () => axios.get('/api/logout');
 export const register = (data: registrationSchemaType) =>
-  instance.post('/api/register', data);
-export const forgotPassword = () => instance.post('/api/forgot-password');
-export const resetPassword = () => instance.post('/api/reset-password');
-export const getCsrf = () => instance.get('/sanctum/csrf-cookie');
+  axios.post('/api/register', data);
+export const forgotPassword = () => axios.post('/api/forgot-password');
+export const resetPassword = () => axios.post('/api/reset-password');
+export const getCsrf = () => axios.get('/sanctum/csrf-cookie');

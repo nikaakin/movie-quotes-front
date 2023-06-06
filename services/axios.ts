@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const instance = axios.create({
+export default axios.create({
   baseURL: process.env.NEXT_PUBLIC_API_BASE_URL,
   headers: {
     'Content-Type': 'application/json',
@@ -8,5 +8,3 @@ const instance = axios.create({
   },
   withCredentials: true,
 });
-
-export default instance;

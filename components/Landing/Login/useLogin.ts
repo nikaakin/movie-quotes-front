@@ -8,6 +8,7 @@ import { useTranslation } from 'next-i18next';
 import { useDispatch } from 'react-redux';
 import { useMutation } from '@tanstack/react-query';
 import { getCsrf, login } from '@/services';
+import { AxiosError } from 'axios';
 
 export const useLogin = () => {
   const { t } = useTranslation('modals');
@@ -15,6 +16,7 @@ export const useLogin = () => {
   const {
     register,
     handleSubmit,
+    setError,
     formState: { errors },
   } = useForm({
     mode: 'onChange',
@@ -29,8 +31,9 @@ export const useLogin = () => {
     onSuccess: () => {
       router.push('/news-feed');
     },
-    onError: (error) => {
-      console.log(error);
+    onError: (error: AxiosError<loginSchemaType>) => {
+      const errors = error.response?.data.details || {};
+      Object.keys(errors).map((key) => setError(key, { message: errors[key] }));
     },
   });
 
