@@ -9,7 +9,7 @@ export const Header = () => {
   return (
     <header className='py-6 sm:py-8 sm:px-16 px-4 flex justify-between w-full text-white'>
       <h1 className='uppercase text-orange-250 text-base font-medium '>
-        {t('header.title')}
+        movie quotes
       </h1>
       <div className='flex flex-row justify-between gap-2 sm:gap-4'>
         <Dropdown />

@@ -26,7 +26,8 @@ export const loginSchema = (t: TFunction) =>
   z.object({
     emailOrUsername: z
       .string()
-      .nonempty(t('form.login.errors.emailOrUsername.required')!),
+      .nonempty(t('form.login.errors.emailOrUsername.required')!)
+      .min(3, t('form.login.errors.emailOrUsername.min')!),
     password: z
       .string()
       .min(8, t('form.login.errors.password.min')!)

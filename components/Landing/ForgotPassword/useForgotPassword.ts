@@ -10,7 +10,6 @@ import { forgotPassword, getCsrf } from '@/services';
 
 export const useForgotPassword = () => {
   const { t } = useTranslation('modals');
-
   const {
     register,
     handleSubmit,

@@ -23,7 +23,8 @@
       },
       "errors": {
         "emailOrUsername": {
-          "required": "email or username is required"
+          "required": "email or username is required",
+          "min": "field must be at least 3 characters long"
         },
         "password": {
           "min": "Password must be at least 8 characters long",
