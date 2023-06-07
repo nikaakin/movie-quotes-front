@@ -32,7 +32,7 @@ export const useLogin = () => {
       router.push('/news-feed');
     },
     onError: (error: AxiosError<loginSchemaType>) => {
-      const errors = error.response?.data.details || {};
+      const errors = error.response?.data || {};
       Object.keys(errors).map((key) => setError(key, { message: errors[key] }));
     },
   });

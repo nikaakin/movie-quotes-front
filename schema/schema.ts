@@ -24,7 +24,7 @@ export const registrationSchema = (t: TFunction) =>
 
 export const loginSchema = (t: TFunction) =>
   z.object({
-    emailOrUsername: z
+    username: z
       .string()
       .nonempty(t('form.login.errors.emailOrUsername.required')!)
       .min(3, t('form.login.errors.emailOrUsername.min')!),
