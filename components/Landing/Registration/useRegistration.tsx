@@ -38,14 +38,9 @@ export const useRegistration = () => {
   });
 
   const onSubmit = async (data: registrationSchemaType) => {
-    axios.default.interceptors.request.use((config) => {
-      config.headers['Accept-Language'] = locale;
-      return config;
-    });
     await getCsrf().then(async () => {
       await mutate(data);
     });
-    axios.default.interceptors.request.clear();
   };
 
   const onShowLogin = () => dispatch(setCurrentModal('login'));
