@@ -8,10 +8,14 @@ import { useDispatch } from 'react-redux';
 import { getCsrf, register as registerService } from '@/services';
 import { useMutation } from '@tanstack/react-query';
 import { AxiosError } from 'axios';
+import axios from '@/services';
+import { useRouter } from 'next/router';
 
 export const useRegistration = () => {
   const { t } = useTranslation('modals');
   const dispatch = useDispatch();
+  const { locale } = useRouter();
+
   const {
     register,
     handleSubmit,
@@ -34,9 +38,14 @@ export const useRegistration = () => {
   });
 
   const onSubmit = async (data: registrationSchemaType) => {
-    getCsrf().then(() => {
-      mutate(data);
+    axios.default.interceptors.request.use((config) => {
+      config.headers['Accept-Language'] = locale;
+      return config;
     });
+    await getCsrf().then(async () => {
+      await mutate(data);
+    });
+    axios.default.interceptors.request.clear();
   };
 
   const onShowLogin = () => dispatch(setCurrentModal('login'));
