@@ -1,5 +1,6 @@
 import { Button, GoogleIcon, Input } from '@/components';
 import { useLogin } from './useLogin';
+import { ErrorMessage } from '@hookform/error-message';
 
 export const Login = () => {
   const {
@@ -28,9 +29,9 @@ export const Login = () => {
           required
           title={t('form.login.inputs.emailOrUsername.title')!}
           errors={errors}
-          name='emailOrUsername'
+          name='username'
           placeholder={t('form.login.inputs.emailOrUsername.placeholder')!}
-          register={register('emailOrUsername')}
+          register={register('username')}
         />
 
         <Input
@@ -44,7 +45,10 @@ export const Login = () => {
           register={register('password')}
         />
 
-        <div className='flex flex-row  items-center max-w-sm my-4'>
+        <div className='flex flex-row  items-center max-w-sm my-4 relative pt-4 '>
+          <span className='absolute top-2 left-0 -translate-y-full text-red-550 text-base'>
+            <ErrorMessage errors={errors} name='invalid_credentials' />
+          </span>
           <div className='flex-1'>
             <input
               type='checkbox'
@@ -67,7 +71,7 @@ export const Login = () => {
 
         <Button
           classes='w-full py-2 font-normal text-base mb-4'
-          content={t('form.login.button_text')}
+          content={t('form.login.buttons.login')}
           type='submit'
         />
         <Button
