@@ -1,4 +1,4 @@
-import { setCurrentModal } from '@/store';
+import { setCurrentModal } from '@/state';
 import { useTranslation } from 'next-i18next';
 import { useDispatch } from 'react-redux';
 

@@ -1,5 +1,5 @@
 import { loginSchema } from '@/schema';
-import { setCurrentModal } from '@/store';
+import { setCurrentModal } from '@/state';
 import { loginSchemaType } from '@/types';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useRouter } from 'next/router';

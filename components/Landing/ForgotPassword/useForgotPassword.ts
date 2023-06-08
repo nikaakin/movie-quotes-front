@@ -1,5 +1,5 @@
 import { forgotPasswordSchema } from '@/schema';
-import { setCurrentModal } from '@/store';
+import { setCurrentModal } from '@/state';
 import { forgotPasswordSchemaType } from '@/types';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';

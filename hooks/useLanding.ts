@@ -1,5 +1,5 @@
 import { useIntersectionObserver } from '@/hooks';
-import { RootState, setCurrentModal } from '@/store';
+import { RootState, setCurrentModal } from '@/state';
 import { useRef, useState } from 'react';
 import { useTranslation } from 'next-i18next';
 import { useDispatch, useSelector } from 'react-redux';

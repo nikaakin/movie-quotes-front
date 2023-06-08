@@ -1,5 +1,4 @@
-import axios from '@/services';
-import { store } from '@/store';
+import { store } from '@/state';
 import '@/styles/globals.css';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
