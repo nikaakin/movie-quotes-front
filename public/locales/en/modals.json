@@ -118,7 +118,7 @@
     "register-notification": {
       "title": "Thank you!",
       "text": "Please check your email and follow the instructions to activate your account.",
-      "button_text": "Go to my email"
+      "button_text": "Back to home page"
     },
     "forgot-password-notification": {
       "title": "Check your email",
@@ -128,7 +128,7 @@
     "accont-activated": {
       "title": "Thank you!",
       "text": "Your account has been activated.",
-      "button_text": "Go to my news feed"
+      "button_text": "Log in"
     },
     "password-changed": {
       "title": "Success!",

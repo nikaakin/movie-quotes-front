@@ -1,6 +1,6 @@
 import { useIntersectionObserver } from '@/hooks';
 import { RootState, setCurrentModal } from '@/state';
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'next-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 import { useRouter } from 'next/router';
@@ -12,9 +12,18 @@ export const useLandingPage = () => {
   );
 
   const { t } = useTranslation(['common', 'modals']);
-  const { locale } = useRouter();
+  const { locale, query } = useRouter();
+  const dispatch = useDispatch();
 
-  const disaptch = useDispatch();
+  useEffect(() => {
+    if (query.verified === 'true') {
+      dispatch(setCurrentModal('account-activated'));
+    }
+    if (query.verified === 'false') {
+      dispatch(setCurrentModal('link-expired'));
+    }
+  }, [query.verified, dispatch]);
+
   const backgrounfRef = useRef<HTMLDivElement>(null);
   const imageRefs = [
     useRef<HTMLDivElement>(null),
@@ -40,9 +49,11 @@ export const useLandingPage = () => {
       window.scrollTo({ behavior: 'smooth', top: 1200 * (index + 1) - 280 });
   };
 
-  const onClose = () => disaptch(setCurrentModal(null));
+  const onClose = () => dispatch(setCurrentModal(null));
 
-  const onShowRegister = () => disaptch(setCurrentModal('register'));
+  const onShowRegister = () => dispatch(setCurrentModal('register'));
+
+  const onLogin = () => dispatch(setCurrentModal('login'));
 
   return {
     shouldAnimate,
@@ -56,5 +67,7 @@ export const useLandingPage = () => {
     onShowRegister,
     t,
     locale,
+    query,
+    onLogin,
   };
 };

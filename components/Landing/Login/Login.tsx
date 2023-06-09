@@ -88,7 +88,7 @@ export const Login = () => {
             onClick={onShowRegistration}
             type='button'
           >
-            {t('form.login.button_text')}
+            {t('form.register.buttons.signup')}
           </button>
         </p>
       </form>

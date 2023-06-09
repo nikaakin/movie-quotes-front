@@ -26,6 +26,7 @@ export default function Home() {
     currentModal,
     t,
     locale,
+    onLogin,
   } = useLandingPage();
 
   return (
@@ -50,6 +51,7 @@ export default function Home() {
               buttonText={t(
                 'modals:notification.register-notification.button_text'
               )}
+              onClick={onClose}
             />
           ) : currentModal === 'forgot-password-notification' ? (
             <NotificationModal
@@ -69,6 +71,7 @@ export default function Home() {
               title={t('modals:notification.accont-activated.title')}
               text={t('modals:notification.accont-activated.text')}
               buttonText={t('modals:notification.accont-activated.button_text')}
+              onClick={onLogin}
             />
           ) : currentModal === 'password-changed' ? (
             <NotificationModal
@@ -83,6 +86,7 @@ export default function Home() {
               title={t('modals:notification.link-expired.title')}
               text={t('modals:notification.link-expired.text')}
               buttonText={t('modals:notification.link-expired.button_text')}
+              onClick={onLogin}
             />
           ) : null}
         </Modal>
