@@ -5,4 +5,5 @@ export type buttonProps = {
   onClick?: () => void;
   type?: 'button' | 'submit' | 'reset';
   icon?: React.ReactNode;
+  isLink?: boolean;
 };

@@ -7,6 +7,7 @@ export const Button = ({
   onClick,
   type = 'button',
   icon,
+  isLink = false,
 }: buttonProps) => {
   const background = isTransparent
     ? ' border-white border-solid bg-transparent'
@@ -19,10 +20,21 @@ export const Button = ({
       className={` font-normal 
       text-base sm:text-xl border rounded text-white ${background} ${classes}`}
     >
-      <span className='flex  justify-center gap-2 items-center'>
-        {icon ? icon : ''}
-        {content}
-      </span>
+      {isLink ? (
+        <a
+          href={`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/auth/google/redirect`}
+        >
+          <span className='flex  justify-center gap-2 items-center'>
+            {icon ? icon : ''}
+            {content}
+          </span>
+        </a>
+      ) : (
+        <span className='flex  justify-center gap-2 items-center'>
+          {icon ? icon : ''}
+          {content}
+        </span>
+      )}
     </button>
   );
 };

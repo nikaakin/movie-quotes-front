@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'next-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 import { useRouter } from 'next/router';
+import { getCsrf, googleLogin } from '@/services';
 
 export const useLandingPage = () => {
   const [shouldAnimate, setShouldAnimate] = useState(false);
@@ -17,10 +18,18 @@ export const useLandingPage = () => {
   );
 
   const { t } = useTranslation(['common', 'modals']);
-  const { locale, query, replace } = useRouter();
+  const { locale, query, replace, push } = useRouter();
   const dispatch = useDispatch();
 
   useEffect(() => {
+    if (query.code) {
+      getCsrf().then(async () => {
+        await googleLogin(query);
+        push('/news-feed');
+      });
+
+      replace(`/${locale}`);
+    }
     if (query.token) {
       dispatch(setCurrentModal('reset-password'));
       setResetPaswordData({

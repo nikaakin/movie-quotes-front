@@ -12,7 +12,6 @@ import { AxiosError } from 'axios';
 
 export const useLogin = () => {
   const { t } = useTranslation('modals');
-
   const {
     register,
     handleSubmit,

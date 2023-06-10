@@ -12,7 +12,7 @@ export const NotificationModal = ({
   return (
     <div
       className='bg-zinc-850 w-full h-full py-16 sm:py-14  
-    sm:px-24 text-white sm:rounded-[10px]  flex-col  '
+    sm:px-8 text-white sm:rounded-[10px]  flex-col  '
     >
       <div className='flex flex-col items-center mx-8 bg-lg-blur px-8 py-10 rounded sm:bg-none backdrop-blur-xl'>
         <div className='mb-8'>

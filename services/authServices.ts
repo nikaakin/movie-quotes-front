@@ -5,6 +5,7 @@ import {
 } from '@/types';
 import axios from './axios';
 import { resetPasswordArgs } from './type';
+import { ParsedUrlQuery } from 'querystring';
 
 export const login = (data: loginSchemaType) =>
   axios().post('/api/login', data);
@@ -24,5 +25,8 @@ export const verifyEmail = (
   axios().get(`/api/email/verify/${id}/${hash}`, {
     params: { expires, signature },
   });
+export const googleLogin = (query: ParsedUrlQuery) =>
+  axios().get('/api/auth/google/callback', { params: query });
+
 export const getCsrf = () => axios().get('/sanctum/csrf-cookie');
 export const isAuthenticated = () => axios().get('/api/user');
