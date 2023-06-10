@@ -38,5 +38,20 @@ export const loginSchema = (t: TFunction) =>
 
 export const forgotPasswordSchema = (t: TFunction) =>
   z.object({
-    email: z.string().email(t('form.forgot-password.errors.email.email')!),
+    email: z.string().email(t('form.forgot_password.errors.email')!),
   });
+
+export const resetPasswordSchema = (t: TFunction) =>
+  z
+    .object({
+      password: z
+        .string()
+        .min(8, t('form.register.errors.password.min')!)
+        .max(15, t('form.register.errors.password.max')!)
+        .regex(/^[a-z0-9]+$/, t('form.register.errors.password.regex')!),
+      passwordRepeat: z.string(),
+    })
+    .refine((data) => data.password === data.passwordRepeat, {
+      message: t('form.register.errors.confirm_password.match')!,
+      path: ['passwordRepeat'],
+    });

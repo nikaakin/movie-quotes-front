@@ -6,5 +6,5 @@ export const useInput = (shouldHide: boolean, type: string) => {
 
   const onEyeClick = () => setIsHidden((prev) => !prev);
 
-  return { typeOfInput, onEyeClick };
+  return { typeOfInput, onEyeClick, isHidden };
 };

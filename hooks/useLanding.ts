@@ -7,22 +7,45 @@ import { useRouter } from 'next/router';
 
 export const useLandingPage = () => {
   const [shouldAnimate, setShouldAnimate] = useState(false);
+  const [linkExpiredOnClick, setLinkExpiredOnClick] = useState('');
+  const [resetPaswordData, setResetPaswordData] = useState({
+    email: '',
+    token: '',
+  });
   const currentModal = useSelector(
     (state: RootState) => state.currentModal.currentModal
   );
 
   const { t } = useTranslation(['common', 'modals']);
-  const { locale, query } = useRouter();
+  const { locale, query, replace } = useRouter();
   const dispatch = useDispatch();
 
   useEffect(() => {
+    if (query.token) {
+      dispatch(setCurrentModal('reset-password'));
+      setResetPaswordData({
+        email: query.email as string,
+        token: query.token as string,
+      });
+      setLinkExpiredOnClick('password-change');
+      replace(`/${locale}`);
+    }
     if (query.verified === 'true') {
       dispatch(setCurrentModal('account-activated'));
+      replace(`/${locale}`);
     }
     if (query.verified === 'false') {
       dispatch(setCurrentModal('link-expired'));
+      replace(`/${locale}`);
+      setLinkExpiredOnClick('verification');
     }
-  }, [query.verified, dispatch]);
+
+    if (query.is_available === 'false') {
+      dispatch(setCurrentModal('link-expired'));
+      replace(`/${locale}`);
+      setLinkExpiredOnClick('password-change');
+    }
+  }, [query, dispatch, setLinkExpiredOnClick, replace, locale]);
 
   const backgrounfRef = useRef<HTMLDivElement>(null);
   const imageRefs = [
@@ -55,6 +78,15 @@ export const useLandingPage = () => {
 
   const onLogin = () => dispatch(setCurrentModal('login'));
 
+  const onLinkExpired = () => {
+    if (linkExpiredOnClick === 'verification') {
+      dispatch(setCurrentModal('login'));
+    }
+    if (linkExpiredOnClick === 'password-change') {
+      dispatch(setCurrentModal('forgot-password'));
+    }
+  };
+
   return {
     shouldAnimate,
     show,
@@ -69,5 +101,7 @@ export const useLandingPage = () => {
     locale,
     query,
     onLogin,
+    onLinkExpired,
+    resetPaswordData,
   };
 };

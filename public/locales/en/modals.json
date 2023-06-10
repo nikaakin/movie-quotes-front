@@ -92,9 +92,26 @@
         "send": "Send instructions"
       },
       "errors": {
-        "email": {
-          "email": "Please enter a valid email address"
+        "email": "Please enter a valid email address",
+        "required": "Email is required"
+      }
+    },
+    "reset-password": {
+      "title": "Create new password",
+      "second_title": "Your new password must be different from previous used passwords",
+      "back": "Back to log in",
+      "inputs": {
+        "password": {
+          "placeholder": "At least 8 & max.15 lower case characters",
+          "title": "Password"
+        },
+        "password_confirm": {
+          "placeholder": "Confirm password",
+          "title": "Confirm password"
         }
+      },
+      "buttons": {
+        "send": "Reset password"
       }
     }
   },
@@ -123,7 +140,8 @@
     "forgot-password-notification": {
       "title": "Check your email",
       "text": "We have sent a password recover instructions to your email",
-      "button_text": "Go to my email"
+      "button_text": "Go to my email",
+      "skip": "Skip, I’ll confirm later"
     },
     "accont-activated": {
       "title": "Thank you!",

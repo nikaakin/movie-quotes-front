@@ -7,3 +7,4 @@ import {
 type registrationSchemaType = registrationSchema;
 type loginSchemaType = loginSchema;
 type forgotPasswordSchemaType = forgotPasswordSchema;
+type ResetPasswordSchemaType = forgotPasswordSchema;
