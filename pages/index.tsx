@@ -8,6 +8,7 @@ import {
   Modal,
   NotificationModal,
   Registration,
+  ResetPassword,
 } from '@/components';
 import { imageUrls } from '@/config';
 import { useLandingPage } from '@/hooks';
@@ -26,6 +27,9 @@ export default function Home() {
     currentModal,
     t,
     locale,
+    onLogin,
+    onLinkExpired,
+    resetPaswordData,
   } = useLandingPage();
 
   return (
@@ -42,6 +46,11 @@ export default function Home() {
             <Registration />
           ) : currentModal === 'forgot-password' ? (
             <ForgotPassword />
+          ) : currentModal === 'reset-password' ? (
+            <ResetPassword
+              email={resetPaswordData.email}
+              token={resetPaswordData.token}
+            />
           ) : currentModal === 'register-notification' ? (
             <NotificationModal
               image={<CheckEmailIcon />}
@@ -50,6 +59,7 @@ export default function Home() {
               buttonText={t(
                 'modals:notification.register-notification.button_text'
               )}
+              onClick={onClose}
             />
           ) : currentModal === 'forgot-password-notification' ? (
             <NotificationModal
@@ -61,7 +71,8 @@ export default function Home() {
               buttonText={t(
                 'modals:notification.forgot-password-notification.button_text'
               )}
-              skip
+              skip={t('modals:notification.forgot-password-notification.skip')!}
+              onClick={onClose}
             />
           ) : currentModal === 'account-activated' ? (
             <NotificationModal
@@ -69,6 +80,7 @@ export default function Home() {
               title={t('modals:notification.accont-activated.title')}
               text={t('modals:notification.accont-activated.text')}
               buttonText={t('modals:notification.accont-activated.button_text')}
+              onClick={onLogin}
             />
           ) : currentModal === 'password-changed' ? (
             <NotificationModal
@@ -76,6 +88,7 @@ export default function Home() {
               title={t('modals:notification.password-changed.title')}
               text={t('modals:notification.password-changed.text')}
               buttonText={t('modals:notification.password-changed.button_text')}
+              onClick={onLogin}
             />
           ) : currentModal === 'link-expired' ? (
             <NotificationModal
@@ -83,6 +96,7 @@ export default function Home() {
               title={t('modals:notification.link-expired.title')}
               text={t('modals:notification.link-expired.text')}
               buttonText={t('modals:notification.link-expired.button_text')}
+              onClick={onLinkExpired}
             />
           ) : null}
         </Modal>

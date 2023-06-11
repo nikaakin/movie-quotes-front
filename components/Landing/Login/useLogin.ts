@@ -1,5 +1,5 @@
 import { loginSchema } from '@/schema';
-import { setCurrentModal } from '@/store';
+import { setCurrentModal } from '@/state';
 import { loginSchemaType } from '@/types';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useRouter } from 'next/router';
@@ -12,7 +12,6 @@ import { AxiosError } from 'axios';
 
 export const useLogin = () => {
   const { t } = useTranslation('modals');
-
   const {
     register,
     handleSubmit,
@@ -32,6 +31,9 @@ export const useLogin = () => {
       router.push('/news-feed');
     },
     onError: (error: AxiosError<loginSchemaType>) => {
+      if (error.response?.data.email_not_verified) {
+        return dispatch(setCurrentModal('register-notification'));
+      }
       const errors = error.response?.data || {};
       Object.keys(errors).map((key) => setError(key, { message: errors[key] }));
     },

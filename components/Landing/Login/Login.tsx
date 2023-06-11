@@ -79,8 +79,8 @@ export const Login = () => {
           content={t('form.login.buttons.login_google')}
           icon={<GoogleIcon />}
           isTransparent
+          isLink
         />
-
         <p className='text-center'>
           <span className='text-gray-550'>{t('form.login.text')}</span>{' '}
           <button
@@ -88,7 +88,7 @@ export const Login = () => {
             onClick={onShowRegistration}
             type='button'
           >
-            {t('form.login.button_text')}
+            {t('form.register.buttons.signup')}
           </button>
         </p>
       </form>

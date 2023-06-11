@@ -5,6 +5,10 @@ type InitialStateType = {
     | 'login'
     | 'register'
     | 'forgot-password'
+    | 'reset-password'
+    | 'account-activated'
+    | 'password-changed'
+    | 'link-expired'
     | 'register-notification'
     | 'forgot-password-notification'
     | null;

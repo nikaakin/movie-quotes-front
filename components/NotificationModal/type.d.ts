@@ -5,6 +5,6 @@ export type NotificationModalProps = {
   title: string;
   text: string;
   buttonText: string;
-  skip?: boolean;
+  skip?: boolean | string;
   onClick?: () => void;
 };

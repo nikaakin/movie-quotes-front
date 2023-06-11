@@ -1,7 +1,7 @@
 import { ErrorMessage } from '@hookform/error-message';
 import React from 'react';
 import { InputType } from './type';
-import { EyeSlashIcon } from '@/components';
+import { EyeIcon, EyeSlashIcon } from '@/components';
 import { useInput } from './useInput';
 
 export const Input = ({
@@ -16,7 +16,7 @@ export const Input = ({
   required = false,
   shouldHide = false,
 }: InputType) => {
-  const { onEyeClick, typeOfInput } = useInput(shouldHide, type);
+  const { onEyeClick, typeOfInput, isHidden } = useInput(shouldHide, type);
   return (
     <div className='flex relative flex-col mb-5'>
       {title && (
@@ -41,7 +41,7 @@ export const Input = ({
             onClick={onEyeClick}
             className='absolute top-1/2 right-0 -translate-x-full -translate-y-1/2'
           >
-            <EyeSlashIcon />
+            {isHidden ? <EyeSlashIcon /> : <EyeIcon />}
           </button>
         )}
       </div>

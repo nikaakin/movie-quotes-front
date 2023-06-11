@@ -29,6 +29,7 @@ export const ForgotPassword = () => {
         <Button
           classes='w-full py-2 font-normal text-base mb-8 mt-2'
           content={t('form.forgot_password.buttons.send')!}
+          type='submit'
         />
 
         <p className='text-center'>
