@@ -7,21 +7,21 @@ export default function NewsFeed() {
 
   return (
     <div className='bg-lg-main min-h-screen text-white'>
-      {/* {isLoading ? null : ( */}
-      <div>
-        <Header />
-        <main className=' flex flex-row'>
-          <Sidebar />
-          {slug === 'home' ? (
-            <Home />
-          ) : slug === 'profile' ? (
-            <Profile />
-          ) : slug === 'movies' ? (
-            <Movies />
-          ) : null}
-        </main>
-      </div>
-      {/* )} */}
+      {isLoading ? null : (
+        <div>
+          <Header />
+          <main className=' flex flex-row'>
+            <Sidebar />
+            {slug === 'home' ? (
+              <Home />
+            ) : slug === 'profile' ? (
+              <Profile />
+            ) : slug === 'movies' ? (
+              <Movies />
+            ) : null}
+          </main>
+        </div>
+      )}
     </div>
   );
 }

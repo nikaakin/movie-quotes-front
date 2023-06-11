@@ -23,12 +23,12 @@ export const useNewsFeed = () => {
     },
   });
 
-  // useEffect(() => {
-  //   if (isSignedIn) return;
-  //   getCsrf().then(() => {
-  //     mutate();
-  //   });
-  // }, [push, dispatch, isSignedIn, mutate]);
+  useEffect(() => {
+    if (isSignedIn) return;
+    getCsrf().then(() => {
+      mutate();
+    });
+  }, [push, dispatch, isSignedIn, mutate]);
 
   return { isLoading, slug };
 };
