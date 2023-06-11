@@ -2,6 +2,7 @@ import {
   FieldErrors,
   FieldValues,
   UseFormRegisterReturn,
+  UseFormSetValue,
 } from 'react-hook-form';
 
 export type InputType = {
@@ -15,4 +16,11 @@ export type InputType = {
   value?: string;
   required?: boolean;
   shouldHide?: boolean;
+  disabled?: boolean;
+  setValue?: UseFormSetValue<FieldValues>;
+  dirtyFields?: Partial<
+    Readonly<{
+      [x: string]: any;
+    }>
+  >;
 };

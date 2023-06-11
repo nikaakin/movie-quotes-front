@@ -16,7 +16,8 @@ export const useLogin = () => {
     register,
     handleSubmit,
     setError,
-    formState: { errors },
+    setValue,
+    formState: { errors, dirtyFields, isValid },
   } = useForm({
     mode: 'onChange',
     resolver: zodResolver(loginSchema(t)),
@@ -25,7 +26,7 @@ export const useLogin = () => {
   const router = useRouter();
   const dispatch = useDispatch();
 
-  const { mutate } = useMutation({
+  const { mutate, isLoading } = useMutation({
     mutationFn: login,
     onSuccess: () => {
       router.push('/news-feed');
@@ -57,6 +58,10 @@ export const useLogin = () => {
     onSubmit,
     onShowPasswordReset,
     onShowRegistration,
+    dirtyFields,
+    isValid,
+    isLoading,
+    setValue,
     t,
   };
 };

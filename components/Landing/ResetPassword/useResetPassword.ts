@@ -15,14 +15,15 @@ export const useResetPassword = ({ email, token }: ResetPasswordProps) => {
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    setValue,
+    formState: { errors, dirtyFields, isValid },
   } = useForm({
     mode: 'onChange',
     resolver: zodResolver(resetPasswordSchema(t)),
   });
   const dispatch = useDispatch();
 
-  const { mutate } = useMutation({
+  const { mutate, isLoading } = useMutation({
     mutationFn: resetPassword,
     onSuccess: () => {
       dispatch(setCurrentModal('password-changed'));
@@ -49,5 +50,9 @@ export const useResetPassword = ({ email, token }: ResetPasswordProps) => {
     errors,
     onSubmit,
     onShowLogin,
+    dirtyFields,
+    setValue,
+    isValid,
+    isLoading,
   };
 };

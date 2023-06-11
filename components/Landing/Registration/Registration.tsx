@@ -2,8 +2,18 @@ import { Button, GoogleIcon, Input } from '@/components';
 import { useRegistration } from './useRegistration';
 
 export const Registration = () => {
-  const { errors, handleSubmit, onSubmit, register, onShowLogin, t } =
-    useRegistration();
+  const {
+    errors,
+    handleSubmit,
+    onSubmit,
+    register,
+    onShowLogin,
+    dirtyFields,
+    setValue,
+    isValid,
+    isLoading,
+    t,
+  } = useRegistration();
 
   return (
     <div
@@ -24,6 +34,8 @@ export const Registration = () => {
           name='username'
           placeholder={t('form.register.inputs.username.placeholder')!}
           register={register('username')}
+          dirtyFields={dirtyFields}
+          setValue={setValue}
         />
         <Input
           required
@@ -33,6 +45,8 @@ export const Registration = () => {
           name='email'
           placeholder={t('form.register.inputs.email.placeholder')!}
           register={register('email')}
+          dirtyFields={dirtyFields}
+          setValue={setValue}
         />
         <Input
           required
@@ -43,6 +57,8 @@ export const Registration = () => {
           name='password'
           placeholder={t('form.register.inputs.password.placeholder')!}
           register={register('password')}
+          dirtyFields={dirtyFields}
+          setValue={setValue}
         />
         <Input
           required
@@ -53,17 +69,21 @@ export const Registration = () => {
           name='passwordRepeat'
           placeholder={t('form.register.inputs.password_confirm.placeholder')!}
           register={register('passwordRepeat')}
+          dirtyFields={dirtyFields}
+          setValue={setValue}
         />
 
         <Button
           classes='w-full py-2 font-normal text-base mb-4'
           content={t('form.register.buttons.signup')!}
           type='submit'
+          isDisabled={!isValid || isLoading}
         />
         <Button
           classes='w-full py-2 font-normal text-base mb-8'
           content={t('form.register.buttons.signup_google')!}
           icon={<GoogleIcon />}
+          isDisabled={!isValid || isLoading}
           isLink
           isTransparent
         />

@@ -1,7 +1,6 @@
 import {
   Button,
   CheckEmailIcon,
-  CheckMarkIcon,
   ForgotPassword,
   Header,
   Login,
@@ -76,7 +75,7 @@ export default function Home() {
             />
           ) : currentModal === 'account-activated' ? (
             <NotificationModal
-              image={<CheckMarkIcon />}
+              image={<CheckEmailIcon />}
               title={t('modals:notification.accont-activated.title')}
               text={t('modals:notification.accont-activated.text')}
               buttonText={t('modals:notification.accont-activated.button_text')}
@@ -84,7 +83,7 @@ export default function Home() {
             />
           ) : currentModal === 'password-changed' ? (
             <NotificationModal
-              image={<CheckMarkIcon />}
+              image={<CheckEmailIcon />}
               title={t('modals:notification.password-changed.title')}
               text={t('modals:notification.password-changed.text')}
               buttonText={t('modals:notification.password-changed.button_text')}

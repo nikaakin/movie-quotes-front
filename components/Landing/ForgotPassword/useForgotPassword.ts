@@ -15,14 +15,15 @@ export const useForgotPassword = () => {
     register,
     handleSubmit,
     setError,
-    formState: { errors },
+    setValue,
+    formState: { errors, dirtyFields, isValid },
   } = useForm({
     mode: 'onChange',
     resolver: zodResolver(forgotPasswordSchema(t)),
   });
 
   const dispatch = useDispatch();
-  const { mutate } = useMutation({
+  const { mutate, isLoading } = useMutation({
     mutationFn: forgotPassword,
     onSuccess: () => {
       dispatch(setCurrentModal('forgot-password-notification'));
@@ -47,6 +48,10 @@ export const useForgotPassword = () => {
     errors,
     onSubmit,
     onShowLogin,
+    dirtyFields,
+    setValue,
+    isValid,
+    isLoading,
     t,
   };
 };
