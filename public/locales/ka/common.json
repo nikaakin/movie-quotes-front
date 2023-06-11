@@ -1,6 +1,7 @@
 {
   "button": {
     "login_text": "შესვლა",
+    "logout_text": "გასვლა",
     "register_text": "რეგისტრაცია",
     "get_started_text": "დაიწყე დარეგისტრირებით"
   },

@@ -1,5 +1,5 @@
 import { useIntersectionObserver } from '@/hooks';
-import { RootState, setCurrentModal } from '@/state';
+import { RootState, setCurrentModal, signIn } from '@/state';
 import { useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'next-i18next';
 import { useDispatch, useSelector } from 'react-redux';
@@ -25,6 +25,7 @@ export const useLandingPage = () => {
     if (query.code) {
       getCsrf().then(async () => {
         await googleLogin(query);
+        dispatch(signIn());
         push('/news-feed');
       });
 
@@ -54,7 +55,7 @@ export const useLandingPage = () => {
       replace(`/${locale}`);
       setLinkExpiredOnClick('password-change');
     }
-  }, [query, dispatch, setLinkExpiredOnClick, replace, locale]);
+  }, [query, dispatch, setLinkExpiredOnClick, replace, locale, push]);
 
   const backgrounfRef = useRef<HTMLDivElement>(null);
   const imageRefs = [
