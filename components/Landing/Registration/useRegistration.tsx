@@ -16,13 +16,14 @@ export const useRegistration = () => {
     register,
     handleSubmit,
     setError,
-    formState: { errors },
+    setValue,
+    formState: { errors, dirtyFields, isValid },
   } = useForm({
     mode: 'onChange',
     resolver: zodResolver(registrationSchema(t)),
   });
 
-  const { mutate } = useMutation({
+  const { mutate, isLoading } = useMutation({
     mutationFn: registerService,
     onSuccess: () => {
       dispatch(setCurrentModal('register-notification'));
@@ -47,6 +48,10 @@ export const useRegistration = () => {
     errors,
     onSubmit,
     onShowLogin,
+    dirtyFields,
+    setValue,
+    isValid,
+    isLoading,
     t,
   };
 };

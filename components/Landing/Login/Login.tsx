@@ -10,6 +10,10 @@ export const Login = () => {
     register,
     onShowPasswordReset,
     onShowRegistration,
+    dirtyFields,
+    setValue,
+    isValid,
+    isLoading,
     t,
   } = useLogin();
 
@@ -32,6 +36,8 @@ export const Login = () => {
           name='username'
           placeholder={t('form.login.inputs.emailOrUsername.placeholder')!}
           register={register('username')}
+          dirtyFields={dirtyFields}
+          setValue={setValue}
         />
 
         <Input
@@ -43,6 +49,8 @@ export const Login = () => {
           name='password'
           placeholder={t('form.login.inputs.password.placeholder')!}
           register={register('password')}
+          dirtyFields={dirtyFields}
+          setValue={setValue}
         />
 
         <div className='flex flex-row  items-center max-w-sm my-4 relative pt-4 '>
@@ -73,11 +81,13 @@ export const Login = () => {
           classes='w-full py-2 font-normal text-base mb-4'
           content={t('form.login.buttons.login')}
           type='submit'
+          isDisabled={!isValid || isLoading}
         />
         <Button
           classes='w-full py-2 font-normal text-base mb-8'
           content={t('form.login.buttons.login_google')}
           icon={<GoogleIcon />}
+          isDisabled={!isValid || isLoading}
           isTransparent
           isLink
         />

@@ -2,8 +2,18 @@ import { ArrowIcon, Button, Input } from '@/components';
 import { useForgotPassword } from './useForgotPassword';
 
 export const ForgotPassword = () => {
-  const { errors, handleSubmit, onSubmit, register, onShowLogin, t } =
-    useForgotPassword();
+  const {
+    errors,
+    handleSubmit,
+    onSubmit,
+    register,
+    onShowLogin,
+    dirtyFields,
+    setValue,
+    isValid,
+    isLoading,
+    t,
+  } = useForgotPassword();
 
   return (
     <div
@@ -24,12 +34,15 @@ export const ForgotPassword = () => {
           name='email'
           placeholder={t('form.forgot_password.inputs.email.placeholder')!}
           register={register('email')}
+          dirtyFields={dirtyFields}
+          setValue={setValue}
         />
 
         <Button
           classes='w-full py-2 font-normal text-base mb-8 mt-2'
           content={t('form.forgot_password.buttons.send')!}
           type='submit'
+          isDisabled={!isValid || isLoading}
         />
 
         <p className='text-center'>

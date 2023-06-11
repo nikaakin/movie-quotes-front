@@ -8,6 +8,7 @@ export const Button = ({
   type = 'button',
   icon,
   isLink = false,
+  isDisabled = false,
 }: buttonProps) => {
   const background = isTransparent
     ? ' border-white border-solid bg-transparent'
@@ -17,8 +18,11 @@ export const Button = ({
     <button
       type={type}
       onClick={onClick}
+      disabled={isDisabled}
       className={` font-normal 
-      text-base sm:text-xl border rounded text-white ${background} ${classes}`}
+      text-base sm:text-xl border rounded text-white ${background} ${classes} ${
+        isDisabled ? 'opacity-60' : ''
+      }`}
     >
       {isLink ? (
         <a

@@ -6,4 +6,5 @@ export type buttonProps = {
   type?: 'button' | 'submit' | 'reset';
   icon?: React.ReactNode;
   isLink?: boolean;
+  isDisabled?: boolean;
 };
