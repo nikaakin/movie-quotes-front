@@ -9,7 +9,7 @@ export const Header = () => {
   return (
     <header
       className={`py-6  sm:px-16 px-4 flex justify-between w-full text-white max-h-22 items-center ${
-        isSignedIn ? 'bg-zinc-850 ' : ''
+        isSignedIn ? 'bg-zinc-850 bg-opacity-80' : ''
       }`}
     >
       <h1 className='uppercase text-orange-250 text-base font-medium '>

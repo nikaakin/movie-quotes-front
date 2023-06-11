@@ -9,6 +9,7 @@ import { useDispatch } from 'react-redux';
 import { useMutation } from '@tanstack/react-query';
 import { getCsrf, login } from '@/services';
 import { AxiosError } from 'axios';
+import { useEffect } from 'react';
 
 export const useLogin = () => {
   const { t } = useTranslation('modals');
@@ -23,14 +24,20 @@ export const useLogin = () => {
     resolver: zodResolver(loginSchema(t)),
   });
 
-  const router = useRouter();
+  const { push, query, replace, locale } = useRouter();
   const dispatch = useDispatch();
 
+  useEffect(() => {
+    if (query.error) {
+      setError('username', { message: query.error as string });
+      replace(`/${locale}`);
+    }
+  }, [replace, setError, locale, query]);
   const { mutate, isLoading } = useMutation({
     mutationFn: login,
     onSuccess: (data) => {
       dispatch(signIn(data.data.user));
-      router.push('/news-feed');
+      push('/news-feed');
     },
     onError: (error: AxiosError<loginSchemaType>) => {
       if (error.response?.data.email_not_verified) {

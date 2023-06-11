@@ -87,7 +87,6 @@ export const Login = () => {
           classes='w-full py-2 font-normal text-base mb-8'
           content={t('form.login.buttons.login_google')}
           icon={<GoogleIcon />}
-          isDisabled={!isValid || isLoading}
           isTransparent
           isLink
         />
