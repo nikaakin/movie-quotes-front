@@ -2,6 +2,7 @@ import React, { Fragment } from 'react';
 import { Dropdown } from './components';
 import { BellIcon, Button } from '@/components';
 import { useHeader } from './useHeader';
+import Link from 'next/link';
 
 export const Header = () => {
   const { t, onShowLogin, onShowRegister, isSignedIn, onLogout } = useHeader();
@@ -12,9 +13,11 @@ export const Header = () => {
         isSignedIn ? 'bg-zinc-850 bg-opacity-80' : ''
       }`}
     >
-      <h1 className='uppercase text-orange-250 text-base font-medium '>
-        movie quotes
-      </h1>
+      <Link href='/'>
+        <h1 className='uppercase text-orange-250 text-base font-medium '>
+          movie quotes
+        </h1>
+      </Link>
       <div className='flex flex-row justify-between gap-2 sm:gap-4'>
         {isSignedIn ? (
           <button>

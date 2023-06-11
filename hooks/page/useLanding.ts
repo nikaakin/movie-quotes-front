@@ -28,7 +28,7 @@ export const useLandingPage = () => {
         try {
           const data = await googleLogin(query);
           dispatch(signIn(data.data));
-          push('/news-feed');
+          push('/news-feed/home');
         } catch (error) {
           if (error instanceof AxiosError) {
             dispatch(setCurrentModal('login'));

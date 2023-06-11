@@ -37,7 +37,7 @@ export const useLogin = () => {
     mutationFn: login,
     onSuccess: (data) => {
       dispatch(signIn(data.data.user));
-      push('/news-feed');
+      push('/news-feed/home');
     },
     onError: (error: AxiosError<loginSchemaType>) => {
       if (error.response?.data.email_not_verified) {
