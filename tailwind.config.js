@@ -83,9 +83,12 @@ module.exports = {
       width: {
         68: '17rem',
         90: '22.5rem',
+        125: '31.25rem',
         175: '43.75rem',
       },
-
+      margin: {
+        125: '31.25rem',
+      },
       padding: {
         107: '26.75rem',
         200: '50rem',
