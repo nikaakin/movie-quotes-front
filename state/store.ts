@@ -1,10 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { useDispatch } from 'react-redux';
-import { currentModalReducer } from './slices';
+import { authReducer, currentModalReducer } from './slices';
 
 export const store = configureStore({
   reducer: {
     currentModal: currentModalReducer,
+    isSignedin: authReducer,
   },
 });
 export type RootState = ReturnType<typeof store.getState>;

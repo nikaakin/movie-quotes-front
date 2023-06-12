@@ -1,2 +1,2 @@
 export * from './useIntersectionObserver';
-export * from './useLanding';
+export * from './page';

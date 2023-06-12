@@ -1,10 +1,11 @@
 import { useIntersectionObserver } from '@/hooks';
-import { RootState, setCurrentModal } from '@/state';
+import { RootState, setCurrentModal, signIn } from '@/state';
 import { useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'next-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 import { useRouter } from 'next/router';
 import { getCsrf, googleLogin } from '@/services';
+import { AxiosError } from 'axios';
 
 export const useLandingPage = () => {
   const [shouldAnimate, setShouldAnimate] = useState(false);
@@ -24,11 +25,18 @@ export const useLandingPage = () => {
   useEffect(() => {
     if (query.code) {
       getCsrf().then(async () => {
-        await googleLogin(query);
-        push('/news-feed');
+        try {
+          const data = await googleLogin(query);
+          dispatch(signIn(data.data));
+          push('/news-feed/home');
+        } catch (error) {
+          if (error instanceof AxiosError) {
+            dispatch(setCurrentModal('login'));
+            const errors = error.response?.data || {};
+            push(`/?error=${errors.details?.username}`);
+          }
+        }
       });
-
-      replace(`/${locale}`);
     }
     if (query.token) {
       dispatch(setCurrentModal('reset-password'));
@@ -54,7 +62,7 @@ export const useLandingPage = () => {
       replace(`/${locale}`);
       setLinkExpiredOnClick('password-change');
     }
-  }, [query, dispatch, setLinkExpiredOnClick, replace, locale]);
+  }, [query, dispatch, setLinkExpiredOnClick, replace, locale, push]);
 
   const backgrounfRef = useRef<HTMLDivElement>(null);
   const imageRefs = [

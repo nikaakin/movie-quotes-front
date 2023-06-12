@@ -1,6 +1,7 @@
 {
   "button": {
     "login_text": "Log in",
+    "logout_text": "Log out",
     "register_text": "Sign up",
     "get_started_text": "Get started"
   },

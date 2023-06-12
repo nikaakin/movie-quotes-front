@@ -83,7 +83,6 @@ export const Registration = () => {
           classes='w-full py-2 font-normal text-base mb-8'
           content={t('form.register.buttons.signup_google')!}
           icon={<GoogleIcon />}
-          isDisabled={!isValid || isLoading}
           isLink
           isTransparent
         />
