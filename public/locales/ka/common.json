@@ -5,7 +5,14 @@
     "register_text": "რეგისტრაცია",
     "get_started_text": "დაიწყე დარეგისტრირებით"
   },
-  "header": { "title": "ფილმის ციტატები" },
+  "header": {
+    "title": "ფილმის ციტატები",
+    "profile": "პროფილი",
+    "movies": "ფილმების სია",
+    "news": "სიახლეები",
+    "logout": "გასვლა",
+    "language": "ენის შეცვლა"
+  },
   "locale": {
     "en": "ინგლისური",
     "ka": "ქართული"
@@ -13,5 +20,8 @@
   "landing": {
     "main_title": "იპოვე ციტატები მილიონობით ფილმიდან",
     "footer_text": " © 2022 movie quotes. All rights reserved."
+  },
+  "profile": {
+    "edit": "პროფილის რედაქტირება"
   }
 }

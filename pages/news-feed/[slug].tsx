@@ -1,4 +1,4 @@
-import { Header, Movies, Profile, Sidebar, Home } from '@/components';
+import { Header, Movies, Profile, Home } from '@/components';
 import { useNewsFeed } from '@/hooks';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
@@ -9,9 +9,8 @@ export default function NewsFeed() {
     <div className='bg-lg-main min-h-screen text-white'>
       {isLoading ? null : (
         <div>
-          <Header />
-          <main className=' flex flex-row'>
-            <Sidebar />
+          <Header shouldhavelinks />
+          <main className=' flex flex-row sm:ml-125'>
             {slug === 'home' ? (
               <Home />
             ) : slug === 'profile' ? (

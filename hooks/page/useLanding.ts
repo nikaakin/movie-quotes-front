@@ -116,7 +116,6 @@ export const useLandingPage = () => {
     onShowRegister,
     t,
     locale,
-    query,
     onLogin,
     onLinkExpired,
     resetPaswordData,

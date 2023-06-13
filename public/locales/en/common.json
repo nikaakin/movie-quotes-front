@@ -5,7 +5,14 @@
     "register_text": "Sign up",
     "get_started_text": "Get started"
   },
-  "header": { "title": "Movie quotes" },
+  "header": {
+    "title": "Movie quotes",
+    "profile": "Profile",
+    "movies": "List of movies",
+    "news": "News feed",
+    "logout": "Log out",
+    "language": "Change language"
+  },
   "locale": {
     "en": "English",
     "ka": "Georgian"
@@ -13,5 +20,8 @@
   "landing": {
     "main_title": "Find any quote in millions of movie lines",
     "footer_text": " © 2022 movie quotes. All rights reserved."
+  },
+  "profile": {
+    "edit": "Edit your profile"
   }
 }

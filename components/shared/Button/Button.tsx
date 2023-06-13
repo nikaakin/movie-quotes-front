@@ -20,7 +20,7 @@ export const Button = ({
       onClick={onClick}
       disabled={isDisabled}
       className={` font-normal 
-      text-base sm:text-xl border rounded text-white ${background} ${classes} ${
+      text-sm sm:text-base border rounded text-white ${background} ${classes} ${
         isDisabled ? 'opacity-60' : ''
       }`}
     >
