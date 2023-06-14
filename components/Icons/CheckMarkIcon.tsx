@@ -6,6 +6,7 @@ export const CheckMarkIcon = () => {
       viewBox='0 0 20 20'
       fill='none'
       xmlns='http://www.w3.org/2000/svg'
+      className='w-4 h-4'
     >
       <rect width='20' height='20' fill='white' fillOpacity='0.01' />
       <g clipPath='url(#clip0_21018_28477)'>

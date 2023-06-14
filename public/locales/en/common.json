@@ -7,7 +7,7 @@
   },
   "header": {
     "title": "Movie quotes",
-    "profile": "Profile",
+    "profile": "My profile",
     "movies": "List of movies",
     "news": "News feed",
     "logout": "Log out",
@@ -22,6 +22,20 @@
     "footer_text": " © 2022 movie quotes. All rights reserved."
   },
   "profile": {
-    "edit": "Edit your profile"
+    "edit": "Edit your profile",
+    "upload": "Upload new photo",
+    "cancel": "Cancel",
+    "save": "Save changes",
+    "edit_button": "Edit",
+    "username": "Username",
+    "email": "Email",
+    "password": "Password",
+    "confirm_password": "Confirm new password",
+    "new_username": "New username",
+    "new_email": "New email",
+    "new_password": "New password",
+    "password_validation_header": "Passwords should contain:",
+    "password_validation_min": "8 or more characters",
+    "password_validation_max": "15 lowercase character"
   }
 }

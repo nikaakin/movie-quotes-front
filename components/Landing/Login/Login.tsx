@@ -10,10 +10,11 @@ export const Login = () => {
     register,
     onShowPasswordReset,
     onShowRegistration,
-    dirtyFields,
     setValue,
     isValid,
     isLoading,
+    control,
+    getFieldState,
     t,
   } = useLogin();
 
@@ -31,12 +32,12 @@ export const Login = () => {
       <form className='w-90' onSubmit={handleSubmit(onSubmit)}>
         <Input
           required
+          control={control}
+          getFieldState={getFieldState}
           title={t('form.login.inputs.emailOrUsername.title')!}
-          errors={errors}
           name='username'
           placeholder={t('form.login.inputs.emailOrUsername.placeholder')!}
           register={register('username')}
-          dirtyFields={dirtyFields}
           setValue={setValue}
         />
 
@@ -45,11 +46,11 @@ export const Login = () => {
           shouldHide
           type='password'
           title={t('form.login.inputs.password.title')!}
-          errors={errors}
+          control={control}
+          getFieldState={getFieldState}
           name='password'
           placeholder={t('form.login.inputs.password.placeholder')!}
           register={register('password')}
-          dirtyFields={dirtyFields}
           setValue={setValue}
         />
 

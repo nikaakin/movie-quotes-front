@@ -1,13 +1,13 @@
 import {
-  FieldErrors,
+  Control,
   FieldValues,
+  UseFormGetFieldState,
   UseFormRegisterReturn,
   UseFormSetValue,
 } from 'react-hook-form';
 
 export type InputType = {
   register: UseFormRegisterReturn<string>;
-  errors: FieldErrors<FieldValues>;
   name: string;
   title?: string;
   placeholder: string;
@@ -18,9 +18,14 @@ export type InputType = {
   shouldHide?: boolean;
   disabled?: boolean;
   setValue?: UseFormSetValue<FieldValues>;
-  dirtyFields?: Partial<
-    Readonly<{
-      [x: string]: any;
-    }>
-  >;
+  getFieldState: UseFormGetFieldState<FieldValues>;
+  control: Control<FieldValues, any>;
+};
+
+export type useInputType = {
+  shouldHide: boolean;
+  type: string;
+  getFieldState: UseFormGetFieldState<FieldValues>;
+  name: string;
+  control: Control<FieldValues, any>;
 };

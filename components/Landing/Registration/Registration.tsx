@@ -3,15 +3,15 @@ import { useRegistration } from './useRegistration';
 
 export const Registration = () => {
   const {
-    errors,
     handleSubmit,
     onSubmit,
     register,
     onShowLogin,
-    dirtyFields,
     setValue,
     isValid,
     isLoading,
+    control,
+    getFieldState,
     t,
   } = useRegistration();
 
@@ -29,47 +29,47 @@ export const Registration = () => {
       <form className='w-90' onSubmit={handleSubmit(onSubmit)}>
         <Input
           required
+          control={control}
+          getFieldState={getFieldState}
           title={t('form.register.inputs.username.title')!}
-          errors={errors}
           name='username'
           placeholder={t('form.register.inputs.username.placeholder')!}
           register={register('username')}
-          dirtyFields={dirtyFields}
           setValue={setValue}
         />
         <Input
           required
+          control={control}
+          getFieldState={getFieldState}
           title={t('form.register.inputs.email.title')!}
           type='email'
-          errors={errors}
           name='email'
           placeholder={t('form.register.inputs.email.placeholder')!}
           register={register('email')}
-          dirtyFields={dirtyFields}
           setValue={setValue}
         />
         <Input
           required
           shouldHide
+          control={control}
+          getFieldState={getFieldState}
           type='password'
           title={t('form.register.inputs.password.title')!}
-          errors={errors}
           name='password'
           placeholder={t('form.register.inputs.password.placeholder')!}
           register={register('password')}
-          dirtyFields={dirtyFields}
           setValue={setValue}
         />
         <Input
           required
           shouldHide
+          control={control}
+          getFieldState={getFieldState}
           type='password'
           title={t('form.register.inputs.password_confirm.title')!}
-          errors={errors}
           name='passwordRepeat'
           placeholder={t('form.register.inputs.password_confirm.placeholder')!}
           register={register('passwordRepeat')}
-          dirtyFields={dirtyFields}
           setValue={setValue}
         />
 

@@ -34,7 +34,7 @@ export const Burgerbar = ({
             : ''
         }`}
       >
-        <div className='fixed flex flex-col top-32 left-0 w-96 gap-5'>
+        <div className='absolute flex flex-col top-32 left-0 w-96 gap-5'>
           {shouldShowLinks && (
             <Fragment>
               <ProfileCard
@@ -49,7 +49,7 @@ export const Burgerbar = ({
                     <img
                       src='/assets/images/link-expired.png'
                       alt='avatar'
-                      className='object-fill '
+                      className='object-fill w-full h-full '
                     />
                   </div>
                 }
@@ -57,6 +57,7 @@ export const Burgerbar = ({
                 <Link
                   href={'/news-feed/profile'}
                   className='text-sm sm:text-base text-gray-350'
+                  onClick={onBurgerBarClick.bind(null, false)}
                 >
                   {t('profile.edit')}
                 </Link>

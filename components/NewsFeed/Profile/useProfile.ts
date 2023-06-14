@@ -1,34 +1,39 @@
 import { registrationSchema } from '@/schema';
+import { edit, getCsrf } from '@/services';
 import { setCurrentModal } from '@/state';
 import { registrationSchemaType } from '@/types';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { useForm } from 'react-hook-form';
-import { useTranslation } from 'next-i18next';
-import { useDispatch } from 'react-redux';
-import { getCsrf, register as registerService } from '@/services';
 import { useMutation } from '@tanstack/react-query';
 import { AxiosError } from 'axios';
+import { useTranslation } from 'next-i18next';
+import { useState } from 'react';
+import { useForm } from 'react-hook-form';
+import { useDispatch } from 'react-redux';
 
-export const useRegistration = () => {
-  const { t } = useTranslation('modals');
-  const dispatch = useDispatch();
+export const useProfile = () => {
+  const [editUsername, setEditUsername] = useState(false);
+  const [editPassword, setEditPassword] = useState(false);
+
+  const { t } = useTranslation(['common', 'modals']);
   const {
     register,
     handleSubmit,
     setError,
     setValue,
-    control,
     getFieldState,
-    formState: { errors, isValid },
+    control,
+    formState: { dirtyFields },
   } = useForm({
     mode: 'onChange',
     resolver: zodResolver(registrationSchema(t)),
+    shouldUnregister: true,
   });
 
-  const { mutate, isLoading } = useMutation({
-    mutationFn: registerService,
+  const dispatch = useDispatch();
+  const { mutate } = useMutation({
+    mutationFn: edit,
     onSuccess: () => {
-      dispatch(setCurrentModal('register-notification'));
+      dispatch(setCurrentModal('edit-notification'));
     },
     onError: (error: AxiosError<registrationSchemaType>) => {
       const errors = error.response?.data.details || {};
@@ -37,24 +42,22 @@ export const useRegistration = () => {
   });
 
   const onSubmit = async (data: registrationSchemaType) => {
-    await getCsrf().then(async () => {
-      await mutate(data);
-    });
+    await getCsrf();
+    await mutate(data);
   };
 
-  const onShowLogin = () => dispatch(setCurrentModal('login'));
-
   return {
-    register,
-    handleSubmit,
-    errors,
-    onSubmit,
-    onShowLogin,
-    setValue,
-    isValid,
-    isLoading,
-    control,
-    getFieldState,
     t,
+    register,
+    dirtyFields,
+    handleSubmit,
+    onSubmit,
+    editUsername,
+    setEditUsername,
+    editPassword,
+    setEditPassword,
+    setValue,
+    getFieldState,
+    control,
   };
 };

@@ -18,7 +18,9 @@ export const useLogin = () => {
     handleSubmit,
     setError,
     setValue,
-    formState: { errors, dirtyFields, isValid },
+    control,
+    getFieldState,
+    formState: { errors, isValid },
   } = useForm({
     mode: 'onChange',
     resolver: zodResolver(loginSchema(t)),
@@ -66,10 +68,11 @@ export const useLogin = () => {
     onSubmit,
     onShowPasswordReset,
     onShowRegistration,
-    dirtyFields,
     isValid,
     isLoading,
     setValue,
+    control,
+    getFieldState,
     t,
   };
 };

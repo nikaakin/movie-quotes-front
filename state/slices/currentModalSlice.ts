@@ -10,6 +10,7 @@ type InitialStateType = {
     | 'password-changed'
     | 'link-expired'
     | 'register-notification'
+    | 'edit-notification'
     | 'forgot-password-notification'
     | null;
 };
