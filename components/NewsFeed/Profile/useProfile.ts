@@ -6,24 +6,32 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useMutation } from '@tanstack/react-query';
 import { AxiosError } from 'axios';
 import { useTranslation } from 'next-i18next';
+import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
 
 export const useProfile = () => {
-  const { t } = useTranslation(['common']);
+  const [editUsername, setEditUsername] = useState(false);
+  const [editEmail, setEditEmail] = useState(false);
+  const [editPassword, setEditPassword] = useState(false);
+
+  const { t } = useTranslation(['common', 'modals']);
   const {
     register,
     handleSubmit,
     setError,
     setValue,
-    formState: { errors, dirtyFields, isValid },
+    getFieldState,
+    control,
+    formState: { dirtyFields },
   } = useForm({
     mode: 'onChange',
     resolver: zodResolver(registrationSchema(t)),
+    shouldUnregister: true,
   });
-  const dispatch = useDispatch();
 
-  const { mutate, isLoading } = useMutation({
+  const dispatch = useDispatch();
+  const { mutate } = useMutation({
     mutationFn: edit,
     onSuccess: () => {
       dispatch(setCurrentModal('edit-notification'));
@@ -42,9 +50,17 @@ export const useProfile = () => {
   return {
     t,
     register,
-    errors,
     dirtyFields,
     handleSubmit,
     onSubmit,
+    editUsername,
+    setEditUsername,
+    editEmail,
+    setEditEmail,
+    editPassword,
+    setEditPassword,
+    setValue,
+    getFieldState,
+    control,
   };
 };

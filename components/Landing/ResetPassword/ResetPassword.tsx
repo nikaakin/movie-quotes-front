@@ -9,10 +9,11 @@ export const ResetPassword = ({ email, token }: ResetPasswordProps) => {
     register,
     t,
     onShowLogin,
-    dirtyFields,
     setValue,
     isLoading,
     isValid,
+    control,
+    getFieldState,
   } = useResetPassword({
     email,
     token,
@@ -32,27 +33,27 @@ export const ResetPassword = ({ email, token }: ResetPasswordProps) => {
         <Input
           required
           shouldHide
+          control={control}
+          getFieldState={getFieldState}
           type='password'
           title={t('form.reset-password.inputs.password.title')!}
-          errors={errors}
           name='password'
           placeholder={t('form.reset-password.inputs.password.placeholder')!}
           register={register('password')}
-          dirtyFields={dirtyFields}
           setValue={setValue}
         />
         <Input
           required
           shouldHide
+          control={control}
+          getFieldState={getFieldState}
           type='password'
           title={t('form.reset-password.inputs.password_confirm.title')!}
-          errors={errors}
           name='passwordRepeat'
           placeholder={
             t('form.reset-password.inputs.password_confirm.placeholder')!
           }
           register={register('passwordRepeat')}
-          dirtyFields={dirtyFields}
           setValue={setValue}
         />
 

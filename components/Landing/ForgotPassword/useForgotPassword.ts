@@ -16,7 +16,9 @@ export const useForgotPassword = () => {
     handleSubmit,
     setError,
     setValue,
-    formState: { errors, dirtyFields, isValid },
+    control,
+    getFieldState,
+    formState: { errors, isValid },
   } = useForm({
     mode: 'onChange',
     resolver: zodResolver(forgotPasswordSchema(t)),
@@ -48,10 +50,11 @@ export const useForgotPassword = () => {
     errors,
     onSubmit,
     onShowLogin,
-    dirtyFields,
     setValue,
     isValid,
     isLoading,
+    control,
+    getFieldState,
     t,
   };
 };

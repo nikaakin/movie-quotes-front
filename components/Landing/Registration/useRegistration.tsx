@@ -17,7 +17,9 @@ export const useRegistration = () => {
     handleSubmit,
     setError,
     setValue,
-    formState: { errors, dirtyFields, isValid },
+    control,
+    getFieldState,
+    formState: { errors, isValid },
   } = useForm({
     mode: 'onChange',
     resolver: zodResolver(registrationSchema(t)),
@@ -48,10 +50,11 @@ export const useRegistration = () => {
     errors,
     onSubmit,
     onShowLogin,
-    dirtyFields,
     setValue,
     isValid,
     isLoading,
+    control,
+    getFieldState,
     t,
   };
 };

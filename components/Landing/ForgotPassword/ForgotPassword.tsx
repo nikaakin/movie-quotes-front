@@ -8,10 +8,11 @@ export const ForgotPassword = () => {
     onSubmit,
     register,
     onShowLogin,
-    dirtyFields,
     setValue,
     isValid,
     isLoading,
+    control,
+    getFieldState,
     t,
   } = useForgotPassword();
 
@@ -29,12 +30,12 @@ export const ForgotPassword = () => {
       <form className='w-90' onSubmit={handleSubmit(onSubmit)}>
         <Input
           required
+          control={control}
+          getFieldState={getFieldState}
           title={t('form.forgot_password.inputs.email.title')!}
-          errors={errors}
           name='email'
           placeholder={t('form.forgot_password.inputs.email.placeholder')!}
           register={register('email')}
-          dirtyFields={dirtyFields}
           setValue={setValue}
         />
 

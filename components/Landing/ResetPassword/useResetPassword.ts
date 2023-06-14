@@ -16,7 +16,9 @@ export const useResetPassword = ({ email, token }: ResetPasswordProps) => {
     register,
     handleSubmit,
     setValue,
-    formState: { errors, dirtyFields, isValid },
+    control,
+    getFieldState,
+    formState: { errors, isValid },
   } = useForm({
     mode: 'onChange',
     resolver: zodResolver(resetPasswordSchema(t)),
@@ -50,9 +52,10 @@ export const useResetPassword = ({ email, token }: ResetPasswordProps) => {
     errors,
     onSubmit,
     onShowLogin,
-    dirtyFields,
     setValue,
     isValid,
     isLoading,
+    control,
+    getFieldState,
   };
 };
