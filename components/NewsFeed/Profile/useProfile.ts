@@ -22,7 +22,7 @@ export const useProfile = () => {
     setValue,
     getFieldState,
     control,
-    formState: { dirtyFields },
+    formState: { isValid },
   } = useForm({
     mode: 'onChange',
     resolver: zodResolver(registrationSchema(t)),
@@ -46,10 +46,14 @@ export const useProfile = () => {
     await mutate(data);
   };
 
+  const resetState = () => {
+    setEditUsername(false);
+    setEditPassword(false);
+  };
+
   return {
     t,
     register,
-    dirtyFields,
     handleSubmit,
     onSubmit,
     editUsername,
@@ -59,5 +63,7 @@ export const useProfile = () => {
     setValue,
     getFieldState,
     control,
+    resetState,
+    isValid,
   };
 };

@@ -63,7 +63,10 @@ export const Input = ({
         />
         <div className='absolute top-1/2 right-2  -translate-y-1/2 flex flex-row  gap-1 items-center'>
           {fieldValue !== '' && isDirty && (
-            <button type='button' onClick={() => setValue!(name, '')}>
+            <button
+              type='button'
+              onClick={setValue?.bind(null, name, '', { shouldValidate: true })}
+            >
               <XWithCircleIcon />
             </button>
           )}
