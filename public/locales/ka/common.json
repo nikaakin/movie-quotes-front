@@ -7,7 +7,7 @@
   },
   "header": {
     "title": "ფილმის ციტატები",
-    "profile": "პროფილი",
+    "profile": "ჩემი პროფილი",
     "movies": "ფილმების სია",
     "news": "სიახლეები",
     "logout": "გასვლა",
@@ -22,6 +22,20 @@
     "footer_text": " © 2022 movie quotes. All rights reserved."
   },
   "profile": {
-    "edit": "პროფილის რედაქტირება"
+    "edit": "პროფილის რედაქტირება",
+    "upload": "ატვირთეთ ახალი ფოტო",
+    "cancel": "გაუქმება",
+    "save": "ცვლილებების შენახვა",
+    "edit_button": "რედაქტირება",
+    "username": "სახელი",
+    "email": "ელ.ფოსტა",
+    "password": "პაროლი",
+    "confirm_password": "გაიმეორე ახალი პაროლი",
+    "new_username": "ახალი სახელი",
+    "new_email": "ახალი ელ.ფოსტა",
+    "new_password": "ახალი პაროლი",
+    "password_validation_header": "პაროლი უნდა შეიცავდეს:",
+    "password_validation_min": "8 ან მეტ სიმბოლოს",
+    "password_validation_max": "15 პატარა ასოს"
   }
 }
