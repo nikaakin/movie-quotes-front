@@ -12,7 +12,6 @@ import { useDispatch } from 'react-redux';
 
 export const useProfile = () => {
   const [editUsername, setEditUsername] = useState(false);
-  const [editEmail, setEditEmail] = useState(false);
   const [editPassword, setEditPassword] = useState(false);
 
   const { t } = useTranslation(['common', 'modals']);
@@ -55,8 +54,6 @@ export const useProfile = () => {
     onSubmit,
     editUsername,
     setEditUsername,
-    editEmail,
-    setEditEmail,
     editPassword,
     setEditPassword,
     setValue,

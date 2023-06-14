@@ -1,5 +1,6 @@
-import { Input } from '@/components';
+import { ArrowIcon, DisplayInput, Input } from '@/components';
 import { useProfile } from './useProfile';
+import { Fragment } from 'react';
 
 export const Profile = () => {
   const {
@@ -7,10 +8,8 @@ export const Profile = () => {
     register,
     handleSubmit,
     onSubmit,
-    editEmail,
     editPassword,
     editUsername,
-    setEditEmail,
     setEditPassword,
     setEditUsername,
     setValue,
@@ -19,9 +18,12 @@ export const Profile = () => {
   } = useProfile();
   return (
     <div className='flex-1 text-white '>
-      <h1 className='p-8'>{t('header.profile')}</h1>
-      <section className='w-250 h-auto relative mt-20 bg-neutral-950 backdrop-blur-xl rounded-[12px] mb-20 pl-48 pt-48 pr-72 pb-40'>
-        <div className='absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/3 '>
+      <h1 className='p-8 hidden sm:block '>{t('header.profile')}</h1>
+      <button className='p-6 sm:hidden block'>
+        <ArrowIcon />
+      </button>
+      <section className='w-full h-full sm:w-250 sm:h-auto relative sm:mt-20 bg-zinc-870 sm:bg-neutral-950 backdrop-blur-xl rounded-[12px] mb-20 sm:pl-48 sm:pt-48 sm:pr-72 sm:pb-40 px-8'>
+        <div className='absolute top-0 left-1/2 -translate-x-1/2 sm:-translate-y-1/3 translate-y-7 '>
           <div className=' bg-white rounded-[50%] w-48 h-48 overflow-hidden '>
             <img
               src='/assets/images/link-expired.png'
@@ -34,38 +36,70 @@ export const Profile = () => {
           </button>
         </div>
 
-        <form onSubmit={handleSubmit(onSubmit)}>
-          <div className='flex gap-8'>
-            <Input
-              control={control}
-              name='username'
-              placeholder='saxeli'
-              register={register('username')}
-              getFieldState={getFieldState}
-              classNames='w-125'
-              title={t('profile.username')!}
-              setValue={setValue}
-              disabled
-            />
-            <button
-              className='text-gray-350 text-lg sm:text-xl'
-              onClick={setEditUsername.bind(null, !editUsername)}
-            >
-              {t('profile.edit_button')}
-            </button>
-          </div>
+        <form onSubmit={handleSubmit(onSubmit)} className='pt-80 sm:pt-0'>
+          <DisplayInput
+            button={
+              <button
+                className='text-gray-350 text-lg sm:text-xl sm:mt-2  absolute right-0 top-0  sm:-right-8 sm:translate-x-full'
+                onClick={setEditUsername.bind(null, !editUsername)}
+              >
+                {t('profile.edit_button')}
+              </button>
+            }
+          />
           {editUsername && (
             <Input
+              required
               control={control}
               getFieldState={getFieldState}
-              required
-              title={t('form.register.inputs.email.title')!}
-              type='email'
-              name='email'
-              placeholder={t('form.register.inputs.email.placeholder')!}
-              register={register('email')}
+              title={t('form.register.inputs.username.title')!}
+              name='username'
+              placeholder={t('form.register.inputs.username.placeholder')!}
+              register={register('username')}
               setValue={setValue}
             />
+          )}
+          <DisplayInput button={<></>} />
+
+          <DisplayInput
+            button={
+              <button
+                className='text-gray-350 text-lg sm:text-xl sm:mt-2  absolute right-0 top-0  sm:-right-8 sm:translate-x-full'
+                onClick={setEditPassword.bind(null, !editPassword)}
+              >
+                {t('profile.edit_button')}
+              </button>
+            }
+          />
+          {editPassword && (
+            <Fragment>
+              <Input
+                required
+                shouldHide
+                control={control}
+                getFieldState={getFieldState}
+                type='password'
+                title={t('form.register.inputs.password.title')!}
+                name='password'
+                placeholder={t('form.register.inputs.password.placeholder')!}
+                register={register('password')}
+                setValue={setValue}
+              />
+              <Input
+                required
+                shouldHide
+                control={control}
+                getFieldState={getFieldState}
+                type='password'
+                title={t('form.register.inputs.password_confirm.title')!}
+                name='passwordRepeat'
+                placeholder={
+                  t('form.register.inputs.password_confirm.placeholder')!
+                }
+                register={register('passwordRepeat')}
+                setValue={setValue}
+              />
+            </Fragment>
           )}
         </form>
       </section>

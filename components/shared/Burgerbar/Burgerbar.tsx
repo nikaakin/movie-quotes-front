@@ -57,6 +57,7 @@ export const Burgerbar = ({
                 <Link
                   href={'/news-feed/profile'}
                   className='text-sm sm:text-base text-gray-350'
+                  onClick={onBurgerBarClick.bind(null, false)}
                 >
                   {t('profile.edit')}
                 </Link>
