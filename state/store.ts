@@ -5,7 +5,7 @@ import { authReducer, currentModalReducer } from './slices';
 export const store = configureStore({
   reducer: {
     currentModal: currentModalReducer,
-    isSignedin: authReducer,
+    user: authReducer,
   },
 });
 export type RootState = ReturnType<typeof store.getState>;

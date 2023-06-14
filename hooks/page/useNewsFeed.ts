@@ -11,7 +11,7 @@ export const useNewsFeed = () => {
     query: { slug },
   } = useRouter();
   const dispatch = useDispatch();
-  const { isSignedIn } = useSelector((state: RootState) => state.isSignedin);
+  const { isSignedIn } = useSelector((state: RootState) => state.user);
   const { mutate, isLoading } = useMutation({
     mutationFn: isAuthenticated,
     onSuccess: (data) => {

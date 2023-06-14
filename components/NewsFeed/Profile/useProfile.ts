@@ -1,6 +1,6 @@
 import { registrationSchema } from '@/schema';
 import { edit, getCsrf } from '@/services';
-import { setCurrentModal } from '@/state';
+import { RootState, setCurrentModal } from '@/state';
 import { registrationSchemaType } from '@/types';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useMutation } from '@tanstack/react-query';
@@ -8,11 +8,12 @@ import { AxiosError } from 'axios';
 import { useTranslation } from 'next-i18next';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 export const useProfile = () => {
   const [editUsername, setEditUsername] = useState(false);
   const [editPassword, setEditPassword] = useState(false);
+  const {} = useSelector((state: RootState) => state.user);
 
   const { t } = useTranslation(['common', 'modals']);
   const {
