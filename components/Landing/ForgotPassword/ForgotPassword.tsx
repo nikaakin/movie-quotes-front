@@ -3,7 +3,6 @@ import { useForgotPassword } from './useForgotPassword';
 
 export const ForgotPassword = () => {
   const {
-    errors,
     handleSubmit,
     onSubmit,
     register,

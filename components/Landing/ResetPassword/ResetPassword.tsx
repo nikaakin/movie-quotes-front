@@ -3,7 +3,6 @@ import { useResetPassword } from './useResetPassword';
 
 export const ResetPassword = ({ email, token }: ResetPasswordProps) => {
   const {
-    errors,
     handleSubmit,
     onSubmit,
     register,

@@ -3,7 +3,6 @@ import { useRegistration } from './useRegistration';
 
 export const Registration = () => {
   const {
-    errors,
     handleSubmit,
     onSubmit,
     register,
