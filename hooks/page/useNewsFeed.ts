@@ -1,5 +1,5 @@
 import { getCsrf, isAuthenticated } from '@/services';
-import { RootState, logOut, signIn } from '@/state';
+import { RootState, logOut, setCurrentModal, signIn } from '@/state';
 import { useMutation } from '@tanstack/react-query';
 import { useRouter } from 'next/router';
 import { useEffect } from 'react';
@@ -24,6 +24,7 @@ export const useNewsFeed = () => {
   });
 
   useEffect(() => {
+    dispatch(setCurrentModal(null));
     if (isSignedIn) return;
     getCsrf().then(() => {
       mutate();

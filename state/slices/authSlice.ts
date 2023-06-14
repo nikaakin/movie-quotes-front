@@ -11,7 +11,7 @@ type InitialStateType = {
 };
 
 const initialState: InitialStateType = {
-  isSignedIn: true,
+  isSignedIn: false,
   id: null,
   username: '',
   email: '',

@@ -158,5 +158,10 @@
       "text": "Login link has expired, because you haven’t used it",
       "button_text": "Request another link"
     }
+  },
+
+  "confirmation": {
+    "title": "Are you sure to make changes ?",
+    "confirm": "Confirm"
   }
 }
