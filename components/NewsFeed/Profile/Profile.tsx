@@ -17,12 +17,12 @@ export const Profile = () => {
     control,
   } = useProfile();
   return (
-    <div className='flex-1 text-white '>
+    <div className='flex-1 text-white bg-neutral-950 h-full'>
       <h1 className='p-8 hidden sm:block '>{t('header.profile')}</h1>
       <button className='p-6 sm:hidden block'>
         <ArrowIcon />
       </button>
-      <section className='w-full h-full sm:w-250 sm:h-auto relative sm:mt-20 bg-zinc-870 sm:bg-neutral-950 backdrop-blur-xl rounded-[12px] mb-20 sm:pl-48 sm:pt-48 sm:pr-72 sm:pb-40 px-8'>
+      <section className='w-full h-full sm:w-250 sm:h-auto relative sm:mt-20 bg-zinc-870 sm:bg-neutral-950 backdrop-blur-xl sm:rounded-[12px] rounded-t-[12px] mb-20 sm:pl-48 sm:pt-48 sm:pr-72 pb-40 px-8 '>
         <div className='absolute top-0 left-1/2 -translate-x-1/2 sm:-translate-y-1/3 translate-y-7 '>
           <div className=' bg-white rounded-[50%] w-48 h-48 overflow-hidden '>
             <img
@@ -38,6 +38,7 @@ export const Profile = () => {
 
         <form onSubmit={handleSubmit(onSubmit)} className='pt-80 sm:pt-0'>
           <DisplayInput
+            // on small screen make this a link and with that link use should go to /email for email form
             button={
               <button
                 className='text-gray-350 text-lg sm:text-xl sm:mt-2  absolute right-0 top-0  sm:-right-8 sm:translate-x-full'
@@ -103,6 +104,7 @@ export const Profile = () => {
           )}
         </form>
       </section>
+      <div>2222222222</div>
     </div>
   );
 };
