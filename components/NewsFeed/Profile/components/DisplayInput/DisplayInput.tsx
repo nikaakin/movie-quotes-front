@@ -1,13 +1,17 @@
 import { DisplayInputProps } from './type';
 
-export const DisplayInput = ({ button, placeholder }: DisplayInputProps) => {
+export const DisplayInput = ({
+  button,
+  placeholder,
+  title,
+}: DisplayInputProps) => {
   return (
     <div className='sm:flex relative sm:flex-col mb-5'>
       <label
         htmlFor='username_display'
         className='font-normal text-base sm:mb-2'
       >
-        Username
+        {title}
       </label>
       <div className='relative flex gap-8  '>
         <input

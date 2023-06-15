@@ -5,6 +5,7 @@ import {
   DisplayInput,
   Input,
   Modal,
+  PasswordValidDisplay,
 } from '@/components';
 import { useProfile } from './useProfile';
 import { Fragment } from 'react';
@@ -29,6 +30,9 @@ export const Profile = () => {
     currentModal,
     onClose,
     onSaveChanges,
+    isMorethen,
+    isLessThen,
+    onPasswordInputChange,
   } = useProfile();
 
   return (
@@ -80,6 +84,7 @@ export const Profile = () => {
                 } sm:!block`}
               >
                 <DisplayInput
+                  title={t('modals:form.register.inputs.username.title')!}
                   placeholder={username}
                   button={
                     <button
@@ -95,7 +100,6 @@ export const Profile = () => {
 
               {editUsername && (
                 <Input
-                  required
                   control={control}
                   getFieldState={getFieldState}
                   title={t('modals:form.register.inputs.username.title')!}
@@ -113,7 +117,11 @@ export const Profile = () => {
                   editPassword || editUsername ? 'hidden' : ''
                 } sm:!block`}
               >
-                <DisplayInput button={<></>} placeholder={email} />
+                <DisplayInput
+                  title={t('modals:form.register.inputs.email.title')!}
+                  button={<></>}
+                  placeholder={email}
+                />
               </div>
 
               {!google_id && (
@@ -124,6 +132,7 @@ export const Profile = () => {
                 >
                   <DisplayInput
                     placeholder='*********'
+                    title={t('modals:form.register.inputs.password.title')!}
                     button={
                       <button
                         type='button'
@@ -139,8 +148,15 @@ export const Profile = () => {
 
               {editPassword && (
                 <Fragment>
+                  <PasswordValidDisplay
+                    isLessThen={isLessThen}
+                    isMoreThen={isMorethen}
+                    max={t('profile.password_validation_max')}
+                    min={t('profile.password_validation_min')}
+                    title={t('profile.password_validation_header')}
+                  />
+
                   <Input
-                    required
                     shouldHide
                     control={control}
                     getFieldState={getFieldState}
@@ -150,11 +166,13 @@ export const Profile = () => {
                     placeholder={
                       t('modals:form.register.inputs.password.placeholder')!
                     }
-                    register={register('password', { shouldUnregister: true })}
+                    register={register('password', {
+                      shouldUnregister: true,
+                      onChange: onPasswordInputChange,
+                    })}
                     setValue={setValue}
                   />
                   <Input
-                    required
                     shouldHide
                     control={control}
                     getFieldState={getFieldState}

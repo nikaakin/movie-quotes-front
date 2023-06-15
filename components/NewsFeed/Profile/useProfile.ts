@@ -6,7 +6,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useMutation } from '@tanstack/react-query';
 import { AxiosError } from 'axios';
 import { useTranslation } from 'next-i18next';
-import { useState } from 'react';
+import { ChangeEvent, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -23,7 +23,8 @@ export const useProfile = () => {
     username: '',
     password: '',
   });
-  console.log(currentModal);
+  const [isMorethen, setIsMorethen] = useState(false);
+  const [isLessThen, setIsLessThen] = useState(false);
   const { t } = useTranslation(['common', 'modals']);
   const {
     register,
@@ -32,7 +33,7 @@ export const useProfile = () => {
     setValue,
     getFieldState,
     control,
-    formState: { isValid },
+    formState: { isValid, errors },
   } = useForm({
     mode: 'onChange',
     resolver: zodResolver(editSchema(t)),
@@ -73,6 +74,17 @@ export const useProfile = () => {
     setEditPassword(false);
   };
   const onClose = () => dispatch(setCurrentModal(null));
+  const onPasswordInputChange = (event: ChangeEvent<HTMLInputElement>) => {
+    const { value } = event.target;
+    setIsMorethen(false);
+    setIsLessThen(false);
+    if (value.length >= 8) {
+      setIsMorethen(true);
+    }
+    if (value.length === 15 && /^[a-z0-9]+$/.test(value)) {
+      setIsLessThen(true);
+    }
+  };
 
   return {
     t,
@@ -93,5 +105,9 @@ export const useProfile = () => {
     onSaveChanges,
     currentModal,
     onClose,
+    isMorethen,
+    isLessThen,
+    onPasswordInputChange,
+    errors,
   };
 };

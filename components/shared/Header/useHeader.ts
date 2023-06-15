@@ -16,8 +16,8 @@ export const useHeader = () => {
   const onLogout = async () => {
     await getCsrf();
     await logout();
-    disaptch(logOut());
     push('/');
+    disaptch(logOut());
   };
 
   return {
