@@ -35,7 +35,8 @@
     "new_email": "ახალი ელ.ფოსტა",
     "new_password": "ახალი პაროლი",
     "password_validation_header": "პაროლი უნდა შეიცავდეს:",
-    "password_validation_min": "8 ან მეტ სიმბოლოს",
-    "password_validation_max": "15 პატარა ასოს"
+    "password_validation_min": "8 ან მეტი სიმბოლოს",
+    "password_validation_max": "15 პატარა ასო",
+    "changed": "ცვლილებები წარმატებით შეინახა"
   }
 }

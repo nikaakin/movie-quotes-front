@@ -36,6 +36,7 @@
     "new_password": "New password",
     "password_validation_header": "Passwords should contain:",
     "password_validation_min": "8 or more characters",
-    "password_validation_max": "15 lowercase character"
+    "password_validation_max": "15 lowercase character",
+    "changed": "Changes updated succsessfully"
   }
 }
