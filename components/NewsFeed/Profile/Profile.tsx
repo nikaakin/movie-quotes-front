@@ -3,6 +3,7 @@ import {
   Button,
   ConfirmationModal,
   DisplayInput,
+  EditNotification,
   Input,
   Modal,
   PasswordValidDisplay,
@@ -47,6 +48,8 @@ export const Profile = () => {
               confirm={t('modals:confirmation.confirm')}
               title={t('modals:confirmation.title')}
             />
+          ) : currentModal === 'edit-notification' ? (
+            <EditNotification onClose={onClose} title={t('profile.changed')} />
           ) : null}
         </Modal>
       ) : (

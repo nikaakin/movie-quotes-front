@@ -20,3 +20,4 @@ export * from './SearchIcon';
 export * from './TrashBinIcon';
 export * from './XIcon';
 export * from './XWithCircleIcon';
+export * from './CheckMarkWithCircleIcon';
