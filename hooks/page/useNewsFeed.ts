@@ -18,8 +18,8 @@ export const useNewsFeed = () => {
       dispatch(signIn(data.data.user));
     },
     onError: () => {
-      dispatch(logOut());
       push('/');
+      dispatch(logOut());
     },
   });
 
