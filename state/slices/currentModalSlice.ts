@@ -12,6 +12,7 @@ type InitialStateType = {
     | 'register-notification'
     | 'edit-notification'
     | 'forgot-password-notification'
+    | 'confirmation-notification'
     | null;
 };
 

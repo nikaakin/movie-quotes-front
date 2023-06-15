@@ -1,10 +1,8 @@
 import { Button, GoogleIcon, Input } from '@/components';
 import { useLogin } from './useLogin';
-import { ErrorMessage } from '@hookform/error-message';
 
 export const Login = () => {
   const {
-    errors,
     handleSubmit,
     onSubmit,
     register,
@@ -15,6 +13,7 @@ export const Login = () => {
     isLoading,
     control,
     getFieldState,
+    invalidCredentialsError,
     t,
   } = useLogin();
 
@@ -56,7 +55,7 @@ export const Login = () => {
 
         <div className='flex flex-row  items-center max-w-sm my-4 relative pt-4 '>
           <span className='absolute top-2 left-0 -translate-y-full text-red-550 text-base'>
-            <ErrorMessage errors={errors} name='invalid_credentials' />
+            {invalidCredentialsError as string}
           </span>
           <div className='flex-1'>
             <input

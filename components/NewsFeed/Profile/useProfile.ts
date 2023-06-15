@@ -1,19 +1,29 @@
-import { registrationSchema } from '@/schema';
+import { editSchema } from '@/schema';
 import { edit, getCsrf } from '@/services';
-import { setCurrentModal } from '@/state';
-import { registrationSchemaType } from '@/types';
+import { RootState, setCurrentModal } from '@/state';
+import { editSchemaType } from '@/types';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useMutation } from '@tanstack/react-query';
 import { AxiosError } from 'axios';
 import { useTranslation } from 'next-i18next';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 export const useProfile = () => {
+  const {
+    user: { email, google_id, username },
+    currentModal: { currentModal },
+  } = useSelector((state: RootState) => state);
   const [editUsername, setEditUsername] = useState(false);
   const [editPassword, setEditPassword] = useState(false);
-
+  const [editData, setEditData] = useState({
+    email,
+    google_id,
+    username: '',
+    password: '',
+  });
+  console.log(currentModal);
   const { t } = useTranslation(['common', 'modals']);
   const {
     register,
@@ -22,10 +32,10 @@ export const useProfile = () => {
     setValue,
     getFieldState,
     control,
-    formState: { dirtyFields },
+    formState: { isValid },
   } = useForm({
     mode: 'onChange',
-    resolver: zodResolver(registrationSchema(t)),
+    resolver: zodResolver(editSchema(t)),
     shouldUnregister: true,
   });
 
@@ -35,22 +45,38 @@ export const useProfile = () => {
     onSuccess: () => {
       dispatch(setCurrentModal('edit-notification'));
     },
-    onError: (error: AxiosError<registrationSchemaType>) => {
+    onError: (error: AxiosError<editSchemaType>) => {
+      dispatch(setCurrentModal(null));
       const errors = error.response?.data.details || {};
       Object.keys(errors).map((key) => setError(key, { message: errors[key] }));
     },
   });
 
-  const onSubmit = async (data: registrationSchemaType) => {
-    await getCsrf();
-    await mutate(data);
+  const onHandleSubmit = (data: editSchemaType) => {
+    setEditData({
+      email,
+      google_id,
+      password: data?.password,
+      username: data?.username,
+    });
   };
+  const onSaveChanges = () => {
+    handleSubmit(onHandleSubmit)();
+    dispatch(setCurrentModal('confirmation-notification'));
+  };
+  const onSubmit = async () => {
+    await getCsrf();
+    await mutate(editData);
+  };
+  const resetState = () => {
+    setEditUsername(false);
+    setEditPassword(false);
+  };
+  const onClose = () => dispatch(setCurrentModal(null));
 
   return {
     t,
     register,
-    dirtyFields,
-    handleSubmit,
     onSubmit,
     editUsername,
     setEditUsername,
@@ -59,5 +85,13 @@ export const useProfile = () => {
     setValue,
     getFieldState,
     control,
+    resetState,
+    isValid,
+    email,
+    google_id,
+    username,
+    onSaveChanges,
+    currentModal,
+    onClose,
   };
 };

@@ -26,6 +26,8 @@ export const useLogin = () => {
     resolver: zodResolver(loginSchema(t)),
   });
 
+  const invalidCredentialsError =
+    errors?.['invalid_credentials']?.message || '';
   const { push, query, replace, locale } = useRouter();
   const dispatch = useDispatch();
 
@@ -64,7 +66,7 @@ export const useLogin = () => {
   return {
     register,
     handleSubmit,
-    errors,
+    invalidCredentialsError,
     onSubmit,
     onShowPasswordReset,
     onShowRegistration,

@@ -9,7 +9,7 @@ export const useHeader = () => {
   const { t } = useTranslation('common');
   const state = useSelector((state: RootState) => state);
 
-  const isSignedIn = state.isSignedin.isSignedIn;
+  const { isSignedIn } = state.user;
   const { push } = useRouter();
   const onShowLogin = () => disaptch(setCurrentModal('login'));
   const onShowRegister = () => disaptch(setCurrentModal('register'));
