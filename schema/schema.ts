@@ -25,6 +25,7 @@ export const registrationSchema = (t: TFunction) =>
 export const editSchema = (t: TFunction) =>
   z
     .object({
+      image: z.custom<File>().optional(),
       username: z
         .string()
         .min(3, t('modals:form.register.errors.username.min')!)

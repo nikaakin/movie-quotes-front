@@ -1,6 +1,6 @@
 import { editSchema } from '@/schema';
 import { edit, getCsrf } from '@/services';
-import { RootState, setCurrentModal } from '@/state';
+import { RootState, setCurrentModal, signIn } from '@/state';
 import { editSchemaType } from '@/types';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useMutation } from '@tanstack/react-query';
@@ -12,7 +12,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 export const useProfile = () => {
   const {
-    user: { email, google_id, username },
+    user: { email, google_id, username, image },
     currentModal: { currentModal },
   } = useSelector((state: RootState) => state);
   const [editUsername, setEditUsername] = useState(false);
@@ -20,6 +20,7 @@ export const useProfile = () => {
   const [editData, setEditData] = useState({
     email,
     google_id,
+    image,
     username: '',
     password: '',
   });
@@ -40,11 +41,13 @@ export const useProfile = () => {
     shouldUnregister: true,
   });
 
+  const imageError = errors?.image?.message;
   const dispatch = useDispatch();
   const { mutate } = useMutation({
     mutationFn: edit,
     onSuccess: () => {
       dispatch(setCurrentModal('edit-notification'));
+      dispatch(signIn(editData));
       setTimeout(onClose, 2000);
     },
     onError: (error: AxiosError<editSchemaType>) => {
@@ -60,6 +63,7 @@ export const useProfile = () => {
       google_id,
       password: data?.password,
       username: data?.username,
+      image: editData.image,
     });
   };
   const onSaveChanges = () => {
@@ -67,8 +71,16 @@ export const useProfile = () => {
     dispatch(setCurrentModal('confirmation-notification'));
   };
   const onSubmit = async () => {
+    const formData = new FormData();
+    editData.username && formData.append('username', editData.username);
+    editData.password && formData.append('password', editData.password);
+    formData.append('google_id', editData.google_id || '');
+    editData.image !== image &&
+      editData.image &&
+      formData.append('image', editData.image);
+    formData.append('email', editData.email);
     await getCsrf();
-    await mutate(editData);
+    await mutate(formData);
   };
   const resetState = () => {
     setEditUsername(false);
@@ -85,6 +97,16 @@ export const useProfile = () => {
     if (value.length === 15 && /^[a-z0-9]+$/.test(value)) {
       setIsLessThen(true);
     }
+  };
+
+  const onImageChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const img = e.target.files?.[0];
+    const reader = new FileReader();
+    reader.readAsDataURL(img || new Blob());
+
+    reader.onload = (ev: ProgressEvent<FileReader>) => {
+      setEditData({ ...editData, image: (ev.target?.result as string) || '' });
+    };
   };
 
   return {
@@ -110,5 +132,8 @@ export const useProfile = () => {
     isLessThen,
     onPasswordInputChange,
     errors,
+    avatar: editData.image,
+    onImageChange,
+    imageError,
   };
 };

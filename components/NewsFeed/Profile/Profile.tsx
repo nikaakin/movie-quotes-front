@@ -34,6 +34,9 @@ export const Profile = () => {
     isMorethen,
     isLessThen,
     onPasswordInputChange,
+    avatar,
+    onImageChange,
+    imageError,
   } = useProfile();
 
   return (
@@ -66,14 +69,31 @@ export const Profile = () => {
             >
               <div className=' bg-white rounded-[50%] w-48 h-48 overflow-hidden '>
                 <img
-                  src='/assets/images/link-expired.png'
+                  src={avatar}
                   alt='avatar'
                   className='object-fill w-full h-full '
                 />
               </div>
-              <button className='absolute text-xl mt-2 left-1/2 -translate-x-1/2 w-full'>
+              <input
+                type='file'
+                className='hidden'
+                id='image'
+                {...register('image', {
+                  shouldUnregister: true,
+                  onChange: onImageChange,
+                })}
+              />
+              <label
+                htmlFor='image'
+                className='text-xl flex justify-center w-full cursor-pointer'
+              >
                 {t('profile.upload')}
-              </button>
+              </label>
+              {imageError && (
+                <span className='absolute left-2 bottom-0 translate-y-full text-red-550 text-base'>
+                  {imageError as string}
+                </span>
+              )}
             </div>
 
             <form
