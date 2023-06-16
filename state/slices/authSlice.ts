@@ -2,12 +2,13 @@ import { createSlice } from '@reduxjs/toolkit';
 
 type InitialStateType = {
   isSignedIn: boolean;
-  id: number | null;
+  id: string | null;
   username: string;
   email: string;
-  google_id: number | null;
+  google_id: string | null;
   created_at: string;
   updated_at: string;
+  image: string;
 };
 
 const initialState: InitialStateType = {
@@ -18,6 +19,7 @@ const initialState: InitialStateType = {
   google_id: null,
   created_at: '',
   updated_at: '',
+  image: '',
 };
 
 export const authSlice = createSlice({

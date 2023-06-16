@@ -9,7 +9,8 @@ export const Burgerbar = ({
   shouldShowLinks = false,
   onLogout,
 }: BurgerbarProps) => {
-  const { isBurgerOpen, onBurgerBarClick, slug, t } = useBurgerbar();
+  const { isBurgerOpen, onBurgerBarClick, slug, image, username, t } =
+    useBurgerbar();
   return (
     <Fragment>
       <button
@@ -38,18 +39,19 @@ export const Burgerbar = ({
           {shouldShowLinks && (
             <Fragment>
               <ProfileCard
+                username={username}
                 image={
                   <div
-                    className={`bg-white rounded-[50%] w-10 h-10 sm:w-16 sm:h-auto overflow-hidden  border sm:border-[2px] ${
+                    className={`bg-white rounded-[50%] w-10 h-10 sm:w-16 sm:h-16 overflow-hidden  border sm:border-[2px] ${
                       slug === 'profile'
                         ? 'border-red-650 '
                         : 'border-transparent '
                     }`}
                   >
                     <img
-                      src='/assets/images/link-expired.png'
+                      src={image}
                       alt='avatar'
-                      className='object-fill w-full h-full '
+                      className='object-fill w-full h-full'
                     />
                   </div>
                 }
