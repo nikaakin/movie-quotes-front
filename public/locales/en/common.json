@@ -37,6 +37,8 @@
     "password_validation_header": "Passwords should contain:",
     "password_validation_min": "8 or more characters",
     "password_validation_max": "15 lowercase character",
-    "changed": "Changes updated succsessfully"
+    "changed": "Changes updated succsessfully",
+    "image_size": "Image should be less than 2MB",
+    "image_type": "File must be an image "
   }
 }

@@ -19,3 +19,11 @@ export const imageUrls = [
     movie: 'The Royal Tenenbaums,2001 ',
   },
 ];
+
+export const MAX_SIZE = 2000000;
+export const MIME_TYPES = [
+  'image/jpg',
+  'image/jpeg',
+  'image/png',
+  'image/webp',
+];

@@ -37,6 +37,8 @@
     "password_validation_header": "პაროლი უნდა შეიცავდეს:",
     "password_validation_min": "8 ან მეტი სიმბოლოს",
     "password_validation_max": "15 პატარა ასო",
-    "changed": "ცვლილებები წარმატებით შეინახა"
+    "changed": "ცვლილებები წარმატებით შეინახა",
+    "image_size": "სურათი უნდა იყოს 2მგბზე ნაკლები",
+    "image_type": "ატვირთული ფაილი უნდა იყოს სურათი "
   }
 }
