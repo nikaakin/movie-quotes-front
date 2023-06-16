@@ -1,3 +1,4 @@
+import { MAX_SIZE, MIME_TYPES } from '@/config';
 import { TFunction } from 'next-i18next';
 import { z } from 'zod';
 
@@ -25,7 +26,14 @@ export const registrationSchema = (t: TFunction) =>
 export const editSchema = (t: TFunction) =>
   z
     .object({
-      image: z.custom<File>().optional(),
+      image: z
+        .custom<FileList>()
+        .optional()
+        .refine((file) => file![0]?.size <= MAX_SIZE, t('profile.image_size')!)
+        .refine(
+          (file) => MIME_TYPES.includes(file![0]?.type),
+          t('profile.image_type')!
+        ),
       username: z
         .string()
         .min(3, t('modals:form.register.errors.username.min')!)

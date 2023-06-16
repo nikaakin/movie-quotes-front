@@ -101,6 +101,7 @@ export const useProfile = () => {
 
   const onImageChange = (e: ChangeEvent<HTMLInputElement>) => {
     const img = e.target.files?.[0];
+
     const reader = new FileReader();
     reader.readAsDataURL(img || new Blob());
 
