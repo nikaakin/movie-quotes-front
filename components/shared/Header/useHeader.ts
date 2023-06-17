@@ -8,6 +8,9 @@ export const useHeader = () => {
   const disaptch = useDispatch();
   const { t } = useTranslation('common');
   const state = useSelector((state: RootState) => state);
+  const {
+    query: { slug },
+  } = useRouter();
 
   const { isSignedIn } = state.user;
   const { push } = useRouter();
@@ -25,6 +28,7 @@ export const useHeader = () => {
     onShowRegister,
     isSignedIn,
     onLogout,
+    slug,
     t,
   };
 };
