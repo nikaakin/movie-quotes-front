@@ -1,12 +1,19 @@
 import React, { Fragment } from 'react';
 import { Dropdown } from './components';
-import { BellIcon, Burgerbar, Button } from '@/components';
+import {
+  BellIcon,
+  Burgerbar,
+  Button,
+  SearchField,
+  SearchIcon,
+} from '@/components';
 import { useHeader } from './useHeader';
 import Link from 'next/link';
 
 export const Header = ({ shouldhavelinks = false }) => {
-  const { t, onShowLogin, onShowRegister, isSignedIn, onLogout } = useHeader();
-
+  const { t, onShowLogin, onShowRegister, isSignedIn, onLogout, slug } =
+    useHeader();
+  console.log(slug);
   return (
     <header
       className={`py-6  sm:px-16 px-9 flex justify-between w-full text-white max-h-22 items-center ${
@@ -21,9 +28,14 @@ export const Header = ({ shouldhavelinks = false }) => {
       <Burgerbar shouldShowLinks={shouldhavelinks} onLogout={onLogout} />
       <div className='flex flex-row justify-between gap-2 sm:gap-4'>
         {isSignedIn ? (
-          <button>
-            <BellIcon />
-          </button>
+          <Fragment>
+            <button>
+              <SearchIcon />
+            </button>
+            <button>
+              <BellIcon />
+            </button>
+          </Fragment>
         ) : null}
         <Dropdown />
         {isSignedIn ? (

@@ -1,10 +1,8 @@
 import { Fragment } from 'react';
-import { SearchFieldProps } from './type';
 import { useSearchField } from './useSearchField';
+import { SearchIcon } from '@/components/Icons';
 
-export const SearchField = ({
-  shouldAppearOnMobile = false,
-}: SearchFieldProps) => {
+export const SearchField = () => {
   const {
     handleSearch,
     searchResults,
@@ -24,24 +22,32 @@ export const SearchField = ({
       />
       <label
         htmlFor='search_field'
-        className={`text-white peer-checked/search-field:flex-1 cursor-pointer transition-all z-[500] ${
-          shouldAppearOnMobile
-            ? 'sm:hidden peer-checked/search-field:w-full'
-            : 'hidden sm:block'
-        }`}
+        className='text-white peer-checked/search-field:flex-1 cursor-pointer transition-all z-[500] 
+             peer-checked/search-field:w-full
+             hidden sm:block'
       >
-        {shouldAppearOnMobile ? (
-          <input
-            type='text'
-            placeholder={t('home.search')!}
-            className='w-full'
-          />
-        ) : (
-          <input
-            type='text'
-            placeholder={placeholderTextForDesktop}
-            className=''
-          />
+        <SearchIcon />
+
+        <input
+          type='text'
+          placeholder={t('home.search')!}
+          className='w-full'
+          value={searchValue}
+          onChange={handleSearch}
+        />
+
+        {searchResults.length > 0 && (
+          <div className='absolute top-14 w-full bg-white rounded-md shadow-md z-[500]'>
+            {searchResults.map((result) => (
+              <div
+                key={result.id}
+                className='flex flex-row justify-between items-center px-4 py-2 hover:bg-gray-100 cursor-pointer'
+              >
+                <p className='text-sm'>{result.title}</p>
+                <p className='text-sm'>{result.year}</p>
+              </div>
+            ))}
+          </div>
         )}
       </label>
     </Fragment>
