@@ -1,9 +1,9 @@
-import { SearchField } from '../SearchField';
+import { SearchField } from '../../../../shared/SearchField';
 import { WriteQuoteButton } from '../WriteQuoteButton';
 
 export const HomeHeader = () => {
   return (
-    <div className='flex  text-2xl justify-between '>
+    <div className='flex justify-between mt-8 sm:mb-6 mb-10 '>
       <WriteQuoteButton />
       <SearchField />
     </div>

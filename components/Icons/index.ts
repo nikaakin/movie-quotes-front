@@ -21,3 +21,4 @@ export * from './TrashBinIcon';
 export * from './XIcon';
 export * from './XWithCircleIcon';
 export * from './CheckMarkWithCircleIcon';
+export * from './PencilWithBorderIcon';
