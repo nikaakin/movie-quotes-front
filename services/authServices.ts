@@ -13,7 +13,7 @@ export const logout = () => axios().get('/api/logout');
 export const register = (data: registrationSchemaType) =>
   axios().post('/api/register', data);
 export const edit = (data: registrationSchemaType) =>
-  axios().patch('/api/edit', data);
+  axios().patch('/api/update', data);
 export const forgotPassword = (data: forgotPasswordSchemaType) =>
   axios().post('/api/forgot-password', data);
 export const resetPassword = ({ token, email, password }: resetPasswordArgs) =>
