@@ -10,7 +10,7 @@ export const WriteQuoteButton = ({ t }: translationType) => {
         name='home_header'
         id='write_quote'
         className='peer/write-quote'
-        checked
+        defaultChecked
         hidden
       />
       <label
