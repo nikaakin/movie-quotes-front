@@ -3,12 +3,12 @@ import { useTranslation } from 'next-i18next';
 import { useSelector } from 'react-redux';
 import { RootState } from '@/state';
 
+type searchResultsType = { title: string; year: string; id: string } | [];
+
 export const useSearchField = () => {
   const { t } = useTranslation('common');
   const [searchValue, setSearchValue] = useState('');
-  const [searchResults, setSearchResults] = useState([
-    { title: '', year: '', id: '' },
-  ]);
+  const [searchResults, setSearchResults] = useState<searchResultsType[]>([]);
   const { isSearchBarOn } = useSelector(
     (state: RootState) => state.isSearchBarOn
   );
@@ -22,19 +22,10 @@ export const useSearchField = () => {
       )
     );
   };
-  const placeholderTextForDesktop =
-    t('home.enter')! +
-    ' @ ' +
-    t('home.enter_movies')! +
-    ', ' +
-    t('home.enter')! +
-    ' # ' +
-    t('home.enter_quotes')!;
   return {
     searchValue,
     searchResults,
     handleSearch,
-    placeholderTextForDesktop,
     isSearchBarOn,
     t,
   };
