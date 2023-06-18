@@ -1,10 +1,9 @@
 import React, { Fragment } from 'react';
-import { Dropdown } from './components';
 import {
+  Dropdown,
   BellIcon,
   Burgerbar,
   Button,
-  SearchField,
   SearchIcon,
 } from '@/components';
 import { useHeader } from './useHeader';

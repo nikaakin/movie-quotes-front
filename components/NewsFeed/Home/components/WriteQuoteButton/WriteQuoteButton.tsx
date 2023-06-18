@@ -1,4 +1,4 @@
-import { PencilWithBorderIcon } from '@/components/Icons';
+import { PencilWithBorderIcon } from '@/components';
 import { Fragment } from 'react';
 import { useWriteQuoteButton } from './useWriteQuoteButton';
 
