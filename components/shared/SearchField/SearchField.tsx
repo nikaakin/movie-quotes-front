@@ -3,14 +3,8 @@ import { useSearchField } from './useSearchField';
 import { SearchIcon } from '@/components/Icons';
 
 export const SearchField = () => {
-  const {
-    handleSearch,
-    searchResults,
-    searchValue,
-    placeholderTextForDesktop,
-    isSearchBarOn,
-    t,
-  } = useSearchField();
+  const { handleSearch, searchResults, searchValue, isSearchBarOn, t } =
+    useSearchField();
   return (
     <Fragment>
       <input
@@ -22,8 +16,8 @@ export const SearchField = () => {
       />
       <label
         htmlFor='search_field'
-        className={`text-white peer-checked/search-field:flex-1 cursor-pointer transition-all z-20 
-             peer-checked/search-field:w-full
+        className={`text-white peer-checked/search-field:flex-1 cursor-pointer  z-20 
+             peer-checked/search-field:w-full 
            sm:block ${isSearchBarOn ? '!block' : 'hidden'}}`}
       >
         <SearchIcon />
@@ -38,18 +32,19 @@ export const SearchField = () => {
           onChange={handleSearch}
           hidden
         />
-        <label htmlFor='search_field'>{placeholderTextForDesktop}</label>
+        <label htmlFor='search_field'>
+          {t('home.enter')!}
+          <span> @ </span>
+          {t('home.enter_movies')!},{t('home.enter')!}
+          <span> # </span>
+          {t('home.enter_quotes')!}
+        </label>
 
         {searchResults.length > 0 && (
-          <div className=' w-full bg-white rounded-md shadow-md z-20'>
+          <div className='  peer-checked/search-field:text-red-500  '>
+            eeee
             {searchResults.map((result) => (
-              <div
-                key={result.id}
-                className='flex flex-row justify-between items-center px-4 py-2 hover:bg-gray-100 cursor-pointer'
-              >
-                <p className='text-sm'>{result.title}</p>
-                <p className='text-sm'>{result.year}</p>
-              </div>
+              <div></div>
             ))}
           </div>
         )}
