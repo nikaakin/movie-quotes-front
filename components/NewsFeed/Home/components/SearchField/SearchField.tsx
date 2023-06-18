@@ -1,15 +1,10 @@
 import { Fragment } from 'react';
 import { useSearchField } from './useSearchField';
 import { SearchIcon } from '@/components/Icons';
+import { translationType } from '@/types/translationType';
 
-export const SearchField = () => {
-  const {
-    handleSearch,
-    searchResults,
-    searchValue,
-    placeholderTextForDesktop,
-    t,
-  } = useSearchField();
+export const SearchField = ({ t }: translationType) => {
+  const { handleSearch, searchResults, searchValue } = useSearchField();
 
   return (
     <Fragment>

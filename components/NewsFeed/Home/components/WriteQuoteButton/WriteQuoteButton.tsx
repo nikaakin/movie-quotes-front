@@ -1,9 +1,8 @@
 import { PencilWithBorderIcon } from '@/components';
 import { Fragment } from 'react';
-import { useWriteQuoteButton } from './useWriteQuoteButton';
+import { translationType } from '@/types/translationType';
 
-export const WriteQuoteButton = () => {
-  const { t } = useWriteQuoteButton();
+export const WriteQuoteButton = ({ t }: translationType) => {
   return (
     <Fragment>
       <input
