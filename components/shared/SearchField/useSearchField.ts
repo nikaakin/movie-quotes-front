@@ -1,5 +1,7 @@
 import { ChangeEvent, useState } from 'react';
 import { useTranslation } from 'next-i18next';
+import { useSelector } from 'react-redux';
+import { RootState } from '@/state';
 
 export const useSearchField = () => {
   const { t } = useTranslation('common');
@@ -7,6 +9,9 @@ export const useSearchField = () => {
   const [searchResults, setSearchResults] = useState([
     { title: '', year: '', id: '' },
   ]);
+  const { isSearchBarOn } = useSelector(
+    (state: RootState) => state.isSearchBarOn
+  );
 
   const handleSearch = (e: ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target;
@@ -30,6 +35,7 @@ export const useSearchField = () => {
     searchResults,
     handleSearch,
     placeholderTextForDesktop,
+    isSearchBarOn,
     t,
   };
 };
