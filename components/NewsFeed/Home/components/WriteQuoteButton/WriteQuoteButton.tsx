@@ -11,7 +11,7 @@ export const WriteQuoteButton = () => {
         name='home_header'
         id='write_quote'
         className='peer/write-quote'
-        checked
+        defaultChecked
         hidden
       />
       <label
