@@ -1,10 +1,12 @@
 import { Header, Movies, Profile, Home } from '@/components';
 import { useNewsFeed } from '@/hooks';
+import { fetchQuotes } from '@/services/dataServices';
+import { HomePageProps } from '@/types/homePageTypes';
+import { GetStaticProps } from 'next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
-export default function NewsFeed() {
+export default function NewsFeed({ quotes }: HomePageProps) {
   const { isLoading, slug } = useNewsFeed();
-
   return (
     <div className='bg-lg-main min-h-screen text-white'>
       {isLoading ? null : (
@@ -25,13 +27,23 @@ export default function NewsFeed() {
   );
 }
 
-export async function getStaticProps({ locale }: { locale: string }) {
+export const getStaticProps: GetStaticProps<HomePageProps> = async ({
+  params,
+  locale,
+}) => {
+  let quotes = null;
+  if (params?.slug === 'home') {
+    const res = await fetchQuotes(0);
+    quotes = res.data;
+  }
+
   return {
     props: {
       ...(await serverSideTranslations(locale ?? 'en', ['common', 'modals'])),
+      quotes,
     },
   };
-}
+};
 
 export async function getStaticPaths({ locales }: { locales: string[] }) {
   const paths = locales.map((locale) => [
