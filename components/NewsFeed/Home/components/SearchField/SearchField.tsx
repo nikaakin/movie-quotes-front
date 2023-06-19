@@ -21,7 +21,7 @@ export const SearchField = ({
     <Fragment>
       <div
         className={`sm:hidden hidden ${
-          isSearchActive ? '!block' : ''
+          isSearchActive && '!block'
         } fixed top-0 left-0 w-full h-full blur-0.75 bg-transparent opacity-50 z-40 `}
         onClick={onClose}
       ></div>
@@ -31,7 +31,7 @@ export const SearchField = ({
       text-base fixed top-0 left-0 z-50 sm:text-xl h-[80vh] sm:h-fit
                peer-checked/search-field:w-full transition-all  
              block  sm:relative bg-neutral-920 sm:bg-transparent
-             ${isSearchActive ? '' : 'hidden sm:block'}
+             ${!isSearchActive && 'hidden sm:block'}
              `}
       >
         <div className='sm:flex sm:items-center sm:gap-4 relative'>
