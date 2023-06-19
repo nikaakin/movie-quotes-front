@@ -27,7 +27,7 @@ export const useLandingPage = () => {
       getCsrf().then(async () => {
         try {
           const data = await googleLogin(query);
-          dispatch(signIn(data.data.data));
+          dispatch(signIn(data.data.user));
           push('/news-feed/home');
         } catch (error) {
           if (error instanceof AxiosError) {
