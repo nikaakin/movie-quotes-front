@@ -1,6 +1,6 @@
 import { PencilWithBorderIcon } from '@/components';
 import { Fragment } from 'react';
-import { translationType } from '@/types/translationType';
+import { translationType } from '@/types';
 
 export const WriteQuoteButton = ({ t }: translationType) => {
   return (
@@ -10,7 +10,7 @@ export const WriteQuoteButton = ({ t }: translationType) => {
         name='home_header'
         id='write_quote'
         className='peer/write-quote'
-        checked
+        defaultChecked
         hidden
       />
       <label

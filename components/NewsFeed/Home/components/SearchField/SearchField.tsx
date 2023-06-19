@@ -1,11 +1,16 @@
 import { Fragment } from 'react';
 import { useSearchField } from './useSearchField';
 import { SearchIcon } from '@/components/Icons';
-import { translationType } from '@/types/translationType';
 
-export const SearchField = ({ t }: translationType) => {
-  const { handleSearch, searchResults, searchValue } = useSearchField();
-
+export const SearchField = () => {
+  const {
+    handleSearch,
+    searchResults,
+    searchValue,
+    placeholderTextForDesktop,
+    isSearchBarOn,
+    t,
+  } = useSearchField();
   return (
     <Fragment>
       <input
@@ -17,22 +22,26 @@ export const SearchField = ({ t }: translationType) => {
       />
       <label
         htmlFor='search_field'
-        className='text-white peer-checked/search-field:flex-1 cursor-pointer transition-all z-[500] 
+        className={`text-white peer-checked/search-field:flex-1 cursor-pointer transition-all z-20 
              peer-checked/search-field:w-full
-             hidden sm:block'
+           sm:block ${isSearchBarOn ? '!block' : 'hidden'}}`}
       >
         <SearchIcon />
 
         <input
+          name='search_field'
+          id='search_field'
           type='text'
           placeholder={t('home.search')!}
           className='w-full'
           value={searchValue}
           onChange={handleSearch}
+          hidden
         />
+        <label htmlFor='search_field'>{placeholderTextForDesktop}</label>
 
         {searchResults.length > 0 && (
-          <div className='absolute top-14 w-full bg-white rounded-md shadow-md z-[500]'>
+          <div className=' w-full bg-white rounded-md shadow-md z-20'>
             {searchResults.map((result) => (
               <div
                 key={result.id}
