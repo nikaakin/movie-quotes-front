@@ -1,7 +1,7 @@
 import { Header, Movies, Profile, Home } from '@/components';
 import { useNewsFeed } from '@/hooks';
-import { fetchQuotes } from '@/services/dataServices';
-import { HomePageProps } from '@/types/homePageTypes';
+import { fetchQuotes } from '@/services';
+import { HomePageProps } from '@/types';
 import { GetStaticProps } from 'next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
