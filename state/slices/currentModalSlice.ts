@@ -13,6 +13,7 @@ type InitialStateType = {
     | 'edit-notification'
     | 'forgot-password-notification'
     | 'confirmation-notification'
+    | 'add-quote'
     | null;
 };
 
