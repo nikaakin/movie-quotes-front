@@ -4,4 +4,3 @@ export * from './Modal';
 export * from './Header';
 export * from './Burgerbar';
 export * from './ProfileCard';
-export * from './SearchField';
