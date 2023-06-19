@@ -31,7 +31,7 @@ export const Header = ({ shouldhavelinks = false }) => {
         {isSignedIn ? (
           <Fragment>
             {slug === 'home' && (
-              <button onClick={onSearchBarClick}>
+              <button onClick={onSearchBarClick} className='block sm:hidden'>
                 <SearchIcon />
               </button>
             )}
