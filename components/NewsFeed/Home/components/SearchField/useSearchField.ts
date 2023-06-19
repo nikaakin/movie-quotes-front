@@ -1,5 +1,4 @@
 import { ChangeEvent, useState } from 'react';
-import { useTranslation } from 'next-i18next';
 import { useSelector } from 'react-redux';
 import { RootState } from '@/state';
 
