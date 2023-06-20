@@ -141,7 +141,7 @@ export default function Home() {
           >
             <div
               className={`pl-[10vw] z-40 flex flex-row ${
-                shouldAnimate ? 'quote-fade' : ''
+                shouldAnimate && 'quote-fade'
               }`}
             >
               <span className='border-[1px] border-white h-0 sm:w-14 w-4 mt-4 sm:mt-10 sm:mr-4 mr-2 '></span>
@@ -158,7 +158,7 @@ export default function Home() {
             <button
               onClick={changeIndex.bind(null, index + 1)}
               className={`${
-                index === 1 ? 'bg-lg-landing-third' : ''
+                index === 1 && 'bg-lg-landing-third'
               } hidden absolute sm:block  left-0 top-0 bg-transparent w-full h-full z-50`}
             ></button>
           </article>
