@@ -38,7 +38,6 @@ export const Burgerbar = ({
         <div className='absolute flex flex-col top-32 left-0 w-96 gap-5'>
           {shouldShowLinks && (
             <Fragment>
-
               <div className='pl-16'>
                 <ProfileCard
                   username={username}

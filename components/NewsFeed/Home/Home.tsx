@@ -1,4 +1,3 @@
-
 import { HomeHeader, QuoteCard } from './components';
 import { useHome } from './useHome';
 
