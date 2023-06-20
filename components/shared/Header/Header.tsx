@@ -18,7 +18,7 @@ export const Header = ({ shouldhavelinks = false }) => {
   return (
     <header
       className={`py-6  sm:px-16 px-9 flex justify-between w-full text-white max-h-22 items-center ${
-        isSignedIn ? 'bg-zinc-850 bg-opacity-80' : ''
+        isSignedIn && 'bg-zinc-850 bg-opacity-80'
       }`}
     >
       <Link href='/' className='hidden sm:block'>

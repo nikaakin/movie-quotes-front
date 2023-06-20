@@ -1,6 +1,6 @@
 import { getCsrf, logout } from '@/services';
 import { RootState, logOut, setCurrentModal } from '@/state';
-import { setIsSearchBarOn } from '@/state/slices/isSearchBarSlice';
+import { setIsSearchBarOn } from '@/state';
 import { useTranslation } from 'next-i18next';
 import { useRouter } from 'next/router';
 import { useDispatch, useSelector } from 'react-redux';

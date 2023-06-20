@@ -64,7 +64,7 @@ export const Profile = () => {
           <section className='w-full h-full sm:w-250 sm:h-auto relative sm:mt-20 bg-zinc-870 sm:bg-neutral-950 backdrop-blur-xl sm:rounded-[12px] rounded-t-[12px] mb-20 sm:pl-48 sm:pt-48 sm:pr-72 pb-10 px-8'>
             <div
               className={`absolute top-0 left-1/2 -translate-x-1/2 sm:-translate-y-1/3 translate-y-7 ${
-                editPassword || editUsername ? 'hidden' : ''
+                (editPassword || editUsername) && 'hidden'
               } sm:!block`}
             >
               <div className=' bg-white rounded-[50%] w-48 h-48 overflow-hidden '>
@@ -103,7 +103,7 @@ export const Profile = () => {
             >
               <div
                 className={`${
-                  editPassword || editUsername ? 'hidden' : ''
+                  (editPassword || editUsername) && 'hidden'
                 } sm:!block`}
               >
                 <DisplayInput
@@ -137,7 +137,7 @@ export const Profile = () => {
 
               <div
                 className={`${
-                  editPassword || editUsername ? 'hidden' : ''
+                  (editPassword || editUsername) && 'hidden'
                 } sm:!block`}
               >
                 <DisplayInput

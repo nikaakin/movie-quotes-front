@@ -32,6 +32,7 @@ export const SearchField = ({
                peer-checked/search-field:w-full transition-all  
              block  sm:relative bg-neutral-920 sm:bg-transparent
              ${!isSearchActive && 'hidden sm:block'}
+
              `}
       >
         <div className='sm:flex sm:items-center sm:gap-4 relative'>

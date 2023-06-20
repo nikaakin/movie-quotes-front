@@ -54,10 +54,10 @@ export const Input = ({
           value={value}
           {...register}
           className={`  disabled:bg-gray-250 focus:shadow-input px-3 py-2 pr-14 border w-full border-gray-350 text-neutral-850 text-base rounded-[4px] placeholder:text-gray-550  bg-gray-350 ${classNames} ${
-            shouldHide ? 'pr-15' : ''
+            shouldHide && 'pr-15'
           }
-          ${isDirty && !invalid ? 'border-green-750 border-[2px]' : ''}
-          ${error ? 'border-red-650 ' : ''}
+          ${isDirty && !invalid && 'border-green-750 border-[2px]'}
+          ${error && 'border-red-650 '}
           `}
           disabled={disabled}
         />
