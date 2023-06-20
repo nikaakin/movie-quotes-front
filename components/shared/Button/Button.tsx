@@ -21,7 +21,7 @@ export const Button = ({
       disabled={isDisabled}
       className={` font-normal 
       text-sm sm:text-base border rounded text-white ${background} ${classes} ${
-        isDisabled ? 'opacity-60' : ''
+        isDisabled && 'opacity-60'
       }`}
     >
       {isLink ? (
