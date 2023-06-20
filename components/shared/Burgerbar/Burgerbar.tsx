@@ -38,32 +38,34 @@ export const Burgerbar = ({
         <div className='absolute flex flex-col top-32 left-0 w-96 gap-5'>
           {shouldShowLinks && (
             <Fragment>
-              <ProfileCard
-                username={username}
-                image={
-                  <div
-                    className={`bg-white rounded-[50%] w-10 h-10 sm:w-16 sm:h-16 overflow-hidden  border sm:border-[2px] ${
-                      slug === 'profile'
-                        ? 'border-red-650 '
-                        : 'border-transparent '
-                    }`}
-                  >
-                    <img
-                      src={image}
-                      alt='avatar'
-                      className='object-fill w-full h-full'
-                    />
-                  </div>
-                }
-              >
-                <Link
-                  href={'/news-feed/profile'}
-                  className='text-sm sm:text-base text-gray-350'
-                  onClick={onBurgerBarClick.bind(null, false)}
+              <div className='pl-16'>
+                <ProfileCard
+                  username={username}
+                  image={
+                    <div
+                      className={`bg-white rounded-[50%] w-10 h-10 sm:w-16 sm:h-16 overflow-hidden  border sm:border-[2px] ${
+                        slug === 'profile'
+                          ? 'border-red-650 '
+                          : 'border-transparent '
+                      }`}
+                    >
+                      <img
+                        src={image}
+                        alt='avatar'
+                        className='object-fill w-full h-full'
+                      />
+                    </div>
+                  }
                 >
-                  {t('profile.edit')}
-                </Link>
-              </ProfileCard>
+                  <Link
+                    href={'/news-feed/profile'}
+                    className='text-sm sm:text-base text-gray-350'
+                    onClick={onBurgerBarClick.bind(null, false)}
+                  >
+                    {t('profile.edit')}
+                  </Link>
+                </ProfileCard>
+              </div>
               <Link
                 href='/news-feed/home'
                 className='py-2 my-3 sm:my-0 sm:py-5  hover:bg-zinc-870 hover:bg-opacity-60 flex items-center gap-8 sm:gap-6 pl-16'
