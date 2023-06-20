@@ -2,7 +2,7 @@ import { HomeIcon, MovieCameraIcon, ProfileCard } from '@/components';
 import Link from 'next/link';
 import { BurgerbarProps } from './type';
 import { Fragment } from 'react';
-import { BurgerIcon } from '@/components/Icons/BurgerIcon';
+import { BurgerIcon } from '@/components';
 import { useBurgerbar } from './useBurgerbar';
 
 export const Burgerbar = ({

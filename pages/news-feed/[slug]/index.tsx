@@ -1,11 +1,11 @@
 import { Header, Movies, Profile, Home } from '@/components';
 import { useNewsFeed } from '@/hooks';
 import { fetchQuotes } from '@/services';
-import { HomePageProps } from '@/types';
+import { QueryClient } from '@tanstack/react-query';
 import { GetStaticProps } from 'next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
-export default function NewsFeed({ quotes }: HomePageProps) {
+export default function NewsFeed() {
   const { isLoading, slug } = useNewsFeed();
   return (
     <div className='bg-lg-main min-h-screen text-white'>
@@ -27,20 +27,20 @@ export default function NewsFeed({ quotes }: HomePageProps) {
   );
 }
 
-export const getStaticProps: GetStaticProps<HomePageProps> = async ({
-  params,
-  locale,
-}) => {
-  let quotes = null;
+export const getStaticProps: GetStaticProps = async ({ params, locale }) => {
   if (params?.slug === 'home') {
-    const res = await fetchQuotes(0);
-    quotes = res.data;
+    const queryClient = new QueryClient();
+    await queryClient.prefetchQuery(['quotes', 0], () => fetchQuotes(0));
+    queryClient.getQueryData(['quotes', 0]);
   }
 
   return {
     props: {
-      ...(await serverSideTranslations(locale ?? 'en', ['common', 'modals'])),
-      quotes,
+      ...(await serverSideTranslations(locale ?? 'en', [
+        'common',
+        'modals',
+        'home',
+      ])),
     },
   };
 };
