@@ -1,10 +1,4 @@
-import {
-  ChangeEvent,
-  MouseEventHandler,
-  SyntheticEvent,
-  useEffect,
-  useState,
-} from 'react';
+import { ChangeEvent, SyntheticEvent, useEffect, useState } from 'react';
 import { useTranslation } from 'next-i18next';
 import { useDispatch } from 'react-redux';
 import { setIsSearchBarOn } from '@/state';
