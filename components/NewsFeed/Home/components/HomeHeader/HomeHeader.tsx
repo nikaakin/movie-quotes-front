@@ -10,6 +10,7 @@ export const HomeHeader = () => {
         className={`${
           !isSearchActive ? 'flex-1' : ''
         }  transition-all basis-60 `}
+
       >
         <WriteQuoteButton isSearchActive={isSearchActive} />
       </button>
@@ -19,6 +20,7 @@ export const HomeHeader = () => {
           isSearchActive
             ? 'flex-1 pb-4 border-b border-white border-opacity-30'
             : ''
+
         } sm:basis-32`}
       >
         <SearchField isSearchActive={isSearchActive} />
