@@ -99,6 +99,7 @@ export const Burgerbar = ({
                 href='#'
                 locale='en'
                 className=' hover:bg-zinc-870 hover:bg-opacity-60 pl-16 py-2'
+                onClick={onBurgerBarClick.bind(null, false)}
               >
                 {t('locale.en')}
               </Link>
@@ -106,6 +107,7 @@ export const Burgerbar = ({
                 href='#'
                 locale='ka'
                 className=' hover:bg-zinc-870 hover:bg-opacity-60 pl-16 py-2'
+                onClick={onBurgerBarClick.bind(null, false)}
               >
                 {t('locale.ka')}
               </Link>
