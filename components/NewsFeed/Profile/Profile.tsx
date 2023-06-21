@@ -41,22 +41,26 @@ export const Profile = () => {
 
   return (
     <div className='flex-1 text-white bg-neutral-950 sm:bg-transparent h-full'>
-      {currentModal ? (
+      {currentModal === 'confirmation-notification' ? (
         <Modal onClose={onClose} background='lg-main' shouldHaveX={false}>
-          {currentModal === 'confirmation-notification' ? (
-            <ConfirmationModal
-              onClose={onClose}
-              onSubmit={onSubmit}
-              cancel={t('profile.cancel')}
-              confirm={t('modals:confirmation.confirm')}
-              title={t('modals:confirmation.title')}
-            />
-          ) : currentModal === 'edit-notification' ? (
-            <EditNotification onClose={onClose} title={t('profile.changed')} />
-          ) : null}
+          <ConfirmationModal
+            onClose={onClose}
+            onSubmit={onSubmit}
+            cancel={t('profile.cancel')}
+            confirm={t('modals:confirmation.confirm')}
+            title={t('modals:confirmation.title')}
+          />
         </Modal>
       ) : (
         <Fragment>
+          {currentModal === 'edit-notification' && (
+            <Modal onClose={onClose} background='lg-main' shouldHaveX={false}>
+              <EditNotification
+                onClose={onClose}
+                title={t('profile.changed')}
+              />
+            </Modal>
+          )}
           <h1 className='p-8 hidden sm:block '>{t('header.profile')}</h1>
           <button className='p-6 sm:hidden block' onClick={resetState}>
             <ArrowIcon />
@@ -85,7 +89,7 @@ export const Profile = () => {
               />
               <label
                 htmlFor='image'
-                className='text-xl flex justify-center w-full cursor-pointer'
+                className='text-xl flex justify-center w-full cursor-pointer text-center'
               >
                 {t('profile.upload')}
               </label>
