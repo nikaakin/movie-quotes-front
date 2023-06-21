@@ -1,4 +1,11 @@
 {
   "movie": "movie",
-  "comment": "Write a comment"
+  "comment": "Write a comment",
+
+  "movie_list": {
+    "title": "My list of movies",
+    "total": "Total",
+    "add": "Add movie",
+    "search": "Search"
+  }
 }
