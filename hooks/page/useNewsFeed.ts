@@ -18,7 +18,7 @@ export const useNewsFeed = () => {
       dispatch(signIn(data.data.user));
     },
     onError: () => {
-      push('/');
+      push('/unauthorized');
       dispatch(logOut());
     },
   });
@@ -29,7 +29,7 @@ export const useNewsFeed = () => {
     getCsrf().then(() => {
       mutate();
     });
-  }, [push, dispatch, isSignedIn, mutate]);
+  }, [push, dispatch, mutate]);
 
   return { isLoading, slug };
 };
