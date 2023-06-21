@@ -11,12 +11,12 @@ export default function Custom404() {
         <div className='relative w-80 h-60'>
           <img
             src='/assets/images/404.png'
-            alt=''
+            alt='whoops'
             className='absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10'
           />
           <img
             src='/assets/images/404-circle.png'
-            alt=''
+            alt='circle'
             className='absolute bottom-0 left-1/2 transform -translate-x-1/2'
           />
         </div>
