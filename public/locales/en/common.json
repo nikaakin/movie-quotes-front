@@ -49,5 +49,16 @@
     "enter_movies": "to search movies",
     "enter_quotes": "to search quotes",
     "search_by": "Search by"
+  },
+
+  "403": {
+    "title": "You shall not pass!",
+    "text": "Sorry, but  you don’t have permission to access this page",
+    "button": "Return home"
+  },
+
+  "404": {
+    "title": "Whoops!",
+    "text": "We can't see the page you are looking for"
   }
 }

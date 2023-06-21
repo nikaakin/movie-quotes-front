@@ -18,7 +18,7 @@ export const useNewsFeed = () => {
       dispatch(signIn(data.data.user));
     },
     onError: () => {
-      push('/403');
+      push('/unauthorized');
       dispatch(logOut());
     },
   });
