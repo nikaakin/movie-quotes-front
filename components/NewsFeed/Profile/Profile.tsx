@@ -24,7 +24,6 @@ export const Profile = () => {
     getFieldState,
     control,
     resetState,
-    isValid,
     email,
     username,
     google_id,
@@ -37,6 +36,7 @@ export const Profile = () => {
     avatar,
     onImageChange,
     imageError,
+    errors,
   } = useProfile();
 
   return (
@@ -229,7 +229,7 @@ export const Profile = () => {
             <Button
               content={t('profile.save')}
               classes='py-2 px-4 sm:!text-xl !text-base'
-              isDisabled={!isValid}
+              isDisabled={Object.keys(errors).length > 0}
               type='submit'
               onClick={onSaveChanges}
             />

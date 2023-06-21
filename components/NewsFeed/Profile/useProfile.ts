@@ -45,9 +45,9 @@ export const useProfile = () => {
   const dispatch = useDispatch();
   const { mutate } = useMutation({
     mutationFn: edit,
-    onSuccess: () => {
+    onSuccess: (data) => {
       dispatch(setCurrentModal('edit-notification'));
-      dispatch(signIn(editData));
+      dispatch(signIn(data.data.user));
       setTimeout(onClose, 2000);
     },
     onError: (error: AxiosError<editSchemaType>) => {

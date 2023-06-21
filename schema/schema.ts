@@ -29,11 +29,14 @@ export const editSchema = (t: TFunction) =>
       image: z
         .custom<FileList>()
         .optional()
-        .refine((file) => file![0]?.size <= MAX_SIZE, t('profile.image_size')!)
-        .refine(
-          (file) => MIME_TYPES.includes(file![0]?.type),
-          t('profile.image_type')!
-        ),
+        .refine((file) => {
+          if (file?.[0]) return file![0]?.size <= MAX_SIZE;
+          return true;
+        }, t('profile.image_size')!)
+        .refine((file) => {
+          if (file?.[0]) return MIME_TYPES.includes(file![0]?.type);
+          return true;
+        }, t('profile.image_type')!),
       username: z
         .string()
         .min(3, t('modals:form.register.errors.username.min')!)
