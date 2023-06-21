@@ -29,7 +29,7 @@ export const Burgerbar = ({
         onClick={onBurgerBarClick.bind(null, false)}
       ></div>
       <div
-        className={`hidden sm:block  text-xl sm:text-2xl font-normal  sm:w-125  ${
+        className={`hidden sm:block  text-xl sm:text-2xl font-normal  sm:w-125  overflow-hidden ${
           isBurgerOpen
             ? '!flex fixed top-0 left-0 w-[90%] h-[90%] bg-neutral-950 z-20 '
             : ''
