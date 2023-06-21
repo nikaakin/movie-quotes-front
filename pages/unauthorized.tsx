@@ -11,12 +11,12 @@ export default function Custom403() {
         <div className='relative w-80 h-60'>
           <img
             src='/assets/images/403-gandolf.png'
-            alt=''
+            alt='gandolf'
             className='absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10'
           />
           <img
             src='/assets/images/403-shape.png'
-            alt=''
+            alt='shape'
             className='absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2'
           />
         </div>
