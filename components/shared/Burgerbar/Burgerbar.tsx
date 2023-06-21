@@ -85,12 +85,14 @@ export const Burgerbar = ({
             </Fragment>
           )}
           <div className='block sm:hidden'>
-            <button
-              className='py-5 w-full text-start mb-2 hover:bg-zinc-870 hover:bg-opacity-60 pl-16 text-red-550'
-              onClick={onLogout}
-            >
-              {t('button.logout_text')}
-            </button>
+            {username && (
+              <button
+                className='py-5 w-full text-start mb-2 hover:bg-zinc-870 hover:bg-opacity-60 pl-16 text-red-550'
+                onClick={onLogout}
+              >
+                {t('button.logout_text')}
+              </button>
+            )}
             <div className='display flex flex-col gap-2'>
               <h1 className='mb-2 pl-16'>{t('header.language')}:</h1>
               <Link
