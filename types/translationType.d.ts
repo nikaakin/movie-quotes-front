@@ -6,3 +6,5 @@ export type languageType = {
   en: string;
   ka: string;
 };
+
+export type LocaleStringType = 'en' | 'ka';

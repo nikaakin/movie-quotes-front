@@ -1,4 +1,4 @@
-import { languageType } from '@/types';
+import { MovieType } from '@/types';
 import { createSlice } from '@reduxjs/toolkit';
 
 type InitialStateType = {
@@ -8,14 +8,7 @@ type InitialStateType = {
   email: string;
   google_id: string | null;
   image: string;
-  movies: {
-    id: string;
-    title: languageType;
-    director: languageType;
-    description: languageType;
-    image: string;
-    year: number;
-  }[];
+  movies: MovieType[];
 };
 
 const initialState: InitialStateType = {
