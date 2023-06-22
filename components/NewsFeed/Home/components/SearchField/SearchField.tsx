@@ -21,7 +21,7 @@ export const SearchField = ({
     <Fragment>
       <div
         className={`sm:hidden hidden ${
-          isSearchActive && '!block'
+          isSearchActive && '!block sm:!hidden'
         } fixed top-0 left-0 w-full h-full blur-0.75 bg-transparent opacity-50 z-40 `}
         onClick={onClose}
       ></div>
