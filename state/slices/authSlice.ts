@@ -1,3 +1,4 @@
+import { languageType } from '@/types';
 import { createSlice } from '@reduxjs/toolkit';
 
 type InitialStateType = {
@@ -6,9 +7,15 @@ type InitialStateType = {
   username: string;
   email: string;
   google_id: string | null;
-  created_at: string;
-  updated_at: string;
   image: string;
+  movies: {
+    id: string;
+    title: languageType;
+    director: languageType;
+    description: languageType;
+    image: string;
+    year: number;
+  }[];
 };
 
 const initialState: InitialStateType = {
@@ -17,9 +24,8 @@ const initialState: InitialStateType = {
   username: '',
   email: '',
   google_id: null,
-  created_at: '',
-  updated_at: '',
   image: '',
+  movies: [],
 };
 
 export const authSlice = createSlice({
