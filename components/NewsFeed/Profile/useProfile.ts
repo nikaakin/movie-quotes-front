@@ -6,7 +6,8 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useMutation } from '@tanstack/react-query';
 import { AxiosError } from 'axios';
 import { useTranslation } from 'next-i18next';
-import { ChangeEvent, useState } from 'react';
+import { useRouter } from 'next/router';
+import { ChangeEvent, useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -17,10 +18,11 @@ export const useProfile = () => {
   } = useSelector((state: RootState) => state);
   const [editUsername, setEditUsername] = useState(false);
   const [editPassword, setEditPassword] = useState(false);
+  const [editEmail, setEditEmail] = useState(false);
   const [editData, setEditData] = useState({
-    email,
     google_id,
     image,
+    email: '',
     username: '',
     password: '',
   });
@@ -40,6 +42,7 @@ export const useProfile = () => {
     resolver: zodResolver(editSchema(t)),
     shouldUnregister: true,
   });
+  const { query, replace, locale } = useRouter();
 
   const imageError = errors?.image?.message;
   const dispatch = useDispatch();
@@ -57,9 +60,17 @@ export const useProfile = () => {
     },
   });
 
+  useEffect(() => {
+    if (query.newEmail) {
+      mutate({ email: query.email, verifiedEmail: query.newEmail });
+
+      replace(`/${locale}/news-feed/profile`);
+    }
+  }, [query, replace, locale, mutate]);
+
   const onHandleSubmit = (data: editSchemaType) => {
     setEditData({
-      email,
+      email: data?.newEmail,
       google_id,
       password: data?.password,
       username: data?.username,
@@ -71,6 +82,7 @@ export const useProfile = () => {
     dispatch(setCurrentModal('confirmation-notification'));
   };
   const onSubmit = async () => {
+    dispatch(setCurrentModal(null));
     const formData = new FormData();
     editData.username && formData.append('username', editData.username);
     editData.password && formData.append('password', editData.password);
@@ -78,13 +90,15 @@ export const useProfile = () => {
     editData.image !== image &&
       editData.image &&
       formData.append('image', editData.image);
-    formData.append('email', editData.email);
+    formData.append('newEmail', editData.email);
+    formData.append('email', email);
     await getCsrf();
     await mutate(formData);
   };
   const resetState = () => {
     setEditUsername(false);
     setEditPassword(false);
+    setEditEmail(false);
   };
   const onClose = () => dispatch(setCurrentModal(null));
   const onPasswordInputChange = (event: ChangeEvent<HTMLInputElement>) => {
@@ -114,6 +128,8 @@ export const useProfile = () => {
     t,
     register,
     onSubmit,
+    editEmail,
+    setEditEmail,
     editUsername,
     setEditUsername,
     editPassword,
