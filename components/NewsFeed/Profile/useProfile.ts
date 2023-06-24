@@ -79,6 +79,7 @@ export const useProfile = () => {
       image: editData.image,
     });
   };
+
   const onSaveChanges = () => {
     handleSubmit(onHandleSubmit)();
     dispatch(setCurrentModal('confirmation-notification'));
@@ -92,10 +93,16 @@ export const useProfile = () => {
     editData.image !== image &&
       editData.image &&
       formData.append('image', editData.image);
-    formData.append('newEmail', editData.email);
+    editData.email && formData.append('newEmail', editData.email);
     formData.append('email', email!);
+    formData.append('newEmail', editData.email);
+    formData.append('email', email);
     await getCsrf();
     await mutate(formData);
+  };
+  const submitOnBigScreen = () => {
+    handleSubmit(onHandleSubmit)();
+    onSubmit();
   };
   const resetState = () => {
     setEditUsername(false);
@@ -154,5 +161,6 @@ export const useProfile = () => {
     avatar: editData.image,
     onImageChange,
     imageError,
+    submitOnBigScreen,
   };
 };

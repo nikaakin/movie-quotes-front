@@ -39,6 +39,7 @@ export const Profile = () => {
     errors,
     editEmail,
     setEditEmail,
+    submitOnBigScreen,
   } = useProfile();
 
   return (
@@ -256,10 +257,17 @@ export const Profile = () => {
             </button>
             <Button
               content={t('profile.save')}
-              classes='py-2 px-4 sm:!text-xl !text-base'
+              classes='py-2 px-4  !text-base block sm:hidden'
               isDisabled={Object.keys(errors).length > 0}
               type='submit'
               onClick={onSaveChanges}
+            />
+            <Button
+              content={t('profile.save')}
+              classes='py-2 px-4 !text-xl  hidden sm:block'
+              isDisabled={Object.keys(errors).length > 0}
+              type='submit'
+              onClick={submitOnBigScreen}
             />
           </div>
         </Fragment>
