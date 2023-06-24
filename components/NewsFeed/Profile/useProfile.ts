@@ -1,5 +1,6 @@
+import { useUserQuery } from '@/hooks';
 import { editSchema } from '@/schema';
-import { edit, getCsrf } from '@/services';
+import { edit, getCsrf, isAuthenticated } from '@/services';
 import { RootState, setCurrentModal, signIn } from '@/state';
 import { editSchemaType } from '@/types';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -13,9 +14,10 @@ import { useDispatch, useSelector } from 'react-redux';
 
 export const useProfile = () => {
   const {
-    user: { email, google_id, username, image },
     currentModal: { currentModal },
   } = useSelector((state: RootState) => state);
+  const { data } = useUserQuery({ queryFn: isAuthenticated });
+  const { google_id, image, username, email } = data || {};
   const [editUsername, setEditUsername] = useState(false);
   const [editPassword, setEditPassword] = useState(false);
   const [editEmail, setEditEmail] = useState(false);
@@ -92,6 +94,8 @@ export const useProfile = () => {
       editData.image &&
       formData.append('image', editData.image);
     editData.email && formData.append('newEmail', editData.email);
+    formData.append('email', email!);
+    formData.append('newEmail', editData.email);
     formData.append('email', email);
     await getCsrf();
     await mutate(formData);

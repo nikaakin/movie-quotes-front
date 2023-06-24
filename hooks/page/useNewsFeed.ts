@@ -1,9 +1,9 @@
-import { getCsrf, isAuthenticated } from '@/services';
-import { RootState, logOut, setCurrentModal, signIn } from '@/state';
-import { useMutation } from '@tanstack/react-query';
+import { setCurrentModal } from '@/state';
 import { useRouter } from 'next/router';
 import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
+import { useUserQuery } from '@/hooks';
+import { isAuthenticated } from '@/services';
 
 export const useNewsFeed = () => {
   const {
@@ -11,25 +11,14 @@ export const useNewsFeed = () => {
     query: { slug },
   } = useRouter();
   const dispatch = useDispatch();
-  const { isSignedIn } = useSelector((state: RootState) => state.user);
-  const { mutate, isLoading } = useMutation({
-    mutationFn: isAuthenticated,
-    onSuccess: (data) => {
-      dispatch(signIn(data.data.user));
-    },
-    onError: () => {
-      push('/unauthorized');
-      dispatch(logOut());
-    },
+  const { isFetching } = useUserQuery({
+    onError: () => push('/'),
+    queryFn: isAuthenticated,
   });
 
   useEffect(() => {
     dispatch(setCurrentModal(null));
-    if (isSignedIn) return;
-    getCsrf().then(() => {
-      mutate();
-    });
-  }, [push, dispatch, mutate]);
+  }, [dispatch]);
 
-  return { isLoading, slug };
+  return { isFetching, slug };
 };

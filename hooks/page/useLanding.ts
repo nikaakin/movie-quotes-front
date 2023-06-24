@@ -1,11 +1,10 @@
-import { useIntersectionObserver } from '@/hooks';
-import { RootState, setCurrentModal, signIn } from '@/state';
+import { useIntersectionObserver, useUserQuery } from '@/hooks';
+import { RootState, setCurrentModal } from '@/state';
 import { useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'next-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 import { useRouter } from 'next/router';
-import { getCsrf, googleLogin } from '@/services';
-import { AxiosError } from 'axios';
+import { googleLogin } from '@/services';
 
 export const useLandingPage = () => {
   const [shouldAnimate, setShouldAnimate] = useState(false);
@@ -21,22 +20,22 @@ export const useLandingPage = () => {
   const { t } = useTranslation(['common', 'modals']);
   const { locale, query, replace, push } = useRouter();
   const dispatch = useDispatch();
+  const { refetch: signInWithGoogle } = useUserQuery({
+    onSuccess: () => {
+      push('/news-feed/home');
+    },
+    onError: (error) => {
+      dispatch(setCurrentModal('login'));
+      const errors = error!.response!.data as { details: { username: string } };
+      push(`/?error=${errors.details.username}`);
+    },
+    queryFn: () => googleLogin(query),
+    enabled: false,
+  });
 
   useEffect(() => {
     if (query.code) {
-      getCsrf().then(async () => {
-        try {
-          const data = await googleLogin(query);
-          dispatch(signIn(data.data.user));
-          push('/news-feed/home');
-        } catch (error) {
-          if (error instanceof AxiosError) {
-            dispatch(setCurrentModal('login'));
-            const errors = error.response?.data || {};
-            push(`/?error=${errors.details?.username}`);
-          }
-        }
-      });
+      signInWithGoogle();
     }
     if (query.token) {
       dispatch(setCurrentModal('reset-password'));
@@ -62,7 +61,15 @@ export const useLandingPage = () => {
       replace(`/${locale}`);
       setLinkExpiredOnClick('password-change');
     }
-  }, [query, dispatch, setLinkExpiredOnClick, replace, locale, push]);
+  }, [
+    query,
+    dispatch,
+    setLinkExpiredOnClick,
+    replace,
+    locale,
+    push,
+    signInWithGoogle,
+  ]);
 
   const backgrounfRef = useRef<HTMLDivElement>(null);
   const imageRefs = [

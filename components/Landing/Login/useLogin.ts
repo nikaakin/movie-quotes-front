@@ -1,5 +1,5 @@
 import { loginSchema } from '@/schema';
-import { setCurrentModal, signIn } from '@/state';
+import { setCurrentModal } from '@/state';
 import { loginSchemaType } from '@/types';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useRouter } from 'next/router';
@@ -38,9 +38,9 @@ export const useLogin = () => {
     }
   }, [replace, setError, locale, query]);
   const { mutate, isLoading } = useMutation({
+    mutationKey: ['user'],
     mutationFn: login,
     onSuccess: (data) => {
-      dispatch(signIn(data.data.user));
       push('/news-feed/home');
     },
     onError: (error: AxiosError<loginSchemaType>) => {
