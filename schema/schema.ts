@@ -37,7 +37,10 @@ export const editSchema = (t: TFunction) =>
           if (file?.[0]) return MIME_TYPES.includes(file![0]?.type);
           return true;
         }, t('profile.image_type')!),
-      newEmail: z.string().email(t('modals:form.register.errors.email.email')!),
+      newEmail: z
+        .string()
+        .email(t('modals:form.register.errors.email.email')!)
+        .optional(),
       username: z
         .string()
         .min(3, t('modals:form.register.errors.username.min')!)
