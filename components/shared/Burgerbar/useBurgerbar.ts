@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { useTranslation } from 'next-i18next';
 import { useRouter } from 'next/router';
-import { useSelector } from 'react-redux';
-import { RootState } from '@/state';
+import { useUserQuery } from '@/hooks';
+import { isAuthenticated } from '@/services';
 
 export const useBurgerbar = () => {
   const [isBurgerOpen, setIsBurgerOpen] = useState(false);
@@ -11,7 +11,9 @@ export const useBurgerbar = () => {
   } = useRouter();
   const { t } = useTranslation(['common']);
   const onBurgerBarClick = (val: boolean) => setIsBurgerOpen(val);
-  const { image, username } = useSelector((state: RootState) => state.user);
+  const { data } = useUserQuery({ enabled: false, queryFn: isAuthenticated });
+  const username = data?.username;
+  const image = data?.image;
 
   return {
     onBurgerBarClick,

@@ -10,15 +10,16 @@ export const Header = ({ shouldhavelinks = false }) => {
     t,
     onShowLogin,
     onShowRegister,
-    isSignedIn,
+    username,
     onLogout,
     slug,
     onSearchBarClick,
   } = useHeader();
+
   return (
     <header
       className={`py-6  sm:px-16 px-9 flex justify-between w-full text-white max-h-22 items-center ${
-        isSignedIn && 'bg-zinc-850 bg-opacity-80'
+        username && 'bg-zinc-850 bg-opacity-80'
       }`}
     >
       <Link href='/' className='hidden sm:block'>
@@ -28,7 +29,7 @@ export const Header = ({ shouldhavelinks = false }) => {
       </Link>
       <Burgerbar shouldShowLinks={shouldhavelinks} onLogout={onLogout} />
       <div className='flex flex-row justify-between gap-2 sm:gap-4'>
-        {isSignedIn ? (
+        {username ? (
           <Fragment>
             {slug === 'home' && (
               <button onClick={onSearchBarClick} className='block sm:hidden'>
@@ -41,7 +42,7 @@ export const Header = ({ shouldhavelinks = false }) => {
           </Fragment>
         ) : null}
         <Dropdown />
-        {isSignedIn ? (
+        {username ? (
           <Fragment>
             <Button
               content={t('button.logout_text')}

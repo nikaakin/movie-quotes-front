@@ -28,3 +28,5 @@ export type QuoteType = {
     year: number;
   };
 };
+
+export type HomePageProps = { quotes: QuoteType[] | null };

@@ -1,7 +1,4 @@
-import { QuoteType } from './quoteTypes';
 import { languageType } from './translationType';
-
-export type HomePageProps = { quotes: QuoteType[] | null };
 
 export type MovieType = {
   id: string;
@@ -11,4 +8,5 @@ export type MovieType = {
   image: string;
   year: number;
   quotes_count: number;
+  genres: languageType[];
 };

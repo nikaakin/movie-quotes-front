@@ -1,4 +1,5 @@
 export * from './schemaTypes';
 export * from './quoteTypes';
 export * from './translationType';
-export * from './homePageTypes';
+export * from './userType';
+export * from './movieType';

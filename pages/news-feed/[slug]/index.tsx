@@ -6,10 +6,10 @@ import { GetStaticProps } from 'next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
 export default function NewsFeed() {
-  const { isLoading, slug } = useNewsFeed();
+  const { isFetching, slug } = useNewsFeed();
   return (
     <div className='bg-lg-main min-h-screen text-white'>
-      {isLoading ? null : (
+      {isFetching ? null : (
         <div>
           <Header shouldhavelinks />
           <main className=' flex flex-row sm:ml-125'>
