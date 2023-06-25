@@ -40,6 +40,7 @@ export const Profile = () => {
     editEmail,
     setEditEmail,
     submitOnBigScreen,
+    editData,
   } = useProfile();
 
   return (
@@ -48,7 +49,7 @@ export const Profile = () => {
         <Modal onClose={onClose} background='lg-main' shouldHaveX={false}>
           <ConfirmationModal
             onClose={onClose}
-            onSubmit={onSubmit}
+            onSubmit={onSubmit.bind(null, editData)}
             cancel={t('profile.cancel')}
             confirm={t('modals:confirmation.confirm')}
             title={t('modals:confirmation.title')}
@@ -115,7 +116,7 @@ export const Profile = () => {
               >
                 <DisplayInput
                   title={t('modals:form.register.inputs.username.title')!}
-                  placeholder={username}
+                  placeholder={username || ''}
                   button={
                     <button
                       type='button'
@@ -162,7 +163,7 @@ export const Profile = () => {
                       </button>
                     )
                   }
-                  placeholder={email}
+                  placeholder={email || ''}
                 />
               </div>
 
