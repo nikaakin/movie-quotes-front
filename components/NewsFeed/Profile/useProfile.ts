@@ -1,10 +1,10 @@
 import { useUserQuery } from '@/hooks';
 import { editSchema } from '@/schema';
 import { edit, getCsrf, isAuthenticated } from '@/services';
-import { RootState, setCurrentModal, signIn } from '@/state';
+import { RootState, setCurrentModal } from '@/state';
 import { editSchemaType } from '@/types';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { useMutation } from '@tanstack/react-query';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { AxiosError } from 'axios';
 import { useTranslation } from 'next-i18next';
 import { useRouter } from 'next/router';
@@ -45,14 +45,15 @@ export const useProfile = () => {
     shouldUnregister: true,
   });
   const { query, replace, locale } = useRouter();
-
+  const queryClient = useQueryClient();
   const imageError = errors?.image?.message;
   const dispatch = useDispatch();
   const { mutate } = useMutation({
+    mutationKey: ['user'],
     mutationFn: edit,
     onSuccess: (data) => {
+      queryClient.setQueryData(['user'], data.data.user);
       dispatch(setCurrentModal('edit-notification'));
-      dispatch(signIn(data.data.user));
       setTimeout(onClose, 2000);
     },
     onError: (error: AxiosError<editSchemaType>) => {
@@ -84,25 +85,28 @@ export const useProfile = () => {
     handleSubmit(onHandleSubmit)();
     dispatch(setCurrentModal('confirmation-notification'));
   };
-  const onSubmit = async () => {
+  const onSubmit = async (data: typeof editData) => {
     dispatch(setCurrentModal(null));
     const formData = new FormData();
-    editData.username && formData.append('username', editData.username);
-    editData.password && formData.append('password', editData.password);
-    formData.append('google_id', editData.google_id || '');
-    editData.image !== image &&
-      editData.image &&
-      formData.append('image', editData.image);
-    editData.email && formData.append('newEmail', editData.email);
+    data.username && formData.append('username', data.username);
+    data.password && formData.append('password', data.password);
+    formData.append('google_id', data.google_id || '');
+    data.image !== image && data.image && formData.append('image', data.image);
+    data.email && formData.append('newEmail', data.email);
     formData.append('email', email!);
-    formData.append('newEmail', editData.email);
-    formData.append('email', email);
     await getCsrf();
     await mutate(formData);
   };
   const submitOnBigScreen = () => {
-    handleSubmit(onHandleSubmit)();
-    onSubmit();
+    handleSubmit((data: editSchemaType) =>
+      onSubmit({
+        email: data?.newEmail,
+        google_id,
+        password: data?.password,
+        username: data?.username,
+        image: editData.image,
+      })
+    )();
   };
   const resetState = () => {
     setEditUsername(false);
@@ -158,9 +162,10 @@ export const useProfile = () => {
     isLessThen,
     onPasswordInputChange,
     errors,
-    avatar: editData.image,
+    avatar: editData.image || image,
     onImageChange,
     imageError,
     submitOnBigScreen,
+    editData,
   };
 };
