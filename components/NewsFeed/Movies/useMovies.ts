@@ -1,5 +1,4 @@
-import { useUserQuery } from '@/hooks';
-import { fetchMovies, isAuthenticated } from '@/services';
+import { fetchMovies } from '@/services';
 import { LocaleStringType, MovieType } from '@/types';
 import { useQuery } from '@tanstack/react-query';
 import { useTranslation } from 'next-i18next';
@@ -10,24 +9,11 @@ export const useMovies = () => {
   const [searchValue, setSearchValue] = useState<string>('');
   const [filteredMovies, setFilteredMovies] = useState<MovieType[]>([]);
   const { t } = useTranslation();
-  const { locale, push } = useRouter();
-  const { data } = useUserQuery({
-    queryFn: isAuthenticated,
-    onError: () => push('/'),
-  });
+  const { locale } = useRouter();
   const { data: moviesData } = useQuery<MovieType[]>({
     queryKey: ['movies'],
-    queryFn: async () =>
-      new Promise(async (resolve, reject) => {
-        try {
-          const moviesResponse = await fetchMovies(data?.username as string);
-          resolve(moviesResponse.data.movies);
-        } catch (e) {
-          reject(e);
-        }
-      }),
+    queryFn: fetchMovies,
     onSuccess: (data) => setFilteredMovies(data),
-    enabled: !!data?.username,
   });
 
   const onSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
