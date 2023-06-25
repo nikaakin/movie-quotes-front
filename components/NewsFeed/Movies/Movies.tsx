@@ -7,11 +7,10 @@ export const Movies = () => {
     <div className='flex-1 px-8 sm:pl-0 sm:pr-16 pt-4 sm:pt-8 pb-52 '>
       <MovieListHeader
         t={t}
-        numberOfMovies={movies?.length}
+        numberOfMovies={movies?.length || 0}
         searchValue={searchValue}
         handleSearch={onSearchChange}
       />
-
       <div className='grid sm:grid-cols-3 gap-y-12'>
         {movies?.map((movie) => (
           <MovieCard key={movie.id} movie={movie} locale={locale} />
