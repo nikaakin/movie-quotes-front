@@ -1,27 +1,31 @@
-import { RootState } from '@/state';
-import { LocaleStringType } from '@/types';
+import { fetchMovies } from '@/services';
+import { LocaleStringType, MovieType } from '@/types';
+import { useQuery } from '@tanstack/react-query';
 import { useTranslation } from 'next-i18next';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
-import { useSelector } from 'react-redux';
 
 export const useMovies = () => {
-  const { t } = useTranslation();
-  const { movies } = useSelector((state: RootState) => state.user);
-  const { locale } = useRouter();
   const [searchValue, setSearchValue] = useState<string>('');
-  const [filteredMovies, setFilteredMovies] = useState(movies);
+  const [filteredMovies, setFilteredMovies] = useState<MovieType[]>([]);
+  const { t } = useTranslation();
+  const { locale } = useRouter();
+  const { data: moviesData } = useQuery<MovieType[]>({
+    queryKey: ['movies'],
+    queryFn: fetchMovies,
+    onSuccess: (data) => setFilteredMovies(data),
+  });
 
   const onSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target;
     setSearchValue(value);
-    if (value === '') return setFilteredMovies(movies);
-    const filteredMoviesInEnglish = movies.filter((movie) =>
-      movie.title['en'].toLowerCase().includes(value.toLowerCase())
-    );
-    const filteredMoviesInGeorgian = movies.filter((movie) =>
-      movie.title['ka'].includes(value)
-    );
+    if (value === '') return setFilteredMovies(moviesData as MovieType[]);
+    const filteredMoviesInEnglish =
+      moviesData?.filter((movie) =>
+        movie.title['en'].toLowerCase().includes(value.toLowerCase())
+      ) || [];
+    const filteredMoviesInGeorgian =
+      moviesData?.filter((movie) => movie.title['ka'].includes(value)) || [];
 
     setFilteredMovies([
       ...filteredMoviesInEnglish,
