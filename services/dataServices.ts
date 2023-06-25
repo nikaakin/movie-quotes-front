@@ -6,5 +6,5 @@ export const fetchQuotes = (skip: number) =>
 
 export const fetchMovies = () =>
   axios()
-    .get<{ movies: MovieType[] }>('/api/movies/user')
+    .get<{ movies: MovieType[] }>('/api/movies/')
     .then((res) => res.data.movies);
