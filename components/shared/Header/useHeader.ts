@@ -26,7 +26,6 @@ export const useHeader = () => {
   });
 
   const username = data?.username;
-  console.log(username);
   const { push } = useRouter();
   const onShowLogin = () => disaptch(setCurrentModal('login'));
   const onShowRegister = () => disaptch(setCurrentModal('register'));
