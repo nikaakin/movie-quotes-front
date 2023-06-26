@@ -1,5 +1,11 @@
 {
   "form": {
+    "add_movie": {
+      "title": "Add Movie",
+      "image_upload": "Drag & drop your image here or",
+      "image_upload_button": "Choose file",
+      "submit": "Add movie"
+    },
     "login": {
       "title": "Log in to your account",
       "second_title": "Welcome back! Please enter your details.",

@@ -6,4 +6,5 @@ export type MovieListHeaderProps = {
   numberOfMovies: number;
   searchValue: string;
   handleSearch: (e: ChangeEvent<HTMLInputElement>) => void;
+  onAddMovieClick: () => void;
 };

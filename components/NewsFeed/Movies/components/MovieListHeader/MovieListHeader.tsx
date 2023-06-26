@@ -7,6 +7,7 @@ export const MovieListHeader = ({
   numberOfMovies,
   handleSearch,
   searchValue,
+  onAddMovieClick,
 }: MovieListHeaderProps) => {
   const { isSeachOpen, setIsSearchOpen } = useMovieListHeader();
 
@@ -43,7 +44,10 @@ export const MovieListHeader = ({
             t('home:movie_list.search')
           )}
         </label>
-        <button className='font-normal px-3 py-2 text-base sm:text-xl border rounded text-white border-red-650 border-solid bg-red-650'>
+        <button
+          onClick={onAddMovieClick}
+          className='font-normal px-3 py-2 text-base sm:text-xl border rounded text-white border-red-650 border-solid bg-red-650'
+        >
           <span className='flex justify-center gap-2 items-center'>
             <PlusIcon />
             {t('home:movie_list.add')}
