@@ -8,3 +8,8 @@ export const fetchMovies = () =>
   axios()
     .get<{ movies: MovieType[] }>('/api/movies/')
     .then((res) => res.data.movies);
+
+export const showMovie = (id: string) =>
+  axios()
+    .get<{ movie: MovieType & { quotes: QuoteType[] } }>(`/api/movies/${id}`)
+    .then((res) => res.data.movie);
