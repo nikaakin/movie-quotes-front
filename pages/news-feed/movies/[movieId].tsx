@@ -1,7 +1,7 @@
 import { Header } from '@/components';
 import { useMovieShow } from '@/hooks';
 import { showMovie } from '@/services';
-import { QueryClient } from '@tanstack/react-query';
+import { QueryClient, dehydrate } from '@tanstack/react-query';
 import { GetServerSideProps } from 'next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { Fragment } from 'react';
@@ -23,8 +23,8 @@ export const getServerSideProps: GetServerSideProps = async ({
   params,
   locale,
 }) => {
+  const queryClient = new QueryClient();
   if (params?.movieId) {
-    const queryClient = new QueryClient();
     await queryClient.prefetchQuery(['quotes', 0], () =>
       showMovie(params.movieId as string)
     );
@@ -33,6 +33,7 @@ export const getServerSideProps: GetServerSideProps = async ({
 
   return {
     props: {
+      dehydratedState: dehydrate(queryClient),
       ...(await serverSideTranslations(locale ?? 'en', [
         'common',
         'modals',

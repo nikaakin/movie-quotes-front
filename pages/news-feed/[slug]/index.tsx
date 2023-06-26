@@ -1,7 +1,7 @@
 import { Header, Movies, Profile, Home } from '@/components';
 import { useNewsFeed } from '@/hooks';
 import { fetchQuotes } from '@/services';
-import { QueryClient } from '@tanstack/react-query';
+import { QueryClient, dehydrate } from '@tanstack/react-query';
 import { GetStaticProps } from 'next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
@@ -28,14 +28,15 @@ export default function NewsFeed() {
 }
 
 export const getStaticProps: GetStaticProps = async ({ params, locale }) => {
+  const queryClient = new QueryClient();
   if (params?.slug === 'home') {
-    const queryClient = new QueryClient();
     await queryClient.prefetchQuery(['quotes', 0], () => fetchQuotes(0));
     queryClient.getQueryData(['quotes', 0]);
   }
 
   return {
     props: {
+      dehydratedState: dehydrate(queryClient),
       ...(await serverSideTranslations(locale ?? 'en', [
         'common',
         'modals',
