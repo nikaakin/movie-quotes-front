@@ -4,6 +4,7 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { appWithTranslation } from 'next-i18next';
 import type { AppProps } from 'next/app';
+import { useRouter } from 'next/router';
 import { Provider } from 'react-redux';
 
 function App({ Component, pageProps }: AppProps) {
@@ -14,12 +15,19 @@ function App({ Component, pageProps }: AppProps) {
       },
     },
   });
+  const { locale } = useRouter();
 
   return (
     <Provider store={store}>
       <QueryClientProvider client={queryClient}>
         <ReactQueryDevtools initialIsOpen={false} />
-        <Component {...pageProps} />
+        <div
+          className={`${
+            locale === 'en' ? 'font-helvetica-neue' : 'font-helvetica-georgian'
+          }`}
+        >
+          <Component {...pageProps} />
+        </div>
         <div id='modal'></div>
       </QueryClientProvider>
     </Provider>
