@@ -28,7 +28,6 @@ export const getServerSideProps: GetServerSideProps = async ({
     await queryClient.prefetchQuery(['quotes', 0], () =>
       showMovie(params.movieId as string)
     );
-    queryClient.getQueryData(['movie']);
   }
 
   return {

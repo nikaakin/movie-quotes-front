@@ -31,7 +31,6 @@ export const getStaticProps: GetStaticProps = async ({ params, locale }) => {
   const queryClient = new QueryClient();
   if (params?.slug === 'home') {
     await queryClient.prefetchQuery(['quotes', 0], () => fetchQuotes(0));
-    queryClient.getQueryData(['quotes', 0]);
   }
 
   return {
