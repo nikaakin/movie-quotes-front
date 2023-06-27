@@ -25,20 +25,14 @@ export const MovieTextArea = ({
     <div
       className={`flex relative mb-5 border-gray-550  border focus:shadow-input rounded-[4px] cursor-pointer 
     ${isDirty && !invalid && 'border-green-750 border-[2px]'}
-    ${
-      fieldValue
-        ? 'text-gray-550 text-base'
-        : isFocused
-        ? 'text-gray-550 text-base'
-        : ''
-    }
+    ${(fieldValue || isFocused) && 'text-gray-550 text-base'}
     ${error && 'border-red-650 '}`}
     >
       <label
         htmlFor={name}
         className={`font-normal text-base sm:text-xl absolute top-2  left-3 `}
       >
-        {title} {fieldValue ? ':' : isFocused ? ':' : ''}
+        {title} {fieldValue || (isFocused && ':')}
       </label>
 
       <div className='relative text-white inline-block flex-1'>
