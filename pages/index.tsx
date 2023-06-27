@@ -25,18 +25,13 @@ export default function Home() {
     onClose,
     currentModal,
     t,
-    locale,
     onLogin,
     onLinkExpired,
     resetPaswordData,
   } = useLandingPage();
 
   return (
-    <div
-      className={`overflow-hidden relative pt-107  sm:pt-200 text-white ${
-        locale === 'en' ? 'font-helvetica-neue' : 'font-helvetica-georgian'
-      }`}
-    >
+    <div className='overflow-hidden relative pt-107  sm:pt-200 text-white'>
       {currentModal && (
         <Modal onClose={onClose}>
           {currentModal === 'login' ? (
