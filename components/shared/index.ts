@@ -5,3 +5,4 @@ export * from './Header';
 export * from './Burgerbar';
 export * from './ProfileCard';
 export * from './QuoteDisplay';
+export * from './UploadImage';
