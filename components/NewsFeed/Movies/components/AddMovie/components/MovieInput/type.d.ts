@@ -15,6 +15,7 @@ export type MovieInputType = {
   setValue?: UseFormSetValue<FieldValues>;
   getFieldState: UseFormGetFieldState<FieldValues>;
   control: Control<FieldValues, any>;
+  language?: string;
 };
 
 export type useMovieInputType = {

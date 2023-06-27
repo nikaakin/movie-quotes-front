@@ -4,7 +4,11 @@
       "title": "Add Movie",
       "image_upload": "Drag & drop your image here or",
       "image_upload_button": "Choose file",
-      "submit": "Add movie"
+      "submit": "Add movie",
+      "genres": "Genres",
+      "replace": "Replace photo",
+      "change": "Change photo",
+      "upload": "Upload Image"
     },
     "login": {
       "title": "Log in to your account",

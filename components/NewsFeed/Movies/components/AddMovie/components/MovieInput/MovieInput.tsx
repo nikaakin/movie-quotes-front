@@ -12,31 +12,41 @@ export const MovieInput = ({
   setValue,
   getFieldState,
   control,
+  language,
 }: MovieInputType) => {
-  const { error, invalid, isDirty, fieldValue } = useMovieInput({
-    getFieldState,
-    name,
-    control,
-  });
+  const { error, invalid, isDirty, fieldValue, isFocused, setIsFocused } =
+    useMovieInput({
+      getFieldState,
+      name,
+      control,
+    });
   return (
     <div className='relative mb-5'>
       <label
         htmlFor={name}
-        className={` px-3 py-2 font-normal rounded-[4px] cursor-pointer text-base mb-2 sm:text-xl flex items-center gap-2 border-gray-550  border focus:shadow-input     
+        className={` px-3 py-2 font-normal rounded-[4px] cursor-pointer text-base mb-2 sm:mb-3 sm:text-xl flex items-center gap-2 border-gray-550  border focus:shadow-input     
         ${isDirty && !invalid && 'border-green-750 border-[2px]'}
-        ${isDirty && 'text-gray-550 text-base'}
+        ${
+          fieldValue
+            ? 'text-gray-550 text-base'
+            : isFocused
+            ? 'text-gray-550 text-base'
+            : ''
+        }
         ${error && 'border-red-650 '}`}
       >
-        {title} {isDirty && ':'}
+        {title} {fieldValue ? ':' : isFocused ? ':' : ''}
         <div className='relative text-white inline-block flex-1'>
           <input
             type={type}
             id={name}
             {...register}
-            className={` pr-14 border w-full   focus:outline-none
+            className={` pr-24 border w-full   focus:outline-none
             text-base  bg-transparent ${classNames}
             border-transparent focus:border-transparent
           `}
+            onFocus={setIsFocused.bind(null, true)}
+            onBlur={setIsFocused.bind(null, false)}
           />
           <div className='absolute top-1/2 right-2  -translate-y-1/2 flex flex-row  gap-1 items-center'>
             {fieldValue !== '' && isDirty && (
@@ -51,6 +61,11 @@ export const MovieInput = ({
             )}
             {error && <InvalidIcon />}
             {isDirty && !invalid && <CheckMarkIcon />}
+            {language && (
+              <span className='text-gray-550 sm:text-xl text-base'>
+                {language}
+              </span>
+            )}
           </div>
         </div>
       </label>

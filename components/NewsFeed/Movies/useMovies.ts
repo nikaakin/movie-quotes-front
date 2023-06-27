@@ -10,7 +10,7 @@ import { useDispatch, useSelector } from 'react-redux';
 export const useMovies = () => {
   const [searchValue, setSearchValue] = useState<string>('');
   const [filteredMovies, setFilteredMovies] = useState<MovieType[]>([]);
-  const { t } = useTranslation(['home', 'movies']);
+  const { t } = useTranslation(['home', 'movies', 'modals']);
   const { locale } = useRouter();
   const { data: moviesData } = useQuery<MovieType[]>({
     queryKey: ['movies'],
