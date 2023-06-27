@@ -26,16 +26,10 @@ export const MovieInput = ({
         htmlFor={name}
         className={` px-3 py-2 font-normal rounded-[4px] cursor-pointer text-base mb-2 sm:mb-3 sm:text-xl flex items-center gap-2 border-gray-550  border focus:shadow-input     
         ${isDirty && !invalid && 'border-green-750 border-[2px]'}
-        ${
-          fieldValue
-            ? 'text-gray-550 text-base'
-            : isFocused
-            ? 'text-gray-550 text-base'
-            : ''
-        }
+        ${(fieldValue || isFocused) && 'text-gray-550 text-base'}
         ${error && 'border-red-650 '}`}
       >
-        {title} {fieldValue ? ':' : isFocused ? ':' : ''}
+        {title} {(fieldValue || isFocused) && ':'}
         <div className='relative text-white inline-block flex-1'>
           <input
             type={type}
