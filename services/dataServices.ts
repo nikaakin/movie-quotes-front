@@ -1,4 +1,4 @@
-import { MovieType, QuoteType } from '@/types';
+import { MovieType, QuoteType, languageType } from '@/types';
 import axios from './axios';
 
 export const fetchQuotes = (skip: number) =>
@@ -9,7 +9,7 @@ export const fetchMovies = () =>
     .get<{ movies: MovieType[] }>('/api/movies/')
     .then((res) => res.data.movies);
 
-export const showMovie = (id: string) =>
+export const fetchGenres = () =>
   axios()
-    .get<{ movie: MovieType & { quotes: QuoteType[] } }>(`/api/movies/${id}`)
-    .then((res) => res.data.movie);
+    .get<{ genres: { id: number; genre: languageType }[] }>('/api/genres')
+    .then((res) => res.data.genres);
