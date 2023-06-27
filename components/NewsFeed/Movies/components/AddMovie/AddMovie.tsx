@@ -1,4 +1,4 @@
-import { Button, ProfileCard } from '@/components';
+import { Button, MovieTextArea, ProfileCard, UploadImage } from '@/components';
 import { addMovieProps } from './type';
 import { useAddMovie } from './useAddMovie';
 import { MovieInput } from './components/MovieInput';
@@ -100,6 +100,32 @@ export const AddMovie = ({ t }: addMovieProps) => {
           setValue={setValue}
           title='რეჟისორი'
           language='ქარ'
+        />
+
+        <MovieTextArea
+          control={control}
+          getFieldState={getFieldState}
+          name='description_en'
+          setValue={setValue}
+          title='description'
+          language='Eng'
+        />
+        <MovieTextArea
+          control={control}
+          getFieldState={getFieldState}
+          name='description_ka'
+          setValue={setValue}
+          title='აღწერა'
+          language='ქარ'
+        />
+
+        <UploadImage
+          control={control}
+          getFieldState={getFieldState}
+          register={register}
+          setValue={setValue}
+          t={t}
+          isSplit
         />
 
         <Button
