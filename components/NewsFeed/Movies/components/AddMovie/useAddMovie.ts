@@ -1,21 +1,29 @@
 import { useUserQuery } from '@/hooks';
+import { createMovieSchema } from '@/schema';
 import { fetchGenres, isAuthenticated } from '@/services';
-import { languageType } from '@/types';
+import { createMovieSchemaType, languageType } from '@/types';
+import { zodResolver } from '@hookform/resolvers/zod';
 import { useQuery } from '@tanstack/react-query';
+import { TFunction } from 'next-i18next';
 import { useRouter } from 'next/router';
 import { useForm } from 'react-hook-form';
 
-export const useAddMovie = () => {
+export const useAddMovie = (t: TFunction) => {
   const {
     register,
     handleSubmit,
     setValue,
     control,
     getFieldState,
+    watch,
     formState: { errors, isValid },
   } = useForm({
     mode: 'onChange',
+    resolver: zodResolver(createMovieSchema(t)),
   });
+  console.log(watch());
+  console.log(errors);
+
   const { locale } = useRouter();
   const { data } = useUserQuery({ queryFn: isAuthenticated });
   const { data: genres } = useQuery({
@@ -28,6 +36,8 @@ export const useAddMovie = () => {
     value: genre.id,
   }));
 
+  const onSubmit = (data: createMovieSchemaType) => console.log(data);
+
   return {
     image: data?.image,
     username: data?.username,
@@ -39,5 +49,6 @@ export const useAddMovie = () => {
     errors,
     isValid,
     genres: genreOptions,
+    onSubmit,
   };
 };

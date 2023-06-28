@@ -32,16 +32,18 @@ export const MovieTextArea = ({
         htmlFor={name}
         className={`font-normal text-base sm:text-xl absolute top-2  left-3 `}
       >
-        {title} {fieldValue || (isFocused && ':')}
+        {title} {(fieldValue || isFocused) && ':'}
       </label>
 
       <div className='relative text-white inline-block flex-1'>
         <Controller
           name={name}
           control={control}
+          defaultValue=''
           render={({ field }) => (
             <textarea
               {...field}
+              name={name}
               id={name}
               className='pr-24 border w-full   focus:outline-none indent-32
                 text-base  bg-transparent px-3 py-2 min-h-22 sm:text-xl

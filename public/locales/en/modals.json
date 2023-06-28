@@ -1,4 +1,25 @@
 {
+  "validation": {
+    "required": "{{ attribute }} is required",
+    "min": "{{ attribute }} must be {{ min }} characters",
+    "max": "{{ attribute }} must be {{ max }} characters",
+    "regex": "{{ attribute }} must be {{ language }} letters",
+    "year_min": "year must be at least {{ min }}",
+    "year_max": "year must be at most {{ max }}",
+    "unique": "{{ attribute }} must be unique"
+  },
+
+  "attributes": {
+    "title": "title",
+    "description": "description",
+    "year": "year",
+    "genres": "genres",
+    "director": "director",
+    "image": "image",
+    "language_en": "english",
+    "language_ka": "georgian"
+  },
+
   "form": {
     "add_movie": {
       "title": "Add Movie",
