@@ -3,7 +3,6 @@ import { addMovieProps } from './type';
 import { useAddMovie } from './useAddMovie';
 import { MovieInput } from './components/MovieInput';
 import { CustomSelect } from '@/components/';
-import { Controller } from 'react-hook-form';
 
 export const AddMovie = ({ t }: addMovieProps) => {
   const {
