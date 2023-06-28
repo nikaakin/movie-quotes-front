@@ -73,8 +73,7 @@ export const useAddMovie = (t: TFunction) => {
       }
 
       if (key === 'image') {
-        const image = await getImageBlob(data[key][0]);
-        return formData.append(key, image);
+        return formData.append(key, data[key][0]);
       }
 
       formData.append(key, data[key]);

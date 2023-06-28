@@ -54,4 +54,8 @@ export const reactSelectStyles = (borderColor: string) => ({
       cursor: 'pointer',
     };
   },
+  input: (styles: CSSObjectWithLabel) => ({
+    ...styles,
+    color: '#fff',
+  }),
 });
