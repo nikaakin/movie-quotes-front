@@ -23,5 +23,9 @@ export const showMovie = (id: string) =>
 
 export const storeMovie = (data: FormData) =>
   axios()
-    .post<{ movie: MovieType }>('/api/movies/store', data)
+    .post<{ movie: MovieType }>('/api/movies/store', data, {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
+    })
     .then((res) => res.data.movie);
