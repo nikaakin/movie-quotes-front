@@ -1,5 +1,6 @@
 import { DragEvent, useState } from 'react';
 import { useUploadImageProps } from './type';
+import { getImageBlob } from '@/helpers';
 
 export const useUploadImage = ({
   getFieldState,
@@ -8,27 +9,20 @@ export const useUploadImage = ({
   const [fieldValue, setFieldValue] = useState<string>('');
   const { invalid, isDirty, error } = getFieldState('image');
 
-  const onDrop = (e: DragEvent<HTMLDivElement>) => {
+  const onDrop = async (e: DragEvent<HTMLDivElement>) => {
     e.preventDefault();
     e.stopPropagation();
     const files = e.dataTransfer.files;
+    setValue('image', files, { shouldValidate: true });
     if (files.length > 0) {
-      const file = files[0];
-      const reader = new FileReader();
-      reader.readAsDataURL(file);
-      reader.onloadend = () => {
-        setValue('image', reader.result, { shouldValidate: true });
-        setFieldValue(reader.result as string);
-      };
+      const image = await getImageBlob(files[0]);
+      setFieldValue(image);
     }
   };
 
-  const onChange = (file: File) => {
-    const reader = new FileReader();
-    reader.readAsDataURL(file);
-    reader.onloadend = () => {
-      setFieldValue(reader.result as string);
-    };
+  const onChange = async (file: File) => {
+    const image = await getImageBlob(file);
+    setFieldValue(image);
   };
 
   return {

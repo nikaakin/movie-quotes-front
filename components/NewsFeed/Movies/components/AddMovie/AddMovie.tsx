@@ -1,4 +1,10 @@
-import { Button, MovieTextArea, ProfileCard, UploadImage } from '@/components';
+import {
+  Button,
+  MovieTextArea,
+  ProfileCard,
+  UploadImage,
+  XIcon,
+} from '@/components';
 import { addMovieProps } from './type';
 import { useAddMovie } from './useAddMovie';
 import { MovieInput } from './components/MovieInput';
@@ -15,9 +21,13 @@ export const AddMovie = ({ t }: addMovieProps) => {
     genres,
     handleSubmit,
     onSubmit,
+    onClose,
   } = useAddMovie(t);
   return (
-    <div className='w-full h-full sm:w-250 hide-scrollbar max-h-screen pt-8 pb-16 sm:pb-12 bg-neutral-950 text-white overflow-auto'>
+    <div className='relative w-full h-full sm:w-250 hide-scrollbar max-h-screen pt-8 pb-16 sm:pb-12 bg-neutral-950 text-white overflow-auto'>
+      <button className='absolute right-6 top-8 ' onClick={onClose}>
+        <XIcon />
+      </button>
       <h1 className='sm:text-2xl text-xl font-medium pb-6 mb-10 px-8  border-b border-zinc-150 border-opacity-20 text-center '>
         {t('modals:form.add_movie.title')}
       </h1>

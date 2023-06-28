@@ -1,8 +1,8 @@
 {
   "validation": {
     "required": "{{ attribute }} აუცილებელია",
-    "min": "{{ attribute }} უნდა იყოს მინიმუმ {{ min }} სიმბოლო",
-    "max": "{{ attribute }} უნდა იყოს მაქსიმუმ {{ max }} სიმბოლო",
+    "min": "{{ attribute }} უნდა იყოს მინიმუმ {{ min }} ასოს",
+    "max": "{{ attribute }} უნდა იყოს მაქსიმუმ {{ max }} ასოს",
     "regex": "{{attribute}} უნდა იყოს მხოლოდ {{language}} სიმბოლოები",
     "year_min": "წელი უნდა იყოს მინიმუმ {{ min }}",
     "year_max": "წელი უნდა იყოს მინიმუმ {{ max }}",

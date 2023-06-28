@@ -30,7 +30,7 @@ export const MovieTextArea = ({
     >
       <label
         htmlFor={name}
-        className={`font-normal text-base sm:text-xl absolute top-2  left-3 `}
+        className='font-normal text-base sm:text-xl  pt-2  pl-3'
       >
         {title} {(fieldValue || isFocused) && ':'}
       </label>
@@ -45,7 +45,7 @@ export const MovieTextArea = ({
               {...field}
               name={name}
               id={name}
-              className='pr-24 border w-full   focus:outline-none indent-32
+              className='pr-24 border w-full   focus:outline-none 
                 text-base  bg-transparent px-3 py-2 min-h-22 sm:text-xl
                 border-transparent focus:border-transparent '
               onFocus={setIsFocused.bind(null, true)}

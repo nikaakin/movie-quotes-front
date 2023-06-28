@@ -22,7 +22,7 @@ export const Movies = () => {
         handleSearch={onSearchChange}
       />
       {currentModal === 'add-movie' && (
-        <Modal onClose={onModalClose} background='lg-main'>
+        <Modal onClose={onModalClose} background='lg-main' shouldHaveX={false}>
           <AddMovie t={t} />
         </Modal>
       )}

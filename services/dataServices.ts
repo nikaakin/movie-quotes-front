@@ -20,3 +20,8 @@ export const showMovie = (id: string) =>
   axios()
     .get<{ movie: MovieType & { quotes: QuoteType[] } }>(`/api/movies/${id}`)
     .then((res) => res.data.movie);
+
+export const storeMovie = (data: FormData) =>
+  axios()
+    .post<{ movie: MovieType }>('/api/movies/store', data)
+    .then((res) => res.data.movie);
