@@ -19,7 +19,7 @@ export const UploadImage = ({
     });
   return (
     <div
-      className={` border-gray-550  border focus:shadow-input mb-10 sm:mb-8 rounded-[4px] 
+      className={`relative border-gray-550  border focus:shadow-input mb-10 sm:mb-8 rounded-[4px] 
     ${isDirty && !invalid && 'border-green-750 border-[2px]'}
     ${error && 'border-red-650 '}`}
       onDrop={onDrop}
@@ -101,6 +101,9 @@ export const UploadImage = ({
           </div>
         </div>
       )}
+      <span className='absolute left-2 bottom-0 translate-y-full text-red-550 text-base'>
+        {error?.message}
+      </span>
     </div>
   );
 };

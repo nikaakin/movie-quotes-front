@@ -15,14 +15,11 @@ export const useAddMovie = (t: TFunction) => {
     setValue,
     control,
     getFieldState,
-    watch,
     formState: { errors, isValid },
   } = useForm({
     mode: 'onChange',
     resolver: zodResolver(createMovieSchema(t)),
   });
-  console.log(watch());
-  console.log(errors);
 
   const { locale } = useRouter();
   const { data } = useUserQuery({ queryFn: isAuthenticated });

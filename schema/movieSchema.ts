@@ -48,15 +48,20 @@ export const createMovieSchema = (t: TFunction) =>
     ),
     image: z
       .custom<FileList>()
-      .optional()
-      .refine((file) => {
-        if (file?.[0]) return file![0]?.size <= MAX_SIZE;
-        return true;
-      }, t('profile.image_size')!)
-      .refine((file) => {
-        if (file?.[0]) return MIME_TYPES.includes(file![0]?.type);
-        return true;
-      }, t('profile.image_type')!),
+      .refine(
+        (file) => file?.[0],
+        t('modals:validation.required', {
+          attribute: t('modals:attributes.image'),
+        })!
+      )
+      .refine(
+        (file) => file![0]?.size <= MAX_SIZE,
+        t('common:profile.image_size')!
+      )
+      .refine(
+        (file) => MIME_TYPES.includes(file![0]?.type),
+        t('common:profile.image_type')!
+      ),
     year: z.coerce
       .number()
       .min(
