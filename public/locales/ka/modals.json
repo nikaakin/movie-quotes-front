@@ -1,4 +1,24 @@
 {
+  "validation": {
+    "required": "{{ attribute }} აუცილებელია",
+    "min": "{{ attribute }} უნდა იყოს მინიმუმ {{ min }} სიმბოლო",
+    "max": "{{ attribute }} უნდა იყოს მაქსიმუმ {{ max }} სიმბოლო",
+    "regex": "{{attribute}} უნდა იყოს მხოლოდ {{language}} სიმბოლოები",
+    "year_min": "წელი უნდა იყოს მინიმუმ {{ min }}",
+    "year_max": "წელი უნდა იყოს მინიმუმ {{ max }}",
+    "unique": "{{ attribute }} უნდა იყოს უნიკალური"
+  },
+
+  "attributes": {
+    "title": "სათაური",
+    "description": "აღწერა",
+    "year": "წელი",
+    "genres": "ჟანრები",
+    "director": "რეჟისორი",
+    "image": "ფოტო",
+    "language_en": "ინგლისური",
+    "language_ka": "ქართული"
+  },
   "form": {
     "add_movie": {
       "title": "ფილმის დამატება",
@@ -10,6 +30,7 @@
       "change": "შეცვალე ფოტო",
       "upload": "ატვირთე ფოტო"
     },
+
     "login": {
       "title": "პროფილში შესვლა",
       "second_title": "გთხობთ შეიყვანოთ თქვენი დეტალები",

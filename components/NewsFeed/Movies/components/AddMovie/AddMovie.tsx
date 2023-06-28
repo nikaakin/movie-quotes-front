@@ -2,9 +2,7 @@ import { Button, MovieTextArea, ProfileCard, UploadImage } from '@/components';
 import { addMovieProps } from './type';
 import { useAddMovie } from './useAddMovie';
 import { MovieInput } from './components/MovieInput';
-import Select from 'react-select';
-import { Controller } from 'react-hook-form';
-import { reactSelectStyles } from '@/styles';
+import { CustomSelect } from '@/components/';
 
 export const AddMovie = ({ t }: addMovieProps) => {
   const {
@@ -15,13 +13,15 @@ export const AddMovie = ({ t }: addMovieProps) => {
     register,
     setValue,
     genres,
-  } = useAddMovie();
+    handleSubmit,
+    onSubmit,
+  } = useAddMovie(t);
   return (
     <div className='w-full h-full sm:w-250 hide-scrollbar max-h-screen pt-8 pb-16 sm:pb-12 bg-neutral-950 text-white overflow-auto'>
       <h1 className='sm:text-2xl text-xl font-medium pb-6 mb-10 px-8  border-b border-zinc-150 border-opacity-20 text-center '>
         {t('modals:form.add_movie.title')}
       </h1>
-      <form className='px-8 '>
+      <form className='px-8 ' onSubmit={handleSubmit(onSubmit)}>
         <div className='sm:mb-7 mb-9'>
           <ProfileCard
             image={
@@ -54,24 +54,13 @@ export const AddMovie = ({ t }: addMovieProps) => {
           title='ფილმის სახელი'
           language='ქარ'
         />
-        <Controller
-          name='genres'
+
+        <CustomSelect
           control={control}
-          render={({ field: { onChange, ref } }) => (
-            <Select
-              placeholder={t('modals:form.add_movie.genres')}
-              ref={ref}
-              components={{
-                DropdownIndicator: () => null,
-                IndicatorSeparator: () => null,
-              }}
-              styles={reactSelectStyles}
-              options={genres}
-              isMulti
-              onChange={(val) => onChange(val)}
-            />
-          )}
-          shouldUnregister
+          getFieldState={getFieldState}
+          name='genres'
+          options={genres!}
+          placeholder={t('modals:form.add_movie.genres')}
         />
 
         <MovieInput

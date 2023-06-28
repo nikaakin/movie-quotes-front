@@ -6,3 +6,4 @@ export * from './Burgerbar';
 export * from './ProfileCard';
 export * from './QuoteDisplay';
 export * from './UploadImage';
+export * from './CustomSelect';

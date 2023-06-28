@@ -1,6 +1,6 @@
 import { CSSObjectWithLabel } from 'react-select';
 
-export const reactSelectStyles = {
+export const reactSelectStyles = (borderColor: string) => ({
   placeholder: (styles: CSSObjectWithLabel) => ({
     ...styles,
     color: '#fff',
@@ -13,12 +13,12 @@ export const reactSelectStyles = {
     ...styles,
     backgroundColor: '#11101A',
     marginBottom: '1rem',
-    borderColor: '#6C757D',
+    borderColor,
     paddingInline: '0.25rem',
     paddingBlock: '0.25rem',
     boxShadow: 'none',
     ':hover': {
-      borderColor: '#6C757D',
+      borderColor,
     },
     '@media only screen and (min-width: 640px)': {
       paddingInline: '0.5rem',
@@ -54,4 +54,4 @@ export const reactSelectStyles = {
       cursor: 'pointer',
     };
   },
-};
+});
