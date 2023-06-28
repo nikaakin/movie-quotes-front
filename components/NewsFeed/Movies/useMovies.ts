@@ -17,6 +17,7 @@ export const useMovies = () => {
     queryFn: fetchMovies,
     onSuccess: (data) => setFilteredMovies(data),
   });
+
   const { currentModal } = useSelector(
     (state: RootState) => state.currentModal
   );
