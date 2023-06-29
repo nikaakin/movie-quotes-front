@@ -3,20 +3,20 @@ import {
   InvalidIcon,
   XWithCircleIcon,
 } from '@/components/Icons';
-import { MovieTextAreaType } from './type';
-import { useMovieTextArea } from './useMovieTextArea';
+import { TextAreaType } from './type';
+import { useTextArea } from './useTextArea';
 import { Controller } from 'react-hook-form';
 
-export const MovieTextArea = ({
+export const TextArea = ({
   name,
   title,
   setValue,
   getFieldState,
   control,
   language,
-}: MovieTextAreaType) => {
+}: TextAreaType) => {
   const { error, invalid, isDirty, fieldValue, isFocused, setIsFocused } =
-    useMovieTextArea({
+    useTextArea({
       getFieldState,
       name,
       control,

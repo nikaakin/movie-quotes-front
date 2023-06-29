@@ -1,6 +1,6 @@
 import {
   Button,
-  MovieTextArea,
+  TextArea,
   ProfileCard,
   UploadImage,
   XIcon,
@@ -101,7 +101,7 @@ export const AddMovie = ({ t }: addMovieProps) => {
           language='ქარ'
         />
 
-        <MovieTextArea
+        <TextArea
           control={control}
           getFieldState={getFieldState}
           name='description_en'
@@ -109,7 +109,7 @@ export const AddMovie = ({ t }: addMovieProps) => {
           title='description'
           language='Eng'
         />
-        <MovieTextArea
+        <TextArea
           control={control}
           getFieldState={getFieldState}
           name='description_ka'
