@@ -5,7 +5,7 @@ import {
   UseFormSetValue,
 } from 'react-hook-form';
 
-export type MovieTextAreaType = {
+export type TextAreaType = {
   name: string;
   title?: string;
   setValue?: UseFormSetValue<FieldValues>;
@@ -14,7 +14,7 @@ export type MovieTextAreaType = {
   language?: string;
 };
 
-export type useMovieTextAreaType = {
+export type useTextAreaType = {
   getFieldState: UseFormGetFieldState<FieldValues>;
   name: string;
   control: Control<FieldValues, any>;

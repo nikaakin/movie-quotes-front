@@ -1,12 +1,12 @@
 import { useWatch } from 'react-hook-form';
-import { useMovieTextAreaType } from './type';
+import { useTextAreaType } from './type';
 import { useState } from 'react';
 
-export const useMovieTextArea = ({
+export const useTextArea = ({
   getFieldState,
   name,
   control,
-}: useMovieTextAreaType) => {
+}: useTextAreaType) => {
   const [isFocused, setIsFocused] = useState(false);
   const { invalid, isDirty, error } = getFieldState(name);
   const fieldValue = useWatch({ name, control });
