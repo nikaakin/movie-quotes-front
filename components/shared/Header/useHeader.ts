@@ -17,10 +17,7 @@ export const useHeader = () => {
   const { data } = useUserQuery({ enabled: false, queryFn: isAuthenticated });
   const { refetch: logoutUser } = useQuery({
     queryKey: ['user'],
-    queryFn: () => logout,
-    onSuccess: () => {
-      push('/');
-    },
+    queryFn: () => logout(),
     enabled: false,
     refetchOnWindowFocus: false,
   });
@@ -31,7 +28,7 @@ export const useHeader = () => {
   const onShowRegister = () => disaptch(setCurrentModal('register'));
   const onLogout = async () => {
     await getCsrf();
-    await logoutUser!();
+    logoutUser().then(() => push('/'));
   };
   const onSearchBarClick = () => disaptch(setIsSearchBarOn(true));
 
