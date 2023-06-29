@@ -1,7 +1,12 @@
 import { RefObject, useEffect, useState } from 'react';
 
 export const useIntersectionObserver = (
-  { threshold = 0, root = null, rootMargin = '' }: IntersectionObserverInit,
+  {
+    threshold = 0,
+    root = null,
+    rootMargin = '',
+    isIntersectingFn,
+  }: IntersectionObserverInit & { isIntersectingFn?: () => void },
   ...refs: RefObject<Element>[]
 ) => {
   const [entry, setEntry] = useState<IntersectionObserverEntry>();
@@ -10,6 +15,9 @@ export const useIntersectionObserver = (
     const observer = new IntersectionObserver(
       (entries) => {
         setEntry(entries[0]);
+        if (entries[0].isIntersecting && isIntersectingFn) {
+          isIntersectingFn();
+        }
       },
       { threshold, root, rootMargin }
     );
