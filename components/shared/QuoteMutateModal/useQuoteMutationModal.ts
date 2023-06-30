@@ -11,10 +11,9 @@ export const useQuoteMutationModal = ({ movieId }: { movieId?: string }) => {
   const { locale } = useRouter();
   const dispatch = useDispatch();
   const { t } = useTranslation('modals');
-  const { register, control, getFieldState, handleSubmit, setValue, watch } =
-    useForm({
-      mode: 'onChange',
-    });
+  const { register, control, getFieldState, handleSubmit, setValue } = useForm({
+    mode: 'onChange',
+  });
 
   movieId && register('movie', { value: { value: movieId, label: '' } });
 
