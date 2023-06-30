@@ -5,16 +5,17 @@ import {
   UseFormSetValue,
 } from 'react-hook-form';
 
-export type MovieTextAreaType = {
+export type TextAreaType = {
   name: string;
   title?: string;
   setValue?: UseFormSetValue<FieldValues>;
   getFieldState: UseFormGetFieldState<FieldValues>;
   control: Control<FieldValues, any>;
   language?: string;
+  defaultValue?: string;
 };
 
-export type useMovieTextAreaType = {
+export type useTextAreaType = {
   getFieldState: UseFormGetFieldState<FieldValues>;
   name: string;
   control: Control<FieldValues, any>;

@@ -1,6 +1,6 @@
 import {
   Button,
-  MovieTextArea,
+  TextArea,
   ProfileCard,
   UploadImage,
   XIcon,
@@ -9,6 +9,7 @@ import { addMovieProps } from './type';
 import { useAddMovie } from './useAddMovie';
 import { MovieInput } from './components/MovieInput';
 import { CustomSelect } from '@/components/';
+import { reactSelectStyles } from '@/styles';
 
 export const AddMovie = ({ t }: addMovieProps) => {
   const {
@@ -71,6 +72,8 @@ export const AddMovie = ({ t }: addMovieProps) => {
           name='genres'
           options={genres!}
           placeholder={t('modals:form.add_movie.genres')}
+          styles={reactSelectStyles}
+          isMulti
         />
 
         <MovieInput
@@ -101,7 +104,7 @@ export const AddMovie = ({ t }: addMovieProps) => {
           language='ქარ'
         />
 
-        <MovieTextArea
+        <TextArea
           control={control}
           getFieldState={getFieldState}
           name='description_en'
@@ -109,7 +112,7 @@ export const AddMovie = ({ t }: addMovieProps) => {
           title='description'
           language='Eng'
         />
-        <MovieTextArea
+        <TextArea
           control={control}
           getFieldState={getFieldState}
           name='description_ka'

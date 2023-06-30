@@ -3,20 +3,21 @@ import {
   InvalidIcon,
   XWithCircleIcon,
 } from '@/components/Icons';
-import { MovieTextAreaType } from './type';
-import { useMovieTextArea } from './useMovieTextArea';
+import { TextAreaType } from './type';
+import { useTextArea } from './useTextArea';
 import { Controller } from 'react-hook-form';
 
-export const MovieTextArea = ({
+export const TextArea = ({
   name,
   title,
   setValue,
   getFieldState,
   control,
   language,
-}: MovieTextAreaType) => {
+  defaultValue = '',
+}: TextAreaType) => {
   const { error, invalid, isDirty, fieldValue, isFocused, setIsFocused } =
-    useMovieTextArea({
+    useTextArea({
       getFieldState,
       name,
       control,
@@ -35,17 +36,17 @@ export const MovieTextArea = ({
         {title} {(fieldValue || isFocused) && ':'}
       </label>
 
-      <div className='relative text-white inline-block flex-1'>
+      <div className='relative text-white inline-block flex-1 '>
         <Controller
           name={name}
           control={control}
-          defaultValue=''
+          defaultValue={defaultValue}
           render={({ field }) => (
             <textarea
               {...field}
               name={name}
               id={name}
-              className='pr-24 border w-full   focus:outline-none 
+              className='pr-24 border w-full   focus:outline-none -mb-2
                 text-base  bg-transparent px-3 py-2 min-h-22 sm:text-xl
                 border-transparent focus:border-transparent '
               onFocus={setIsFocused.bind(null, true)}

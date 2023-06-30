@@ -1,4 +1,4 @@
-import { Modal, PencilWithBorderIcon } from '@/components';
+import { Modal, PencilWithBorderIcon, QuoteMutateModal } from '@/components';
 import { useWriteQuoteButton } from './useWriteQuoteButton';
 import { Fragment } from 'react';
 
@@ -13,7 +13,7 @@ export const WriteQuoteButton = ({
     <Fragment>
       {currentModal && (
         <Modal onClose={onClose}>
-          {currentModal === 'add-quote' ? <>add quoet</> : null}
+          {currentModal === 'add-quote' ? <QuoteMutateModal /> : null}
         </Modal>
       )}
       <div

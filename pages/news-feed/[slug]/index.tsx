@@ -30,12 +30,15 @@ export default function NewsFeed() {
 export const getStaticProps: GetStaticProps = async ({ params, locale }) => {
   const queryClient = new QueryClient();
   if (params?.slug === 'home') {
-    await queryClient.prefetchQuery(['quotes', 0], () => fetchQuotes(0));
+    await queryClient.prefetchInfiniteQuery({
+      queryKey: ['quotes'],
+      queryFn: ({ pageParam = 0 }) => fetchQuotes(pageParam),
+    });
   }
 
   return {
     props: {
-      dehydratedState: dehydrate(queryClient),
+      dehydratedState: JSON.parse(JSON.stringify(dehydrate(queryClient))),
       ...(await serverSideTranslations(locale ?? 'en', [
         'common',
         'modals',

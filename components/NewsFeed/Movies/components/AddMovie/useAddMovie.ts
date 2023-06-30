@@ -1,4 +1,3 @@
-import { getImageBlob } from '@/helpers';
 import { useUserQuery } from '@/hooks';
 import { createMovieSchema } from '@/schema';
 import { fetchGenres, getCsrf, isAuthenticated, storeMovie } from '@/services';
