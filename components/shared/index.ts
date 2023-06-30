@@ -8,3 +8,4 @@ export * from './QuoteDisplay';
 export * from './UploadImage';
 export * from './CustomSelect';
 export * from './TextArea';
+export * from './QuoteMutateModal';

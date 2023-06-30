@@ -34,7 +34,7 @@ export const UploadImage = ({
         })}
       />
       {!image && !fieldValue && (
-        <div className='flex py-7 px-4 gap-4 items-center'>
+        <div className='flex py-4 px-4 gap-4 items-center'>
           <div className='flex flex-row sm:justify-center justify-start flex-1 sm:flex-none  gap-2'>
             <CameraIcon />
             <span className='hidden sm:inline text-xl'>
