@@ -32,6 +32,10 @@
       "change": "Change photo",
       "upload": "Upload Image"
     },
+    "add_quote": {
+      "title": "Add Movie",
+      "submit": "Add movie"
+    },
     "login": {
       "title": "Log in to your account",
       "second_title": "Welcome back! Please enter your details.",
