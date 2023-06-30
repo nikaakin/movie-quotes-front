@@ -15,7 +15,6 @@ export const useQuoteMutationModal = ({ movieId }: { movieId?: string }) => {
     useForm({
       mode: 'onChange',
     });
-  console.log(watch());
 
   movieId && register('movie', { value: { value: movieId, label: '' } });
 
