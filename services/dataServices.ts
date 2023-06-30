@@ -1,10 +1,14 @@
 import { MovieType, QuoteType, languageType } from '@/types';
 import axios from './axios';
 
-export const fetchQuotes = (skip: number) =>
+export const fetchQuotes = (page: number) =>
   axios()
-    .get<{ quotes: QuoteType[] }>(`/api/movies/quotes/${skip}`)
-    .then((res) => res.data.quotes);
+    .get<{
+      quotes: QuoteType[];
+      has_more_pages: boolean;
+      current_page: number;
+    }>(`/api/quotes/${page}`)
+    .then((res) => res.data);
 
 export const fetchMovies = () =>
   axios()
