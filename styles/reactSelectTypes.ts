@@ -66,6 +66,7 @@ export const QuoteMutationSelectStyles = (borderColor: string) => ({
     color: '#fff',
     paddingLeft: '3rem',
     fontSize: '1rem',
+    paddingBlock: '1.5rem',
     '@media only screen and (min-width: 640px)': {
       fontSize: '1.5rem',
     },
