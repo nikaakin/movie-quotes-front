@@ -1,18 +1,19 @@
-import { Header } from '@/components';
-import { useMovieShow } from '@/hooks';
+import { Header, MovieShow } from '@/components';
+import { useMovieShowPage } from '@/hooks';
 import { showMovie } from '@/services';
 import { QueryClient, dehydrate } from '@tanstack/react-query';
 import { GetServerSideProps } from 'next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { Fragment } from 'react';
 
-export default function MovieShow() {
-  const { isFetching, isFallback } = useMovieShow();
+export default function MovieShowPage() {
+  const { isFetching, isFallback } = useMovieShowPage();
   return (
     <div className='bg-lg-main min-h-screen text-white'>
       {!isFetching && !isFallback && (
         <Fragment>
           <Header shouldhavelinks />
+          <MovieShow />
         </Fragment>
       )}
     </div>

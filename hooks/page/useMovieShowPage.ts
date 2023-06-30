@@ -3,7 +3,7 @@ import { useUserQuery } from '../useUserQuery';
 import { isAuthenticated, showMovie } from '@/services';
 import { useQuery } from '@tanstack/react-query';
 
-export const useMovieShow = () => {
+export const useMovieShowPage = () => {
   const {
     push,
     query: { movieId },
