@@ -17,7 +17,8 @@
     "director": "რეჟისორი",
     "image": "ფოტო",
     "language_en": "ინგლისური",
-    "language_ka": "ქართული"
+    "language_ka": "ქართული",
+    "movie": "ფილმი"
   },
   "form": {
     "add_movie": {

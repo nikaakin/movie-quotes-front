@@ -17,7 +17,8 @@
     "director": "director",
     "image": "image",
     "language_en": "english",
-    "language_ka": "georgian"
+    "language_ka": "georgian",
+    "movie": "movie"
   },
 
   "form": {
