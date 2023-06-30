@@ -38,7 +38,7 @@ export const QuoteMutateModal = ({
           <XIcon />
         </button>
         <h1 className='sm:text-2xl text-xl font-medium pb-6 mb-10 px-8  border-b border-zinc-150 border-opacity-20 text-center '>
-          {t('modals:form.add_movie.title')}
+          {t('modals:form.add_quote.title')}
         </h1>
         <form className='px-8 ' onSubmit={handleSubmit(onSubmit)}>
           <div className='sm:mb-7 mb-9'>
@@ -59,18 +59,18 @@ export const QuoteMutateModal = ({
           <TextArea
             control={control}
             getFieldState={getFieldState}
-            name='description_en'
+            name='quote_en'
             setValue={setValue}
-            title='description'
+            title='Start create new quote'
             language='Eng'
             defaultValue={defaultQuoteEng}
           />
           <TextArea
             control={control}
             getFieldState={getFieldState}
-            name='description_ka'
+            name='quote_ka'
             setValue={setValue}
-            title='აღწერა'
+            title='ახალი ციტატა'
             language='ქარ'
             defaultValue={defaultQuoteGeo}
           />
@@ -82,7 +82,6 @@ export const QuoteMutateModal = ({
             setValue={setValue}
             image={defaultImage}
             t={t}
-            isSplit
           />
 
           {!movieId && (
@@ -99,9 +98,9 @@ export const QuoteMutateModal = ({
           )}
 
           <Button
-            content={t('modals:form.add_movie.submit')}
-            type='submit'
+            content={t('modals:form.add_quote.submit')}
             classes=' w-full py-2 text-xl'
+            type='submit'
           />
         </form>
       </div>
