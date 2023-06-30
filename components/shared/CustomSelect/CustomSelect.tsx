@@ -1,8 +1,8 @@
-import { reactSelectStyles } from '@/styles';
 import { SelectProps } from './type';
 import { useSelect } from './useSelect';
 import { Controller } from 'react-hook-form';
 import Select from 'react-select';
+import { DropdownIndicatorIcon, MovieCameraIcon } from '@/components';
 
 export const CustomSelect = ({
   control,
@@ -10,6 +10,9 @@ export const CustomSelect = ({
   name,
   options,
   placeholder,
+  styles,
+  shouldHaveIndicator = true,
+  isMulti = false,
 }: SelectProps) => {
   const { error, isDirty, invalid } = useSelect({
     getFieldState,
@@ -20,25 +23,41 @@ export const CustomSelect = ({
       <Controller
         name={name}
         control={control}
-        defaultValue={[]}
-        render={({ field: { onChange, ref } }) => (
+        render={({ field: { onChange, ref, value } }) => (
           <Select
             placeholder={placeholder}
             ref={ref}
             components={{
-              DropdownIndicator: () => null,
+              DropdownIndicator: () =>
+                shouldHaveIndicator ? (
+                  <div className='mr-8'>
+                    <DropdownIndicatorIcon />
+                  </div>
+                ) : null,
               IndicatorSeparator: () => null,
             }}
-            styles={reactSelectStyles(
-              invalid ? '#E31221' : isDirty ? '#198754' : '#6C757D'
+            styles={styles(
+              invalid
+                ? '#E31221'
+                : isDirty
+                ? '#198754'
+                : isMulti
+                ? '#6C757D'
+                : 'transparent'
             )}
             options={options}
-            isMulti
+            isMulti={isMulti}
             onChange={(val) => onChange(val)}
+            value={value}
           />
         )}
         shouldUnregister
       />
+      {!isMulti && (
+        <div className='absolute top-1/2 -translate-y-1/2 left-6 '>
+          <MovieCameraIcon />
+        </div>
+      )}
       <span className='absolute left-2 bottom-0 translate-y-full text-red-550 text-base'>
         {error?.message}
       </span>

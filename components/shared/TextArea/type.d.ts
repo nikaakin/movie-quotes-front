@@ -12,6 +12,7 @@ export type TextAreaType = {
   getFieldState: UseFormGetFieldState<FieldValues>;
   control: Control<FieldValues, any>;
   language?: string;
+  defaultValue?: string;
 };
 
 export type useTextAreaType = {

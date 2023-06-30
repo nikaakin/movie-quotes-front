@@ -14,6 +14,7 @@ export const TextArea = ({
   getFieldState,
   control,
   language,
+  defaultValue = '',
 }: TextAreaType) => {
   const { error, invalid, isDirty, fieldValue, isFocused, setIsFocused } =
     useTextArea({
@@ -35,17 +36,17 @@ export const TextArea = ({
         {title} {(fieldValue || isFocused) && ':'}
       </label>
 
-      <div className='relative text-white inline-block flex-1'>
+      <div className='relative text-white inline-block flex-1 '>
         <Controller
           name={name}
           control={control}
-          defaultValue=''
+          defaultValue={defaultValue}
           render={({ field }) => (
             <textarea
               {...field}
               name={name}
               id={name}
-              className='pr-24 border w-full   focus:outline-none 
+              className='pr-24 border w-full   focus:outline-none -mb-2
                 text-base  bg-transparent px-3 py-2 min-h-22 sm:text-xl
                 border-transparent focus:border-transparent '
               onFocus={setIsFocused.bind(null, true)}
