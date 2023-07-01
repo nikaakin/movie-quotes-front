@@ -28,11 +28,11 @@ export const SearchField = ({
       ></div>
       <label
         htmlFor='search_field'
-        className={`text-white  cursor-pointer   w-full  text-base fixed top-0 left-0 z-50 sm:text-xl h-[80vh] sm:h-fit transition-all  block  sm:relative bg-neutral-920 sm:bg-transparent
+        className={`text-white  cursor-pointer w-full text-base fixed top-0 left-0 z-50 sm:text-xl h-[80vh] sm:h-fit transition-all  block  sm:relative bg-neutral-920 sm:bg-transparent
              ${!isSearchActive && 'hidden sm:block'}
              `}
       >
-        <div className='sm:flex sm:items-center sm:gap-4 relative'>
+        <div className='sm:flex sm:items-center sm:gap-4 relative '>
           <div className='hidden sm:block'>
             <SearchIcon />
           </div>
@@ -71,7 +71,7 @@ export const SearchField = ({
               />
             ) : (
               <div
-                className='text-gray-550 px-8 py-6 sm:px-0 sm:py-0 flex flex-col items-start gap-6 sm:block ml-10'
+                className='text-gray-550 px-8 py-6 sm:px-0 sm:py-0 flex flex-col items-start gap-6 sm:block'
                 onClick={handleFocus}
               >
                 <span className='block sm:inline-block '>
@@ -88,7 +88,7 @@ export const SearchField = ({
               </div>
             )
           ) : (
-            <span>{t('home.search_by')}</span>
+            <span className=' whitespace-nowrap'>{t('home.search_by')}</span>
           )}
         </div>
         {searchResults.length > 0 && (
