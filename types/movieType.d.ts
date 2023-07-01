@@ -8,5 +8,5 @@ export type MovieType = {
   image: string;
   year: number;
   quotes_count: number;
-  genres: languageType[];
+  genres: { id: number; genre: languageType }[];
 };

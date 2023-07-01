@@ -66,7 +66,6 @@ export const useQuoteMutationModal = ({ movieId }: { movieId?: string }) => {
   }));
 
   const onSubmit = async (data: createQuoteSchemaType) => {
-    console.log(data);
     const formData = new FormData();
     Object.keys(data).forEach(async (key) => {
       if (key === 'movie') {
