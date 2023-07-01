@@ -60,5 +60,18 @@
   "404": {
     "title": "Whoops!",
     "text": "We can't see the page you are looking for"
+  },
+
+  "movie_show": {
+    "title": "Movie description",
+    "quotes": "Quotes",
+    "total": "total",
+    "add_quote": "Add quote",
+    "director": "Director",
+    "view_quotes": "View quote",
+    "edit": "Edit",
+    "delete": "Delete",
+    "comment": "Write a comment",
+    "save": "Save Changes"
   }
 }
