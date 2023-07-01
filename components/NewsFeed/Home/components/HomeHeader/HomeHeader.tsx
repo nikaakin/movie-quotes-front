@@ -7,7 +7,9 @@ export const HomeHeader = () => {
     <div className='flex justify-between mt-8 sm:mb-6 mb-10 items-center gap-6'>
       <button
         onClick={toggleSearchBar.bind(null, false)}
-        className={`${!isSearchActive && 'flex-1'}  transition-all basis-60 `}
+        className={`${
+          !isSearchActive && 'flex-1'
+        }  transition-all basis-60 min-w-fit `}
       >
         <WriteQuoteButton isSearchActive={isSearchActive} />
       </button>
@@ -16,7 +18,7 @@ export const HomeHeader = () => {
         className={`${
           isSearchActive &&
           'flex-1 pb-4 border-b border-white border-opacity-30'
-        } sm:basis-32`}
+        } sm:basis-32 min-w-fit`}
       >
         <SearchField isSearchActive={isSearchActive} />
       </button>

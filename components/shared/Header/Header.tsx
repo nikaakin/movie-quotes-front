@@ -32,7 +32,10 @@ export const Header = ({ shouldhavelinks = false }) => {
         {username ? (
           <Fragment>
             {slug === 'home' && (
-              <button onClick={onSearchBarClick} className='block sm:hidden'>
+              <button
+                onClick={onSearchBarClick}
+                className='block sm:hidden mr-4'
+              >
                 <SearchIcon />
               </button>
             )}

@@ -14,6 +14,7 @@ export const SearchField = ({
     isFocused,
     handleFocus,
     onClose,
+    locale,
     t,
   } = useSearchField({ isSearchActive });
 
@@ -27,12 +28,8 @@ export const SearchField = ({
       ></div>
       <label
         htmlFor='search_field'
-        className={`text-white  cursor-pointer   w-full 
-      text-base fixed top-0 left-0 z-50 sm:text-xl h-[80vh] sm:h-fit
-               peer-checked/search-field:w-full transition-all  
-             block  sm:relative bg-neutral-920 sm:bg-transparent
+        className={`text-white  cursor-pointer   w-full  text-base fixed top-0 left-0 z-50 sm:text-xl h-[80vh] sm:h-fit transition-all  block  sm:relative bg-neutral-920 sm:bg-transparent
              ${!isSearchActive && 'hidden sm:block'}
-
              `}
       >
         <div className='sm:flex sm:items-center sm:gap-4 relative'>
@@ -43,13 +40,22 @@ export const SearchField = ({
             <div onClick={onClose} className='h-6 flex items-center'>
               <ArrowIcon />
             </div>
-            {!isFocused && (
+            {!isFocused ? (
               <span
                 className='sm:hidden inline flex-1 text-left'
                 onClick={handleFocus}
               >
                 {t('home.search')}
               </span>
+            ) : (
+              <input
+                name='search_field'
+                id='search_field'
+                type='text'
+                className=' bg-transparent  focus:outline-none text-white  w-full '
+                value={searchValue}
+                onChange={handleSearch}
+              />
             )}
           </div>
           {isSearchActive ? (
@@ -58,9 +64,10 @@ export const SearchField = ({
                 name='search_field'
                 id='search_field'
                 type='text'
-                className='bg-transparent w-full focus:outline-none text-white  absolute top-6 left-20  sm:-top-1 sm:left-10 sm:inline-block  '
+                className=' bg-transparent  focus:outline-none text-white  w-full  hidden sm:!block pr-3'
                 value={searchValue}
                 onChange={handleSearch}
+                ref={(input) => input && input.focus()}
               />
             ) : (
               <div
@@ -85,10 +92,14 @@ export const SearchField = ({
           )}
         </div>
         {searchResults.length > 0 && (
-          <div className=''>
-            eeee
-            {searchResults.map((result) => (
-              <div></div>
+          <div className='absolute top-0 left-0  translate-y-12 bg-lg-main w-full max-h-full sm:max-h-60 overflow-auto  py-3   rounded-b-sm'>
+            {searchResults.map((quote) => (
+              <button
+                className='flex items-center gap-4 hover:bg-white hover:bg-opacity-5 w-full pl-12 py-2'
+                key={quote.id}
+              >
+                <h3>{quote?.quote[locale]}</h3>
+              </button>
             ))}
           </div>
         )}
