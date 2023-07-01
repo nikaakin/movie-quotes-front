@@ -42,3 +42,10 @@ export const storeQuote = (data: FormData) =>
       },
     })
     .then((res) => res.data.quote);
+
+export const search = (search: string) => {
+  const searchValue = search.replace('#', '%23');
+  return axios()
+    .get<{ quotes: QuoteType[] }>(`/api/quotes/search/?search=${searchValue}`)
+    .then((res) => res.data.quotes);
+};
