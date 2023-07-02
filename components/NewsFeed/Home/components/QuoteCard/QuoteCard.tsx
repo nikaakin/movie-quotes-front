@@ -3,15 +3,7 @@ import { QuoteCardProps } from './type';
 import { CommentIcon, HeartIcon } from '@/components';
 
 export const QuoteCard = ({
-  quoteData: {
-    id,
-    image,
-    user,
-    notifications,
-    quote,
-    notifications_count,
-    movie,
-  },
+  quoteData: { id, image, user, likes, quote, comments, movie },
   t,
   locale,
 }: QuoteCardProps) => {
@@ -42,11 +34,11 @@ export const QuoteCard = ({
 
       <div className='flex gap-6 text-base sm:text-xl mb-6'>
         <div className='flex gap-3'>
-          {notifications.length}
+          {comments.length}
           <CommentIcon />
         </div>
         <div className='flex gap-3'>
-          {notifications_count}
+          {likes}
           <HeartIcon />
         </div>
       </div>
@@ -54,25 +46,23 @@ export const QuoteCard = ({
       <hr className='w-full border-white border-opacity-30 mb-6' />
 
       <div className='max-h-80 overflow-y-auto'>
-        {notifications.length > 0 &&
-          notifications.map((notification) => (
-            <div className='mt-6' key={notification.id}>
+        {comments.length > 0 &&
+          comments.map((comment) => (
+            <div className='mt-6' key={comment.id}>
               <ProfileCard
                 image={
                   <div className='bg-white rounded-[50%] w-10 h-10 sm:w-14 sm:h-14 overflow-hidden mb-3 sm:mb-0 sm:mr-6 '>
                     <img
-                      src={notification.user.image}
+                      src={comment.user.image}
                       alt='avatar'
                       className='object-fill w-full h-full'
                     />
                   </div>
                 }
-                username={notification.user.username}
+                username={comment.user.username}
               />
 
-              <p className='sm:ml-25 text-base sm:text-xl'>
-                {notification.comment}
-              </p>
+              <p className='sm:ml-25 text-base sm:text-xl'>{comment.comment}</p>
               <div className='sm:ml-25'>
                 <hr className='w-full border-white border-opacity-30 mt-6' />
               </div>
