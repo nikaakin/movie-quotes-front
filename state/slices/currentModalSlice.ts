@@ -15,6 +15,9 @@ type InitialStateType = {
     | 'confirmation-notification'
     | 'add-movie'
     | 'add-quote'
+    | 'quote-view'
+    | 'edit-quote'
+    | 'edit-movie'
     | null;
 };
 

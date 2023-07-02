@@ -11,9 +11,9 @@ export const WriteQuoteButton = ({
 
   return (
     <Fragment>
-      {currentModal && (
+      {currentModal === 'add-quote' && (
         <Modal onClose={onClose} background='lg-main'>
-          {currentModal === 'add-quote' ? <QuoteMutateModal /> : null}
+          <QuoteMutateModal />
         </Modal>
       )}
       <div

@@ -1,6 +1,6 @@
 import { Fragment } from 'react';
 import { useSearchField } from './useSearchField';
-import { ArrowIcon, SearchIcon } from '@/components';
+import { ArrowIcon, Modal, QuotesDisplay, SearchIcon } from '@/components';
 
 export const SearchField = ({
   isSearchActive,
@@ -15,11 +15,25 @@ export const SearchField = ({
     handleFocus,
     onClose,
     locale,
+    onQuoteView,
+    currentModal,
+    quote,
+    onCloseModal,
     t,
   } = useSearchField({ isSearchActive });
 
   return (
     <Fragment>
+      {currentModal === 'quote-view' && quote && (
+        <Modal onClose={onCloseModal} shouldHaveX={false} background='lg-main'>
+          <QuotesDisplay
+            onClose={onCloseModal}
+            quote={quote}
+            title={t('common:movie_show.view_quote')}
+            commentPlaceholder={t('common:movie_show.comment')!}
+          />
+        </Modal>
+      )}
       <div
         className={`sm:hidden hidden ${
           isSearchActive && '!block sm:!hidden'
@@ -28,11 +42,11 @@ export const SearchField = ({
       ></div>
       <label
         htmlFor='search_field'
-        className={`text-white  cursor-pointer   w-full  text-base fixed top-0 left-0 z-50 sm:text-xl h-[80vh] sm:h-fit transition-all  block  sm:relative bg-neutral-920 sm:bg-transparent
+        className={`text-white  cursor-pointer w-full text-base fixed top-0 left-0 z-50 sm:text-xl h-[80vh] sm:h-fit transition-all  block  sm:relative bg-neutral-920 sm:bg-transparent
              ${!isSearchActive && 'hidden sm:block'}
              `}
       >
-        <div className='sm:flex sm:items-center sm:gap-4 relative'>
+        <div className='sm:flex sm:items-center sm:gap-4 relative '>
           <div className='hidden sm:block'>
             <SearchIcon />
           </div>
@@ -71,7 +85,7 @@ export const SearchField = ({
               />
             ) : (
               <div
-                className='text-gray-550 px-8 py-6 sm:px-0 sm:py-0 flex flex-col items-start gap-6 sm:block ml-10'
+                className='text-gray-550 px-8 py-6 sm:px-0 sm:py-0 flex flex-col items-start gap-6 sm:block'
                 onClick={handleFocus}
               >
                 <span className='block sm:inline-block '>
@@ -88,15 +102,16 @@ export const SearchField = ({
               </div>
             )
           ) : (
-            <span>{t('home.search_by')}</span>
+            <span className=' whitespace-nowrap'>{t('home.search_by')}</span>
           )}
         </div>
         {searchResults.length > 0 && (
           <div className='absolute top-0 left-0  translate-y-12 bg-lg-main w-full max-h-full sm:max-h-60 overflow-auto  py-3   rounded-b-sm'>
             {searchResults.map((quote) => (
               <button
-                className='flex items-center gap-4 hover:bg-white hover:bg-opacity-5 w-full pl-12 py-2'
                 key={quote.id}
+                className='flex items-center gap-4 hover:bg-white hover:bg-opacity-5 w-full pl-12 py-2'
+                onClick={onQuoteView.bind(null, quote)}
               >
                 <h3>{quote?.quote[locale]}</h3>
               </button>

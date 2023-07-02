@@ -7,13 +7,12 @@ export type QuoteType = {
     email: string;
   };
   movie_id: number;
-  notifications_count: number;
+  likes: number;
   quote: { en: string; ka: string };
   image: string;
   updated_at: string;
   notifications: {
     id: number;
-    isLike: number;
     comment: string;
     user: {
       id: number;

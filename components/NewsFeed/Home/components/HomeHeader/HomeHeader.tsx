@@ -18,7 +18,7 @@ export const HomeHeader = () => {
         className={`${
           isSearchActive &&
           'flex-1 pb-4 border-b border-white border-opacity-30'
-        } sm:basis-32 min-w-fit`}
+        } sm:basis-32 `}
       >
         <SearchField isSearchActive={isSearchActive} />
       </button>
