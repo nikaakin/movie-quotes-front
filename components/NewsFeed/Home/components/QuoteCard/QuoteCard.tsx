@@ -3,7 +3,7 @@ import { QuoteCardProps } from './type';
 import { CommentIcon, HeartIcon } from '@/components';
 
 export const QuoteCard = ({
-  quoteData: { id, image, user, likes, quote, comments, movie },
+  quoteData: { id, image, user, likes, quote, notifications, movie },
   t,
   locale,
 }: QuoteCardProps) => {
@@ -34,7 +34,7 @@ export const QuoteCard = ({
 
       <div className='flex gap-6 text-base sm:text-xl mb-6'>
         <div className='flex gap-3'>
-          {comments.length}
+          {notifications.length}
           <CommentIcon />
         </div>
         <div className='flex gap-3'>
@@ -46,8 +46,8 @@ export const QuoteCard = ({
       <hr className='w-full border-white border-opacity-30 mb-6' />
 
       <div className='max-h-80 overflow-y-auto'>
-        {comments.length > 0 &&
-          comments.map((comment) => (
+        {notifications.length > 0 &&
+          notifications.map((comment) => (
             <div className='mt-6' key={comment.id}>
               <ProfileCard
                 image={
