@@ -30,6 +30,7 @@ export const SearchField = ({
             onClose={onCloseModal}
             quote={quote}
             title={t('common:movie_show.view_quote')}
+            commentPlaceholder={t('common:movie_show.comment')!}
           />
         </Modal>
       )}

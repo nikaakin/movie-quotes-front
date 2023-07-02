@@ -4,4 +4,5 @@ export type QuoteDisplayProps = {
   quote: QuoteType;
   title: string;
   onClose: () => void;
+  commentPlaceholder?: string;
 };
