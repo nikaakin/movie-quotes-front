@@ -8,6 +8,7 @@ export const useBurgerbar = () => {
   const [isBurgerOpen, setIsBurgerOpen] = useState(false);
   const {
     query: { slug },
+    pathname,
   } = useRouter();
   const { t } = useTranslation(['common']);
   const onBurgerBarClick = (val: boolean) => setIsBurgerOpen(val);
@@ -21,6 +22,7 @@ export const useBurgerbar = () => {
     slug,
     image,
     username,
+    pathname,
     t,
   };
 };

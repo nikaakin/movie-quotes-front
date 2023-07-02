@@ -9,7 +9,7 @@ export const Burgerbar = ({
   shouldShowLinks = false,
   onLogout,
 }: BurgerbarProps) => {
-  const { isBurgerOpen, onBurgerBarClick, slug, image, username, t } =
+  const { isBurgerOpen, onBurgerBarClick, slug, image, username, pathname, t } =
     useBurgerbar();
   return (
     <Fragment>
@@ -79,7 +79,9 @@ export const Burgerbar = ({
                 className='py-3 my-2 sm:my-0 sm:py-5 hover:bg-zinc-870 hover:bg-opacity-60 flex items-center gap-8 sm:gap-6 pl-16'
                 onClick={onBurgerBarClick.bind(null, false)}
               >
-                <MovieCameraIcon isSelected={slug === 'movies'} />
+                <MovieCameraIcon
+                  isSelected={slug === 'movies' || pathname.includes('movies')}
+                />
                 <span>{t('header.movies')}</span>
               </Link>
             </Fragment>

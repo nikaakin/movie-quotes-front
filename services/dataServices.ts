@@ -49,3 +49,6 @@ export const search = (search: string) => {
     .get<{ quotes: QuoteType[] }>(`/api/quotes/search/?search=${searchValue}`)
     .then((res) => res.data.quotes);
 };
+
+export const toggleLike = (quoteId: number) =>
+  axios().patch(`/api/notifications/like/${quoteId}`);

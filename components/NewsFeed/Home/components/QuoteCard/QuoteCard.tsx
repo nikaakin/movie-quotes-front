@@ -1,12 +1,27 @@
 import { ProfileCard } from '@/components';
 import { QuoteCardProps } from './type';
 import { CommentIcon, HeartIcon } from '@/components';
+import { useQuoteCard } from './useQuoteCard';
 
 export const QuoteCard = ({
-  quoteData: { id, image, user, likes, quote, notifications, movie },
+  quoteData: {
+    id,
+    image,
+    user,
+    likes,
+    quote,
+    notifications,
+    movie,
+    current_user_likes,
+  },
   t,
   locale,
 }: QuoteCardProps) => {
+  const { liked, onLike, updatedLikes } = useQuoteCard({
+    current_user_likes,
+    likes,
+  });
+
   return (
     <div className='sm:w-250 w-full p-9 sm:p-6 bg-neutral-950 rounded-[12px] backdrop-blur-xl mb-10'>
       <div className='mb-4'>
@@ -33,14 +48,14 @@ export const QuoteCard = ({
       <img src={image} alt='quote' className='w-full h-auto mb-6' />
 
       <div className='flex gap-6 text-base sm:text-xl mb-6'>
-        <div className='flex gap-3'>
+        <button className='flex gap-3'>
           {notifications.length}
           <CommentIcon />
-        </div>
-        <div className='flex gap-3'>
-          {likes}
-          <HeartIcon />
-        </div>
+        </button>
+        <button className='flex gap-3' onClick={onLike.bind(null, id)}>
+          {updatedLikes}
+          <HeartIcon shouldFill={liked} />
+        </button>
       </div>
 
       <hr className='w-full border-white border-opacity-30 mb-6' />
