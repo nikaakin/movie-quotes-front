@@ -15,7 +15,7 @@ export const MovieCard = ({
         <img
           src={image}
           alt={title[locale]}
-          className='w-full h-full object-fill rounded-xl'
+          className='w-full h-72  object-cover rounded-xl'
         />
       </div>
       <h1 className='text-2xl font-medium mb-4'>

@@ -24,7 +24,7 @@ export const QuotesDisplay = ({
       >
         {userId === quote.user?.id && (
           <div className='w-fit flex'>
-            <button className='sm:pr-6  border-r-gray-350 border-r border-opacity-60 flex items-center '>
+            <button className='sm:pr-6 pr-3 border-r-gray-350 border-r border-opacity-60 flex items-center '>
               <PencilIcon />
             </button>
             <button className='sm:pl-6 pl-3 flex items-center'>
@@ -86,11 +86,13 @@ export const QuotesDisplay = ({
           </div>
         </div>
       </div>
-      <img
-        src={quote.image}
-        alt={quote.quote['en']}
-        className='w-full h-auto object-fill px-8  rounded-[12px]'
-      />
+      <div className=' mx-8 '>
+        <img
+          src={quote.image}
+          alt={quote.quote['en']}
+          className='w-full h-72 sm:h-125 object-cover rounded-[12px] '
+        />
+      </div>
       <div className='flex gap-6 text-base sm:text-xl mb-6 px-8  sm:pt-8 pt-6'>
         <div className='flex gap-3'>
           {quote?.notifications.length}
