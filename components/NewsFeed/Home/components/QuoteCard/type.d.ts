@@ -6,3 +6,18 @@ export type QuoteCardProps = {
   t: TFunction;
   locale: 'en' | 'ka';
 };
+
+export type useQuoteCardArgs = {
+  current_user_likes: number;
+  likes: number;
+  notifications: {
+    id: number;
+    comment: string;
+    user: {
+      id: number;
+      username: string;
+      image: string;
+      email: string;
+    };
+  }[];
+};

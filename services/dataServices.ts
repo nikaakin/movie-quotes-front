@@ -52,3 +52,21 @@ export const search = (search: string) => {
 
 export const toggleLike = (quoteId: number) =>
   axios().patch(`/api/notifications/like/${quoteId}`);
+
+export const commentService = ({
+  quoteId,
+  comment,
+}: {
+  quoteId: number;
+  comment: string;
+}) =>
+  axios()
+    .patch<{
+      comment: {
+        id: number;
+        comment: string;
+      };
+    }>(`/api/notifications/comment/${quoteId}`, {
+      comment,
+    })
+    .then((res) => res.data.comment);

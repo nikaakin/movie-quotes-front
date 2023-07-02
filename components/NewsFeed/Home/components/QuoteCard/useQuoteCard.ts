@@ -1,18 +1,25 @@
-import { toggleLike } from '@/services';
+import { commentService, isAuthenticated, toggleLike } from '@/services';
 import { useMutation } from '@tanstack/react-query';
-import { useState } from 'react';
+import { ChangeEvent, FormEvent, useState } from 'react';
+import { useQuoteCardArgs } from './type';
+import { useUserQuery } from '@/hooks';
 
 export const useQuoteCard = ({
   current_user_likes,
   likes,
-}: {
-  current_user_likes: number;
-  likes: number;
-}) => {
+  notifications,
+}: useQuoteCardArgs) => {
   const [liked, setLiked] = useState(!!current_user_likes);
   const [updatedLikes, setUpdatedLikes] = useState(likes);
+  const [updatedComments, setUpdatedComments] = useState(notifications);
+  const [comment, setComment] = useState('');
 
-  const { mutate } = useMutation({
+  const { data: user } = useUserQuery({
+    queryFn: () => isAuthenticated(),
+    enabled: false,
+  });
+
+  const { mutate: like } = useMutation({
     mutationFn: toggleLike,
     onSuccess: () => {
       setLiked((prev) => {
@@ -22,7 +29,40 @@ export const useQuoteCard = ({
     },
   });
 
-  const onLike = async (quoteId: number) => await mutate(quoteId);
+  const { mutate: submitComment } = useMutation({
+    mutationFn: commentService,
+    onSuccess: (data) => {
+      setUpdatedComments((prev) => [
+        ...prev,
+        {
+          ...data,
+          user: {
+            id: parseInt(user?.id as string),
+            username: user?.username as string,
+            image: user?.image as string,
+            email: user?.email as string,
+          },
+        },
+      ]);
+    },
+  });
 
-  return { onLike, liked, updatedLikes };
+  const onLike = async (quoteId: number) => await like(quoteId);
+
+  const onComment = async (e: FormEvent<HTMLFormElement>, quoteId: number) => {
+    e.preventDefault();
+    comment && (await submitComment({ quoteId, comment }));
+  };
+  const onCommentChange = (e: ChangeEvent<HTMLInputElement>) =>
+    setComment(e.target.value);
+
+  return {
+    onLike,
+    liked,
+    updatedLikes,
+    updatedComments,
+    onCommentChange,
+    comment,
+    onComment,
+  };
 };
