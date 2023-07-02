@@ -1,7 +1,7 @@
 import { ChangeEvent, SyntheticEvent, useEffect, useState } from 'react';
 import { useTranslation } from 'next-i18next';
-import { useDispatch } from 'react-redux';
-import { setIsSearchBarOn } from '@/state';
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState, setCurrentModal, setIsSearchBarOn } from '@/state';
 import { search } from '@/services';
 import { QuoteType } from '@/types';
 import { useRouter } from 'next/router';
@@ -15,8 +15,12 @@ export const useSearchField = ({
   const [searchValue, setSearchValue] = useState('');
   const [searchResults, setSearchResults] = useState<QuoteType[]>([]);
   const [isFocused, setIsFocused] = useState(false);
+  const [quote, setQuote] = useState<QuoteType | null>(null);
   const distpatch = useDispatch();
   const { locale } = useRouter();
+  const { currentModal } = useSelector(
+    (state: RootState) => state.currentModal
+  );
 
   useEffect(() => {
     if (!isSearchActive) {
@@ -44,6 +48,13 @@ export const useSearchField = ({
     setSearchValue('');
   };
 
+  const onCloseModal = () => distpatch(setCurrentModal(null));
+
+  const onQuoteView = (quote: QuoteType) => {
+    setQuote(quote);
+    distpatch(setCurrentModal('quote-view'));
+  };
+
   return {
     searchValue,
     searchResults,
@@ -52,6 +63,10 @@ export const useSearchField = ({
     handleFocus,
     onClose,
     locale: locale as 'en' | 'ka',
+    onQuoteView,
+    currentModal,
+    quote,
+    onCloseModal,
     t,
   };
 };

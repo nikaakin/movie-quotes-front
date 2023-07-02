@@ -72,6 +72,8 @@
     "edit": "Edit",
     "delete": "Delete",
     "comment": "Write a comment",
-    "save": "Save Changes"
+    "save": "Save Changes",
+    "view_quote": "View quote",
+    "add_movie": "Add movie"
   }
 }

@@ -66,7 +66,7 @@ export const MovieShow = () => {
         >
           <span className='flex justify-center gap-2 items-center'>
             <PlusIcon />
-            {t('home:movie_list.add')}
+            {t('common:movie_show.add_movie')}
           </span>
         </button>
       </div>
