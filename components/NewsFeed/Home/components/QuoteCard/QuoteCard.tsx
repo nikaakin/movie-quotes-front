@@ -54,7 +54,11 @@ export const QuoteCard = ({
         {movie.year})
       </h3>
 
-      <img src={image} alt='quote' className='w-full h-auto mb-6' />
+      <img
+        src={image}
+        alt='quote'
+        className='w-full sm:h-125 h-52 mb-6 object-cover rounded-[10px]'
+      />
 
       <div className='flex gap-6 text-base sm:text-xl mb-6'>
         <button className='flex gap-3'>

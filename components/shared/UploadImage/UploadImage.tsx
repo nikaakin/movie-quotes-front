@@ -57,7 +57,7 @@ export const UploadImage = ({
           <img
             src={fieldValue || image}
             alt='uploaded'
-            className='w-full h-auto object-fill '
+            className='w-full h-72 object-cover sm:h-125 rounded-[10px] '
           />
           <label
             htmlFor='image'
@@ -79,7 +79,7 @@ export const UploadImage = ({
             <img
               src={fieldValue || image}
               alt='uploaded'
-              className='w-full h-auto object-fill '
+              className='w-full h-28 sm:h-36 object-cover '
             />
           </div>
           <div className='flex flex-col items-start sm:items-center justify-center mx-auto'>

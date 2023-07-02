@@ -9,12 +9,12 @@ export const MovieShow = () => {
       <h1 className='text-2xl font-medium hidden sm:block mb-8 px-8'>
         {t('common:movie_show.title')}
       </h1>
-      <div className='flex sm:gap-5 gap-6 flex-col sm:flex-row sm:pt-0 pt-5 sm:mb-10 mb-8 px-8'>
-        <div className='w-full sm:w-200 h-auto  '>
+      <div className='flex sm:gap-5 gap-6 flex-col sm:flex-row sm:pt-0 pt-5 sm:mb-10 mb-8'>
+        <div className='w-full sm:w-200 sm:h-107 h-72  '>
           <img
             src={movie?.image}
             alt='movie'
-            className='w-full h-auto object-fill rounded-xl'
+            className='w-full h-full object-cover rounded-xl'
           />
         </div>
         <div>
