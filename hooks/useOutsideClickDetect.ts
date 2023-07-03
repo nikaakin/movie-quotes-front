@@ -1,7 +1,9 @@
-import { RefObject, useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
-export const useOutsideClickDetect = (ref: RefObject<HTMLElement>) => {
+export const useOutsideClickDetect = () => {
   const [isOutside, setIsOutside] = useState(false);
+  const ref = useRef<HTMLElement>(null);
+
   useEffect(() => {
     function handleClickOutside(e: MouseEvent) {
       if (ref.current) {
@@ -16,7 +18,7 @@ export const useOutsideClickDetect = (ref: RefObject<HTMLElement>) => {
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
     };
-  }, [ref]);
+  }, []);
 
-  return isOutside;
+  return { ref, isOutside };
 };

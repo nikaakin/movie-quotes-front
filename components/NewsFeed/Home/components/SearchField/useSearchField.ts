@@ -28,9 +28,8 @@ export const useSearchField = ({
   const { currentModal } = useSelector(
     (state: RootState) => state.currentModal
   );
-  const ref = useRef<HTMLDivElement>(null);
 
-  const isOutside = useOutsideClickDetect(ref);
+  const { ref, isOutside } = useOutsideClickDetect();
 
   useEffect(() => {
     if (!isSearchActive) {
