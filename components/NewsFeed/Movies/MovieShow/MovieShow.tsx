@@ -1,6 +1,10 @@
-import { PencilIcon, PlusIcon, TrashBinIcon } from '@/components';
+import {
+  PencilIcon,
+  PlusIcon,
+  TrashBinIcon,
+  QuoteDisplayCard,
+} from '@/components';
 import { useMovieShow } from './useMovieShow';
-import { QuoteDisplayCard } from './components/QuoteDisplayCard';
 
 export const MovieShow = () => {
   const { movie, t, locale } = useMovieShow();
@@ -72,7 +76,7 @@ export const MovieShow = () => {
       <div className='flex gap-10 flex-col'>
         {movie?.quotes &&
           movie?.quotes.map((quote) => (
-            <QuoteDisplayCard quote={quote} key={quote.id} />
+            <QuoteDisplayCard quote={quote} key={quote.id} t={t} />
           ))}
       </div>
     </div>
