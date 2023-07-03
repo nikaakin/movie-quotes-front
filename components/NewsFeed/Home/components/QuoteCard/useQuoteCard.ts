@@ -51,7 +51,9 @@ export const useQuoteCard = ({
 
   const onComment = async (e: FormEvent<HTMLFormElement>, quoteId: number) => {
     e.preventDefault();
-    comment && (await submitComment({ quoteId, comment }));
+    comment.trim() &&
+      (await submitComment({ quoteId, comment: comment.trim() }));
+    setComment('');
   };
   const onCommentChange = (e: ChangeEvent<HTMLInputElement>) =>
     setComment(e.target.value);

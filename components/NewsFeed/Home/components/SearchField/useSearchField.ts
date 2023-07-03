@@ -1,10 +1,17 @@
-import { ChangeEvent, SyntheticEvent, useEffect, useState } from 'react';
+import {
+  ChangeEvent,
+  SyntheticEvent,
+  useEffect,
+  useRef,
+  useState,
+} from 'react';
 import { useTranslation } from 'next-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState, setCurrentModal, setIsSearchBarOn } from '@/state';
 import { search } from '@/services';
 import { QuoteType } from '@/types';
 import { useRouter } from 'next/router';
+import { useOutsideClickDetect } from '@/hooks';
 
 export const useSearchField = ({
   isSearchActive,
@@ -21,6 +28,9 @@ export const useSearchField = ({
   const { currentModal } = useSelector(
     (state: RootState) => state.currentModal
   );
+  const ref = useRef<HTMLDivElement>(null);
+
+  const isOutside = useOutsideClickDetect(ref);
 
   useEffect(() => {
     if (!isSearchActive) {
@@ -39,7 +49,7 @@ export const useSearchField = ({
   const handleSearch = (e: ChangeEvent<HTMLInputElement>) =>
     setSearchValue(e.target.value);
 
-  const handleFocus = () => setIsFocused(true);
+  const handleFocus = (val: boolean) => setIsFocused(val);
   const onClose = (e?: SyntheticEvent<HTMLDivElement | HTMLLabelElement>) => {
     e && e.stopPropagation();
     distpatch(setIsSearchBarOn(false));
@@ -67,6 +77,8 @@ export const useSearchField = ({
     currentModal,
     quote,
     onCloseModal,
+    ref,
+    isOutside,
     t,
   };
 };

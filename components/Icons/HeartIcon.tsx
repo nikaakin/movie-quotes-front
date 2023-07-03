@@ -23,11 +23,11 @@ export const HeartIcon = ({ shouldFill = false }: { shouldFill?: boolean }) => {
       xmlns='http://www.w3.org/2000/svg'
       className='w-6 sm:w-8 sm:h-8 h-6 transition-colors duration-100'
     >
-      <g id='heart-fill' clip-path='url(#clip0_45_281)'>
+      <g id='heart-fill' clipPath='url(#clip0_45_281)'>
         <path
           id='Vector'
-          fill-rule='evenodd'
-          clip-rule='evenodd'
+          fillRule='evenodd'
+          clipRule='evenodd'
           d='M15.9996 2.6281C24.8756 -6.4959 47.0676 9.4701 15.9996 30.0001C-15.0684 9.4721 7.12357 -6.4959 15.9996 2.6281Z'
           fill='#F3426C'
         />
