@@ -62,9 +62,8 @@ export const QuotesDisplay = ({
           border-transparent focus:border-transparent '
             placeholder='quote in english'
             disabled
-          >
-            {quote?.quote['en']}
-          </textarea>
+            value={quote?.quote['en']}
+          ></textarea>
 
           <div className='absolute top-2 right-2   flex flex-row  gap-1 items-center'>
             <span className='text-gray-550 sm:text-xl text-base'>Eng</span>
@@ -77,9 +76,8 @@ export const QuotesDisplay = ({
           border-transparent focus:border-transparent '
             placeholder='ციტატა ქართულად'
             disabled
-          >
-            {quote?.quote['ka']}
-          </textarea>
+            value={quote?.quote['ka']}
+          ></textarea>
 
           <div className='absolute top-2 right-2   flex flex-row  gap-1 items-center'>
             <span className='text-gray-550 sm:text-xl text-base'>Eng</span>
