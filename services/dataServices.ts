@@ -49,3 +49,24 @@ export const search = (search: string) => {
     .get<{ quotes: QuoteType[] }>(`/api/quotes/search/?search=${searchValue}`)
     .then((res) => res.data.quotes);
 };
+
+export const toggleLike = (quoteId: number) =>
+  axios().patch(`/api/notifications/like/${quoteId}`);
+
+export const commentService = ({
+  quoteId,
+  comment,
+}: {
+  quoteId: number;
+  comment: string;
+}) =>
+  axios()
+    .patch<{
+      comment: {
+        id: number;
+        comment: string;
+      };
+    }>(`/api/notifications/comment/${quoteId}`, {
+      comment,
+    })
+    .then((res) => res.data.comment);

@@ -21,6 +21,11 @@ textarea::-webkit-scrollbar {
   animation: fadeIn 150ms ease-in-out;
 }
 
+.like:hover .like-child {
+  fill: #f3426c;
+  transition: all 0.2s ease-in-out;
+}
+
 @keyframes quoteFadeUp {
   0% {
     opacity: 0.3;

@@ -11,6 +11,7 @@ export type QuoteType = {
   quote: { en: string; ka: string };
   image: string;
   updated_at: string;
+  current_user_likes: number;
   notifications: {
     id: number;
     comment: string;
