@@ -1,10 +1,4 @@
-import {
-  ChangeEvent,
-  SyntheticEvent,
-  useEffect,
-  useRef,
-  useState,
-} from 'react';
+import { ChangeEvent, SyntheticEvent, useEffect, useState } from 'react';
 import { useTranslation } from 'next-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState, setCurrentModal, setIsSearchBarOn } from '@/state';

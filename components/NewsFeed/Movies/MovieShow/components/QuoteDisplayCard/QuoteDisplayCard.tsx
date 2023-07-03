@@ -4,6 +4,7 @@ import { useQuoteDisplayCard } from './useQuoteDisplayCard';
 
 export const QuoteDisplayCard = ({ quote }: QuoteDisplayCardProps) => {
   const { quoteText } = useQuoteDisplayCard(quote);
+
   return (
     <div className='bg-neutral-950 px-8 w-full sm:w-200 relative'>
       <button className='absolute sm:top-6 sm:right-8 sm:bottom-full bottom-8 right-10 '>
@@ -24,7 +25,7 @@ export const QuoteDisplayCard = ({ quote }: QuoteDisplayCardProps) => {
         </div>
         <div className='flex gap-3'>
           {quote?.likes}
-          <HeartIcon />
+          <HeartIcon shouldFill={!!quote.current_user_likes} />
         </div>
       </div>
     </div>
