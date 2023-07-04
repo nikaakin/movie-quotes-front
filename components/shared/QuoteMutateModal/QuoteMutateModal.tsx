@@ -93,6 +93,7 @@ export const QuoteMutateModal = ({
                 options={options!}
                 placeholder={t('modals:attributes.movie')}
                 styles={QuoteMutationSelectStyles}
+                shouldHaveIndicator
               />
             </div>
           )}

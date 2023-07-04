@@ -1,11 +1,22 @@
-import { PencilIcon, PlusIcon, TrashBinIcon } from '@/components';
+import {
+  AddMovie,
+  Modal,
+  PencilIcon,
+  PlusIcon,
+  TrashBinIcon,
+} from '@/components';
 import { useMovieShow } from './useMovieShow';
 import { QuoteDisplayCard } from './components/QuoteDisplayCard';
 
 export const MovieShow = () => {
-  const { movie, t, locale } = useMovieShow();
+  const { movie, t, locale, onModalChange, currentModal } = useMovieShow();
   return (
     <div className='flex-1  sm:pl-0 sm:pr-16 pt-4 sm:pt-8 pb-52 text-white'>
+      {currentModal && (
+        <Modal onClose={onModalChange.bind(null, null)}>
+          {currentModal === 'add-movie' && <AddMovie t={t} />}
+        </Modal>
+      )}
       <h1 className='text-2xl font-medium hidden sm:block mb-8 px-8'>
         {t('common:movie_show.title')}
       </h1>
@@ -61,7 +72,10 @@ export const MovieShow = () => {
           </span>
         </h3>
         <hr className='bg-zinc-650 sm:bg-gray-550 sm:w-[1px] order-1 sm:h-7 w-full h-[1px]  border-none' />
-        <button className='w-fit -order-1 sm:order-2 font-normal px-3 py-2 text-base sm:text-xl border rounded text-white border-red-650 border-solid bg-red-650'>
+        <button
+          onClick={onModalChange.bind(null, 'add-movie')}
+          className='w-fit -order-1 sm:order-2 font-normal px-3 py-2 text-base sm:text-xl border rounded text-white border-red-650 border-solid bg-red-650'
+        >
           <span className='flex justify-center gap-2 items-center'>
             <PlusIcon />
             {t('common:movie_show.add_movie')}
