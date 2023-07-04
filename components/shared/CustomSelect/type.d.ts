@@ -1,10 +1,10 @@
 import { QuoteMutationSelectType, ReactSelectStylesType } from '@/styles';
 import { Control, FieldValues, UseFormGetFieldState } from 'react-hook-form';
 
-export type SelectProps = {
+export type SelectProps<T> = {
   name: string;
-  getFieldState: UseFormGetFieldState<FieldValues>;
-  control: Control<FieldValues, any>;
+  getFieldState: UseFormGetFieldState<FieldValues<T>>;
+  control: Control<FieldValues<T>, any>;
   placeholder: string;
   options: {
     label: string;
@@ -13,9 +13,12 @@ export type SelectProps = {
   styles: (_: string) => ReactSelectStylesType | QuoteMutationSelectType;
   shouldHaveIndicator?: boolean;
   isMulti?: boolean;
+  defaultValue?:
+    | { label: string; value: number }
+    | { label: string; value: number }[];
 };
 
-export type useSelectArgs = {
-  getFieldState: UseFormGetFieldState<FieldValues>;
+export type useSelectArgs<T> = {
+  getFieldState: UseFormGetFieldState<FieldValues<T>>;
   name: string;
 };

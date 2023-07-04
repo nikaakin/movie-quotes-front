@@ -2,10 +2,10 @@ import { DragEvent, useState } from 'react';
 import { useUploadImageProps } from './type';
 import { getImageBlob } from '@/helpers';
 
-export const useUploadImage = ({
+export const useUploadImage = <T>({
   getFieldState,
   setValue,
-}: useUploadImageProps) => {
+}: useUploadImageProps<T>) => {
   const [fieldValue, setFieldValue] = useState<string>('');
   const { invalid, isDirty, error } = getFieldState('image');
 

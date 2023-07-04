@@ -4,14 +4,19 @@ import {
   ProfileCard,
   UploadImage,
   XIcon,
+  CustomSelect,
+  MovieInput,
 } from '@/components';
 import { addMovieProps } from './type';
 import { useAddMovie } from './useAddMovie';
-import { MovieInput } from './components/MovieInput';
-import { CustomSelect } from '@/components/';
 import { reactSelectStyles } from '@/styles';
+import { FieldValues } from 'react-hook-form';
 
-export const AddMovie = ({ t }: addMovieProps) => {
+export const AddMovie = <T extends FieldValues>({
+  t,
+  defaultValues,
+  schema,
+}: addMovieProps<T>) => {
   const {
     image,
     username,
@@ -23,7 +28,12 @@ export const AddMovie = ({ t }: addMovieProps) => {
     handleSubmit,
     onSubmit,
     onClose,
-  } = useAddMovie(t);
+    defaultValueGenres,
+  } = useAddMovie<T>({
+    t,
+    defaultValues,
+    schema,
+  });
   return (
     <div className='rounded-[12px] relative w-full h-full sm:w-250 hide-scrollbar max-h-screen pt-8 pb-16 sm:pb-12 bg-neutral-950 text-white overflow-auto'>
       <button className='absolute right-6 top-8 ' onClick={onClose}>
@@ -74,6 +84,7 @@ export const AddMovie = ({ t }: addMovieProps) => {
           placeholder={t('modals:form.add_movie.genres')}
           styles={reactSelectStyles}
           isMulti
+          defaultValue={defaultValueGenres}
         />
 
         <MovieInput
@@ -128,6 +139,7 @@ export const AddMovie = ({ t }: addMovieProps) => {
           setValue={setValue}
           t={t}
           isSplit
+          image={defaultValues?.image}
         />
 
         <Button

@@ -1,13 +1,9 @@
-import {
-  CheckMarkIcon,
-  InvalidIcon,
-  XWithCircleIcon,
-} from '@/components/Icons';
+import { CheckMarkIcon, InvalidIcon, XWithCircleIcon } from '@/components';
 import { TextAreaType } from './type';
 import { useTextArea } from './useTextArea';
 import { Controller } from 'react-hook-form';
 
-export const TextArea = ({
+export const TextArea = <T,>({
   name,
   title,
   setValue,
@@ -15,9 +11,9 @@ export const TextArea = ({
   control,
   language,
   defaultValue = '',
-}: TextAreaType) => {
+}: TextAreaType<T>) => {
   const { error, invalid, isDirty, fieldValue, isFocused, setIsFocused } =
-    useTextArea({
+    useTextArea<T>({
       getFieldState,
       name,
       control,
@@ -30,7 +26,7 @@ export const TextArea = ({
     ${error && 'border-red-650 '}`}
     >
       <label
-        htmlFor={name}
+        htmlFor={name as string}
         className='font-normal text-base sm:text-xl  pt-2  pl-3'
       >
         {title} {(fieldValue || isFocused) && ':'}
@@ -44,8 +40,8 @@ export const TextArea = ({
           render={({ field }) => (
             <textarea
               {...field}
-              name={name}
-              id={name}
+              name={name as string}
+              id={name as string}
               className='pr-24 border w-full   focus:outline-none -mb-2
                 text-base  bg-transparent px-3 py-2 min-h-22 sm:text-xl
                 border-transparent focus:border-transparent '

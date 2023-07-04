@@ -1,5 +1,6 @@
 import { AddMovie, Modal, MovieCard, MovieListHeader } from '@/components';
 import { useMovies } from './useMovies';
+import { createMovieSchema } from '@/schema';
 
 export const Movies = () => {
   const {
@@ -23,7 +24,7 @@ export const Movies = () => {
       />
       {currentModal === 'add-movie' && (
         <Modal onClose={onModalClose} background='lg-main' shouldHaveX={false}>
-          <AddMovie t={t} />
+          <AddMovie t={t} schema={createMovieSchema} />
         </Modal>
       )}
       <div className='grid sm:grid-cols-3 gap-y-12'>
