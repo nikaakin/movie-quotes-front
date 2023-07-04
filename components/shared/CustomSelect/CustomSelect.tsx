@@ -4,7 +4,7 @@ import { Controller } from 'react-hook-form';
 import Select from 'react-select';
 import { DropdownIndicatorIcon, MovieCameraIcon } from '@/components';
 
-export const CustomSelect = ({
+export const CustomSelect = <T,>({
   control,
   getFieldState,
   name,
@@ -13,7 +13,7 @@ export const CustomSelect = ({
   styles,
   shouldHaveIndicator = false,
   isMulti = false,
-}: SelectProps) => {
+}: SelectProps<T>) => {
   const { error, isDirty, invalid } = useSelect({
     getFieldState,
     name,

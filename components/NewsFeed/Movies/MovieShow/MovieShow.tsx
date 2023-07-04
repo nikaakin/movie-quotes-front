@@ -14,7 +14,24 @@ export const MovieShow = () => {
     <div className='flex-1  sm:pl-0 sm:pr-16 pt-4 sm:pt-8 pb-52 text-white'>
       {currentModal && (
         <Modal onClose={onModalChange.bind(null, null)}>
-          {currentModal === 'add-movie' && <AddMovie t={t} />}
+          {currentModal === 'add-movie' ? (
+            <AddMovie t={t} />
+          ) : currentModal === 'edit-movie' ? (
+            <AddMovie
+              t={t}
+              defaultValues={{
+                description_en: movie?.description.en,
+                description_ka: movie?.description.ka,
+                director_en: movie?.director.en,
+                director_ka: movie?.director.ka,
+                // genres: movie?.genres,
+                image: movie?.image,
+                title_en: movie?.title.en,
+                title_ka: movie?.title.ka,
+                year: movie?.year,
+              }}
+            />
+          ) : null}
         </Modal>
       )}
       <h1 className='text-2xl font-medium hidden sm:block mb-8 px-8'>
@@ -34,7 +51,10 @@ export const MovieShow = () => {
               {movie?.title[locale]} ({movie?.year})
             </h3>
             <div className='bg-zinc-870 bg-opacity-60 rounded-[10px] px-7 py-3 w-fit flex'>
-              <button className='pr-6 border-r-gray-350 border-r flex items-center '>
+              <button
+                className='pr-6 border-r-gray-350 border-r flex items-center '
+                onClick={onModalChange.bind(null, 'edit-movie')}
+              >
                 <PencilIcon />
               </button>
               <button className='pl-6 flex items-center'>

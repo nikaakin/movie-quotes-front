@@ -6,12 +6,13 @@ import { MovieType, createMovieSchemaType, languageType } from '@/types';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { AxiosError } from 'axios';
-import { TFunction } from 'next-i18next';
 import { useRouter } from 'next/router';
 import { useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
+import { addMovieProps } from './type';
+import { movieFormType } from '@/types/movieFormType';
 
-export const useAddMovie = (t: TFunction) => {
+export const useAddMovie = ({ defaultValues, t }: addMovieProps) => {
   const {
     register,
     handleSubmit,
@@ -20,9 +21,20 @@ export const useAddMovie = (t: TFunction) => {
     getFieldState,
     setError,
     formState: { errors, isValid },
-  } = useForm({
+  } = useForm<movieFormType>({
     mode: 'onChange',
     resolver: zodResolver(createMovieSchema(t)),
+    defaultValues: {
+      description_en: defaultValues?.description_en || '',
+      description_ka: defaultValues?.description_ka || '',
+      director_en: defaultValues?.director_en || '',
+      director_ka: defaultValues?.director_ka || '',
+      genres: defaultValues?.genres || '',
+      image: defaultValues?.image || '',
+      title_en: defaultValues?.title_en || '',
+      title_ka: defaultValues?.title_ka || '',
+      year: defaultValues?.year || '',
+    },
   });
   const queryClient = useQueryClient();
   const dispatch = useDispatch();
@@ -51,9 +63,11 @@ export const useAddMovie = (t: TFunction) => {
       Object.keys(errors).forEach((key) => {
         if (key.includes('.')) {
           let newKey = key.replace('.', '_');
-          return setError(newKey, { message: errors[key] });
+          return setError(newKey as keyof movieFormType, {
+            message: errors[key],
+          });
         }
-        setError(key, { message: errors[key] });
+        setError(key as keyof movieFormType, { message: errors[key] });
       });
     },
   });

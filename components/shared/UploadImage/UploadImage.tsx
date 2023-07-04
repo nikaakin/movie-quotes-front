@@ -2,7 +2,7 @@ import { CameraIcon } from '@/components/Icons';
 import { UploadImageProps } from './type';
 import { useUploadImage } from './useUploadImage';
 
-export const UploadImage = ({
+export const UploadImage = <T,>({
   t,
   image,
   register,
@@ -10,9 +10,9 @@ export const UploadImage = ({
   getFieldState,
   control,
   isSplit = false,
-}: UploadImageProps) => {
+}: UploadImageProps<T>) => {
   const { error, fieldValue, invalid, isDirty, onDrop, onChange } =
-    useUploadImage({
+    useUploadImage<T>({
       setValue,
       control,
       getFieldState,

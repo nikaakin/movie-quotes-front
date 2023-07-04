@@ -2,11 +2,11 @@ import { useWatch } from 'react-hook-form';
 import { useTextAreaType } from './type';
 import { useState } from 'react';
 
-export const useTextArea = ({
+export const useTextArea = <T>({
   getFieldState,
   name,
   control,
-}: useTextAreaType) => {
+}: useTextAreaType<T>) => {
   const [isFocused, setIsFocused] = useState(false);
   const { invalid, isDirty, error } = getFieldState(name);
   const fieldValue = useWatch({ name, control });

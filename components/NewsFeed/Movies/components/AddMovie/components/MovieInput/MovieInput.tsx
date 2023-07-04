@@ -3,7 +3,7 @@ import { CheckMarkIcon, InvalidIcon, XWithCircleIcon } from '@/components';
 import { MovieInputType } from './type';
 import { useMovieInput } from './useMovieInput';
 
-export const MovieInput = ({
+export const MovieInput = <T,>({
   register,
   name,
   title,
@@ -13,9 +13,9 @@ export const MovieInput = ({
   getFieldState,
   control,
   language,
-}: MovieInputType) => {
+}: MovieInputType<T>) => {
   const { error, invalid, isDirty, fieldValue, isFocused, setIsFocused } =
-    useMovieInput({
+    useMovieInput<T>({
       getFieldState,
       name,
       control,

@@ -4,14 +4,14 @@ import {
   ProfileCard,
   UploadImage,
   XIcon,
+  CustomSelect,
+  MovieInput,
 } from '@/components';
 import { addMovieProps } from './type';
 import { useAddMovie } from './useAddMovie';
-import { MovieInput } from './components/MovieInput';
-import { CustomSelect } from '@/components/';
 import { reactSelectStyles } from '@/styles';
 
-export const AddMovie = ({ t }: addMovieProps) => {
+export const AddMovie = ({ t, defaultValues }: addMovieProps) => {
   const {
     image,
     username,
@@ -23,7 +23,10 @@ export const AddMovie = ({ t }: addMovieProps) => {
     handleSubmit,
     onSubmit,
     onClose,
-  } = useAddMovie(t);
+  } = useAddMovie({
+    t,
+    defaultValues,
+  });
   return (
     <div className='rounded-[12px] relative w-full h-full sm:w-250 hide-scrollbar max-h-screen pt-8 pb-16 sm:pb-12 bg-neutral-950 text-white overflow-auto'>
       <button className='absolute right-6 top-8 ' onClick={onClose}>
@@ -128,6 +131,7 @@ export const AddMovie = ({ t }: addMovieProps) => {
           setValue={setValue}
           t={t}
           isSplit
+          image={defaultValues?.image}
         />
 
         <Button

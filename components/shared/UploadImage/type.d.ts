@@ -7,18 +7,18 @@ import {
   UseFormSetValue,
 } from 'react-hook-form';
 
-export type UploadImageProps = {
+export type UploadImageProps<T> = {
   t: TFunction;
   isSplit?: boolean;
   image?: string;
-  register: UseFormRegister<FieldValues>;
-  setValue: UseFormSetValue<FieldValues>;
-  getFieldState: UseFormGetFieldState<FieldValues>;
-  control: Control<FieldValues, any>;
+  register: UseFormRegister<FieldValues<T>>;
+  setValue: UseFormSetValue<FieldValues<T>>;
+  getFieldState: UseFormGetFieldState<FieldValues<T>>;
+  control: Control<FieldValues<T>, any>;
 };
 
-export type useUploadImageProps = {
-  getFieldState: UseFormGetFieldState<FieldValues>;
-  control: Control<FieldValues, any>;
-  setValue: UseFormSetValue<FieldValues>;
+export type useUploadImageProps<T> = {
+  getFieldState: UseFormGetFieldState<FieldValues<T>>;
+  control: Control<FieldValues<T>, any>;
+  setValue: UseFormSetValue<FieldValues<T>>;
 };
