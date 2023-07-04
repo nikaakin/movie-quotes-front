@@ -13,6 +13,9 @@ export type SelectProps<T> = {
   styles: (_: string) => ReactSelectStylesType | QuoteMutationSelectType;
   shouldHaveIndicator?: boolean;
   isMulti?: boolean;
+  defaultValue?:
+    | { label: string; value: number }
+    | { label: string; value: number }[];
 };
 
 export type useSelectArgs<T> = {

@@ -13,6 +13,7 @@ export const CustomSelect = <T,>({
   styles,
   shouldHaveIndicator = false,
   isMulti = false,
+  defaultValue,
 }: SelectProps<T>) => {
   const { error, isDirty, invalid } = useSelect({
     getFieldState,
@@ -23,8 +24,10 @@ export const CustomSelect = <T,>({
       <Controller
         name={name}
         control={control}
+        defaultValue={defaultValue}
         render={({ field: { onChange, ref, value } }) => (
           <Select
+            defaultValue={defaultValue}
             placeholder={placeholder}
             ref={ref}
             components={{

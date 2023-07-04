@@ -7,6 +7,7 @@ import {
   TrashBinIcon,
 } from '@/components';
 import { useMovieShow } from './useMovieShow';
+import { createMovieSchema } from '@/schema';
 
 export const MovieShow = () => {
   const { movie, t, locale, onModalChange, currentModal } = useMovieShow();
@@ -15,16 +16,17 @@ export const MovieShow = () => {
       {currentModal && (
         <Modal onClose={onModalChange.bind(null, null)}>
           {currentModal === 'add-movie' ? (
-            <AddMovie t={t} />
+            <AddMovie t={t} schema={createMovieSchema} />
           ) : currentModal === 'edit-movie' ? (
             <AddMovie
+              schema={createMovieSchema}
               t={t}
               defaultValues={{
                 description_en: movie?.description.en,
                 description_ka: movie?.description.ka,
                 director_en: movie?.director.en,
                 director_ka: movie?.director.ka,
-                // genres: movie?.genres,
+                genres: movie?.genres,
                 image: movie?.image,
                 title_en: movie?.title.en,
                 title_ka: movie?.title.ka,

@@ -10,8 +10,13 @@ import {
 import { addMovieProps } from './type';
 import { useAddMovie } from './useAddMovie';
 import { reactSelectStyles } from '@/styles';
+import { FieldValues } from 'react-hook-form';
 
-export const AddMovie = ({ t, defaultValues }: addMovieProps) => {
+export const AddMovie = <T extends FieldValues>({
+  t,
+  defaultValues,
+  schema,
+}: addMovieProps<T>) => {
   const {
     image,
     username,
@@ -23,9 +28,11 @@ export const AddMovie = ({ t, defaultValues }: addMovieProps) => {
     handleSubmit,
     onSubmit,
     onClose,
-  } = useAddMovie({
+    defaultValueGenres,
+  } = useAddMovie<T>({
     t,
     defaultValues,
+    schema,
   });
   return (
     <div className='rounded-[12px] relative w-full h-full sm:w-250 hide-scrollbar max-h-screen pt-8 pb-16 sm:pb-12 bg-neutral-950 text-white overflow-auto'>
@@ -77,6 +84,7 @@ export const AddMovie = ({ t, defaultValues }: addMovieProps) => {
           placeholder={t('modals:form.add_movie.genres')}
           styles={reactSelectStyles}
           isMulti
+          defaultValue={defaultValueGenres}
         />
 
         <MovieInput
