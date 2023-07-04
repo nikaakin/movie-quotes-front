@@ -14,8 +14,8 @@ export const QuoteDisplayCard = ({ quote, t }: QuoteDisplayCardProps) => {
 
   return (
     <div className='bg-neutral-950 px-8 w-full sm:w-200 relative'>
-      <button
-        className='absolute sm:top-6 sm:right-8 sm:bottom-full bottom-8 right-10 '
+      <div
+        className='absolute sm:top-6 sm:right-8 sm:bottom-full bottom-8 right-10 cursor-pointer '
         ref={ref}
       >
         {!isOutside && (
@@ -35,7 +35,7 @@ export const QuoteDisplayCard = ({ quote, t }: QuoteDisplayCardProps) => {
           </div>
         )}
         <DotsIcon />
-      </button>
+      </div>
       <div className='flex flex-col sm:items-center sm:flex-row gap-6 sm:gap-8 py-6 mb-4 sm:mb-6 border-b border-b-zinc-150 border-opacity-20'>
         <img
           src={quote.image}

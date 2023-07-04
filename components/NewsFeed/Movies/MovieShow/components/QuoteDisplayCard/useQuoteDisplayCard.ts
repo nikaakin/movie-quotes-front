@@ -7,7 +7,7 @@ import { useOutsideClickDetect } from '@/hooks';
 export const useQuoteDisplayCard = ({ quote }: useQuoteDisplayCardArgs) => {
   const { locale } = useRouter();
   const dispatch = useDispatch();
-  const { isOutside, ref } = useOutsideClickDetect<HTMLButtonElement>();
+  const { isOutside, ref } = useOutsideClickDetect<HTMLDivElement>();
   const onClose = () => dispatch(setCurrentModal(null));
 
   const quoteText =
