@@ -1,15 +1,41 @@
-import { CommentIcon, DotsIcon, HeartIcon } from '@/components/Icons';
+import {
+  CommentIcon,
+  DotsIcon,
+  EyeIcon,
+  HeartIcon,
+  PencilIcon,
+  TrashBinIcon,
+} from '@/components';
 import { QuoteDisplayCardProps } from './type';
 import { useQuoteDisplayCard } from './useQuoteDisplayCard';
 
-export const QuoteDisplayCard = ({ quote }: QuoteDisplayCardProps) => {
-  const { quoteText } = useQuoteDisplayCard(quote);
+export const QuoteDisplayCard = ({ quote, t }: QuoteDisplayCardProps) => {
+  const { quoteText, isOutside, ref } = useQuoteDisplayCard(quote);
 
   return (
     <div className='bg-neutral-950 px-8 w-full sm:w-200 relative'>
-      <button className='absolute sm:top-6 sm:right-8 sm:bottom-full bottom-8 right-10 '>
+      <div
+        className='absolute sm:top-6 sm:right-8 sm:bottom-full bottom-8 right-10 cursor-pointer '
+        ref={ref}
+      >
+        {!isOutside && (
+          <div className='w-60 h-48 flex bg-zinc-870 rounded-2xl absolute -top-2 right-0 -translate-y-full sm:right-auto sm:left-0 sm:top-auto  sm:-bottom-2 sm:translate-y-full flex-col justify-between py-6 '>
+            <button className='pl-8 flex gap-5 hover:bg-white hover:bg-opacity-5 transition-all py-2'>
+              <EyeIcon color='white' width={20} height={20} />
+              {t('common:movie_show.view_quote')}
+            </button>
+            <button className='pl-8 flex gap-5  hover:bg-white hover:bg-opacity-5 transition-all py-2'>
+              <PencilIcon />
+              {t('common:movie_show.edit')}
+            </button>
+            <button className='pl-8 flex gap-5  hover:bg-white hover:bg-opacity-5 transition-all py-2 '>
+              <TrashBinIcon />
+              {t('common:movie_show.delete')}
+            </button>
+          </div>
+        )}
         <DotsIcon />
-      </button>
+      </div>
       <div className='flex flex-col sm:items-center sm:flex-row gap-6 sm:gap-8 py-6 mb-4 sm:mb-6 border-b border-b-zinc-150 border-opacity-20'>
         <img
           src={quote.image}
@@ -25,7 +51,7 @@ export const QuoteDisplayCard = ({ quote }: QuoteDisplayCardProps) => {
         </div>
         <div className='flex gap-3'>
           {quote?.likes}
-          <HeartIcon shouldFill={!!quote.current_user_likes} />
+          <HeartIcon shouldFill={!!quote.current_user_likes} disabled />
         </div>
       </div>
     </div>
