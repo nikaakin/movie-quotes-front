@@ -11,7 +11,7 @@ export const CustomSelect = ({
   options,
   placeholder,
   styles,
-  shouldHaveIndicator = true,
+  shouldHaveIndicator = false,
   isMulti = false,
 }: SelectProps) => {
   const { error, isDirty, invalid } = useSelect({
