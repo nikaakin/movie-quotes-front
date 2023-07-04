@@ -41,6 +41,7 @@ export const useAddMovie = <T extends FieldValues>({
     getFieldState,
     setError,
     watch,
+    trigger,
     formState: { errors, isValid },
   } = useForm({
     mode: 'onChange',
@@ -56,7 +57,6 @@ export const useAddMovie = <T extends FieldValues>({
       year: defaultValues?.year || '',
     },
   });
-  console.log(watch());
 
   const { mutate } = useMutation({
     mutationFn: (data: FormData) => storeMovie(data),
@@ -82,6 +82,7 @@ export const useAddMovie = <T extends FieldValues>({
 
   const onSubmit = async (data: createMovieSchemaType) => {
     const formData = new FormData();
+    trigger();
     Object.keys(data).forEach(async (key) => {
       if (key === 'genres') {
         return data[key].forEach((genre: { label: string; value: number }) =>
