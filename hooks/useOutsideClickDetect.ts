@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 
 export const useOutsideClickDetect = <T extends HTMLElement>() => {
-  const [isOutside, setIsOutside] = useState(false);
+  const [isOutside, setIsOutside] = useState(true);
   const ref = useRef<T>(null);
 
   useEffect(() => {
