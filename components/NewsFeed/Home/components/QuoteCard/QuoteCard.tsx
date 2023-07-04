@@ -62,7 +62,7 @@ export const QuoteCard = ({
 
       <div className='flex gap-6 text-base sm:text-xl mb-6'>
         <button className='flex gap-3'>
-          {notifications.length}
+          {updatedComments.length}
           <CommentIcon />
         </button>
         <button className='flex gap-3' onClick={onLike.bind(null, id)}>

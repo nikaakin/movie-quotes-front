@@ -15,7 +15,20 @@ export const QuotesDisplay = ({
   onClose,
   commentPlaceholder,
 }: QuoteDisplayProps) => {
-  const { userId } = useQuoteDisplay();
+  const {
+    userId,
+    comment,
+    liked,
+    onComment,
+    onCommentChange,
+    onLike,
+    updatedComments,
+    updatedLikes,
+  } = useQuoteDisplay({
+    current_user_likes: quote.current_user_likes,
+    likes: quote.likes,
+    notifications: quote.notifications,
+  });
   return (
     <div className='rounded-[12px] relative w-full h-full sm:w-250 hide-scrollbar max-h-screen pt-8 pb-16 sm:pb-12 bg-neutral-950 text-white overflow-auto'>
       <div
@@ -93,12 +106,12 @@ export const QuotesDisplay = ({
       </div>
       <div className='flex gap-6 text-base sm:text-xl mb-6 px-8  sm:pt-8 pt-6'>
         <div className='flex gap-3'>
-          {quote?.notifications.length}
+          {updatedComments.length}
           <CommentIcon />
         </div>
-        <div className='flex gap-3'>
-          {quote?.likes}
-          <HeartIcon />
+        <div className='flex gap-3' onClick={onLike.bind(null, quote.id)}>
+          {updatedLikes}
+          <HeartIcon shouldFill={liked} />
         </div>
       </div>
       <div className='mx-8'>
@@ -106,8 +119,8 @@ export const QuotesDisplay = ({
       </div>
 
       <div className='max-h-80 overflow-y-auto px-8'>
-        {quote?.notifications.length > 0 &&
-          quote?.notifications.map((comment) => (
+        {updatedComments.length > 0 &&
+          updatedComments.map((comment) => (
             <div className='mt-6' key={comment.id}>
               <ProfileCard
                 image={
@@ -129,22 +142,22 @@ export const QuotesDisplay = ({
             </div>
           ))}
       </div>
-      {userId === quote.user?.id && (
-        <div className='flex mt-6 px-8'>
-          <div className='bg-white rounded-[50%] w-11 h-10 sm:w-16 sm:h-14 overflow-hidden mr-3 mt-1 sm:mt-0 sm:mr-12'>
-            <img
-              src={quote.user.image}
-              alt='avatar'
-              className='object-fill w-full h-full'
-            />
-          </div>
-          <input
-            type='text'
-            className='focus:shadow-input w-full h-12 rounded-[10px] bg-zinc-870 text-gray-350  text-base sm:text-xl px-4 placeholder-gray-350'
-            placeholder={commentPlaceholder}
+      <form className='flex mt-6 px-8' onSubmit={(e) => onComment(e, quote.id)}>
+        <div className='bg-white rounded-[50%] w-11 h-10 sm:w-16 sm:h-14 overflow-hidden mr-3 mt-1 sm:mt-0 sm:mr-12'>
+          <img
+            src={quote.user.image}
+            alt='avatar'
+            className='object-fill w-full h-full'
           />
         </div>
-      )}
+        <input
+          value={comment}
+          onChange={onCommentChange}
+          type='text'
+          className='focus:shadow-input w-full h-12 rounded-[10px] bg-zinc-870 text-gray-350  text-base sm:text-xl px-4 placeholder-gray-350'
+          placeholder={commentPlaceholder}
+        />
+      </form>
     </div>
   );
 };

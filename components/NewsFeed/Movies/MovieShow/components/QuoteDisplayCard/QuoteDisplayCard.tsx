@@ -11,6 +11,7 @@ import { useQuoteDisplayCard } from './useQuoteDisplayCard';
 
 export const QuoteDisplayCard = ({ quote, t }: QuoteDisplayCardProps) => {
   const { quoteText, isOutside, ref } = useQuoteDisplayCard(quote);
+
   return (
     <div className='bg-neutral-950 px-8 w-full sm:w-200 relative'>
       <button
