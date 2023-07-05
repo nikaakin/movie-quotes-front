@@ -18,6 +18,7 @@ export const QuoteCard = ({
   locale,
 }: QuoteCardProps) => {
   const {
+    likeIsLoading,
     liked,
     onLike,
     updatedLikes,
@@ -65,7 +66,11 @@ export const QuoteCard = ({
           {updatedComments.length}
           <CommentIcon />
         </button>
-        <button className='flex gap-3' onClick={onLike.bind(null, id)}>
+        <button
+          className='flex gap-3'
+          onClick={onLike.bind(null, id)}
+          disabled={likeIsLoading}
+        >
           {updatedLikes}
           <HeartIcon shouldFill={liked} />
         </button>

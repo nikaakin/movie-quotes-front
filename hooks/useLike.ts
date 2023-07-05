@@ -11,7 +11,7 @@ export const useLike = ({ current_user_likes, likes }: useLikeArgs) => {
   const [liked, setLiked] = useState(!!current_user_likes);
   const [updatedLikes, setUpdatedLikes] = useState(likes);
 
-  const { mutate: like } = useMutation({
+  const { mutate: like, isLoading } = useMutation({
     mutationFn: toggleLike,
     onSuccess: () => {
       setLiked((prev) => {
@@ -27,5 +27,6 @@ export const useLike = ({ current_user_likes, likes }: useLikeArgs) => {
     onLike,
     liked,
     updatedLikes,
+    isLoading,
   };
 };
