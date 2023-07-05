@@ -1,5 +1,11 @@
 import { useUserQuery } from '@/hooks';
-import { fetchGenres, getCsrf, isAuthenticated, storeMovie } from '@/services';
+import {
+  fetchGenres,
+  getCsrf,
+  isAuthenticated,
+  storeMovie,
+  updateMovie,
+} from '@/services';
 import { setCurrentModal } from '@/state';
 import { MovieType, createMovieSchemaType, languageType } from '@/types';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -9,15 +15,18 @@ import { useRouter } from 'next/router';
 import { FieldValue, FieldValues, useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
 import { addMovieProps } from './type';
+import { movieSchema } from '@/schema';
 
 export const useAddMovie = <T extends FieldValues>({
   defaultValues,
   t,
-  schema,
-}: addMovieProps<T>) => {
+}: addMovieProps) => {
   const queryClient = useQueryClient();
   const dispatch = useDispatch();
-  const { locale } = useRouter();
+  const {
+    locale,
+    query: { movieId },
+  } = useRouter();
   const { data: user } = useUserQuery({ queryFn: isAuthenticated });
   const { data: genres } = useQuery({
     queryKey: ['genres'],
@@ -40,11 +49,10 @@ export const useAddMovie = <T extends FieldValues>({
     control,
     getFieldState,
     setError,
-    watch,
     formState: { errors, isValid },
   } = useForm({
     mode: 'onChange',
-    resolver: zodResolver(schema(t)),
+    resolver: zodResolver(movieSchema(t)),
     defaultValues: {
       description_en: defaultValues?.description_en || '',
       description_ka: defaultValues?.description_ka || '',
@@ -56,15 +64,29 @@ export const useAddMovie = <T extends FieldValues>({
       year: defaultValues?.year || '',
     },
   });
-  console.log(watch());
 
   const { mutate } = useMutation({
-    mutationFn: (data: FormData) => storeMovie(data),
-    onSuccess: (data) => {
+    mutationFn: (data: FormData) =>
+      defaultValues ? updateMovie(data, movieId as string) : storeMovie(data),
+    onSuccess: (data: MovieType) => {
       dispatch(setCurrentModal(null));
       const oldMovies = queryClient.getQueryData<MovieType[]>(['movies']) || [];
-      queryClient.setQueryData(['movies'], [...oldMovies, data]);
+      const oldMovie =
+        queryClient.getQueryData<MovieType>(['movie', movieId]) || [];
+      if (defaultValues) {
+        const newMovies = oldMovies.map((movie) => {
+          if (movie.id === data.id) {
+            return { ...movie, ...data };
+          }
+          return movie;
+        });
+        queryClient.setQueryData(['movies'], newMovies);
+      } else {
+        queryClient.setQueryData(['movies'], [...oldMovies, data]);
+      }
+      queryClient.setQueryData(['movie', movieId], { ...oldMovie, ...data });
       queryClient.invalidateQueries(['movies']);
+      queryClient.invalidateQueries(['movie', movieId]);
     },
     onError: (error: AxiosError<T>) => {
       const errors = error.response?.data.details || {};
@@ -89,17 +111,25 @@ export const useAddMovie = <T extends FieldValues>({
         );
       }
       if (key.includes('_')) {
+        if (key === 'title_en' || key === 'title_ka') return;
         let newkey = key.replace('_', '[').concat(']');
         return formData.append(newkey, data[key]);
       }
 
       if (key === 'image') {
+        if (typeof data[key] !== 'object') return;
         return formData.append(key, data[key][0]);
       }
 
       formData.append(key, data[key]);
     });
-    formData.append('user_id', user?.id?.toString() || '');
+    if (
+      data.title_en !== defaultValues?.title_en ||
+      data.title_ka !== defaultValues?.title_ka
+    ) {
+      formData.append('title[en]', data.title_en);
+      formData.append('title[ka]', data.title_ka);
+    }
 
     await getCsrf();
     await mutate(formData);

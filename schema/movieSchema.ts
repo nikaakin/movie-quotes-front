@@ -2,7 +2,7 @@ import { MAX_SIZE, MIME_TYPES } from '@/config';
 import { TFunction } from 'next-i18next';
 import { z } from 'zod';
 
-export const createMovieSchema = (t: TFunction) =>
+export const movieSchema = (t: TFunction) =>
   z.object({
     title_en: z.string().regex(
       /^[A-Za-z\s]+$/,
@@ -49,17 +49,18 @@ export const createMovieSchema = (t: TFunction) =>
     image: z
       .custom<FileList>()
       .refine(
-        (file) => file?.[0],
+        (file) => file?.[0] || typeof file === 'string',
         t('modals:validation.required', {
           attribute: t('modals:attributes.image'),
         })!
       )
       .refine(
-        (file) => file![0]?.size <= MAX_SIZE,
+        (file) => file![0]?.size <= MAX_SIZE || typeof file === 'string',
         t('common:profile.image_size')!
       )
       .refine(
-        (file) => MIME_TYPES.includes(file![0]?.type),
+        (file) =>
+          MIME_TYPES.includes(file![0]?.type) || typeof file === 'string',
         t('common:profile.image_type')!
       ),
     year: z.coerce
