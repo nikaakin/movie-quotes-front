@@ -1,7 +1,10 @@
+import { initializeWebsocket } from '@/helpers';
 import { getCsrf } from '@/services';
-import { UserType, loginSchemaType } from '@/types';
+import { NotificationType, UserType, loginSchemaType } from '@/types';
 import { useQuery } from '@tanstack/react-query';
 import { AxiosError, AxiosResponse } from 'axios';
+import Echo from 'laravel-echo';
+import { useState } from 'react';
 
 type UserQueryType = {
   onSuccess?: () => void;
@@ -18,6 +21,8 @@ export const useUserQuery = ({
   enabled,
   queryFn,
 }: UserQueryType) => {
+  const [notifications, setNotifications] = useState<NotificationType[]>([]);
+
   const { data, isFetching, refetch } = useQuery<UserType>({
     staleTime: Infinity,
     queryKey: ['user'],
@@ -33,6 +38,12 @@ export const useUserQuery = ({
       }),
     onSuccess: () => {
       onSuccess && onSuccess();
+      initializeWebsocket();
+      (window as Window & typeof globalThis & { Echo: Echo })!
+        .Echo!.channel('notifications')
+        .listen('NewNotification', (data: NotificationType) =>
+          setNotifications((prev) => [data, ...prev])
+        );
     },
     onError: () => {
       onError && onError();
@@ -41,5 +52,5 @@ export const useUserQuery = ({
     retry: false,
   });
 
-  return { data, isFetching, refetch };
+  return { data, isFetching, refetch, notifications };
 };
