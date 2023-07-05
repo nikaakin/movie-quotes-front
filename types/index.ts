@@ -4,3 +4,4 @@ export * from './translationType';
 export * from './userType';
 export * from './movieType';
 export * from './movieFormType';
+export * from './notificationType';
