@@ -34,6 +34,15 @@ export const storeMovie = (data: FormData) =>
     })
     .then((res) => res.data.movie);
 
+export const updateMovie = (data: FormData, id: string) =>
+  axios()
+    .post<{ movie: MovieType }>(`/api/movies/update/${id}`, data, {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
+    })
+    .then((res) => res.data.movie);
+
 export const storeQuote = (data: FormData) =>
   axios()
     .post<{ quote: QuoteType }>('/api/quotes/store', data, {

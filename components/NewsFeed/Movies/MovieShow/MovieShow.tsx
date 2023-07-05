@@ -7,7 +7,6 @@ import {
   TrashBinIcon,
 } from '@/components';
 import { useMovieShow } from './useMovieShow';
-import { createMovieSchema } from '@/schema';
 
 export const MovieShow = () => {
   const { movie, t, locale, onModalChange, currentModal } = useMovieShow();
@@ -16,10 +15,9 @@ export const MovieShow = () => {
       {currentModal && (
         <Modal onClose={onModalChange.bind(null, null)}>
           {currentModal === 'add-movie' ? (
-            <AddMovie t={t} schema={createMovieSchema} />
+            <AddMovie t={t} />
           ) : currentModal === 'edit-movie' ? (
             <AddMovie
-              schema={createMovieSchema}
               t={t}
               defaultValues={{
                 description_en: movie?.description.en,
@@ -39,7 +37,7 @@ export const MovieShow = () => {
       <h1 className='text-2xl font-medium hidden sm:block mb-8 px-8'>
         {t('common:movie_show.title')}
       </h1>
-      <div className='flex sm:gap-5 gap-6 flex-col sm:flex-row sm:pt-0 pt-5 sm:mb-10 mb-8'>
+      <div className='flex sm:gap-5 gap-6 flex-col sm:flex-row sm:pt-0 pt-5 sm:mb-10 mb-8 px-8'>
         <div className='w-full sm:w-200 sm:h-107 h-72  '>
           <img
             src={movie?.image}
@@ -47,7 +45,7 @@ export const MovieShow = () => {
             className='w-full h-full object-cover rounded-xl'
           />
         </div>
-        <div>
+        <div className='flex-1'>
           <div className='flex sm:justify-between sm:flex-row flex-col mb-6 gap-3'>
             <h3 className='text-2xl text-orange-250 font-medium '>
               {movie?.title[locale]} ({movie?.year})
