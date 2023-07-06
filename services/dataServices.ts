@@ -43,6 +43,9 @@ export const updateMovie = (data: FormData, id: string) =>
     })
     .then((res) => res.data.movie);
 
+export const deleteMovie = (id: number) =>
+  axios().delete(`/api/movies/destroy/${id}`);
+
 export const storeQuote = (data: FormData) =>
   axios()
     .post<{ quote: QuoteType }>('/api/quotes/store', data, {
@@ -60,6 +63,9 @@ export const updateQuote = (id: number, data: FormData) =>
       },
     })
     .then((res) => res.data.quote);
+
+export const deleteQuote = (id: number) =>
+  axios().delete(`/api/quotes/destroy/${id}`);
 
 export const search = (search: string) => {
   const searchValue = search.replace('#', '%23');

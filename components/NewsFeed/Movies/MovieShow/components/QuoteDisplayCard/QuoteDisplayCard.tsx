@@ -14,10 +14,11 @@ export const QuoteDisplayCard = ({
   t,
   onSelectQuote,
 }: QuoteDisplayCardProps) => {
-  const { quoteText, isOutside, ref, onModalChange } = useQuoteDisplayCard({
-    quote,
-    onSelectQuote,
-  });
+  const { quoteText, isOutside, ref, onModalChange, onDelete } =
+    useQuoteDisplayCard({
+      quote,
+      onSelectQuote,
+    });
 
   return (
     <div className='bg-neutral-950 px-8 w-full sm:w-200 relative'>
@@ -41,7 +42,10 @@ export const QuoteDisplayCard = ({
               <PencilIcon />
               {t('common:movie_show.edit')}
             </button>
-            <button className='pl-8 flex gap-5  hover:bg-white hover:bg-opacity-5 transition-all py-2 '>
+            <button
+              className='pl-8 flex gap-5  hover:bg-white hover:bg-opacity-5 transition-all py-2 '
+              onClick={onDelete}
+            >
               <TrashBinIcon />
               {t('common:movie_show.delete')}
             </button>

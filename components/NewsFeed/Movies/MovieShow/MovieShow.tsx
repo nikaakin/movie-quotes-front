@@ -19,6 +19,7 @@ export const MovieShow = () => {
     currentModal,
     onSelectedIdChange,
     selectedQuote,
+    onDelete,
   } = useMovieShow();
   return (
     <div className='flex-1  sm:pl-0 sm:pr-16 pt-4 sm:pt-8 pb-52 text-white'>
@@ -92,7 +93,7 @@ export const MovieShow = () => {
               >
                 <PencilIcon />
               </button>
-              <button className='pl-6 flex items-center'>
+              <button className='pl-6 flex items-center' onClick={onDelete}>
                 <TrashBinIcon />
               </button>
             </div>
