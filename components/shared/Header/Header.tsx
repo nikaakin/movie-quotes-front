@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react';
 
 import { Dropdown } from './components';
-import { BellIcon, Burgerbar, Button, SearchIcon } from '@/components';
+import { Burgerbar, Button, SearchIcon, Notification } from '@/components';
 import { useHeader } from './useHeader';
 import Link from 'next/link';
 
@@ -39,9 +39,7 @@ export const Header = ({ shouldhavelinks = false }) => {
                 <SearchIcon />
               </button>
             )}
-            <button>
-              <BellIcon />
-            </button>
+            <Notification />
           </Fragment>
         ) : null}
         <Dropdown />

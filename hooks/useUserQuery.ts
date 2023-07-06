@@ -1,5 +1,5 @@
 import { initializeWebsocket } from '@/helpers';
-import { getCsrf } from '@/services';
+import { fetchNotifications, getCsrf } from '@/services';
 import { NotificationType, UserType, loginSchemaType } from '@/types';
 import { useQuery } from '@tanstack/react-query';
 import { AxiosError, AxiosResponse } from 'axios';
@@ -13,6 +13,8 @@ type UserQueryType = {
   queryFn: (
     data?: loginSchemaType
   ) => Promise<AxiosResponse<{ user: UserType }>>;
+  enableNotifications?: boolean;
+  onNotificationSuccess?: () => void;
 };
 
 export const useUserQuery = ({
@@ -20,9 +22,31 @@ export const useUserQuery = ({
   onError,
   enabled,
   queryFn,
+  enableNotifications = false,
+  onNotificationSuccess,
 }: UserQueryType) => {
   const [notifications, setNotifications] = useState<NotificationType[]>([]);
 
+  const { refetch: getNotifications } = useQuery<{
+    notifications: NotificationType[];
+    has_more_pages: number;
+  }>({
+    queryKey: ['notifications'],
+    queryFn: () => fetchNotifications(notifications.length),
+    onSuccess: (data) => {
+      setNotifications([...notifications, ...data.notifications]);
+      onNotificationSuccess && onNotificationSuccess();
+    },
+    enabled: enableNotifications,
+  });
+
+  const onNotificationupdate = (seenNotification: NotificationType) =>
+    setNotifications((prev) =>
+      prev.map((notification) => {
+        if (notification.id !== seenNotification.id) return seenNotification;
+        return notification;
+      })
+    );
   const { data, isFetching, refetch } = useQuery<UserType>({
     staleTime: Infinity,
     queryKey: ['user'],
@@ -52,5 +76,12 @@ export const useUserQuery = ({
     retry: false,
   });
 
-  return { data, isFetching, refetch, notifications };
+  return {
+    data,
+    isFetching,
+    refetch,
+    notifications,
+    getNotifications,
+    onNotificationupdate,
+  };
 };

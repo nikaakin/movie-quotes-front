@@ -14,7 +14,11 @@ export const useHeader = () => {
     query: { slug },
   } = useRouter();
 
-  const { data } = useUserQuery({ enabled: false, queryFn: isAuthenticated });
+  const { data } = useUserQuery({
+    enabled: false,
+    queryFn: isAuthenticated,
+  });
+
   const { refetch: logoutUser } = useQuery({
     queryKey: ['user'],
     queryFn: () => logout(),

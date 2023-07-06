@@ -6,7 +6,7 @@ export const useQuoteCard = ({
   likes,
   notifications,
 }: useQuoteCardArgs) => {
-  const { liked, onLike, updatedLikes } = useLike({
+  const { liked, onLike, updatedLikes, isLoading } = useLike({
     current_user_likes,
     likes,
   });
@@ -22,5 +22,6 @@ export const useQuoteCard = ({
     onCommentChange,
     comment,
     onComment,
+    likeIsLoading: isLoading,
   };
 };

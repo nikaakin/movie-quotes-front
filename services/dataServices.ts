@@ -1,4 +1,4 @@
-import { MovieType, QuoteType, languageType } from '@/types';
+import { MovieType, NotificationType, QuoteType, languageType } from '@/types';
 import axios from './axios';
 
 export const fetchQuotes = (page: number) =>
@@ -58,6 +58,13 @@ export const search = (search: string) => {
     .get<{ quotes: QuoteType[] }>(`/api/quotes/search/?search=${searchValue}`)
     .then((res) => res.data.quotes);
 };
+
+export const fetchNotifications = (skip: number) =>
+  axios()
+    .get<{ notifications: NotificationType[]; has_more_pages: number }>(
+      `/api/notifications/${skip}`
+    )
+    .then((res) => res.data);
 
 export const toggleLike = (quoteId: number) =>
   axios().patch(`/api/notifications/like/${quoteId}`);
