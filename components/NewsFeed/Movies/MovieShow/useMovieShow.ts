@@ -1,5 +1,5 @@
-import { showMovie } from '@/services';
-import { useQuery } from '@tanstack/react-query';
+import { deleteMovie, showMovie } from '@/services';
+import { useMutation, useQuery } from '@tanstack/react-query';
 import { useRouter } from 'next/router';
 import { useTranslation } from 'next-i18next';
 import { RootState, setCurrentModal } from '@/state';
@@ -11,12 +11,20 @@ export const useMovieShow = () => {
   const {
     query: { movieId },
     locale,
+    replace,
   } = useRouter();
+
   const { t } = useTranslation(['common', 'modals']);
   const dispatch = useDispatch();
   const { currentModal } = useSelector(
     (state: RootState) => state.currentModal
   );
+  const { mutate } = useMutation({
+    mutationFn: () => deleteMovie(parseInt(movieId as string)),
+    onSuccess: () => {
+      replace('/news-feed/movies');
+    },
+  });
 
   const onModalChange = (modal: string | null) =>
     dispatch(setCurrentModal(modal));
@@ -31,6 +39,7 @@ export const useMovieShow = () => {
   const selectedQuote = movie?.quotes.find(
     (quote) => quote.id === selectedQuoteId
   );
+  const onDelete = () => mutate();
 
   return {
     locale: locale as 'en' | 'ka',
@@ -40,5 +49,6 @@ export const useMovieShow = () => {
     onSelectedIdChange,
     selectedQuote,
     t,
+    onDelete,
   };
 };
