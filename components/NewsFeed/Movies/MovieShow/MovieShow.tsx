@@ -4,18 +4,39 @@ import {
   PencilIcon,
   PlusIcon,
   QuoteDisplayCard,
+  QuoteMutateModal,
+  QuotesDisplay,
   TrashBinIcon,
 } from '@/components';
 import { useMovieShow } from './useMovieShow';
 
 export const MovieShow = () => {
-  const { movie, t, locale, onModalChange, currentModal } = useMovieShow();
+  const {
+    movie,
+    t,
+    locale,
+    onModalChange,
+    currentModal,
+    onSelectedIdChange,
+    selectedQuote,
+  } = useMovieShow();
   return (
     <div className='flex-1  sm:pl-0 sm:pr-16 pt-4 sm:pt-8 pb-52 text-white'>
       {currentModal && (
-        <Modal onClose={onModalChange.bind(null, null)}>
-          {currentModal === 'add-movie' ? (
-            <AddMovie t={t} />
+        <Modal
+          onClose={onModalChange.bind(null, null)}
+          shouldHaveX={false}
+          background='lg-main'
+        >
+          {currentModal === 'add-quote' ? (
+            <QuoteMutateModal
+              movieId={selectedQuote?.movie_id + ''}
+              movieDirector={movie?.director[locale]}
+              movieGenres={movie?.genres}
+              movieTitle={movie?.title[locale]}
+              movieImage={movie?.image}
+              movieYear={movie?.year}
+            />
           ) : currentModal === 'edit-movie' ? (
             <AddMovie
               t={t}
@@ -30,6 +51,20 @@ export const MovieShow = () => {
                 title_ka: movie?.title.ka,
                 year: movie?.year,
               }}
+            />
+          ) : currentModal === 'edit-quote' ? (
+            <QuoteMutateModal
+              defaultImage={selectedQuote?.image || ''}
+              defaultQuoteEng={selectedQuote?.quote['en']}
+              defaultQuoteGeo={selectedQuote?.quote['ka']}
+              movieId={selectedQuote?.movie_id + ''}
+              quoteId={selectedQuote?.id}
+            />
+          ) : currentModal === 'quote-view' ? (
+            <QuotesDisplay
+              onClose={onModalChange.bind(null, null)}
+              quote={selectedQuote!}
+              title={t('common:movie_show.view_quote')}
             />
           ) : null}
         </Modal>
@@ -93,12 +128,12 @@ export const MovieShow = () => {
         </h3>
         <hr className='bg-zinc-650 sm:bg-gray-550 sm:w-[1px] order-1 sm:h-7 w-full h-[1px]  border-none' />
         <button
-          onClick={onModalChange.bind(null, 'add-movie')}
+          onClick={onModalChange.bind(null, 'add-quote')}
           className='w-fit -order-1 sm:order-2 font-normal px-3 py-2 text-base sm:text-xl border rounded text-white border-red-650 border-solid bg-red-650'
         >
           <span className='flex justify-center gap-2 items-center'>
             <PlusIcon />
-            {t('common:movie_show.add_movie')}
+            {t('common:movie_show.add_quote')}
           </span>
         </button>
       </div>
@@ -106,7 +141,12 @@ export const MovieShow = () => {
       <div className='flex gap-10 flex-col'>
         {movie?.quotes &&
           movie?.quotes.map((quote) => (
-            <QuoteDisplayCard quote={quote} key={quote.id} t={t} />
+            <QuoteDisplayCard
+              quote={quote}
+              key={quote.id}
+              t={t}
+              onSelectQuote={onSelectedIdChange}
+            />
           ))}
       </div>
     </div>

@@ -34,7 +34,8 @@
     },
     "add_quote": {
       "title": "Add Movie",
-      "submit": "Add movie"
+      "submit": "Add movie",
+      "edit": "Edit quote"
     },
     "login": {
       "title": "Log in to your account",

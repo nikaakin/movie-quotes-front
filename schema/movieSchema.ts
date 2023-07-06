@@ -49,7 +49,7 @@ export const movieSchema = (t: TFunction) =>
     image: z
       .custom<FileList>()
       .refine(
-        (file) => file?.[0] || typeof file === 'string',
+        (file) => file?.[0] || (file && typeof file === 'string'),
         t('modals:validation.required', {
           attribute: t('modals:attributes.image'),
         })!
