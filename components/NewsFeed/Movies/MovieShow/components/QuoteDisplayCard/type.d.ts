@@ -4,11 +4,10 @@ import { TFunction } from 'next-i18next';
 export type QuoteDisplayCardProps = {
   quote: QuoteType;
   t: TFunction;
+  onSelectQuote: (_: number) => void;
 };
 
 export type useQuoteDisplayCardArgs = {
-  quote: {
-    en: string;
-    ka: string;
-  };
+  quote: QuoteType;
+  onSelectQuote: (_: number) => void;
 };

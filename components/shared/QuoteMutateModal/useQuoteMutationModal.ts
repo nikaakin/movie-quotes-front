@@ -1,7 +1,13 @@
 import { useUserQuery } from '@/hooks';
-import { fetchMovies, getCsrf, isAuthenticated, storeQuote } from '@/services';
+import {
+  fetchMovies,
+  getCsrf,
+  isAuthenticated,
+  storeQuote,
+  updateQuote,
+} from '@/services';
 import { setCurrentModal } from '@/state';
-import { useMutation, useQuery } from '@tanstack/react-query';
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { useRouter } from 'next/router';
 import { useForm } from 'react-hook-form';
 import { useTranslation } from 'next-i18next';
@@ -9,12 +15,25 @@ import { useDispatch } from 'react-redux';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { createQuoteSchema } from '@/schema/quoteSchema';
 import { AxiosError } from 'axios';
-import { createMovieSchemaType, createQuoteSchemaType } from '@/types';
+import {
+  QuoteFormTypes,
+  QuoteType,
+  createMovieSchemaType,
+  createQuoteSchemaType,
+} from '@/types';
+import { useQuoteMutateModalArgs } from './type';
 
-export const useQuoteMutationModal = ({ movieId }: { movieId?: string }) => {
+export const useQuoteMutationModal = ({
+  movieId,
+  defaultImage,
+  defaultQuoteEng,
+  defaultQuoteGeo,
+  quoteId,
+}: useQuoteMutateModalArgs) => {
   const { locale } = useRouter();
   const dispatch = useDispatch();
   const { t } = useTranslation('modals');
+  const queryClient = useQueryClient();
   const {
     register,
     control,
@@ -23,29 +42,79 @@ export const useQuoteMutationModal = ({ movieId }: { movieId?: string }) => {
     setValue,
     setError,
     formState: { errors },
-  } = useForm({
+  } = useForm<QuoteFormTypes>({
     mode: 'onChange',
     resolver: zodResolver(createQuoteSchema(t)),
+    defaultValues: {
+      quote_en: defaultQuoteEng,
+      quote_ka: defaultQuoteGeo,
+      image: defaultImage || '',
+      movie: { value: parseInt(movieId || ''), label: 'default' },
+    },
   });
 
-  movieId && register('movie', { value: { value: movieId, label: '' } });
-
   const { mutate } = useMutation({
-    mutationFn: (data: FormData) => storeQuote(data),
+    mutationFn: (data: FormData) =>
+      defaultQuoteEng ? updateQuote(quoteId!, data) : storeQuote(data),
     onSuccess: (data) => {
       dispatch(setCurrentModal(null));
+      if (movieId) {
+        queryClient.setQueryData(
+          ['movie', movieId],
+          (oldData: createMovieSchemaType) => {
+            if (defaultImage) {
+              const newQuotes = oldData.quotes.map((quote: QuoteType) => {
+                if (quote.id === quoteId)
+                  return {
+                    ...quote,
+                    quote: {
+                      en: data.quote['en'],
+                      ka: data.quote['ka'],
+                    },
+                    image: data.image,
+                  };
+                return quote;
+              });
+              return { ...oldData, quotes: newQuotes };
+            } else {
+              const newData = {
+                ...data,
+                likes: 0,
+                notifications: [],
+              };
+              return { ...oldData, quotes: [...oldData.quotes, newData] };
+            }
+          }
+        );
+      } else {
+        queryClient.setQueryData(
+          ['quotes'],
+          (oldData: createMovieSchemaType) => ({
+            pageParams: oldData.pageParams,
+            pages: [
+              {
+                ...oldData.pages[0],
+                quotes: [{ ...data }, ...oldData.pages[0].quotes],
+              },
+              ...(oldData.pages.slice(1) || []),
+            ],
+          })
+        );
+      }
     },
     onError: (error: AxiosError<createMovieSchemaType>) => {
       const errors = error.response?.data.details || {};
       Object.keys(errors).forEach((key) => {
         if (key.includes('.')) {
           let newKey = key.replace('.', '_');
-          return setError(newKey, { message: errors[key] });
+          return setError(newKey as keyof QuoteFormTypes, {
+            message: errors[key],
+          });
         }
         if (key === 'movie_id') {
           return setError('movie', { message: errors[key] });
         }
-        setError(key, { message: errors[key] });
+        setError(key as keyof QuoteFormTypes, { message: errors[key] });
       });
     },
   });
@@ -77,6 +146,7 @@ export const useQuoteMutationModal = ({ movieId }: { movieId?: string }) => {
       }
 
       if (key === 'image') {
+        if (typeof data[key] !== 'object') return;
         return formData.append(key, data[key][0]);
       }
 
@@ -99,6 +169,7 @@ export const useQuoteMutationModal = ({ movieId }: { movieId?: string }) => {
     onSubmit,
     setValue,
     errors,
+    locale: locale as 'en' | 'ka',
     t,
   };
 };

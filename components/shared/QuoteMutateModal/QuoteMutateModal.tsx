@@ -14,6 +14,12 @@ export const QuoteMutateModal = ({
   defaultQuoteEng = '',
   defaultQuoteGeo = '',
   movieId,
+  quoteId,
+  movieDirector,
+  movieTitle,
+  movieGenres,
+  movieImage,
+  movieYear,
 }: QuoteMutateModalProps) => {
   const {
     options,
@@ -25,20 +31,33 @@ export const QuoteMutateModal = ({
     onClose,
     onSubmit,
     setValue,
+    locale,
     t,
-  } = useQuoteMutationModal({ movieId });
+  } = useQuoteMutationModal({
+    movieId,
+    defaultImage,
+    defaultQuoteEng,
+    defaultQuoteGeo,
+    quoteId,
+  });
   return (
     <Fragment>
       <div
         className='fixed top-0 left-0 w-full h-full opacity-50  sm:hidden'
         onClick={onClose}
       ></div>
-      <div className='relative w-full h-fit sm:w-250 hide-scrollbar max-h-screen pt-8 pb-16 sm:pb-12 bg-neutral-950 text-white overflow-auto'>
+      <div
+        className={`${
+          movieId ? 'h-full' : 'h-fit'
+        } relative w-full  sm:w-250 hide-scrollbar max-h-screen pt-8 pb-16 sm:pb-12 bg-neutral-950 text-white overflow-auto`}
+      >
         <button className='absolute right-6 top-8 ' onClick={onClose}>
           <XIcon />
         </button>
         <h1 className='sm:text-2xl text-xl font-medium pb-6 mb-10 px-8  border-b border-zinc-150 border-opacity-20 text-center '>
-          {t('modals:form.add_quote.title')}
+          {defaultQuoteEng
+            ? t('modals:form.add_quote.edit')
+            : t('modals:form.add_quote.title')}
         </h1>
         <form className='px-8 ' onSubmit={handleSubmit(onSubmit)}>
           <div className='sm:mb-7 mb-9'>
@@ -55,6 +74,43 @@ export const QuoteMutateModal = ({
               username={user?.username || ''}
             />
           </div>
+          {movieImage && (
+            <div className='flex mb-8 sm:gap-8 gap-3'>
+              <div className='sm:w-72 sm:h-40 w-28 h-20 rounded-[10px] '>
+                <img
+                  src={movieImage}
+                  alt='movie'
+                  className='w-full h-full object-cover rounded-[12px]'
+                />
+              </div>
+              <div className='flex-1'>
+                <div className='flex sm:justify-between sm:flex-row flex-col sm:mb-6 gap-3'>
+                  <h3 className='sm:text-2xl text-orange-250 font-medium  text-base'>
+                    {movieTitle} ({movieYear})
+                  </h3>
+                </div>
+                <div className='sm:text-lg text-xs font-bold flex gap-2 flex-wrap sm:mb-5'>
+                  {movieGenres?.map((genre) => (
+                    <span
+                      key={genre.id}
+                      className='bg-gray-550 px-3 py-1 rounded-[4px]'
+                    >
+                      {genre.genre[locale]}
+                    </span>
+                  ))}
+                </div>
+                <div className='sm:mb-5'>
+                  <span className='text-gray-350 sm:text-lg text-base font-bold'>
+                    {t('common:movie_show.director')}
+                  </span>
+                  :
+                  <span className='sm:text-lg text-base font-medium pl-3'>
+                    {movieDirector}
+                  </span>
+                </div>
+              </div>
+            </div>
+          )}
 
           <TextArea
             control={control}
@@ -63,7 +119,6 @@ export const QuoteMutateModal = ({
             setValue={setValue}
             title='Start create new quote'
             language='Eng'
-            defaultValue={defaultQuoteEng}
           />
           <TextArea
             control={control}
@@ -72,7 +127,6 @@ export const QuoteMutateModal = ({
             setValue={setValue}
             title='ახალი ციტატა'
             language='ქარ'
-            defaultValue={defaultQuoteGeo}
           />
 
           <UploadImage

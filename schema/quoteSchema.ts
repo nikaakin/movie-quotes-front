@@ -21,17 +21,18 @@ export const createQuoteSchema = (t: TFunction) =>
     image: z
       .custom<FileList>()
       .refine(
-        (file) => file?.[0],
+        (file) => file?.[0] || (file && typeof file === 'string'),
         t('modals:validation.required', {
           attribute: t('modals:attributes.image'),
         })!
       )
       .refine(
-        (file) => file![0]?.size <= MAX_SIZE,
+        (file) => file![0]?.size <= MAX_SIZE || typeof file === 'string',
         t('common:profile.image_size')!
       )
       .refine(
-        (file) => MIME_TYPES.includes(file![0]?.type),
+        (file) =>
+          MIME_TYPES.includes(file![0]?.type) || typeof file === 'string',
         t('common:profile.image_type')!
       ),
     movie: z.object(

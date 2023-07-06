@@ -52,6 +52,15 @@ export const storeQuote = (data: FormData) =>
     })
     .then((res) => res.data.quote);
 
+export const updateQuote = (id: number, data: FormData) =>
+  axios()
+    .post<{ quote: QuoteType }>(`/api/quotes/update/${id}`, data, {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
+    })
+    .then((res) => res.data.quote);
+
 export const search = (search: string) => {
   const searchValue = search.replace('#', '%23');
   return axios()

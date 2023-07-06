@@ -30,3 +30,10 @@ export type QuoteType = {
 };
 
 export type HomePageProps = { quotes: QuoteType[] | null };
+
+export type QuoteFormTypes = {
+  quote_en: string;
+  quote_ka: string;
+  image: FileList | string;
+  movie: { value: number; label: string };
+};
