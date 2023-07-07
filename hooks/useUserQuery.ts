@@ -1,10 +1,9 @@
 import { initializeWebsocket } from '@/helpers';
 import { fetchNotifications, getCsrf } from '@/services';
 import { NotificationType, UserType, loginSchemaType } from '@/types';
-import { useQuery } from '@tanstack/react-query';
+import { useQuery, useQueryClient } from '@tanstack/react-query';
 import { AxiosError, AxiosResponse } from 'axios';
 import Echo from 'laravel-echo';
-import { useState } from 'react';
 
 type UserQueryType = {
   onSuccess?: () => void;
@@ -23,30 +22,27 @@ export const useUserQuery = ({
   enabled,
   queryFn,
   enableNotifications = false,
-  onNotificationSuccess,
 }: UserQueryType) => {
-  const [notifications, setNotifications] = useState<NotificationType[]>([]);
+  const queryClient = useQueryClient();
 
-  const { refetch: getNotifications } = useQuery<{
-    notifications: NotificationType[];
-    has_more_pages: number;
-  }>({
+  const { data: notifications } = useQuery<NotificationType[]>({
     queryKey: ['notifications'],
-    queryFn: () => fetchNotifications(notifications.length),
-    onSuccess: (data) => {
-      setNotifications([...notifications, ...data.notifications]);
-      onNotificationSuccess && onNotificationSuccess();
-    },
+    queryFn: () => fetchNotifications(),
     enabled: enableNotifications,
+    staleTime: Infinity,
   });
 
   const onNotificationupdate = (seenNotification: NotificationType) =>
-    setNotifications((prev) =>
-      prev.map((notification) => {
+    queryClient.setQueryData<NotificationType[]>(['notifications'], (prev) => {
+      if (!prev) return prev;
+      const notifications = prev?.map((notification) => {
         if (notification.id !== seenNotification.id) return seenNotification;
         return notification;
-      })
-    );
+      });
+
+      return notifications;
+    });
+
   const { data, isFetching, refetch } = useQuery<UserType>({
     staleTime: Infinity,
     queryKey: ['user'],
@@ -65,8 +61,14 @@ export const useUserQuery = ({
       initializeWebsocket();
       (window as Window & typeof globalThis & { Echo: Echo })!
         .Echo!.channel('notifications')
-        .listen('NewNotification', (data: NotificationType) =>
-          setNotifications((prev) => [data, ...prev])
+        .listen('NewNotification', (data: { notification: NotificationType }) =>
+          queryClient.setQueryData<NotificationType[]>(
+            ['notifications'],
+            (prev) => {
+              if (!prev) return prev;
+              return [data.notification, ...prev];
+            }
+          )
         );
     },
     onError: () => {
@@ -81,7 +83,6 @@ export const useUserQuery = ({
     isFetching,
     refetch,
     notifications,
-    getNotifications,
     onNotificationupdate,
   };
 };
