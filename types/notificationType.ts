@@ -8,4 +8,5 @@ export type NotificationType = {
     username: string;
     image: string;
   };
+  created_at: string;
 };

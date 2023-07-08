@@ -43,7 +43,9 @@ export const SearchField = ({
         </Modal>
       )}
       <div
-        className='sm:relative w-full sm:h-full fixed  top-0 left-0  z-50 h-[80vh]'
+        className={`sm:relative w-full sm:h-full fixed top-0 left-0  h-[80vh] ${
+          isSearchActive ? 'z-50' : '-z-10'
+        }`}
         ref={ref}
       >
         <label

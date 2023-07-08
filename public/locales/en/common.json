@@ -74,5 +74,25 @@
     "save": "Save Changes",
     "view_quote": "View quote",
     "add_movie": "Add movie"
+  },
+
+  "notification": {
+    "title": "Notifications",
+    "no_notifications": "You have no notifications",
+    "mark_all_as_read": "Mark all as read"
+  },
+
+  "time": {
+    "just_now": "Just now",
+    "minute_ago": "1 minute ago",
+    "minutes_ago": " minutes ago",
+    "hour_ago": "1 hour ago",
+    "hours_ago": " hours ago",
+    "day_ago": "1 day ago",
+    "days_ago": " days ago",
+    "week_ago": "1 week ago",
+    "weeks_ago": " weeks ago",
+    "month_ago": "1 month ago",
+    "months_ago": " months ago"
   }
 }

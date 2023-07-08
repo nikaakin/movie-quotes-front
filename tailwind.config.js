@@ -111,6 +111,9 @@ module.exports = {
       minHeight: {
         22: '5.5rem',
       },
+      inset: {
+        68: '17rem',
+      },
     },
   },
   plugins: [],
