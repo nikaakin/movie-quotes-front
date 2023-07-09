@@ -70,5 +70,24 @@
     "save": "შეინახეთ ცვლილებები",
     "view_quote": "ციტატის ნახვა",
     "add_movie": "ფილმის დამატება"
+  },
+
+  "notification": {
+    "title": "შეტყობინებები",
+    "no_notifications": "შეტყობინებები არ არის",
+    "mark_all_as_read": "ყველა მონიშნეთ ნანახად"
+  },
+  "time": {
+    "just_now": "ახლა",
+    "minute_ago": "1 წუთის წინ",
+    "minutes_ago": " წუთის წინ",
+    "hour_ago": "1 საათის წინ",
+    "hours_ago": " საათის წინ",
+    "day_ago": "1 დღის წინ",
+    "days_ago": " დღის წინ",
+    "week_ago": "1 კვირის წინ",
+    "weeks_ago": " კვირის წინ",
+    "month_ago": "1 თვის წინ",
+    "months_ago": " თვის წინ"
   }
 }

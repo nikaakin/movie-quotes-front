@@ -74,12 +74,10 @@ export const search = (search: string) => {
     .then((res) => res.data.quotes);
 };
 
-export const fetchNotifications = (skip: number) =>
+export const fetchNotifications = () =>
   axios()
-    .get<{ notifications: NotificationType[]; has_more_pages: number }>(
-      `/api/notifications/${skip}`
-    )
-    .then((res) => res.data);
+    .get<{ notifications: NotificationType[] }>('/api/notifications')
+    .then((res) => res.data.notifications);
 
 export const toggleLike = (quoteId: number) =>
   axios().patch(`/api/notifications/like/${quoteId}`);

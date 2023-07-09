@@ -19,7 +19,6 @@ export const useQuoteDisplayCard = ({
   const { mutate } = useMutation({
     mutationFn: () => deleteQuote(quote.id),
     onSuccess: () => {
-      console.log(quote.movie_id);
       queryClient.setQueriesData<{ quotes: QuoteType[] }>(
         ['movie', `${quote.movie_id}`],
         (oldData) => {
