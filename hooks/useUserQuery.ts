@@ -32,13 +32,24 @@ export const useUserQuery = ({
     staleTime: Infinity,
   });
 
-  const onNotificationupdate = (seenNotification: NotificationType) =>
+  const onNotificationupdate = (id: number) =>
     queryClient.setQueryData<NotificationType[]>(['notifications'], (prev) => {
       if (!prev) return prev;
       const notifications = prev?.map((notification) => {
-        if (notification.id !== seenNotification.id) return seenNotification;
+        if (notification.id === id) return { ...notification, seen: true };
         return notification;
       });
+
+      return notifications;
+    });
+
+  const onNotificationSeenAll = () =>
+    queryClient.setQueryData<NotificationType[]>(['notifications'], (prev) => {
+      if (!prev) return prev;
+      const notifications = prev?.map((notification) => ({
+        ...notification,
+        seen: true,
+      }));
 
       return notifications;
     });
@@ -84,5 +95,6 @@ export const useUserQuery = ({
     refetch,
     notifications,
     onNotificationupdate,
+    onNotificationSeenAll,
   };
 };

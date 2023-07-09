@@ -3,16 +3,25 @@ import { useNotification } from './useNotification';
 import { Fragment } from 'react';
 
 export const Notification = () => {
-  const { isOutside, ref, notifications, dateCalc, t } = useNotification();
+  const {
+    isOutside,
+    ref,
+    notifications,
+    dateCalc,
+    onNotificationMarkAll,
+    onNotificationSeen,
+    newNotifications,
+    t,
+  } = useNotification();
   return (
     <div className='flex items-center relative' ref={ref}>
       <button className='relative'>
         <BellIcon />
-        {notifications.length && (
+        {newNotifications ? (
           <span className='absolute top-0 right-0 translate-x-1/2  text-white font-medium text-base w-6 h-6 rounded-full bg-red-650'>
-            {notifications.length}
+            {newNotifications}
           </span>
-        )}
+        ) : null}
       </button>
 
       {!isOutside && (
@@ -25,13 +34,17 @@ export const Notification = () => {
             <h1 className='text-xl sm:text-3xl font-medium'>
               {t('common:notification.title')}
             </h1>
-            <button className='text-sm underline sm:text-xl'>
+            <button
+              className='text-sm underline sm:text-xl'
+              onClick={() => onNotificationMarkAll()}
+            >
               {t('common:notification.mark_all_as_read')}
             </button>
           </header>
           <section className='flex flex-col flex-1 overflow-auto gap-2 h-28'>
             {notifications.map((notification) => (
               <div
+                onClick={() => onNotificationSeen(notification.id)}
                 key={notification.id}
                 className='border border-gray-550 border-opacity-50 sm:px-6 px-4 py-4'
               >
