@@ -79,7 +79,10 @@
   "notification": {
     "title": "Notifications",
     "no_notifications": "You have no notifications",
-    "mark_all_as_read": "Mark all as read"
+    "mark_all_as_read": "Mark all as read",
+    "commented": "Commented on your quote",
+    "reacted": "Reacted to your quote",
+    "new": "New"
   },
 
   "time": {

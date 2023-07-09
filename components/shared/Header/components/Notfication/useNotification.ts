@@ -17,7 +17,7 @@ export const useNotification = () => {
 
   const dateCalc = (data: string) => {
     const time = Date.now() - new Date(data).getTime();
-    if (time < 60000) return t('just_now');
+    if (time < 60000) return t('common:time.just_now');
     if (time < 3600000)
       return Math.floor(time / 60000) <= 1
         ? t('common:time.minute_ago')
