@@ -1,5 +1,7 @@
+import { broadcastAuth } from '@/services';
 import Echo from 'laravel-echo';
-import Pusher from 'pusher-js';
+import { SocketIoChannel } from 'laravel-echo/dist/channel';
+import Pusher, { AuthorizerCallback } from 'pusher-js';
 
 export const initializeWebsocket = () => {
   (window as Window & typeof globalThis & { Pusher: any; Echo: Echo }).Pusher =
@@ -10,13 +12,13 @@ export const initializeWebsocket = () => {
       key: process.env.NEXT_PUBLIC_PUSHER_KEY,
       cluster: ['eu'],
       forceTLS: true,
-      authEndpoint: `${process.env.NEXT_PUBLIC_API_BASE_URL}/broadcasting/auth`,
-      auth: {
-        headers: {
-          'X-CSRF-Token': document
-            .querySelector('meta[name="csrf-token"]')
-            ?.getAttribute('content'),
-        },
+      // authEndpoint: `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/broadcasting/auth`,
+      authorizer: (channel: SocketIoChannel) => {
+        return {
+          authorize: (socketId: number, callback: AuthorizerCallback) => {
+            broadcastAuth(socketId, callback, channel);
+          },
+        };
       },
     });
 };
