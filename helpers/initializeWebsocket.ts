@@ -12,7 +12,6 @@ export const initializeWebsocket = () => {
       key: process.env.NEXT_PUBLIC_PUSHER_KEY,
       cluster: ['eu'],
       forceTLS: true,
-      // authEndpoint: `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/broadcasting/auth`,
       authorizer: (channel: SocketIoChannel) => {
         return {
           authorize: (socketId: number, callback: AuthorizerCallback) => {
