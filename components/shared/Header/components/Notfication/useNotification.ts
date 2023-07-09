@@ -17,7 +17,6 @@ export const useNotification = () => {
 
   const dateCalc = (data: string) => {
     const time = Date.now() - new Date(data).getTime();
-    console.log(Math.floor(time / 86400000));
     if (time < 60000) return t('just_now');
     if (time < 3600000)
       return Math.floor(time / 60000) <= 1
