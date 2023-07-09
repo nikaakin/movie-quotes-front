@@ -1,17 +1,27 @@
-import { BellIcon, CommentWithQuoteIcon } from '@/components';
+import { BellIcon, CommentWithQuoteIcon, HeartIcon } from '@/components';
 import { useNotification } from './useNotification';
+import { Fragment } from 'react';
 
 export const Notification = () => {
-  const { isOutside, ref, notifications, dateCalc, t } = useNotification();
+  const {
+    isOutside,
+    ref,
+    notifications,
+    dateCalc,
+    onNotificationMarkAll,
+    onNotificationSeen,
+    newNotifications,
+    t,
+  } = useNotification();
   return (
     <div className='flex items-center relative' ref={ref}>
       <button className='relative'>
         <BellIcon />
-        {notifications.length && (
+        {newNotifications ? (
           <span className='absolute top-0 right-0 translate-x-1/2  text-white font-medium text-base w-6 h-6 rounded-full bg-red-650'>
-            {notifications.length}
+            {newNotifications}
           </span>
-        )}
+        ) : null}
       </button>
 
       {!isOutside && (
@@ -24,32 +34,59 @@ export const Notification = () => {
             <h1 className='text-xl sm:text-3xl font-medium'>
               {t('common:notification.title')}
             </h1>
-            <button className='text-sm underline sm:text-xl'>
+            <button
+              className='text-sm underline sm:text-xl'
+              onClick={() => onNotificationMarkAll()}
+            >
               {t('common:notification.mark_all_as_read')}
             </button>
           </header>
           <section className='flex flex-col flex-1 overflow-auto gap-2 h-28'>
             {notifications.map((notification) => (
               <div
+                onClick={() => onNotificationSeen(notification.id)}
                 key={notification.id}
                 className='border border-gray-550 border-opacity-50 sm:px-6 px-4 py-4'
               >
                 <div className='flex gap-3 sm:gap-6'>
-                  <div className='bg-white rounded-[50%] w-14 h-14 sm:w-20 sm:h-20 overflow-hidden mb-3 sm:mb-0 sm:mr-6 '>
+                  <div
+                    className={`bg-white rounded-[50%] w-14 h-14 sm:w-20 sm:h-20 overflow-hidden mb-3 sm:mb-0 sm:mr-0 ${
+                      !notification.seen && 'border-2 border-green-750'
+                    }`}
+                  >
                     <img
                       src={notification.user.image}
                       alt='avatar'
                       className='object-fill w-full h-full'
                     />
                   </div>
-                  <div className='flex'>
+                  <div className='flex flex-col sm:flex-row justify-between flex-1 gap-2'>
                     <div>
-                      <h2 className='mb-1'>{notification.user.username}</h2>
-                      <div>
-                        <CommentWithQuoteIcon />
+                      <h2 className='mb-1 text-xl capitalize'>
+                        {notification.user.username}
+                      </h2>
+                      <div className='flex items-center gap-3  sm:text-xl text-base '>
+                        {notification.comment ? (
+                          <Fragment>
+                            <CommentWithQuoteIcon />
+                            {t('common:notification.commented')}
+                          </Fragment>
+                        ) : (
+                          <Fragment>
+                            <HeartIcon shouldFill />
+                            {t('common:notification.reacted')}
+                          </Fragment>
+                        )}
                       </div>
                     </div>
-                    <div>{dateCalc(notification.created_at)}</div>
+                    <div className='relative text-zinc-350 sm:text-xl text-base '>
+                      {dateCalc(notification.created_at)}{' '}
+                      {!notification.seen && (
+                        <span className='text-green-750 sm:text-xl text-base absolute sm:-bottom-4 sm:right-0 sm:-translate-y-full sm:left-auto sm:translate-x-0 sm:top-auto -left-5 -translate-x-full top-0'>
+                          {t('common:notification.new')}
+                        </span>
+                      )}
+                    </div>
                   </div>
                 </div>
               </div>

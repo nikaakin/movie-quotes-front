@@ -82,6 +82,13 @@ export const fetchNotifications = () =>
 export const toggleLike = (quoteId: number) =>
   axios().patch(`/api/notifications/like/${quoteId}`);
 
+export const seen = (notificationId: number) =>
+  axios()
+    .patch<{ id: number }>(`/api/notifications/seen/${notificationId}`)
+    .then(() => ({ id: notificationId }));
+
+export const seenAll = () => axios().patch('/api/notifications/seen');
+
 export const commentService = ({
   quoteId,
   comment,
