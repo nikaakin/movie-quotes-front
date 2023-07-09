@@ -66,6 +66,7 @@ export const MovieShow = () => {
               onClose={onModalChange.bind(null, null)}
               quote={selectedQuote!}
               title={t('common:movie_show.view_quote')}
+              commentPlaceholder={t('common:movie_show.comment')!}
             />
           ) : null}
         </Modal>
@@ -139,7 +140,7 @@ export const MovieShow = () => {
         </button>
       </div>
 
-      <div className='flex gap-10 flex-col'>
+      <div className='flex gap-10 flex-col sm:ml-6'>
         {movie?.quotes &&
           movie?.quotes.map((quote) => (
             <QuoteDisplayCard
