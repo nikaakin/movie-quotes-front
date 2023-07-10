@@ -5,6 +5,8 @@ export type QuoteDisplayProps = {
   title: string;
   onClose: () => void;
   commentPlaceholder?: string;
+  onQuoteEdit?: () => void;
+  onQuoteDelete?: () => void;
 };
 
 export type useQuoteDisplayArgs = {

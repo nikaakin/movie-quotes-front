@@ -13,11 +13,13 @@ export const QuoteDisplayCard = ({
   quote,
   t,
   onSelectQuote,
+  onDeleteQuote,
 }: QuoteDisplayCardProps) => {
   const { quoteText, isOutside, ref, onModalChange, onDelete } =
     useQuoteDisplayCard({
       quote,
       onSelectQuote,
+      onDeleteQuote,
     });
 
   return (
