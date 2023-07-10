@@ -6,6 +6,8 @@ import {
 import axios from './axios';
 import { resetPasswordArgs } from './type';
 import { ParsedUrlQuery } from 'querystring';
+import { AuthorizerCallback } from 'pusher-js';
+import { SocketIoChannel } from 'laravel-echo/dist/channel';
 
 export const login = (data: loginSchemaType) =>
   axios().post('/api/login', data);
@@ -32,3 +34,15 @@ export const googleLogin = (query: ParsedUrlQuery) =>
 
 export const getCsrf = () => axios().get('/sanctum/csrf-cookie');
 export const isAuthenticated = () => axios().get('/api/user');
+export const broadcastAuth = (
+  socketId: number,
+  callback: AuthorizerCallback,
+  channel: SocketIoChannel
+) =>
+  axios()
+    .post('/api/broadcasting/auth', {
+      socket_id: socketId,
+      channel_name: channel.name,
+    })
+    .then((res) => callback(null, res.data))
+    .catch((err) => callback(err, null));

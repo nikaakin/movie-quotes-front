@@ -67,11 +67,11 @@ export const useUserQuery = ({
           reject(e);
         }
       }),
-    onSuccess: () => {
+    onSuccess: (data) => {
       onSuccess && onSuccess();
       initializeWebsocket();
       (window as Window & typeof globalThis & { Echo: Echo })!
-        .Echo!.channel('notifications')
+        .Echo!.private(`notification.${data.id}`)
         .listen('NewNotification', (data: { notification: NotificationType }) =>
           queryClient.setQueryData<NotificationType[]>(
             ['notifications'],
