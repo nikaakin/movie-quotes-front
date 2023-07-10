@@ -44,7 +44,7 @@ export const SearchField = ({
       )}
       <div
         className={`sm:relative w-full sm:h-full fixed top-0 left-0  h-[80vh] ${
-          isSearchActive ? 'z-50' : '-z-10'
+          isSearchActive ? 'z-50' : '-z-10 sm:z-0'
         }`}
         ref={ref}
       >
@@ -93,7 +93,7 @@ export const SearchField = ({
                 />
               ) : (
                 <div
-                  className='text-gray-550 px-8 py-6 sm:px-0 sm:py-0 flex flex-col items-start gap-6 sm:block'
+                  className='text-gray-550 px-16 py-6 sm:px-0 sm:py-0 flex flex-col items-start gap-6 sm:block'
                   onClick={handleFocus.bind(null, true)}
                 >
                   <span className='block sm:inline-block '>

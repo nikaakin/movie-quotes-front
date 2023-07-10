@@ -35,10 +35,10 @@ export const Burgerbar = ({
             : ''
         }`}
       >
-        <div className='absolute flex flex-col top-32 left-0 w-96 gap-5'>
+        <div className='absolute flex flex-col sm:top-32 top-11 left-0 w-96 gap-5'>
           {shouldShowLinks && (
             <Fragment>
-              <div className='pl-16'>
+              <div className='pl-11'>
                 <ProfileCard
                   username={username!}
                   image={
@@ -68,7 +68,7 @@ export const Burgerbar = ({
               </div>
               <Link
                 href='/news-feed/home'
-                className='py-2 my-3 sm:my-0 sm:py-5  hover:bg-zinc-870 hover:bg-opacity-60 flex items-center gap-8 sm:gap-6 pl-16'
+                className='py-2 my-3 sm:my-0 sm:py-5  hover:bg-zinc-870 hover:bg-opacity-60 flex items-center gap-8 sm:gap-6 pl-11'
                 onClick={onBurgerBarClick.bind(null, false)}
               >
                 <HomeIcon isSelected={slug === 'home'} />
@@ -76,7 +76,7 @@ export const Burgerbar = ({
               </Link>
               <Link
                 href='/news-feed/movies'
-                className='py-3 my-2 sm:my-0 sm:py-5 hover:bg-zinc-870 hover:bg-opacity-60 flex items-center gap-8 sm:gap-6 pl-16'
+                className='py-3 sm:my-0 sm:py-5 hover:bg-zinc-870 hover:bg-opacity-60 flex items-center gap-8 sm:gap-6 pl-11'
                 onClick={onBurgerBarClick.bind(null, false)}
               >
                 <MovieCameraIcon
@@ -89,18 +89,18 @@ export const Burgerbar = ({
           <div className='block sm:hidden'>
             {username && (
               <button
-                className='py-5 w-full text-start mb-2 hover:bg-zinc-870 hover:bg-opacity-60 pl-16 text-red-550'
+                className='py-5 w-full text-start mb-2 hover:bg-zinc-870 hover:bg-opacity-60 pl-11 text-red-550'
                 onClick={onLogout}
               >
                 {t('button.logout_text')}
               </button>
             )}
             <div className='display flex flex-col gap-2'>
-              <h1 className='mb-2 pl-16'>{t('header.language')}:</h1>
+              <h1 className='mb-2 pl-11'>{t('header.language')}:</h1>
               <Link
                 href='#'
                 locale='en'
-                className=' hover:bg-zinc-870 hover:bg-opacity-60 pl-16 py-2'
+                className=' hover:bg-zinc-870 hover:bg-opacity-60 pl-11 py-2'
                 onClick={onBurgerBarClick.bind(null, false)}
               >
                 {t('locale.en')}
@@ -108,7 +108,7 @@ export const Burgerbar = ({
               <Link
                 href='#'
                 locale='ka'
-                className=' hover:bg-zinc-870 hover:bg-opacity-60 pl-16 py-2'
+                className=' hover:bg-zinc-870 hover:bg-opacity-60 pl-11 py-2'
                 onClick={onBurgerBarClick.bind(null, false)}
               >
                 {t('locale.ka')}
