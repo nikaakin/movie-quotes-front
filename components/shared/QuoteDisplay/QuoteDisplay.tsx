@@ -117,7 +117,10 @@ export const QuotesDisplay = ({
           {updatedComments.length}
           <CommentIcon />
         </div>
-        <div className='flex gap-3' onClick={onLike.bind(null, quote.id)}>
+        <div
+          className='flex gap-3 cursor-pointer'
+          onClick={onLike.bind(null, quote.id)}
+        >
           {updatedLikes}
           <HeartIcon shouldFill={liked} />
         </div>

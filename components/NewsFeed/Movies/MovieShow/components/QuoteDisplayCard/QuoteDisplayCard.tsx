@@ -23,7 +23,7 @@ export const QuoteDisplayCard = ({
     });
 
   return (
-    <div className='bg-neutral-950 px-8 w-full sm:w-200 relative'>
+    <div className='bg-neutral-950 px-8 w-full sm:w-200 relative rounded-[10px]'>
       <div
         className='absolute sm:top-6 sm:right-8 sm:bottom-full bottom-8 right-10 cursor-pointer '
         ref={ref}
