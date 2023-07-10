@@ -19,7 +19,8 @@ export const MovieShow = () => {
     currentModal,
     onSelectedIdChange,
     selectedQuote,
-    onDelete,
+    onDeleteMovie,
+    deleteQuoteMutation,
   } = useMovieShow();
   return (
     <div className='flex-1  sm:pl-0 sm:pr-16 pt-4 sm:pt-8 pb-52 text-white'>
@@ -66,6 +67,8 @@ export const MovieShow = () => {
               onClose={onModalChange.bind(null, null)}
               quote={selectedQuote!}
               title={t('common:movie_show.view_quote')}
+              onQuoteDelete={() => deleteQuoteMutation(selectedQuote!.id)}
+              onQuoteEdit={onModalChange.bind(null, 'edit-quote')}
             />
           ) : null}
         </Modal>
@@ -93,7 +96,10 @@ export const MovieShow = () => {
               >
                 <PencilIcon />
               </button>
-              <button className='pl-6 flex items-center' onClick={onDelete}>
+              <button
+                className='pl-6 flex items-center'
+                onClick={onDeleteMovie}
+              >
                 <TrashBinIcon />
               </button>
             </div>
@@ -147,6 +153,7 @@ export const MovieShow = () => {
               key={quote.id}
               t={t}
               onSelectQuote={onSelectedIdChange}
+              onDeleteQuote={deleteQuoteMutation.bind(null, quote.id)}
             />
           ))}
       </div>
