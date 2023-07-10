@@ -1,6 +1,6 @@
 import {
-  AddMovie,
   Modal,
+  MovieMutation,
   PencilIcon,
   PlusIcon,
   QuoteDisplayCard,
@@ -40,7 +40,7 @@ export const MovieShow = () => {
               movieYear={movie?.year}
             />
           ) : currentModal === 'edit-movie' ? (
-            <AddMovie
+            <MovieMutation
               t={t}
               defaultValues={{
                 description_en: movie?.description.en,

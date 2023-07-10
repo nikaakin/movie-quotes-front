@@ -7,11 +7,11 @@ import {
   CustomSelect,
   MovieInput,
 } from '@/components';
-import { addMovieProps } from './type';
-import { useAddMovie } from './useAddMovie';
+import { MovieMutationProps } from './type';
+import { useMovieMutation } from './useMovieMutation';
 import { reactSelectStyles } from '@/styles';
 
-export const AddMovie = ({ t, defaultValues }: addMovieProps) => {
+export const MovieMutation = ({ t, defaultValues }: MovieMutationProps) => {
   const {
     image,
     username,
@@ -24,7 +24,7 @@ export const AddMovie = ({ t, defaultValues }: addMovieProps) => {
     onSubmit,
     onClose,
     defaultValueGenres,
-  } = useAddMovie({
+  } = useMovieMutation({
     t,
     defaultValues,
   });

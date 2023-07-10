@@ -14,13 +14,13 @@ import { AxiosError } from 'axios';
 import { useRouter } from 'next/router';
 import { FieldValue, FieldValues, useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
-import { addMovieProps } from './type';
+import { MovieMutationProps } from './type';
 import { movieSchema } from '@/schema';
 
-export const useAddMovie = <T extends FieldValues>({
+export const useMovieMutation = <T extends FieldValues>({
   defaultValues,
   t,
-}: addMovieProps) => {
+}: MovieMutationProps) => {
   const queryClient = useQueryClient();
   const dispatch = useDispatch();
   const {
