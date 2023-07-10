@@ -3,6 +3,7 @@ import { getCsrf, isAuthenticated, logout } from '@/services';
 import { setCurrentModal } from '@/state';
 import { setIsSearchBarOn } from '@/state';
 import { useQuery } from '@tanstack/react-query';
+import Echo from 'laravel-echo';
 import { useTranslation } from 'next-i18next';
 import { useRouter } from 'next/router';
 import { useDispatch } from 'react-redux';
@@ -22,6 +23,11 @@ export const useHeader = () => {
   const { refetch: logoutUser } = useQuery({
     queryKey: ['user'],
     queryFn: () => logout(),
+    onSuccess: () =>
+      (window as Window &
+        typeof globalThis & { Echo: Echo })!.Echo!.leaveChannel(
+        'notification.' + data?.id
+      ),
     enabled: false,
     refetchOnWindowFocus: false,
   });
