@@ -1,4 +1,3 @@
-import { ProfileCard } from '@/components';
 import { QuoteCardProps } from './type';
 import { CommentIcon, HeartIcon } from '@/components';
 import { useQuoteCard } from './useQuoteCard';
