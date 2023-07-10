@@ -29,6 +29,7 @@ export const useQuoteMutationModal = ({
   defaultQuoteEng,
   defaultQuoteGeo,
   quoteId,
+  fromSearch,
 }: useQuoteMutateModalArgs) => {
   const { locale } = useRouter();
   const dispatch = useDispatch();
@@ -58,7 +59,23 @@ export const useQuoteMutationModal = ({
       defaultQuoteEng ? updateQuote(quoteId!, data) : storeQuote(data),
     onSuccess: (data) => {
       dispatch(setCurrentModal(null));
-      if (movieId) {
+      if (fromSearch) {
+        queryClient.setQueriesData<{ pages: { quotes: QuoteType[] }[] }>(
+          ['quotes'],
+          (oldData) => {
+            const newQuotes = oldData?.pages.map((q) => {
+              const filtered = q.quotes.map((qq) => {
+                if (qq.id !== data?.id) return qq;
+                return { ...qq, ...data };
+              });
+              return { ...q, quotes: filtered };
+            });
+            return { ...oldData, pages: newQuotes } as {
+              pages: { quotes: QuoteType[] }[];
+            };
+          }
+        );
+      } else if (movieId) {
         queryClient.setQueryData(
           ['movie', movieId],
           (oldData: createMovieSchemaType) => {

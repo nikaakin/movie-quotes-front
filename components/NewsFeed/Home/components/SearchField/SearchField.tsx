@@ -1,6 +1,12 @@
 import { Fragment } from 'react';
 import { useSearchField } from './useSearchField';
-import { ArrowIcon, Modal, QuotesDisplay, SearchIcon } from '@/components';
+import {
+  ArrowIcon,
+  Modal,
+  QuoteMutateModal,
+  QuotesDisplay,
+  SearchIcon,
+} from '@/components';
 
 export const SearchField = ({
   isSearchActive,
@@ -21,6 +27,8 @@ export const SearchField = ({
     onCloseModal,
     ref,
     isOutside,
+    onDelete,
+    onQuoteEdit,
     t,
   } = useSearchField({ isSearchActive });
 
@@ -32,19 +40,32 @@ export const SearchField = ({
         } fixed top-0 left-0 w-full h-full blur-0.75 bg-lg-main opacity-50 z-40 `}
         onClick={onClose}
       ></div>
-      {currentModal === 'quote-view' && quote && (
+      {currentModal && quote && (
         <Modal onClose={onCloseModal} shouldHaveX={false} background='lg-main'>
-          <QuotesDisplay
-            onClose={onCloseModal}
-            quote={quote}
-            title={t('common:movie_show.view_quote')}
-            commentPlaceholder={t('common:movie_show.comment')!}
-          />
+          {currentModal === 'quote-view' ? (
+            <QuotesDisplay
+              onClose={onCloseModal}
+              quote={quote}
+              title={t('common:movie_show.view_quote')}
+              commentPlaceholder={t('common:movie_show.comment')!}
+              onQuoteDelete={onDelete}
+              onQuoteEdit={onQuoteEdit}
+            />
+          ) : currentModal === 'edit-quote' ? (
+            <QuoteMutateModal
+              defaultImage={quote?.image || ''}
+              defaultQuoteEng={quote?.quote['en']}
+              defaultQuoteGeo={quote?.quote['ka']}
+              movieId={quote?.movie_id + ''}
+              quoteId={quote?.id}
+              fromSearch
+            />
+          ) : null}
         </Modal>
       )}
       <div
         className={`sm:relative w-full sm:h-full fixed top-0 left-0  h-[80vh] ${
-          isSearchActive ? 'z-50' : '-z-10'
+          isSearchActive ? 'z-50' : '-z-10 sm:z-0'
         }`}
         ref={ref}
       >
@@ -93,7 +114,7 @@ export const SearchField = ({
                 />
               ) : (
                 <div
-                  className='text-gray-550 px-8 py-6 sm:px-0 sm:py-0 flex flex-col items-start gap-6 sm:block'
+                  className='text-gray-550 px-16 py-6 sm:px-0 sm:py-0 flex flex-col items-start gap-6 sm:block'
                   onClick={handleFocus.bind(null, true)}
                 >
                   <span className='block sm:inline-block '>

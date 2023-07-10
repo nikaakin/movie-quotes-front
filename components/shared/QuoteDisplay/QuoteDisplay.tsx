@@ -14,6 +14,8 @@ export const QuotesDisplay = ({
   title,
   onClose,
   commentPlaceholder,
+  onQuoteDelete,
+  onQuoteEdit,
 }: QuoteDisplayProps) => {
   const {
     userId,
@@ -37,10 +39,16 @@ export const QuotesDisplay = ({
       >
         {userId === quote.user?.id && (
           <div className='w-fit flex'>
-            <button className='sm:pr-6 pr-3 border-r-gray-350 border-r border-opacity-60 flex items-center '>
+            <button
+              className='sm:pr-6 pr-3 border-r-gray-350 border-r border-opacity-60 flex items-center '
+              onClick={onQuoteEdit}
+            >
               <PencilIcon />
             </button>
-            <button className='sm:pl-6 pl-3 flex items-center'>
+            <button
+              className='sm:pl-6 pl-3 flex items-center'
+              onClick={onQuoteDelete}
+            >
               <TrashBinIcon />
             </button>
           </div>
@@ -109,7 +117,10 @@ export const QuotesDisplay = ({
           {updatedComments.length}
           <CommentIcon />
         </div>
-        <div className='flex gap-3' onClick={onLike.bind(null, quote.id)}>
+        <div
+          className='flex gap-3 cursor-pointer'
+          onClick={onLike.bind(null, quote.id)}
+        >
           {updatedLikes}
           <HeartIcon shouldFill={liked} />
         </div>

@@ -1,10 +1,11 @@
-import { deleteMovie, showMovie } from '@/services';
-import { useMutation, useQuery } from '@tanstack/react-query';
+import { deleteMovie, deleteQuote, showMovie } from '@/services';
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { useRouter } from 'next/router';
 import { useTranslation } from 'next-i18next';
 import { RootState, setCurrentModal } from '@/state';
 import { useDispatch, useSelector } from 'react-redux';
 import { useState } from 'react';
+import { QuoteType } from '@/types';
 
 export const useMovieShow = () => {
   const [selectedQuoteId, setSelectedQuoteId] = useState<number | null>(null);
@@ -13,13 +14,31 @@ export const useMovieShow = () => {
     locale,
     replace,
   } = useRouter();
+  const queryClient = useQueryClient();
 
   const { t } = useTranslation(['common', 'modals']);
   const dispatch = useDispatch();
   const { currentModal } = useSelector(
     (state: RootState) => state.currentModal
   );
-  const { mutate } = useMutation({
+
+  const { mutate: deleteQuoteMutation } = useMutation({
+    mutationFn: (id: number) => deleteQuote(id),
+    onSuccess: () => {
+      dispatch(setCurrentModal(null));
+      queryClient.setQueriesData<{ quotes: QuoteType[] }>(
+        ['movie', `${movieId}`],
+        (oldData) => {
+          const newQuotes = oldData?.quotes.filter(
+            (q) => q.id !== selectedQuoteId
+          );
+          return { ...oldData, quotes: newQuotes } as { quotes: QuoteType[] };
+        }
+      );
+    },
+  });
+
+  const { mutate: deleteMovieMutation } = useMutation({
     mutationFn: () => deleteMovie(parseInt(movieId as string)),
     onSuccess: () => {
       replace('/news-feed/movies');
@@ -39,7 +58,7 @@ export const useMovieShow = () => {
   const selectedQuote = movie?.quotes.find(
     (quote) => quote.id === selectedQuoteId
   );
-  const onDelete = () => mutate();
+  const onDeleteMovie = () => deleteMovieMutation();
 
   return {
     locale: locale as 'en' | 'ka',
@@ -49,6 +68,7 @@ export const useMovieShow = () => {
     onSelectedIdChange,
     selectedQuote,
     t,
-    onDelete,
+    onDeleteMovie,
+    deleteQuoteMutation,
   };
 };

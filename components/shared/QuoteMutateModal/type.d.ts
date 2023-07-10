@@ -14,6 +14,7 @@ export type QuoteMutateModalProps = {
     genre: languageType;
   }[];
   movieDirector?: string;
+  fromSearch?: boolean;
 };
 
 export type useQuoteMutateModalArgs = {
@@ -22,4 +23,5 @@ export type useQuoteMutateModalArgs = {
   defaultImage?: string;
   movieId?: string;
   quoteId?: number;
+  fromSearch: boolean;
 };

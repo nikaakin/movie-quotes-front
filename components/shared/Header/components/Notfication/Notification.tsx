@@ -65,7 +65,7 @@ export const Notification = () => {
                       <h2 className='mb-1 text-xl capitalize'>
                         {notification.user.username}
                       </h2>
-                      <div className='flex items-center gap-3  sm:text-xl text-base '>
+                      <div className='flex items-start gap-3  sm:text-xl text-base '>
                         {notification.comment ? (
                           <Fragment>
                             <CommentWithQuoteIcon />

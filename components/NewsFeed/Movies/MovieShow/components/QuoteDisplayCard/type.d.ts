@@ -5,9 +5,11 @@ export type QuoteDisplayCardProps = {
   quote: QuoteType;
   t: TFunction;
   onSelectQuote: (_: number) => void;
+  onDeleteQuote: () => void;
 };
 
 export type useQuoteDisplayCardArgs = {
   quote: QuoteType;
   onSelectQuote: (_: number) => void;
+  onDeleteQuote: () => void;
 };
