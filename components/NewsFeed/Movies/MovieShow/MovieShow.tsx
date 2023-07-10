@@ -108,7 +108,7 @@ export const MovieShow = () => {
           <div className='text-lg font-bold flex gap-2 flex-wrap mb-5'>
             {movie?.genres.map((genre) => (
               <span
-                key={genre.id}
+                key={genre.genre['en']}
                 className='bg-gray-550 px-3 py-1 rounded-[4px]'
               >
                 {genre.genre[locale]}
