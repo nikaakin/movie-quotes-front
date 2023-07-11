@@ -147,7 +147,7 @@ export const QuoteMutateModal = ({
                 getFieldState={getFieldState}
                 name='movie'
                 options={options!}
-                placeholder={t('modals:attributes.movie')}
+                placeholder={t('modals:form.add_quote.choose')}
                 styles={QuoteMutationSelectStyles}
                 shouldHaveIndicator
               />
@@ -155,7 +155,11 @@ export const QuoteMutateModal = ({
           )}
 
           <Button
-            content={t('modals:form.add_quote.submit')}
+            content={
+              defaultQuoteEng
+                ? t('modals:form.add_quote.edit_submit')
+                : t('modals:form.add_quote.title')
+            }
             classes=' w-full py-2 text-xl'
             type='submit'
           />

@@ -40,7 +40,7 @@ export const QuotesDisplay = ({
         {userId === quote.user?.id && (
           <div className='w-fit flex'>
             <button
-              className='sm:pr-6 pr-3 border-r-gray-350 border-r border-opacity-60 flex items-center '
+              className='sm:pr-6 pr-3 border-r-gray-350 border-r border-opacity-40 flex items-center '
               onClick={onQuoteEdit}
             >
               <PencilIcon />
@@ -53,7 +53,7 @@ export const QuotesDisplay = ({
             </button>
           </div>
         )}
-        <h1 className='sm:text-2xl text-xl font-medium hidden mb:block  '>
+        <h1 className=' absolute top-6 left-1/2 -translate-x-1/2 sm:text-2xl text-xl font-medium hidden sm:block  '>
           {title}
         </h1>
         <button onClick={onClose}>
