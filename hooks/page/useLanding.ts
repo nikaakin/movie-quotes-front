@@ -90,10 +90,13 @@ export const useLandingPage = () => {
   const changeIndex = (index: number) => {
     if (index > 2) return;
     setShouldAnimate(true);
+    setTimeout(() => {
+      const bottom = imageRefs[index]?.current?.getBoundingClientRect()?.bottom;
+      bottom &&
+        window.scrollTo({ behavior: 'smooth', top: 1200 * (index + 1) - 280 });
+    }, 0);
+
     setTimeout(() => setShouldAnimate(false), 1000);
-    const bottom = imageRefs[index]?.current?.getBoundingClientRect()?.bottom;
-    bottom &&
-      window.scrollTo({ behavior: 'smooth', top: 1200 * (index + 1) - 280 });
   };
 
   const onClose = () => dispatch(setCurrentModal(null));
