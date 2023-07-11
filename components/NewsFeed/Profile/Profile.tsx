@@ -65,11 +65,13 @@ export const Profile = () => {
               />
             </Modal>
           )}
-          <h1 className='p-8 hidden sm:block '>{t('header.profile')}</h1>
+          <h1 className='p-8 hidden sm:block text-2xl '>
+            {t('header.profile')}
+          </h1>
           <button className='p-6 sm:hidden block' onClick={resetState}>
             <ArrowIcon />
           </button>
-          <section className='w-full h-full sm:w-250 sm:h-auto relative sm:mt-20 bg-zinc-870 sm:bg-neutral-950 backdrop-blur-xl sm:rounded-[12px] rounded-t-[12px] mb-20 sm:pl-48 sm:pt-48 sm:pr-72 pb-10 px-8'>
+          <section className='w-full h-full sm:w-250 sm:h-auto relative sm:mt-20 bg-zinc-870 sm:bg-neutral-950 backdrop-blur-xl sm:rounded-[12px] rounded-t-[12px] mb-20 sm:pl-48 sm:pt-48 sm:pr-72 pb-36 px-8'>
             <div
               className={`absolute top-0 left-1/2 -translate-x-1/2 sm:-translate-y-1/3 translate-y-7 ${
                 (editPassword || editUsername || editEmail) && 'hidden'
