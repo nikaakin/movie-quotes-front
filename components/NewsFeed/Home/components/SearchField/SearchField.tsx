@@ -31,7 +31,6 @@ export const SearchField = ({
     onQuoteEdit,
     t,
   } = useSearchField({ isSearchActive });
-
   return (
     <Fragment>
       <div
@@ -40,12 +39,12 @@ export const SearchField = ({
         } fixed top-0 left-0 w-full h-full blur-0.75 bg-lg-main opacity-50 z-40 `}
         onClick={onClose}
       ></div>
-      {currentModal && quote && (
+      {currentModal && (
         <Modal onClose={onCloseModal} shouldHaveX={false} background='lg-main'>
           {currentModal === 'quote-view' ? (
             <QuotesDisplay
               onClose={onCloseModal}
-              quote={quote}
+              quote={quote!}
               title={t('common:movie_show.view_quote')}
               commentPlaceholder={t('common:movie_show.comment')!}
               onQuoteDelete={onDelete}
@@ -60,6 +59,8 @@ export const SearchField = ({
               quoteId={quote?.id}
               fromSearch
             />
+          ) : currentModal === 'add-quote' ? (
+            <QuoteMutateModal />
           ) : null}
         </Modal>
       )}
@@ -102,12 +103,12 @@ export const SearchField = ({
               )}
             </div>
             {isSearchActive ? (
-              isFocused ? (
+              !isOutside ? (
                 <input
                   name='search_field'
                   id='search_field'
                   type='text'
-                  className='z-50 absolute top-0 left-8 bg-transparent  focus:outline-none text-white  w-full  hidden sm:!block pr-10 search'
+                  className='z-50 absolute top-0 left-8 bg-transparent  focus:outline-none text-white  w-full  hidden sm:!block pr-10 search '
                   value={searchValue}
                   onChange={handleSearch}
                   ref={(input) => input && input.focus()}

@@ -33,9 +33,11 @@
       "upload": "Upload Image"
     },
     "add_quote": {
-      "title": "Add Movie",
-      "submit": "Add movie",
-      "edit": "Edit quote"
+      "title": "Add Quote",
+      "submit": "Add Quote",
+      "edit": "Edit quote",
+      "edit_submit": "Save changes",
+      "choose": "Choose movie"
     },
     "login": {
       "title": "Log in to your account",
