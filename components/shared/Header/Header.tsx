@@ -18,11 +18,14 @@ export const Header = ({ shouldhavelinks = false }) => {
 
   return (
     <header
-      className={`py-6  sm:px-16 px-9 flex justify-between w-full text-white max-h-22 items-center ${
+      className={`py-6  sm:px-16 px-4 flex justify-between w-full text-white max-h-22 items-center ${
         username && 'bg-zinc-850 bg-opacity-80'
       }`}
     >
-      <Link href='/' className='hidden sm:block'>
+      <Link
+        href='/'
+        className={`hidden sm:block ${!shouldhavelinks && '!block'}`}
+      >
         <h1 className='uppercase text-orange-250 text-base font-medium '>
           movie quotes
         </h1>
@@ -53,11 +56,11 @@ export const Header = ({ shouldhavelinks = false }) => {
             />
           </Fragment>
         ) : (
-          <Fragment>
+          <div className='flex gap-2 sm:gap-4'>
             <Button
               content={t('button.login_text')}
               isTransparent
-              classes='sm:px-6 py-1 px-3'
+              classes='sm:px-6 py-1 px-3 sm:order-1'
               onClick={onShowLogin}
             />
             <Button
@@ -65,7 +68,7 @@ export const Header = ({ shouldhavelinks = false }) => {
               classes='sm:px-6 py-1 px-3'
               onClick={onShowRegister}
             />
-          </Fragment>
+          </div>
         )}
       </div>
     </header>

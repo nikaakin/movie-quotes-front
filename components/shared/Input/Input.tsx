@@ -53,15 +53,15 @@ export const Input = ({
           placeholder={placeholder}
           value={value}
           {...register}
-          className={`  disabled:bg-gray-250 focus:shadow-input px-3 py-2 pr-14 border w-full border-gray-350 text-neutral-850 text-base rounded-[4px] placeholder:text-gray-550  bg-gray-350 ${classNames} ${
+          className={`border-[2px] disabled:bg-gray-250 focus:shadow-input px-3 py-2 pr-16 w-full border-gray-350 text-neutral-850 text-base rounded-[4px] placeholder:text-gray-550  bg-gray-350 ${classNames} ${
             shouldHide && 'pr-15'
           }
-          ${isDirty && !invalid && 'border-green-750 border-[2px]'}
+          ${isDirty && !invalid && 'border-green-750'}
           ${error && 'border-red-650 '}
           `}
           disabled={disabled}
         />
-        <div className='absolute top-1/2 right-2  -translate-y-1/2 flex flex-row  gap-1 items-center'>
+        <div className='absolute top-1/2 right-3  -translate-y-1/2 flex flex-row  gap-1 items-center'>
           {fieldValue !== '' && isDirty && (
             <button
               type='button'

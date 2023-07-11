@@ -26,6 +26,8 @@ module.exports = {
           'linear-gradient(180deg, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0) 100%)',
         'lg-main':
           'linear-gradient(187.16deg, #181623 0.07%, #191725 51.65%, #0D0B14 98.75%)',
+        'lg-modals':
+          'linear-gradient(225deg, #181623 0.07%, #191725 50.66%, #0D0B14 96.88%)',
         'lg-blur':
           'linear-gradient(112.94deg, rgba(239, 239, 239, 0.3) -1.81%, rgba(239, 239, 239, 0.00514528) -102.5%, rgba(1, 1, 1, 0.00260417) -102.51%, rgba(239, 239, 239, 0.05) 102.52%)',
         'image-tranparent': 'transparent',

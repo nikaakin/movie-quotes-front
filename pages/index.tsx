@@ -31,9 +31,9 @@ export default function Home() {
   } = useLandingPage();
 
   return (
-    <div className='overflow-hidden relative pt-107  sm:pt-200 text-white'>
+    <div className='overflow-hidden relative pt-107 sm:pt-200 text-white'>
       {currentModal && (
-        <Modal onClose={onClose}>
+        <Modal onClose={onClose} background='black backdrop-blur-sm'>
           {currentModal === 'login' ? (
             <Login />
           ) : currentModal === 'register' ? (

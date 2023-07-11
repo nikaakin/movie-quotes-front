@@ -19,10 +19,10 @@ export const Login = () => {
 
   return (
     <div
-      className='bg-zinc-850 w-full h-full py-16 sm:py-14 
-     sm:px-32 text-white sm:rounded-[10px] flex items-center flex-col '
+      className=' sm:bg-zinc-850 sm:bg-none  bg-lg-modals w-full h-full py-16 sm:py-14 
+     sm:px-32 text-white sm:rounded-[10px] flex items-center flex-col overflow-auto'
     >
-      <h1 className='mx-auto font-medium text-3xl  text-center mb-3'>
+      <h1 className='mx-auto font-medium sm:text-3xl text-2xl  text-center mb-3'>
         {t('form.login.title')}
       </h1>
       <h3 className='text-gray-550 text-center mb-6 '>
@@ -30,7 +30,6 @@ export const Login = () => {
       </h3>
       <form className='w-90' onSubmit={handleSubmit(onSubmit)}>
         <Input
-          required
           control={control}
           getFieldState={getFieldState}
           title={t('form.login.inputs.emailOrUsername.title')!}
@@ -41,7 +40,6 @@ export const Login = () => {
         />
 
         <Input
-          required
           shouldHide
           type='password'
           title={t('form.login.inputs.password.title')!}
@@ -57,10 +55,10 @@ export const Login = () => {
           <span className='absolute top-2 left-0 -translate-y-full text-red-550 text-base'>
             {invalidCredentialsError as string}
           </span>
-          <div className='flex-1'>
+          <div className='flex-1 flex items-center'>
             <input
               type='checkbox'
-              className='rounded mr-2'
+              className='rounded mr-2 w-4 h-4 '
               id='remember'
               {...register('remember')}
             />

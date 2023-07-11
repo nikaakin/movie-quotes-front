@@ -12,7 +12,7 @@ export const Burgerbar = ({
   const { isBurgerOpen, onBurgerBarClick, slug, image, username, pathname, t } =
     useBurgerbar();
   return (
-    <Fragment>
+    <div className={`${!shouldShowLinks && 'invisible -z-10'}`}>
       <button
         onClick={onBurgerBarClick.bind(null, true)}
         className='sm:hidden block'
@@ -117,6 +117,6 @@ export const Burgerbar = ({
           </div>
         </div>
       </div>
-    </Fragment>
+    </div>
   );
 };
