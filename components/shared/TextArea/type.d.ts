@@ -1,13 +1,12 @@
 import {
   Control,
   FieldValues,
-  Path,
   UseFormGetFieldState,
   UseFormSetValue,
 } from 'react-hook-form';
 
 export type TextAreaType<T> = {
-  name: Path<T>;
+  name: string;
   title?: string;
   setValue?: UseFormSetValue<FieldValues<T>>;
   getFieldState: UseFormGetFieldState<T>;
@@ -18,6 +17,6 @@ export type TextAreaType<T> = {
 
 export type useTextAreaType<T> = {
   getFieldState: UseFormGetFieldState<T>;
-  name: Path<T>;
+  name: string;
   control: Control<FieldValues<T>, any>;
 };
