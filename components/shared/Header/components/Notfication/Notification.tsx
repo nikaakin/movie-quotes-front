@@ -46,7 +46,9 @@ export const Notification = () => {
               <div
                 onClick={() => onNotificationSeen(notification.id)}
                 key={notification.id}
-                className='border border-gray-550 border-opacity-50 sm:px-6 px-4 py-4'
+                className={`border border-gray-550 border-opacity-50 sm:px-6 px-4 py-4 ${
+                  !notification.seen && 'cursor-pointer'
+                }`}
               >
                 <div className='flex gap-3 sm:gap-6'>
                   <div
@@ -62,7 +64,7 @@ export const Notification = () => {
                   </div>
                   <div className='flex flex-col sm:flex-row justify-between flex-1 gap-2'>
                     <div>
-                      <h2 className='mb-1 text-xl capitalize'>
+                      <h2 className='mb-1 text-xl capitalize break-all'>
                         {notification.user.username}
                       </h2>
                       <div className='flex items-start gap-3  sm:text-xl text-base '>

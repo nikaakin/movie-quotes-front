@@ -85,9 +85,9 @@ export const MovieShow = () => {
             className='w-full h-full object-cover rounded-xl'
           />
         </div>
-        <div className='flex-1'>
-          <div className='flex sm:justify-between sm:flex-row flex-col mb-6 gap-3'>
-            <h3 className='text-2xl text-orange-250 font-medium '>
+        <div className='flex-1 sm:max-w-lg max-w-[80vw]'>
+          <div className='flex sm:justify-between sm:flex-row flex-col mb-6 gap-3 items-start'>
+            <h3 className='text-2xl text-orange-250 font-medium break-all'>
               {movie?.title[locale]} ({movie?.year})
             </h3>
             <div className='bg-zinc-870 bg-opacity-60 rounded-[10px] px-7 py-3 w-fit flex'>
@@ -120,11 +120,13 @@ export const MovieShow = () => {
               {t('common:movie_show.director')}
             </span>
             :
-            <span className='text-lg font-medium pl-3'>
+            <span className='text-lg font-medium pl-3 break-all'>
               {movie?.director[locale]}
             </span>
           </div>
-          <p className='text-gray-350 text-lg'>{movie?.description[locale]}</p>
+          <p className='text-gray-350 text-lg break-words'>
+            {movie?.description[locale]}
+          </p>
         </div>
       </div>
       <div className='flex sm:gap-4 gap-9 flex-col sm:flex-row relative sm:items-center px-8 mb-9 sm:mb-16'>
