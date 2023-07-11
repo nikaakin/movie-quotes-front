@@ -18,11 +18,14 @@ export const Header = ({ shouldhavelinks = false }) => {
 
   return (
     <header
-      className={`py-6  sm:px-16 px-9 flex justify-between w-full text-white max-h-22 items-center ${
+      className={`py-6  sm:px-16 px-4 flex justify-between w-full text-white max-h-22 items-center ${
         username && 'bg-zinc-850 bg-opacity-80'
       }`}
     >
-      <Link href='/' className='hidden sm:block'>
+      <Link
+        href='/'
+        className={`hidden sm:block ${!shouldhavelinks && '!block'}`}
+      >
         <h1 className='uppercase text-orange-250 text-base font-medium '>
           movie quotes
         </h1>

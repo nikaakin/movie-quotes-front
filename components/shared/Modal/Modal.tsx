@@ -12,7 +12,7 @@ export const Modal: FC<ModalProps> = ({
   const modalLayout = (content: ReactNode) => (
     <div className='fade-in'>
       <div
-        className={`fixed top-0 left-0 w-full h-full blur-0.75 bg-${background} opacity-50 z-[500] `}
+        className={`fixed top-0 left-0 w-full h-full bg-${background} bg-opacity-50 backdrop-blur-sm z-[500] `}
         onClick={onClose}
       ></div>
       <div className='fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-[500] h-full sm:h-fit w-full sm:w-fit'>
