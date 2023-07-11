@@ -18,9 +18,9 @@ export const Header = ({ shouldhavelinks = false }) => {
 
   return (
     <header
-      className={`py-6  sm:px-16 px-4 flex justify-between w-full text-white max-h-22 items-center ${
-        username && 'bg-zinc-850 bg-opacity-80'
-      }`}
+      className={`py-6  sm:px-16  flex justify-between w-full text-white max-h-22 items-center ${
+        shouldhavelinks ? 'px-8' : 'px-4'
+      } ${username && 'bg-zinc-850 bg-opacity-80'}`}
     >
       <Link
         href='/'
