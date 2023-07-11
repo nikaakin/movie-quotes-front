@@ -1,7 +1,5 @@
 import { Header, Movies, Profile, Home } from '@/components';
 import { useNewsFeed } from '@/hooks';
-import { fetchQuotes } from '@/services';
-import { QueryClient, dehydrate } from '@tanstack/react-query';
 import { GetStaticProps } from 'next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
@@ -28,17 +26,8 @@ export default function NewsFeed() {
 }
 
 export const getStaticProps: GetStaticProps = async ({ params, locale }) => {
-  const queryClient = new QueryClient();
-  if (params?.slug === 'home') {
-    await queryClient.prefetchInfiniteQuery({
-      queryKey: ['quotes'],
-      queryFn: ({ pageParam = 0 }) => fetchQuotes(pageParam),
-    });
-  }
-
   return {
     props: {
-      dehydratedState: JSON.parse(JSON.stringify(dehydrate(queryClient))),
       ...(await serverSideTranslations(locale ?? 'en', [
         'common',
         'modals',
