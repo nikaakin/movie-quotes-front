@@ -1,7 +1,6 @@
 import {
   Control,
   FieldValues,
-  Path,
   UseFormGetFieldState,
   UseFormRegisterReturn,
   UseFormSetValue,
@@ -9,7 +8,7 @@ import {
 
 export type MovieInputType<T> = {
   register: UseFormRegisterReturn<FieldValues<T>>;
-  name: Path<T>;
+  name: string;
   title?: string;
   type?: string;
   classNames?: string;
@@ -21,6 +20,6 @@ export type MovieInputType<T> = {
 
 export type useMovieInputType<T> = {
   getFieldState: UseFormGetFieldState<FieldValues<T>>;
-  name: Path<T>;
+  name: string;
   control: Control<FieldValues<T>, any>;
 };

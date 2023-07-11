@@ -137,7 +137,7 @@ export const useMovieMutation = <T extends FieldValues>({
 
   return {
     image: user?.image,
-    username: user?.username,
+    username: user?.username as string,
     register,
     handleSubmit,
     setValue,
