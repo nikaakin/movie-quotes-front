@@ -40,7 +40,11 @@ export const SearchField = ({
         onClick={onClose}
       ></div>
       {currentModal && (
-        <Modal onClose={onCloseModal} shouldHaveX={false} background='lg-main'>
+        <Modal
+          onClose={onCloseModal}
+          shouldHaveX={false}
+          background='lg-modals opacity-50 backdrop-blur-sm'
+        >
           {currentModal === 'quote-view' ? (
             <QuotesDisplay
               onClose={onCloseModal}

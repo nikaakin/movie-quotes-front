@@ -33,7 +33,10 @@ export default function Home() {
   return (
     <div className='overflow-hidden relative pt-107 sm:pt-200 text-white'>
       {currentModal && (
-        <Modal onClose={onClose} background='black backdrop-blur-sm'>
+        <Modal
+          onClose={onClose}
+          background='black bg-opacity-50 backdrop-blur-sm'
+        >
           {currentModal === 'login' ? (
             <Login />
           ) : currentModal === 'register' ? (

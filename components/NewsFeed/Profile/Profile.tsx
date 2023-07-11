@@ -46,7 +46,11 @@ export const Profile = () => {
   return (
     <div className='flex-1 text-white bg-neutral-950 sm:bg-transparent h-full'>
       {currentModal === 'confirmation-notification' ? (
-        <Modal onClose={onClose} background='lg-main' shouldHaveX={false}>
+        <Modal
+          onClose={onClose}
+          background='lg-modals opacity-50 backdrop-blur-sm'
+          shouldHaveX={false}
+        >
           <ConfirmationModal
             onClose={onClose}
             onSubmit={onSubmit.bind(null, editData)}
@@ -58,7 +62,11 @@ export const Profile = () => {
       ) : (
         <Fragment>
           {currentModal === 'edit-notification' && (
-            <Modal onClose={onClose} background='lg-main' shouldHaveX={false}>
+            <Modal
+              onClose={onClose}
+              background='lg-modals opacity-50 backdrop-blur-sm'
+              shouldHaveX={false}
+            >
               <EditNotification
                 onClose={onClose}
                 title={t('profile.changed')}
