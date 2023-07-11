@@ -43,7 +43,7 @@ export const Burgerbar = ({
                   username={username!}
                   image={
                     <div
-                      className={`bg-white rounded-[50%] w-10 h-10 sm:w-16 sm:h-16 overflow-hidden  border sm:border-[2px] ${
+                      className={`bg-white rounded-[50%] w-10 h-10 sm:w-16 sm:h-16 shrink-0 overflow-hidden  border sm:border-[2px] ${
                         slug === 'profile'
                           ? 'border-red-650 '
                           : 'border-transparent '

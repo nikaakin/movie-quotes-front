@@ -48,7 +48,7 @@ export const QuoteCard = ({
         </div>
       </div>
 
-      <h3 className='text-base sm:text-xl pb-7'>
+      <h3 className='text-base sm:text-xl pb-7 break-all'>
         “{quote[locale]}” {t('home:movie')} -{' '}
         <span className='text-orange-250'>{movie.title[locale]}</span> (
         {movie.year})

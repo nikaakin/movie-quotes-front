@@ -18,7 +18,7 @@ export const MovieCard = ({
           className='w-full h-72  object-cover rounded-xl'
         />
       </div>
-      <h1 className='text-2xl font-medium mb-4'>
+      <h1 className='text-2xl font-medium mb-4 break-all sm:pr-16'>
         {title[locale]} ({year})
       </h1>
       <h3 className='text-xl flex gap-2'>
