@@ -44,7 +44,7 @@ export const Dropdown = () => {
                 onClick={() => setShow(!show)}
                 className='block px-10 py-2 w-full hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white'
               >
-                {t('locale.ka')}
+                {t('locale.ka_short')}
               </Link>
             </li>
             <li>
@@ -54,7 +54,7 @@ export const Dropdown = () => {
                 onClick={() => setShow(!show)}
                 className='block px-10 py-2 w-full hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white'
               >
-                {t('locale.en')}
+                {t('locale.en_short')}
               </Link>
             </li>
           </ul>

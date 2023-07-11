@@ -15,7 +15,9 @@
   },
   "locale": {
     "en": "English",
-    "ka": "Georgian"
+    "ka": "Georgian",
+    "en_short": "Eng",
+    "ka_short": "Geo"
   },
   "landing": {
     "main_title": "Find any quote in millions of movie lines",

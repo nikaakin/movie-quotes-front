@@ -53,11 +53,11 @@ export const Header = ({ shouldhavelinks = false }) => {
             />
           </Fragment>
         ) : (
-          <Fragment>
+          <div className='flex gap-2 sm:gap-4'>
             <Button
               content={t('button.login_text')}
               isTransparent
-              classes='sm:px-6 py-1 px-3'
+              classes='sm:px-6 py-1 px-3 sm:order-1'
               onClick={onShowLogin}
             />
             <Button
@@ -65,7 +65,7 @@ export const Header = ({ shouldhavelinks = false }) => {
               classes='sm:px-6 py-1 px-3'
               onClick={onShowRegister}
             />
-          </Fragment>
+          </div>
         )}
       </div>
     </header>
