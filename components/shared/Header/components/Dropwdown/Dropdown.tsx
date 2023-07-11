@@ -11,7 +11,7 @@ export const Dropdown = () => {
         className='text-white bg-transparent rounded  focus:outline-none  font-medium  text-base px-4 py-2.5 text-center inline-flex items-center'
         type='button'
       >
-        {t(`locale.${locale}`)}
+        {t(`locale.${locale}_short`)}
         <svg
           className='w-4 h-4 ml-2'
           aria-hidden='true'
@@ -44,7 +44,7 @@ export const Dropdown = () => {
                 onClick={() => setShow(!show)}
                 className='block px-10 py-2 w-full hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white'
               >
-                {t('locale.ka_short')}
+                {t('locale.ka')}
               </Link>
             </li>
             <li>
@@ -54,7 +54,7 @@ export const Dropdown = () => {
                 onClick={() => setShow(!show)}
                 className='block px-10 py-2 w-full hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white'
               >
-                {t('locale.en_short')}
+                {t('locale.en')}
               </Link>
             </li>
           </ul>
