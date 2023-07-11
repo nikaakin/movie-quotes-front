@@ -24,7 +24,7 @@ export const Movies = () => {
       {currentModal === 'add-movie' && (
         <Modal
           onClose={onModalClose}
-          background='lg-modals opacity-50 backdrop-blur-sm'
+          background='lg-modals opacity-70 backdrop-blur-sm'
           shouldHaveX={false}
         >
           <MovieMutation t={t} />

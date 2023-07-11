@@ -43,7 +43,7 @@ export const SearchField = ({
         <Modal
           onClose={onCloseModal}
           shouldHaveX={false}
-          background='lg-modals opacity-50 backdrop-blur-sm'
+          background='lg-modals opacity-70 backdrop-blur-sm'
         >
           {currentModal === 'quote-view' ? (
             <QuotesDisplay
@@ -151,7 +151,7 @@ export const SearchField = ({
             {searchResults.map((quote) => (
               <div
                 key={quote.id}
-                className='flex items-center gap-4 hover:bg-white hover:bg-opacity-5 w-full pl-12 py-2 '
+                className='flex items-center gap-4 hover:bg-white hover:bg-opacity-5 w-full px-4 py-2 '
                 onClick={onQuoteView.bind(null, quote)}
               >
                 <h3>{quote?.quote[locale]}</h3>

@@ -48,7 +48,7 @@ export const Profile = () => {
       {currentModal === 'confirmation-notification' ? (
         <Modal
           onClose={onClose}
-          background='lg-modals opacity-50 backdrop-blur-sm'
+          background='lg-modals opacity-70 backdrop-blur-sm'
           shouldHaveX={false}
         >
           <ConfirmationModal
@@ -64,7 +64,7 @@ export const Profile = () => {
           {currentModal === 'edit-notification' && (
             <Modal
               onClose={onClose}
-              background='lg-modals opacity-50 backdrop-blur-sm'
+              background='lg-modals opacity-70 backdrop-blur-sm'
               shouldHaveX={false}
             >
               <EditNotification
