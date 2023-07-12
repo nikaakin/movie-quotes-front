@@ -27,7 +27,6 @@ export const useLandingPage = () => {
     },
     onError: (error) => {
       dispatch(setCurrentModal('login'));
-      console.log(error);
       const errors = error?.response?.data as { details: { username: string } };
       push(`/?error=${errors?.details?.username}`);
     },
