@@ -32,7 +32,7 @@ export const MovieShow = () => {
         >
           {currentModal === 'add-quote' ? (
             <QuoteMutateModal
-              movieId={selectedQuote?.movie_id + ''}
+              movieId={movie?.id}
               movieDirector={movie?.director[locale]}
               movieGenres={movie?.genres}
               movieTitle={movie?.title[locale]}
