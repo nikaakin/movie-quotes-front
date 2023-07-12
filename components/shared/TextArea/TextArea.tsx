@@ -11,6 +11,7 @@ export const TextArea = <T,>({
   control,
   language,
   defaultValue = '',
+  labelShouldStay = false,
 }: TextAreaType<T>) => {
   const { error, invalid, isDirty, fieldValue, isFocused, setIsFocused } =
     useTextArea<T>({
@@ -22,14 +23,16 @@ export const TextArea = <T,>({
     <div
       className={`flex relative mb-5 border-gray-550  border focus:shadow-input rounded-[4px] cursor-pointer 
     ${isDirty && !invalid && 'border-green-750 border-[2px]'}
-    ${(fieldValue || isFocused) && 'text-gray-550 text-base'}
+    ${labelShouldStay && (fieldValue || isFocused) && 'text-gray-550 text-base'}
     ${error && 'border-red-650 '}`}
     >
       <label
         htmlFor={name as string}
-        className='font-normal text-base sm:text-xl  pt-2  pl-3'
+        className='font-normal text-base sm:text-xl  pt-2  pl-3 italic'
       >
-        {title} {(fieldValue || isFocused) && ':'}
+        {!labelShouldStay
+          ? !isFocused && !fieldValue && title
+          : `${title} ${fieldValue || isFocused ? ':' : ''}`}
       </label>
 
       <div className='relative text-white inline-block flex-1 '>
@@ -42,7 +45,7 @@ export const TextArea = <T,>({
               {...field}
               name={name as string}
               id={name as string}
-              className='pr-24 border w-full   focus:outline-none -mb-2
+              className='pr-20 sm:pr-24 border w-full   focus:outline-none -mb-2
                 text-base  bg-transparent px-3 py-2 min-h-22 sm:text-xl
                 border-transparent focus:border-transparent '
               onFocus={setIsFocused.bind(null, true)}

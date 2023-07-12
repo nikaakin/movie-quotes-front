@@ -1,7 +1,7 @@
 export const EyeIcon = ({
   color = '#6C757D',
-  width = 14,
-  height = 14,
+  width = 16,
+  height = 16,
 }: {
   color?: string;
   width?: number;

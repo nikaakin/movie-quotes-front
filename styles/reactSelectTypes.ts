@@ -4,9 +4,9 @@ export const reactSelectStyles = (borderColor: string) => ({
   placeholder: (styles: CSSObjectWithLabel) => ({
     ...styles,
     color: '#fff',
-    fontSize: '1.5rem',
+    fontSize: '1rem',
     '@media only screen and (min-width: 640px)': {
-      fontSize: '1.25rem',
+      fontSize: '1.5rem',
     },
   }),
   control: (styles: CSSObjectWithLabel) => ({

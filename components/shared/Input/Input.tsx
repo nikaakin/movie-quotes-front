@@ -23,6 +23,7 @@ export const Input = ({
   setValue,
   getFieldState,
   control,
+  bigIcons = false,
 }: InputType) => {
   const {
     onEyeClick,
@@ -74,7 +75,17 @@ export const Input = ({
           {isDirty && !invalid && <CheckMarkIcon />}
           {shouldHide && (
             <button type='button' onClick={onEyeClick}>
-              {isHidden ? <EyeSlashIcon /> : <EyeIcon />}
+              {isHidden ? (
+                <EyeSlashIcon
+                  width={bigIcons ? 24 : 16}
+                  height={bigIcons ? 24 : 16}
+                />
+              ) : (
+                <EyeIcon
+                  width={bigIcons ? 24 : 16}
+                  height={bigIcons ? 24 : 16}
+                />
+              )}
             </button>
           )}
         </div>

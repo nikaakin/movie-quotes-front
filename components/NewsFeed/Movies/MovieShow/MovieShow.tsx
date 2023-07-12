@@ -28,7 +28,7 @@ export const MovieShow = () => {
         <Modal
           onClose={onModalChange.bind(null, null)}
           shouldHaveX={false}
-          background='lg-main'
+          background='lg-modals opacity-70 backdrop-blur-sm'
         >
           {currentModal === 'add-quote' ? (
             <QuoteMutateModal

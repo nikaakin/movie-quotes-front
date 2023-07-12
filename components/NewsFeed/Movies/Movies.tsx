@@ -22,7 +22,11 @@ export const Movies = () => {
         handleSearch={onSearchChange}
       />
       {currentModal === 'add-movie' && (
-        <Modal onClose={onModalClose} background='lg-main' shouldHaveX={false}>
+        <Modal
+          onClose={onModalClose}
+          background='lg-modals opacity-70 backdrop-blur-sm'
+          shouldHaveX={false}
+        >
           <MovieMutation t={t} />
         </Modal>
       )}

@@ -40,29 +40,35 @@ export const SearchField = ({
         onClick={onClose}
       ></div>
       {currentModal && (
-        <Modal onClose={onCloseModal} shouldHaveX={false} background='lg-main'>
-          {currentModal === 'quote-view' ? (
-            <QuotesDisplay
-              onClose={onCloseModal}
-              quote={quote!}
-              title={t('common:movie_show.view_quote')}
-              commentPlaceholder={t('common:movie_show.comment')!}
-              onQuoteDelete={onDelete}
-              onQuoteEdit={onQuoteEdit}
-            />
-          ) : currentModal === 'edit-quote' ? (
-            <QuoteMutateModal
-              defaultImage={quote?.image || ''}
-              defaultQuoteEng={quote?.quote['en']}
-              defaultQuoteGeo={quote?.quote['ka']}
-              movieId={quote?.movie_id + ''}
-              quoteId={quote?.id}
-              fromSearch
-            />
-          ) : currentModal === 'add-quote' ? (
-            <QuoteMutateModal />
-          ) : null}
-        </Modal>
+        <div onClick={(e) => e.stopPropagation()}>
+          <Modal
+            onClose={onCloseModal}
+            shouldHaveX={false}
+            background='lg-modals opacity-70 backdrop-blur-sm'
+          >
+            {currentModal === 'quote-view' ? (
+              <QuotesDisplay
+                onClose={onCloseModal}
+                quote={quote!}
+                title={t('common:movie_show.view_quote')}
+                commentPlaceholder={t('common:movie_show.comment')!}
+                onQuoteDelete={onDelete}
+                onQuoteEdit={onQuoteEdit}
+              />
+            ) : currentModal === 'edit-quote' ? (
+              <QuoteMutateModal
+                defaultImage={quote?.image || ''}
+                defaultQuoteEng={quote?.quote['en']}
+                defaultQuoteGeo={quote?.quote['ka']}
+                movieId={quote?.movie_id + ''}
+                quoteId={quote?.id}
+                fromSearch
+              />
+            ) : currentModal === 'add-quote' ? (
+              <QuoteMutateModal />
+            ) : null}
+          </Modal>
+        </div>
       )}
       <div
         className={`sm:relative w-full sm:h-full fixed top-0 left-0  h-[80vh] ${
@@ -115,7 +121,7 @@ export const SearchField = ({
                 />
               ) : (
                 <div
-                  className='text-gray-550 px-16 py-6 sm:px-0 sm:py-0 flex flex-col items-start gap-6 sm:block'
+                  className='text-gray-550 px-16 py-6 sm:px-0 sm:py-0 flex flex-col items-start gap-6 sm:block text-left'
                   onClick={handleFocus.bind(null, true)}
                 >
                   <span className='block sm:inline-block '>
@@ -147,7 +153,7 @@ export const SearchField = ({
             {searchResults.map((quote) => (
               <div
                 key={quote.id}
-                className='flex items-center gap-4 hover:bg-white hover:bg-opacity-5 w-full pl-12 py-2 '
+                className='flex items-center gap-4 hover:bg-white hover:bg-opacity-5 w-full px-4 py-2 text-left'
                 onClick={onQuoteView.bind(null, quote)}
               >
                 <h3>{quote?.quote[locale]}</h3>

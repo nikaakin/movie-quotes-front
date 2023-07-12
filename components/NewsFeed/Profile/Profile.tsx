@@ -46,7 +46,11 @@ export const Profile = () => {
   return (
     <div className='flex-1 text-white bg-neutral-950 sm:bg-transparent h-full'>
       {currentModal === 'confirmation-notification' ? (
-        <Modal onClose={onClose} background='lg-main' shouldHaveX={false}>
+        <Modal
+          onClose={onClose}
+          background='lg-modals opacity-70 backdrop-blur-sm'
+          shouldHaveX={false}
+        >
           <ConfirmationModal
             onClose={onClose}
             onSubmit={onSubmit.bind(null, editData)}
@@ -58,7 +62,11 @@ export const Profile = () => {
       ) : (
         <Fragment>
           {currentModal === 'edit-notification' && (
-            <Modal onClose={onClose} background='lg-main' shouldHaveX={false}>
+            <Modal
+              onClose={onClose}
+              background='lg-modals opacity-70 backdrop-blur-sm'
+              shouldHaveX={false}
+            >
               <EditNotification
                 onClose={onClose}
                 title={t('profile.changed')}
@@ -71,9 +79,9 @@ export const Profile = () => {
           <button className='p-6 sm:hidden block' onClick={resetState}>
             <ArrowIcon />
           </button>
-          <section className='w-full h-full sm:w-250 sm:h-auto relative sm:mt-20 bg-zinc-870 sm:bg-neutral-950 backdrop-blur-xl sm:rounded-[12px] rounded-t-[12px] mb-20 sm:pl-48 sm:pt-48 sm:pr-72 pb-36 px-8'>
+          <section className='w-full h-full sm:w-250 sm:h-auto relative sm:mt-20 bg-zinc-870 sm:bg-neutral-950 backdrop-blur-xl sm:rounded-[12px] rounded-t-[12px] mb-20 sm:pl-48 sm:pt-48 sm:pr-72 pb-16 sm:pb-36 px-8'>
             <div
-              className={`absolute top-0 left-1/2 -translate-x-1/2 sm:-translate-y-1/3 translate-y-7 ${
+              className={`absolute top-0 left-1/2 -translate-x-1/2 sm:translate-x-0 sm:left-auto sm:right-96 sm:-translate-y-1/3 translate-y-7 ${
                 (editPassword || editUsername || editEmail) && 'hidden'
               } sm:!block`}
             >
@@ -95,12 +103,12 @@ export const Profile = () => {
               />
               <label
                 htmlFor='image'
-                className='text-xl flex justify-center w-full cursor-pointer text-center'
+                className='text-xl flex justify-center w-full cursor-pointer absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-full whitespace-nowrap'
               >
                 {t('profile.upload')}
               </label>
               {imageError && (
-                <span className='absolute left-2 bottom-0 translate-y-full text-red-550 text-base'>
+                <span className='absolute left-1/2 -translate-x-1/2 -bottom-6 translate-y-full text-red-550 text-base whitespace-nowrap'>
                   {imageError as string}
                 </span>
               )}
@@ -216,6 +224,7 @@ export const Profile = () => {
                   />
 
                   <Input
+                    bigIcons
                     shouldHide
                     control={control}
                     getFieldState={getFieldState}
@@ -232,6 +241,7 @@ export const Profile = () => {
                     setValue={setValue}
                   />
                   <Input
+                    bigIcons
                     shouldHide
                     control={control}
                     getFieldState={getFieldState}
@@ -254,7 +264,11 @@ export const Profile = () => {
               )}
             </form>
           </section>
-          <div className='text-xl sm:mr-105 flex justify-between sm:justify-end pr-8 sm:pr-0 pl-14 pb-10 sm:gap-8 '>
+          <div
+            className={`text-xl sm:mr-105 flex justify-between sm:justify-end pr-8 sm:pr-0 pl-14 pb-10 sm:gap-8 ${
+              !(editPassword || editUsername || editEmail) && 'hidden'
+            }`}
+          >
             <button type='button' onClick={resetState}>
               {t('profile.cancel')}
             </button>

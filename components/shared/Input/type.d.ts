@@ -20,6 +20,7 @@ export type InputType = {
   setValue?: UseFormSetValue<FieldValues>;
   getFieldState: UseFormGetFieldState<FieldValues>;
   control: Control<FieldValues, any>;
+  bigIcons?: boolean;
 };
 
 export type useInputType = {
