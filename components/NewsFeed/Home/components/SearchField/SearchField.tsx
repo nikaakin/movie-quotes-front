@@ -153,7 +153,7 @@ export const SearchField = ({
             {searchResults.map((quote) => (
               <div
                 key={quote.id}
-                className='flex items-center gap-4 hover:bg-white hover:bg-opacity-5 w-full px-4 py-2 '
+                className='flex items-center gap-4 hover:bg-white hover:bg-opacity-5 w-full px-4 py-2 text-left'
                 onClick={onQuoteView.bind(null, quote)}
               >
                 <h3>{quote?.quote[locale]}</h3>

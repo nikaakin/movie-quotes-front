@@ -13,6 +13,7 @@ export type TextAreaType<T> = {
   control: Control<FieldValues<T>, any>;
   language?: string;
   defaultValue?: string;
+  labelShouldStay?: boolean;
 };
 
 export type useTextAreaType<T> = {

@@ -116,6 +116,7 @@ export const MovieMutation = ({ t, defaultValues }: MovieMutationProps) => {
           setValue={setValue}
           title='description'
           language='Eng'
+          labelShouldStay
         />
         <TextArea
           control={control}
@@ -124,6 +125,7 @@ export const MovieMutation = ({ t, defaultValues }: MovieMutationProps) => {
           setValue={setValue}
           title='აღწერა'
           language='ქარ'
+          labelShouldStay
         />
 
         <UploadImage
