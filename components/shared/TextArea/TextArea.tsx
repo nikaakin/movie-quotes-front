@@ -20,63 +20,65 @@ export const TextArea = <T,>({
       control,
     });
   return (
-    <div
-      className={`flex relative mb-5 border-gray-550  border focus:shadow-input rounded-[4px] cursor-pointer 
+    <div className='flex flex-col'>
+      <div
+        className={`flex relative  border-gray-550  border focus:shadow-input rounded-[4px] cursor-pointer 
     ${isDirty && !invalid && 'border-green-750 border-[2px]'}
     ${labelShouldStay && (fieldValue || isFocused) && 'text-gray-550 text-base'}
     ${error && 'border-red-650 '}`}
-    >
-      <label
-        htmlFor={name as string}
-        className='font-normal text-base sm:text-xl  pt-2  pl-3 italic'
       >
-        {!labelShouldStay
-          ? !isFocused && !fieldValue && title
-          : `${title} ${fieldValue || isFocused ? ':' : ''}`}
-      </label>
+        <label
+          htmlFor={name as string}
+          className='font-normal text-base sm:text-xl  pt-2  pl-3 italic'
+        >
+          {!labelShouldStay
+            ? !isFocused && !fieldValue && title
+            : `${title} ${fieldValue || isFocused ? ':' : ''}`}
+        </label>
 
-      <div className='relative text-white inline-block flex-1 '>
-        <Controller
-          name={name}
-          control={control}
-          defaultValue={defaultValue}
-          render={({ field }) => (
-            <textarea
-              {...field}
-              name={name as string}
-              id={name as string}
-              className='pr-20 sm:pr-24 border w-full   focus:outline-none -mb-2
+        <div className='relative text-white inline-block flex-1 '>
+          <Controller
+            name={name}
+            control={control}
+            defaultValue={defaultValue}
+            render={({ field }) => (
+              <textarea
+                {...field}
+                name={name as string}
+                id={name as string}
+                className={`pr-20 sm:pr-24 border w-full   focus:outline-none -mb-2
                 text-base  bg-transparent px-3 py-2 min-h-22 sm:text-xl
-                border-transparent focus:border-transparent '
-              onFocus={setIsFocused.bind(null, true)}
-              onBlur={setIsFocused.bind(null, false)}
-            ></textarea>
-          )}
-        />
+                border-transparent focus:border-transparent ${
+                  !labelShouldStay && 'px-0'
+                }`}
+                onFocus={setIsFocused.bind(null, true)}
+                onBlur={setIsFocused.bind(null, false)}
+              ></textarea>
+            )}
+          />
 
-        <div className='absolute top-2 right-2   flex flex-row  gap-1 items-center'>
-          {fieldValue !== '' && isDirty && (
-            <button
-              type='button'
-              onClick={setValue?.bind(null, name, '', {
-                shouldValidate: true,
-              })}
-            >
-              <XWithCircleIcon />
-            </button>
-          )}
-          {error && <InvalidIcon />}
-          {isDirty && !invalid && <CheckMarkIcon />}
-          {language && (
-            <span className='text-gray-550 sm:text-xl text-base'>
-              {language}
-            </span>
-          )}
+          <div className='absolute top-2 right-2   flex flex-row  gap-1 items-center'>
+            {fieldValue !== '' && isDirty && (
+              <button
+                type='button'
+                onClick={setValue?.bind(null, name, '', {
+                  shouldValidate: true,
+                })}
+              >
+                <XWithCircleIcon />
+              </button>
+            )}
+            {error && <InvalidIcon />}
+            {isDirty && !invalid && <CheckMarkIcon />}
+            {language && (
+              <span className='text-gray-550 sm:text-xl text-base'>
+                {language}
+              </span>
+            )}
+          </div>
         </div>
       </div>
-      <span className='absolute left-2 bottom-0 translate-y-full text-red-550 text-base'>
-        {error?.message}
-      </span>
+      <span className=' min-h-5 text-red-550 text-base'>{error?.message}</span>
     </div>
   );
 };

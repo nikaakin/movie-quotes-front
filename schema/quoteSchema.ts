@@ -37,11 +37,18 @@ export const createQuoteSchema = (t: TFunction) =>
       ),
     movie: z.object(
       {
-        value: z.number(),
+        value: z.number({
+          invalid_type_error: t('modals:validation.required', {
+            attribute: t('modals:attributes.movie'),
+          })!,
+        }),
         label: z.string(),
       },
       {
         required_error: t('modals:validation.required', {
+          attribute: t('modals:attributes.movie'),
+        })!,
+        invalid_type_error: t('modals:validation.required', {
           attribute: t('modals:attributes.movie'),
         })!,
       }

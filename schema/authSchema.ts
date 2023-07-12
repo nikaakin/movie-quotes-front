@@ -76,7 +76,7 @@ export const loginSchema = (t: TFunction) =>
 
 export const forgotPasswordSchema = (t: TFunction) =>
   z.object({
-    email: z.string().email(t('fmodals:orm.forgot_password.errors.email')!),
+    email: z.string().email(t('modals:form.forgot_password.errors.email')!),
   });
 
 export const resetPasswordSchema = (t: TFunction) =>

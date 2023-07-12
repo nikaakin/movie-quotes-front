@@ -11,6 +11,7 @@ export const UploadImage = <T,>({
   getFieldState,
   control,
   isSplit = false,
+  isCameraBig = false,
 }: UploadImageProps<T>) => {
   const { error, fieldValue, invalid, isDirty, onDrop, onChange, locale } =
     useUploadImage<T>({
@@ -37,7 +38,10 @@ export const UploadImage = <T,>({
       {!image && !fieldValue && (
         <div className='flex py-4 px-4 gap-4 items-center'>
           <div className='flex flex-row sm:justify-center justify-start flex-1 sm:flex-none  gap-2'>
-            <CameraIcon />
+            <CameraIcon
+              width={isCameraBig ? '32' : '24'}
+              height={isCameraBig ? '32' : '24'}
+            />
             <span className='hidden sm:inline text-xl'>
               {t('modals:form.add_movie.image_upload')}
             </span>

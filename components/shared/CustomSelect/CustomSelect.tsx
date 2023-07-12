@@ -20,48 +20,50 @@ export const CustomSelect = <T,>({
     name,
   });
   return (
-    <div className='relative mb-6'>
-      <Controller
-        name={name}
-        control={control}
-        defaultValue={defaultValue}
-        render={({ field: { onChange, ref, value } }) => (
-          <Select
-            defaultValue={defaultValue}
-            placeholder={placeholder}
-            ref={ref}
-            components={{
-              DropdownIndicator: () =>
-                shouldHaveIndicator ? (
-                  <div className='mr-8'>
-                    <DropdownIndicatorIcon />
-                  </div>
-                ) : null,
-              IndicatorSeparator: () => null,
-            }}
-            styles={styles(
-              invalid
-                ? '#E31221'
-                : isDirty
-                ? '#198754'
-                : isMulti
-                ? '#6C757D'
-                : 'transparent'
-            )}
-            options={options}
-            isMulti={isMulti}
-            onChange={(val) => onChange(val)}
-            value={value}
-          />
+    <div>
+      <div className='relative'>
+        <Controller
+          name={name}
+          control={control}
+          defaultValue={defaultValue}
+          render={({ field: { onChange, ref, value } }) => (
+            <Select
+              defaultValue={defaultValue}
+              placeholder={placeholder}
+              ref={ref}
+              components={{
+                DropdownIndicator: () =>
+                  shouldHaveIndicator ? (
+                    <div className='mr-8'>
+                      <DropdownIndicatorIcon />
+                    </div>
+                  ) : null,
+                IndicatorSeparator: () => null,
+              }}
+              styles={styles(
+                invalid
+                  ? '#E31221'
+                  : isDirty
+                  ? '#198754'
+                  : isMulti
+                  ? '#6C757D'
+                  : 'transparent'
+              )}
+              options={options}
+              isMulti={isMulti}
+              onChange={(val) => onChange(val)}
+              value={value}
+            />
+          )}
+          shouldUnregister
+        />
+        {!isMulti && (
+          <div className='absolute top-1/2 -translate-y-1/2 left-6 '>
+            <MovieCameraIcon />
+          </div>
         )}
-        shouldUnregister
-      />
-      {!isMulti && (
-        <div className='absolute top-1/2 -translate-y-1/2 left-6 '>
-          <MovieCameraIcon />
-        </div>
-      )}
-      <span className='absolute left-2 bottom-0 translate-y-full text-red-550 text-base'>
+      </div>
+      <span className='block min-h-5 text-red-550 text-base'>
         {error?.message}
       </span>
     </div>
