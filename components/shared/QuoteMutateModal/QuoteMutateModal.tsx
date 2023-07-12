@@ -51,7 +51,7 @@ export const QuoteMutateModal = ({
       <div
         className={`${
           movieId ? 'h-full' : 'h-fit'
-        } relative w-full  sm:w-250 hide-scrollbar max-h-screen pt-8 pb-16 sm:pb-12 bg-neutral-950 text-white overflow-auto sm:overflow-visible`}
+        } relative w-full  sm:w-250 hide-scrollbar max-h-screen pt-8 pb-16 sm:pb-12 bg-neutral-950 text-white overflow-auto `}
       >
         <button className='absolute right-6 top-8 ' onClick={onClose}>
           <XIcon />
