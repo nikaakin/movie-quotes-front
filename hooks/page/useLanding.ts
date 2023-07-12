@@ -27,7 +27,7 @@ export const useLandingPage = () => {
     onError: (error) => {
       dispatch(setCurrentModal('login'));
       const errors = error?.response?.data as { details: { username: string } };
-      push(`/?error=${errors.details.username}`);
+      push(`/?error=${errors?.details?.username}`);
     },
     queryFn: () => googleLogin(query),
     enabled: false,
