@@ -1,4 +1,4 @@
-import { CSSObjectWithLabel } from 'react-select';
+import { CSSObjectWithLabel, ControlProps } from 'react-select';
 
 export const reactSelectStyles = (borderColor: string) => ({
   placeholder: (styles: CSSObjectWithLabel) => ({
@@ -69,13 +69,14 @@ export const QuoteMutationSelectStyles = (borderColor: string) => ({
       fontSize: '1.25rem',
     },
   }),
-  control: (styles: CSSObjectWithLabel) => ({
+  control: (styles: CSSObjectWithLabel, props: ControlProps) => ({
     ...styles,
     backgroundColor: '#000',
     paddingInline: '0.25rem',
     paddingBlock: '0.25rem',
     boxShadow: 'none',
     borderColor,
+    marginBottom: props.menuIsOpen && '12rem',
     ':hover': {
       borderColor,
     },
@@ -103,6 +104,10 @@ export const QuoteMutationSelectStyles = (borderColor: string) => ({
   menu: (styles: CSSObjectWithLabel) => ({
     ...styles,
     backgroundColor: '#11101A',
+  }),
+  menuList: (styles: CSSObjectWithLabel) => ({
+    ...styles,
+    maxHeight: '12rem',
   }),
   option: (styles: CSSObjectWithLabel) => {
     return {

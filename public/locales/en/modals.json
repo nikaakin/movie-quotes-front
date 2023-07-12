@@ -30,7 +30,8 @@
       "genres": "Genres",
       "replace": "Replace photo",
       "change": "Change photo",
-      "upload": "Upload Image"
+      "upload": "Upload Image",
+      "edit": "Edit movie"
     },
     "add_quote": {
       "title": "Add Quote",

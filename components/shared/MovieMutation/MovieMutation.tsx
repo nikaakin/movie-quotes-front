@@ -34,7 +34,9 @@ export const MovieMutation = ({ t, defaultValues }: MovieMutationProps) => {
         <XIcon />
       </button>
       <h1 className='sm:text-2xl text-xl font-medium pb-6 mb-10 px-8  border-b border-zinc-150 border-opacity-20 text-center '>
-        {t('modals:form.add_movie.title')}
+        {defaultValues
+          ? t('modals:form.add_movie.edit')
+          : t('modals:form.add_movie.title')}
       </h1>
       <form className='px-8 ' onSubmit={handleSubmit(onSubmit)}>
         <div className='sm:mb-7 mb-9'>
@@ -139,7 +141,11 @@ export const MovieMutation = ({ t, defaultValues }: MovieMutationProps) => {
         />
 
         <Button
-          content={t('modals:form.add_movie.submit')}
+          content={
+            defaultValues
+              ? t('modals:form.add_movie.edit')
+              : t('modals:form.add_movie.submit')
+          }
           type='submit'
           classes=' w-full py-2 text-xl'
         />
