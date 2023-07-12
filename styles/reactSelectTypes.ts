@@ -6,13 +6,12 @@ export const reactSelectStyles = (borderColor: string) => ({
     color: '#fff',
     fontSize: '1rem',
     '@media only screen and (min-width: 640px)': {
-      fontSize: '1.5rem',
+      fontSize: '1.25rem',
     },
   }),
   control: (styles: CSSObjectWithLabel) => ({
     ...styles,
     backgroundColor: '#11101A',
-    marginBottom: '1rem',
     borderColor,
     paddingInline: '0.25rem',
     paddingBlock: '0.25rem',
@@ -22,7 +21,6 @@ export const reactSelectStyles = (borderColor: string) => ({
     },
     '@media only screen and (min-width: 640px)': {
       paddingInline: '0.5rem',
-      marginBottom: '1.5rem',
     },
   }),
   multiValue: (styles: CSSObjectWithLabel) => ({
@@ -68,13 +66,12 @@ export const QuoteMutationSelectStyles = (borderColor: string) => ({
     fontSize: '1rem',
     paddingBlock: '1.5rem',
     '@media only screen and (min-width: 640px)': {
-      fontSize: '1.5rem',
+      fontSize: '1.25rem',
     },
   }),
   control: (styles: CSSObjectWithLabel) => ({
     ...styles,
     backgroundColor: '#000',
-    marginBottom: '1rem',
     paddingInline: '0.25rem',
     paddingBlock: '0.25rem',
     boxShadow: 'none',
@@ -84,7 +81,6 @@ export const QuoteMutationSelectStyles = (borderColor: string) => ({
     },
     '@media only screen and (min-width: 640px)': {
       paddingInline: '0.5rem',
-      marginBottom: '1.5rem',
     },
   }),
   multiValue: (styles: CSSObjectWithLabel) => ({
@@ -128,7 +124,7 @@ export const QuoteMutationSelectStyles = (borderColor: string) => ({
     paddingLeft: '3rem',
     paddingBlock: '1.5rem',
     '@media only screen and (min-width: 640px)': {
-      fontSize: '1.5rem',
+      fontSize: '1.25rem',
     },
   }),
 });

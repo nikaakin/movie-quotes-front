@@ -21,10 +21,10 @@ export const MovieInput = <T,>({
       control,
     });
   return (
-    <div className='relative mb-5'>
+    <div className='relative '>
       <label
         htmlFor={name}
-        className={` px-3 py-2 font-normal rounded-[4px] cursor-pointer text-base mb-2 sm:mb-3 sm:text-xl flex items-center gap-2 border-gray-550  border focus:shadow-input     
+        className={` px-3 py-2 font-normal rounded-[4px] cursor-pointer text-base  sm:text-xl flex items-center gap-2 border-gray-550  border focus:shadow-input     
         ${isDirty && !invalid && 'border-green-750 border-[2px]'}
         ${(fieldValue || isFocused) && 'text-gray-550 text-base'}
         ${error && 'border-red-650 '}`}
@@ -63,7 +63,7 @@ export const MovieInput = <T,>({
           </div>
         </div>
       </label>
-      <span className='absolute left-2 bottom-0 translate-y-full text-red-550 text-base'>
+      <span className='min-h-5 block text-red-550 text-base'>
         {error?.message}
       </span>
     </div>

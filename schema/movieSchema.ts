@@ -77,10 +77,16 @@ export const movieSchema = (t: TFunction) =>
           max: 2023,
         })!
       ),
-    genres: z.array(z.object({ value: z.number(), label: z.string() })).min(
-      1,
-      t('modals:validation.required', {
-        attribute: t('modals:attributes.genres'),
-      })!
-    ),
+    genres: z
+      .array(z.object({ value: z.number(), label: z.string() }), {
+        required_error: t('modals:validation.required', {
+          attribute: t('modals:attributes.genres'),
+        })!,
+      })
+      .min(
+        1,
+        t('modals:validation.required', {
+          attribute: t('modals:attributes.genres'),
+        })!
+      ),
   });

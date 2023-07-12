@@ -15,6 +15,7 @@ export type UploadImageProps<T> = {
   setValue: UseFormSetValue<FieldValues<T>>;
   getFieldState: UseFormGetFieldState<FieldValues<T>>;
   control: Control<FieldValues<T>, any>;
+  isCameraBig?: boolean;
 };
 
 export type useUploadImageProps<T> = {

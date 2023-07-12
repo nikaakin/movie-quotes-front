@@ -111,6 +111,7 @@ module.exports = {
         300: '75rem',
       },
       minHeight: {
+        5: '1.25rem',
         22: '5.5rem',
       },
       inset: {

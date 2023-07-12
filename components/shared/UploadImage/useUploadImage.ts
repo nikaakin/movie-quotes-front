@@ -1,11 +1,13 @@
 import { DragEvent, useState } from 'react';
 import { useUploadImageProps } from './type';
 import { getImageBlob } from '@/helpers';
+import { useRouter } from 'next/router';
 
 export const useUploadImage = <T>({
   getFieldState,
   setValue,
 }: useUploadImageProps<T>) => {
+  const { locale } = useRouter();
   const [fieldValue, setFieldValue] = useState<string>('');
   const { invalid, isDirty, error } = getFieldState('image');
 
@@ -32,5 +34,6 @@ export const useUploadImage = <T>({
     error,
     onDrop,
     onChange,
+    locale,
   };
 };

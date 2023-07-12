@@ -41,7 +41,7 @@ export const Input = ({
     control,
   });
   return (
-    <div className='flex relative flex-col mb-5'>
+    <div className='flex relative flex-col '>
       {title && (
         <label htmlFor={name} className='font-normal text-base mb-2'>
           {title}
@@ -90,7 +90,7 @@ export const Input = ({
           )}
         </div>
       </div>
-      <span className='absolute left-2 bottom-0 translate-y-full text-red-550 text-base'>
+      <span className='min-h-5 block text-red-550 text-base'>
         {error?.message}
       </span>
     </div>

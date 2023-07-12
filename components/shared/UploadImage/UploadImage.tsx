@@ -1,6 +1,7 @@
 import { CameraIcon } from '@/components/Icons';
 import { UploadImageProps } from './type';
 import { useUploadImage } from './useUploadImage';
+import { Fragment } from 'react';
 
 export const UploadImage = <T,>({
   t,
@@ -10,8 +11,9 @@ export const UploadImage = <T,>({
   getFieldState,
   control,
   isSplit = false,
+  isCameraBig = false,
 }: UploadImageProps<T>) => {
-  const { error, fieldValue, invalid, isDirty, onDrop, onChange } =
+  const { error, fieldValue, invalid, isDirty, onDrop, onChange, locale } =
     useUploadImage<T>({
       setValue,
       control,
@@ -36,7 +38,10 @@ export const UploadImage = <T,>({
       {!image && !fieldValue && (
         <div className='flex py-4 px-4 gap-4 items-center'>
           <div className='flex flex-row sm:justify-center justify-start flex-1 sm:flex-none  gap-2'>
-            <CameraIcon />
+            <CameraIcon
+              width={isCameraBig ? '32' : '24'}
+              height={isCameraBig ? '32' : '24'}
+            />
             <span className='hidden sm:inline text-xl'>
               {t('modals:form.add_movie.image_upload')}
             </span>
@@ -74,12 +79,12 @@ export const UploadImage = <T,>({
       )}
 
       {(image || fieldValue) && isSplit && (
-        <div className='px-6 py-5 relative flex'>
-          <div className='w-1/2'>
+        <div className='px-6 py-5 relative flex gap-4'>
+          <div className='sm:w-1/2'>
             <img
               src={fieldValue || image}
               alt='uploaded'
-              className='w-full h-28 sm:h-36 object-cover '
+              className=' w-44 sm:w-full h-28 sm:h-36 object-cover  border-dashed border-orange-250 border sm:border-none'
             />
           </div>
           <div className='flex flex-col items-start sm:items-center justify-center mx-auto'>
@@ -94,9 +99,22 @@ export const UploadImage = <T,>({
             </div>
             <label
               htmlFor='image'
-              className='bg-purple-550 bg-opacity-40 rounded-[2px] p-2 text-base sm:text-lg cursor-pointer'
+              className='bg-purple-550 bg-opacity-40 rounded-[2px] p-2 text-sm sm:text-lg cursor-pointer text-center'
             >
-              {t('modals:form.add_movie.image_upload_button')}
+              {locale === 'ka' ? (
+                <Fragment>
+                  <span className='sm:hidden inline'>
+                    {' '}
+                    {t('modals:form.add_movie.image_upload_button_small')}
+                  </span>
+                  <span className='hidden sm:inline'>
+                    {' '}
+                    {t('modals:form.add_movie.image_upload_button')}
+                  </span>
+                </Fragment>
+              ) : (
+                t('modals:form.add_movie.image_upload_button')
+              )}
             </label>
           </div>
         </div>
