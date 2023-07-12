@@ -51,7 +51,7 @@ export const useQuoteMutationModal = ({
       quote_ka: defaultQuoteGeo,
       image: defaultImage || '',
       movie: {
-        value: parseInt(movieId || ''),
+        value: parseInt(movieId as string),
         label: movieId ? '' : t('modals:form.add_quote.choose')!,
       },
     },
@@ -80,7 +80,7 @@ export const useQuoteMutationModal = ({
         );
       } else if (movieId) {
         queryClient.setQueryData(
-          ['movie', movieId],
+          ['movie', `${movieId}`],
           (oldData: createMovieSchemaType) => {
             if (defaultImage) {
               const newQuotes = oldData.quotes.map((quote: QuoteType) => {

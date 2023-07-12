@@ -85,8 +85,6 @@ export const useMovieMutation = <T extends FieldValues>({
         queryClient.setQueryData(['movies'], [...oldMovies, data]);
       }
       queryClient.setQueryData(['movie', movieId], { ...oldMovie, ...data });
-      queryClient.invalidateQueries(['movies']);
-      queryClient.invalidateQueries(['movie', movieId]);
     },
     onError: (error: AxiosError<T>) => {
       const errors = error.response?.data.details || {};
