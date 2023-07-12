@@ -53,6 +53,7 @@ export const useProfile = () => {
     mutationFn: edit,
     onSuccess: (data) => {
       queryClient.setQueryData(['user'], data.data.user);
+      queryClient.invalidateQueries(['user']);
       dispatch(setCurrentModal('edit-notification'));
       setTimeout(onClose, 2000);
     },
