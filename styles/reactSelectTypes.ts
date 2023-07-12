@@ -76,7 +76,7 @@ export const QuoteMutationSelectStyles = (borderColor: string) => ({
     paddingBlock: '0.25rem',
     boxShadow: 'none',
     borderColor,
-    marginBottom: props.menuIsOpen && '12rem',
+    marginBottom: props.menuIsOpen ? '12rem' : '0px',
     ':hover': {
       borderColor,
     },
