@@ -21,6 +21,7 @@ export const useLandingPage = () => {
   const { locale, query, replace, push } = useRouter();
   const dispatch = useDispatch();
   const { refetch: signInWithGoogle } = useUserQuery({
+    queryFn: () => googleLogin(query),
     onSuccess: () => {
       push('/news-feed/home');
     },
@@ -29,7 +30,6 @@ export const useLandingPage = () => {
       const errors = error?.response?.data as { details: { username: string } };
       push(`/?error=${errors?.details?.username}`);
     },
-    queryFn: () => googleLogin(query),
     enabled: false,
   });
 
