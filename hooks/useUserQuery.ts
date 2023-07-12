@@ -82,8 +82,8 @@ export const useUserQuery = ({
           )
         );
     },
-    onError: () => {
-      onError && onError();
+    onError: (error) => {
+      onError && onError(error as AxiosError);
     },
     enabled: enabled,
     retry: false,
