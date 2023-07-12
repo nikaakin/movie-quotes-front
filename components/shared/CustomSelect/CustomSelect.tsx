@@ -20,7 +20,7 @@ export const CustomSelect = <T,>({
     name,
   });
   return (
-    <div className='relative'>
+    <div className='relative mb-6'>
       <Controller
         name={name}
         control={control}

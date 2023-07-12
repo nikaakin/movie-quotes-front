@@ -37,7 +37,8 @@
       "submit": "Add Quote",
       "edit": "Edit quote",
       "edit_submit": "Save changes",
-      "choose": "Choose movie"
+      "choose": "Choose movie",
+      "new": "write new quote"
     },
     "login": {
       "title": "Log in to your account",

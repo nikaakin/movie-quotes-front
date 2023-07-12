@@ -56,10 +56,12 @@ export const QuoteMutateModal = ({
         <button className='absolute right-6 top-8 ' onClick={onClose}>
           <XIcon />
         </button>
-        <h1 className='sm:text-2xl text-xl font-medium pb-6 mb-10 px-8  border-b border-zinc-150 border-opacity-20 text-center '>
+        <h1 className=' capitalize sm:text-2xl text-xl font-medium pb-6 mb-10 px-8  border-b border-zinc-150 border-opacity-20 text-center '>
           {defaultQuoteEng
             ? t('modals:form.add_quote.edit')
-            : t('modals:form.add_quote.title')}
+            : movieId
+            ? t('modals:form.add_quote.title')
+            : t('modals:form.add_quote.new')}
         </h1>
         <form className='px-8 ' onSubmit={handleSubmit(onSubmit)}>
           <div className='sm:mb-7 mb-9'>

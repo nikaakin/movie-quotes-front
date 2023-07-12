@@ -50,7 +50,10 @@ export const useQuoteMutationModal = ({
       quote_en: defaultQuoteEng,
       quote_ka: defaultQuoteGeo,
       image: defaultImage || '',
-      movie: { value: parseInt(movieId || ''), label: 'default' },
+      movie: {
+        value: parseInt(movieId || ''),
+        label: movieId ? '' : t('modals:form.add_quote.choose')!,
+      },
     },
   });
 
