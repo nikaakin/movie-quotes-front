@@ -16,9 +16,6 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 export default function Home() {
   const {
     changeIndex,
-    isBackgroundIntersected,
-    shouldAnimate,
-    show,
     backgrounfRef,
     imageRefs,
     onShowRegister,
@@ -28,10 +25,11 @@ export default function Home() {
     onLogin,
     onLinkExpired,
     resetPaswordData,
+    isBackgroundIntersected,
   } = useLandingPage();
 
   return (
-    <div className='overflow-hidden relative pt-107 sm:pt-200 text-white'>
+    <div className=' relative pt-107 sm:pt-200 text-white'>
       {currentModal && (
         <Modal
           onClose={onClose}
@@ -120,28 +118,38 @@ export default function Home() {
         {isBackgroundIntersected && (
           <button
             onClick={changeIndex.bind(null, 0)}
-            className='hidden absolute sm:block  bottom-0 left-0 bg-transparent w-full h-70 z-[100]'
+            className='absolute sm:block  bottom-0 left-0 bg-transparent w-full h-70 z-[100]'
           ></button>
         )}
       </article>
-      <div className='fixed w-full h-full bg-lg-landing-second z-40 left-0 top-0 '></div>
       {imageUrls.map(({ url, movie, quote }, index) => {
         return (
-          <article
+          <div
             key={url}
-            className=' relative w-full h-107 sm:h-300 
-              overflow-hidden bg-fixed bg-cover  sm:bg-bottom bg-right bg-no-repeat flex items-center'
-            style={{
-              backgroundImage: `url(${url})`,
-              backgroundAttachment: show ? 'fixed' : 'scroll',
-            }}
-            ref={imageRefs[index]}
+            className='w-screen h-screen   sticky top-0'
+            onClick={changeIndex.bind(null, index + 1)}
           >
             <div
-              className={`pl-[10vw] z-40 flex flex-row ${
-                shouldAnimate && 'quote-fade'
-              }`}
+              className={`w-screen h-screen ${
+                index === 1 && 'bg-lg-landing-third'
+              }  absolute block  left-0 top-0 bg-transparent z-50`}
+            ></div>
+            <div className='absolute w-screen h-screen bg-lg-landing-second z-40 left-0 top-0 '></div>
+            <article
+              className={`h-screen z-${index * 10} `}
+              ref={imageRefs[index]}
             >
+              <div
+                className={`w-screen h-screen absolute top-0 bg-cover bg-no-repeat  bg-center  ${
+                  index !== 0 && 'bg-fixed'
+                }`}
+                style={{
+                  backgroundImage: `url(${url})`,
+                }}
+              ></div>
+            </article>
+
+            <div className=' absolute top-0 pl-[10vw] z-50 flex flex-row sm:pt-[30vh] pt-[40vh] '>
               <span className='border-[1px] border-white h-0 sm:w-14 w-4 mt-4 sm:mt-10 sm:mr-4 mr-2 '></span>
               <div className='leading-10'>
                 <h1 className='text-xl font-bold w-68 sm:text-5xl sm:w-1/2 !leading-normal mb-2'>
@@ -152,14 +160,7 @@ export default function Home() {
                 </h3>
               </div>
             </div>
-
-            <button
-              onClick={changeIndex.bind(null, index + 1)}
-              className={`${
-                index === 1 && 'bg-lg-landing-third'
-              } hidden absolute sm:block  left-0 top-0 bg-transparent w-full h-full z-50`}
-            ></button>
-          </article>
+          </div>
         );
       })}
       <footer className='pl-8 py-3 sm:pl-20 text-orange-250 sm:py-4 font-medium text-[8px] sm:text-xs relative z-[110] bg-lg-main'>
