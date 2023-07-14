@@ -7,7 +7,6 @@ import { useRouter } from 'next/router';
 import { googleLogin } from '@/services';
 
 export const useLandingPage = () => {
-  const [shouldAnimate, setShouldAnimate] = useState(false);
   const [linkExpiredOnClick, setLinkExpiredOnClick] = useState('');
   const [resetPaswordData, setResetPaswordData] = useState({
     email: '',
@@ -83,20 +82,16 @@ export const useLandingPage = () => {
   );
   const isBackgroundIntersected = backgroundEntry?.isIntersecting;
 
-  const show =
-    !((backgroundEntry?.target.getBoundingClientRect().width || 0) < 768) &&
-    !isBackgroundIntersected;
-
   const changeIndex = (index: number) => {
     if (index > 2) return;
-    setShouldAnimate(true);
     setTimeout(() => {
-      const bottom = imageRefs[index]?.current?.getBoundingClientRect()?.bottom;
-      bottom &&
-        window.scrollTo({ behavior: 'smooth', top: 1200 * (index + 1) - 280 });
+      const fromTop =
+        document.body.scrollTop || document.documentElement.scrollTop;
+      const top = imageRefs[index]?.current?.getBoundingClientRect()?.top;
+      (fromTop || fromTop === 0) &&
+        top &&
+        window.scrollTo({ behavior: 'smooth', top: fromTop + top });
     }, 0);
-
-    setTimeout(() => setShouldAnimate(false), 1000);
   };
 
   const onClose = () => dispatch(setCurrentModal(null));
@@ -115,8 +110,6 @@ export const useLandingPage = () => {
   };
 
   return {
-    shouldAnimate,
-    show,
     changeIndex,
     isBackgroundIntersected,
     backgrounfRef,
@@ -125,7 +118,6 @@ export const useLandingPage = () => {
     onClose,
     onShowRegister,
     t,
-    locale,
     onLogin,
     onLinkExpired,
     resetPaswordData,
