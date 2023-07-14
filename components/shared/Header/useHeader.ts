@@ -3,7 +3,6 @@ import { useUserQuery } from '@/hooks';
 import { getCsrf, isAuthenticated, logout } from '@/services';
 import { setCurrentModal } from '@/state';
 import { setIsSearchBarOn } from '@/state';
-import Echo from 'laravel-echo';
 import { useTranslation } from 'next-i18next';
 import { useRouter } from 'next/router';
 import { useDispatch } from 'react-redux';
