@@ -48,7 +48,7 @@ export const useProfile = () => {
   });
 
   const passwordRepeat = useWatch({ control, name: 'passwordRepeat' });
-  const { query, replace, locale } = useRouter();
+  const { query, replace, locale, push } = useRouter();
   const queryClient = useQueryClient();
   const imageError = errors?.image?.message;
   const dispatch = useDispatch();
@@ -149,6 +149,8 @@ export const useProfile = () => {
     };
   };
 
+  const goToHome = () => push(`/${locale}/news-feed/home`);
+
   return {
     t,
     register,
@@ -179,5 +181,6 @@ export const useProfile = () => {
     imageError,
     submitOnBigScreen,
     editData,
+    goToHome,
   };
 };
