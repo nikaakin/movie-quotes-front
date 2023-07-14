@@ -9,7 +9,7 @@ import { AxiosError } from 'axios';
 import { useTranslation } from 'next-i18next';
 import { useRouter } from 'next/router';
 import { ChangeEvent, useEffect, useState } from 'react';
-import { useForm } from 'react-hook-form';
+import { useForm, useWatch } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
 
 export const useProfile = () => {
@@ -23,7 +23,7 @@ export const useProfile = () => {
   const [editEmail, setEditEmail] = useState(false);
   const [editData, setEditData] = useState({
     google_id,
-    image,
+    image: '',
     email: '',
     username: '',
     password: '',
@@ -31,6 +31,7 @@ export const useProfile = () => {
   const [isMorethen, setIsMorethen] = useState(false);
   const [isLessThen, setIsLessThen] = useState(false);
   const { t } = useTranslation(['common', 'modals']);
+
   const {
     register,
     handleSubmit,
@@ -38,12 +39,15 @@ export const useProfile = () => {
     setValue,
     getFieldState,
     control,
+    clearErrors,
     formState: { isValid, errors },
   } = useForm({
     mode: 'onChange',
     resolver: zodResolver(editSchema(t)),
     shouldUnregister: true,
   });
+
+  const passwordRepeat = useWatch({ control, name: 'passwordRepeat' });
   const { query, replace, locale } = useRouter();
   const queryClient = useQueryClient();
   const imageError = errors?.image?.message;
@@ -119,6 +123,13 @@ export const useProfile = () => {
     const { value } = event.target;
     setIsMorethen(false);
     setIsLessThen(false);
+    if (passwordRepeat !== value) {
+      setError('passwordRepeat', {
+        message: t('modals:form.register.errors.confirm_password.match')!,
+      });
+      return;
+    }
+    clearErrors('passwordRepeat');
     if (value.length >= 8) {
       setIsMorethen(true);
     }
