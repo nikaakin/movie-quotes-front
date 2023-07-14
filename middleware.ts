@@ -8,10 +8,18 @@ export function middleware(request: NextRequest) {
       new URL(`${locale}/news-feed/home`, request.url)
     );
   }
+  if (
+    request.nextUrl.pathname === '/' &&
+    request.cookies.get('user')?.value === 'true'
+  ) {
+    return NextResponse.redirect(
+      new URL(`${locale}/news-feed/home`, request.url)
+    );
+  }
 
   return NextResponse.next();
 }
 
 export const config = {
-  matcher: '/news-feed',
+  matcher: ['/', '/news-feed'],
 };

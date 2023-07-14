@@ -13,6 +13,7 @@ export const ResetPassword = ({ email, token }: ResetPasswordProps) => {
     isValid,
     control,
     getFieldState,
+    onPasswordChange,
   } = useResetPassword({
     email,
     token,
@@ -38,7 +39,9 @@ export const ResetPassword = ({ email, token }: ResetPasswordProps) => {
           title={t('form.reset-password.inputs.password.title')!}
           name='password'
           placeholder={t('form.reset-password.inputs.password.placeholder')!}
-          register={register('password')}
+          register={register('password', {
+            onChange: (e) => onPasswordChange(e),
+          })}
           setValue={setValue}
         />
         <Input

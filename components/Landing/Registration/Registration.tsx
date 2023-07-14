@@ -12,6 +12,7 @@ export const Registration = () => {
     isLoading,
     control,
     getFieldState,
+    onPasswordChange,
     t,
   } = useRegistration();
 
@@ -57,7 +58,9 @@ export const Registration = () => {
           title={t('form.register.inputs.password.title')!}
           name='password'
           placeholder={t('form.register.inputs.password.placeholder')!}
-          register={register('password')}
+          register={register('password', {
+            onChange: (e) => onPasswordChange(e),
+          })}
           setValue={setValue}
         />
         <Input
