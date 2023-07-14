@@ -23,7 +23,7 @@ export const useProfile = () => {
   const [editEmail, setEditEmail] = useState(false);
   const [editData, setEditData] = useState({
     google_id,
-    image,
+    image: '',
     email: '',
     username: '',
     password: '',
