@@ -29,7 +29,7 @@ export default function Home() {
   } = useLandingPage();
 
   return (
-    <div className=' relative pt-107 sm:pt-200 text-white'>
+    <div className=' relative pt-107 sm:pt-200 text-white '>
       {currentModal && (
         <Modal
           onClose={onClose}
@@ -126,7 +126,7 @@ export default function Home() {
         return (
           <div
             key={url}
-            className='w-screen h-screen   sticky top-0'
+            className=' h-screen   sticky top-0 overflow-x-hidden'
             onClick={changeIndex.bind(null, index + 1)}
           >
             <div
