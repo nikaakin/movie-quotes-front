@@ -1,9 +1,10 @@
-import { initializeWebsocket } from '@/helpers';
+import { initializeWebsocket, setCookie } from '@/helpers';
 import { fetchNotifications, getCsrf } from '@/services';
 import { NotificationType, UserType, loginSchemaType } from '@/types';
 import { useQuery, useQueryClient } from '@tanstack/react-query';
 import { AxiosError, AxiosResponse } from 'axios';
 import Echo from 'laravel-echo';
+import { useState } from 'react';
 
 type UserQueryType = {
   onSuccess?: () => void;
@@ -14,6 +15,7 @@ type UserQueryType = {
   ) => Promise<AxiosResponse<{ user: UserType }>>;
   enableNotifications?: boolean;
   onNotificationSuccess?: () => void;
+  isLogout?: boolean;
 };
 
 export const useUserQuery = ({
@@ -22,7 +24,9 @@ export const useUserQuery = ({
   enabled,
   queryFn,
   enableNotifications = false,
+  isLogout = false,
 }: UserQueryType) => {
+  const [firstInit, setFirstInit] = useState(false);
   const queryClient = useQueryClient();
 
   const { data: notifications } = useQuery<NotificationType[]>({
@@ -62,27 +66,34 @@ export const useUserQuery = ({
         try {
           await getCsrf();
           const data = await queryFn();
-          resolve(data.data.user);
+          resolve(data?.data?.user || null);
         } catch (e) {
           reject(e);
         }
       }),
     onSuccess: (data) => {
       onSuccess && onSuccess();
-      initializeWebsocket();
-      (window as Window & typeof globalThis & { Echo: Echo })!
-        .Echo!.private(`notification.${data.id}`)
-        .listen('NewNotification', (data: { notification: NotificationType }) =>
-          queryClient.setQueryData<NotificationType[]>(
-            ['notifications'],
-            (prev) => {
-              if (!prev) return prev;
-              return [data.notification, ...prev];
-            }
-          )
-        );
+      if (!isLogout && !firstInit) {
+        setCookie('user', 'true');
+        setFirstInit(true);
+        initializeWebsocket();
+        window
+          .Echo!.private(`notification.${data.id}`)
+          .listen(
+            'NewNotification',
+            (data: { notification: NotificationType }) =>
+              queryClient.setQueryData<NotificationType[]>(
+                ['notifications'],
+                (prev) => {
+                  if (!prev) return prev;
+                  return [data.notification, ...prev];
+                }
+              )
+          );
+      }
     },
     onError: (error) => {
+      setCookie('user', 'false');
       onError && onError(error as AxiosError);
     },
     enabled: enabled,
