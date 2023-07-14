@@ -5,10 +5,11 @@ import { ResetPasswordSchemaType } from '@/types';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useMutation } from '@tanstack/react-query';
 import { AxiosError } from 'axios';
-import { useForm } from 'react-hook-form';
+import { useForm, useWatch } from 'react-hook-form';
 import { useTranslation } from 'next-i18next';
 import { useDispatch } from 'react-redux';
 import { ResetPasswordProps } from './type';
+import { ChangeEvent } from 'react';
 
 export const useResetPassword = ({ email, token }: ResetPasswordProps) => {
   const { t } = useTranslation(['modals']);
@@ -18,13 +19,15 @@ export const useResetPassword = ({ email, token }: ResetPasswordProps) => {
     setValue,
     control,
     getFieldState,
+    setError,
+    clearErrors,
     formState: { errors, isValid },
   } = useForm({
     mode: 'onChange',
     resolver: zodResolver(resetPasswordSchema(t)),
   });
   const dispatch = useDispatch();
-
+  const passwordRepeat = useWatch({ control, name: 'passwordRepeat' });
   const { mutate, isLoading } = useMutation({
     mutationFn: resetPassword,
     onSuccess: () => {
@@ -45,6 +48,16 @@ export const useResetPassword = ({ email, token }: ResetPasswordProps) => {
   };
   const onShowLogin = () => dispatch(setCurrentModal('login'));
 
+  const onPasswordChange = (e: ChangeEvent<HTMLInputElement>) => {
+    if (passwordRepeat !== e.target.value) {
+      setError('passwordRepeat', {
+        message: t('modals:form.register.errors.confirm_password.match')!,
+      });
+      return;
+    }
+    clearErrors('passwordRepeat');
+  };
+
   return {
     t,
     register,
@@ -57,5 +70,6 @@ export const useResetPassword = ({ email, token }: ResetPasswordProps) => {
     isLoading,
     control,
     getFieldState,
+    onPasswordChange,
   };
 };
