@@ -26,6 +26,9 @@ export const reactSelectStyles = (borderColor: string) => ({
   multiValue: (styles: CSSObjectWithLabel) => ({
     ...styles,
     backgroundColor: '#6C757D',
+    position: 'relative' as 'relative',
+    paddingRight: '15px',
+    overflow: 'hidden',
   }),
   multiValueLabel: (styles: CSSObjectWithLabel) => ({
     ...styles,
@@ -35,10 +38,27 @@ export const reactSelectStyles = (borderColor: string) => ({
     ...styles,
     color: '#FFF',
     cursor: 'pointer',
+    width: '100%',
+    height: '100%',
+    position: 'absolute' as 'absolute',
+    right: '0',
+    top: '0',
+    backgroundColor: 'transparent',
+    svg: {
+      top: '50%',
+      right: '2px',
+      transform: 'translateY(-50%)',
+      position: 'absolute',
+      width: '16px',
+      height: '16px',
+    } as CSSObjectWithLabel,
     ':hover': {
-      backgroundColor: '#9C9A9A',
       color: '#FFF',
     },
+  }),
+  MultiValueContainer: (styles: CSSObjectWithLabel) => ({
+    ...styles,
+    position: 'relative',
   }),
   menu: (styles: CSSObjectWithLabel) => ({
     ...styles,
