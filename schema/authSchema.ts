@@ -91,5 +91,5 @@ export const resetPasswordSchema = (t: TFunction) =>
     })
     .refine((data) => data.password === data.passwordRepeat, {
       message: t('modals:form.register.errors.confirm_password.match')!,
-      path: ['modals:passwordRepeat'],
+      path: ['passwordRepeat'],
     });
