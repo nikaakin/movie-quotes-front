@@ -33,7 +33,7 @@ export const useHeader = () => {
   const onLogout = async () => {
     await getCsrf();
     await logoutUser();
-    setCookie('user', 'win');
+    setCookie('user', 'false');
     (window as Window & typeof globalThis & { Echo: Echo })!.Echo!.leaveChannel(
       'notification.' + data?.id
     );
