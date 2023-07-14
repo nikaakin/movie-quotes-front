@@ -34,9 +34,7 @@ export const useHeader = () => {
     await getCsrf();
     await logoutUser();
     setCookie('user', 'false');
-    (window as Window & typeof globalThis & { Echo: Echo })!.Echo!.leaveChannel(
-      'notification.' + data?.id
-    );
+    window.Echo.leaveChannel('notification.' + data?.id);
     push('/');
   };
   const onSearchBarClick = () => disaptch(setIsSearchBarOn(true));

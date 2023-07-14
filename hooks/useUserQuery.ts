@@ -77,7 +77,7 @@ export const useUserQuery = ({
         setCookie('user', 'true');
         setFirstInit(true);
         initializeWebsocket();
-        (window as Window & typeof globalThis & { Echo: Echo })!
+        window
           .Echo!.private(`notification.${data.id}`)
           .listen(
             'NewNotification',
