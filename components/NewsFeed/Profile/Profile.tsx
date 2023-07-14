@@ -266,7 +266,8 @@ export const Profile = () => {
           </section>
           <div
             className={`text-xl sm:mr-105 flex justify-between sm:justify-end pr-8 sm:pr-0 pl-14 pb-10 sm:gap-8 ${
-              !(editPassword || editUsername || editEmail) && 'hidden'
+              !(editPassword || editUsername || editEmail || editData.image) &&
+              'hidden'
             }`}
           >
             <button type='button' onClick={resetState}>
