@@ -3,3 +3,4 @@ export * from './useLanding';
 export * from './use404';
 export * from './use403';
 export * from './useMovieShowPage';
+export * from './useApp';
