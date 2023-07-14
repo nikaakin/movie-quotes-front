@@ -1,33 +1,25 @@
+import { useApp } from '@/hooks';
 import { store } from '@/state';
 import '@/styles/globals.css';
-import {
-  Hydrate,
-  QueryClient,
-  QueryClientProvider,
-} from '@tanstack/react-query';
+import { Hydrate, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { appWithTranslation } from 'next-i18next';
 import type { AppProps } from 'next/app';
-import { useRouter } from 'next/router';
+import Head from 'next/head';
 import { Provider } from 'react-redux';
 
-function App({ Component, pageProps }: AppProps) {
-  const queryClient = new QueryClient({
-    defaultOptions: {
-      queries: {
-        refetchOnWindowFocus: false,
-      },
-    },
-  });
-  const { locale } = useRouter();
-
-  const dehydratedState = pageProps.dehydratedState;
+function App(props: AppProps) {
+  const { dehydratedState, locale, queryClient, Component, pageProps, title } =
+    useApp(props);
 
   return (
     <Provider store={store}>
       <QueryClientProvider client={queryClient}>
         <Hydrate state={dehydratedState}>
           <ReactQueryDevtools initialIsOpen={false} />
+          <Head>
+            <title>{title}</title>
+          </Head>
           <div
             className={`${
               locale === 'en'
