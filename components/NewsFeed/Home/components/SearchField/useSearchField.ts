@@ -27,18 +27,23 @@ export const useSearchField = ({
   const { ref, isOutside } = useOutsideClickDetect<HTMLDivElement>();
 
   useEffect(() => {
+    let debouncedSearch: NodeJS.Timeout;
     if (!isSearchActive) {
       onClose();
     }
-    const debouncedSearch = setTimeout(() => {
-      setSearchResults([]);
-      if (searchValue.startsWith('#') || searchValue.startsWith('@')) {
-        searchValue.length > 1 &&
-          search(searchValue).then((data) => setSearchResults(data));
-      }
-    }, 500);
+    setSearchResults([]);
+    if (isOutside) {
+      setSearchValue('');
+    } else {
+      debouncedSearch = setTimeout(() => {
+        if (searchValue.startsWith('#') || searchValue.startsWith('@')) {
+          searchValue.length > 1 &&
+            search(searchValue).then((data) => setSearchResults(data));
+        }
+      }, 500);
+    }
     return () => clearTimeout(debouncedSearch);
-  }, [isSearchActive, searchValue]);
+  }, [isSearchActive, searchValue, isOutside]);
 
   const { mutate } = useMutation({
     mutationFn: () => deleteQuote(quote?.id || 0),

@@ -117,7 +117,7 @@ export const SearchField = ({
                   className='z-50 absolute top-0 left-8 bg-transparent  focus:outline-none text-white  w-full  hidden sm:!block pr-10 search '
                   value={searchValue}
                   onChange={handleSearch}
-                  ref={(input) => input && input.focus()}
+                  ref={(input) => input && setTimeout(() => input.focus(), 0)}
                 />
               ) : (
                 <div
