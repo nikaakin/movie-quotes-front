@@ -10,3 +10,4 @@ export * from './CustomSelect';
 export * from './TextArea';
 export * from './QuoteMutateModal';
 export * from './MovieMutation';
+export * from './NotificationModal';
