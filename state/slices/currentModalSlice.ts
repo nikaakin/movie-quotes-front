@@ -1,24 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { currentModalType } from './type';
 
 type InitialStateType = {
-  currentModal:
-    | 'login'
-    | 'register'
-    | 'forgot-password'
-    | 'reset-password'
-    | 'account-activated'
-    | 'password-changed'
-    | 'link-expired'
-    | 'register-notification'
-    | 'edit-notification'
-    | 'forgot-password-notification'
-    | 'confirmation-notification'
-    | 'add-movie'
-    | 'add-quote'
-    | 'quote-view'
-    | 'edit-quote'
-    | 'edit-movie'
-    | null;
+  currentModal: currentModalType;
 };
 
 const initialState: InitialStateType = {
