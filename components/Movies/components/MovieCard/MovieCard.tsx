@@ -10,7 +10,7 @@ export const MovieCard = ({
   movie: MovieType;
 }) => {
   return (
-    <Link href={`/news-feed/movies/${id}`}>
+    <Link href={`/news-feed/movies/${id}`} className='w-full sm:w-fit'>
       <div className='w-full sm:w-96 h-auto max-h-96 mb-4'>
         <img
           src={image}
