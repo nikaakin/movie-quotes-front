@@ -16,20 +16,13 @@ export const QuoteCard = ({
   t,
   locale,
 }: QuoteCardProps) => {
-  const {
-    likeIsLoading,
-    liked,
-    onLike,
-    updatedLikes,
-    comment,
-    onComment,
-    onCommentChange,
-    updatedComments,
-  } = useQuoteCard({
-    current_user_likes,
-    likes,
-    notifications,
-  });
+  const { likeIsLoading, onLike, comment, onComment, onCommentChange } =
+    useQuoteCard({
+      current_user_likes,
+      likes,
+      notifications,
+      id,
+    });
 
   return (
     <div className='sm:w-250 w-full p-9 sm:p-6 bg-neutral-950 rounded-[12px] backdrop-blur-xl mb-10'>
@@ -62,7 +55,7 @@ export const QuoteCard = ({
 
       <div className='flex gap-6 text-base sm:text-xl mb-6'>
         <button className='flex gap-3'>
-          {updatedComments.length}
+          {notifications.length}
           <CommentIcon />
         </button>
         <button
@@ -70,16 +63,16 @@ export const QuoteCard = ({
           onClick={onLike.bind(null, id)}
           disabled={likeIsLoading}
         >
-          {updatedLikes}
-          <HeartIcon shouldFill={liked} />
+          {likes}
+          <HeartIcon shouldFill={!!current_user_likes} />
         </button>
       </div>
 
       <hr className='w-full border-zinc-150 border-opacity-20 ' />
 
       <div className='max-h-80 overflow-y-auto'>
-        {updatedComments.length > 0 &&
-          updatedComments.map((comment) => (
+        {notifications.length > 0 &&
+          notifications.map((comment) => (
             <div className='mt-6' key={comment.id}>
               <div className='flex flex-row  items-center  gap-5 mb-3 sm:mb-0'>
                 <div className='bg-white rounded-[50%] w-10 h-10 sm:w-14 sm:h-14 overflow-hidden  sm:mr-6 '>

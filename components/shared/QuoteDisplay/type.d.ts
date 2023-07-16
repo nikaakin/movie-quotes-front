@@ -7,6 +7,7 @@ export type QuoteDisplayProps = {
   commentPlaceholder?: string;
   onQuoteEdit?: () => void;
   onQuoteDelete?: () => void;
+  movieId?: string | boolean;
 };
 
 export type useQuoteDisplayArgs = {
@@ -22,4 +23,6 @@ export type useQuoteDisplayArgs = {
       email: string;
     };
   }[];
+  movieId: string | boolean;
+  quote: QuoteType;
 };

@@ -14,9 +14,10 @@ type useCommentArgs = {
       email: string;
     };
   }[];
+  onSuccess?: (_: { id: number; comment: string }) => void;
 };
 
-export const useComment = ({ notifications }: useCommentArgs) => {
+export const useComment = ({ notifications, onSuccess }: useCommentArgs) => {
   const [comment, setComment] = useState('');
   const [updatedComments, setUpdatedComments] = useState(notifications);
 
@@ -28,6 +29,7 @@ export const useComment = ({ notifications }: useCommentArgs) => {
   const { mutate: submitComment } = useMutation({
     mutationFn: commentService,
     onSuccess: (data) => {
+      onSuccess && onSuccess(data);
       setUpdatedComments((prev) => [
         ...prev,
         {
