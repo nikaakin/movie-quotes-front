@@ -10,6 +10,7 @@ export type QuoteCardProps = {
 export type useQuoteCardArgs = {
   current_user_likes: number;
   likes: number;
+  id: number;
   notifications: {
     id: number;
     comment: string;

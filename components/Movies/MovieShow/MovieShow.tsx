@@ -70,6 +70,7 @@ export const MovieShow = () => {
               onQuoteDelete={() => deleteQuoteMutation(selectedQuote!.id)}
               onQuoteEdit={onModalChange.bind(null, 'edit-quote')}
               commentPlaceholder={t('common:movie_show.comment')!}
+              movieId={movie?.id}
             />
           ) : null}
         </Modal>

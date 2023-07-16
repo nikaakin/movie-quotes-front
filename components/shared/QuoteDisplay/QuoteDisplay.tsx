@@ -16,6 +16,7 @@ export const QuotesDisplay = ({
   commentPlaceholder,
   onQuoteDelete,
   onQuoteEdit,
+  movieId = false,
 }: QuoteDisplayProps) => {
   const {
     userId,
@@ -30,6 +31,8 @@ export const QuotesDisplay = ({
     current_user_likes: quote.current_user_likes,
     likes: quote.likes,
     notifications: quote.notifications,
+    movieId,
+    quote,
   });
   return (
     <div className='rounded-[12px] relative w-full h-full sm:w-250 hide-scrollbar max-h-screen pt-8 pb-16 sm:pb-12 bg-neutral-950 text-white overflow-auto'>
@@ -39,18 +42,16 @@ export const QuotesDisplay = ({
       >
         {userId === quote.user?.id && (
           <div className='w-fit flex'>
-            <button
-              className='sm:pr-6 pr-3 border-r-gray-350 border-r border-opacity-40 flex items-center '
-              onClick={onQuoteEdit}
-            >
-              <PencilIcon />
-            </button>
-            <button
-              className='sm:pl-6 pl-3 flex items-center'
-              onClick={onQuoteDelete}
-            >
-              <TrashBinIcon />
-            </button>
+            <div className='sm:pr-6 pr-3  border-r-gray-350 border-r border-opacity-40 '>
+              <button className=' flex items-center ' onClick={onQuoteEdit}>
+                <PencilIcon />
+              </button>
+            </div>
+            <div className='sm:pl-6 pl-3 '>
+              <button className='flex items-center' onClick={onQuoteDelete}>
+                <TrashBinIcon />
+              </button>
+            </div>
           </div>
         )}
         <h1 className=' absolute top-6 left-1/2 -translate-x-1/2 sm:text-2xl text-xl font-medium hidden sm:block  '>
@@ -101,7 +102,7 @@ export const QuotesDisplay = ({
           ></textarea>
 
           <div className='absolute top-2 right-2   flex flex-row  gap-1 items-center'>
-            <span className='text-gray-550 sm:text-xl text-base'>Eng</span>
+            <span className='text-gray-550 sm:text-xl text-base'>ქართ</span>
           </div>
         </div>
       </div>

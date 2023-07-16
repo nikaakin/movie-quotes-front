@@ -18,9 +18,7 @@ export const QuoteCard = ({
 }: QuoteCardProps) => {
   const {
     likeIsLoading,
-    liked,
     onLike,
-    updatedLikes,
     comment,
     onComment,
     onCommentChange,
@@ -29,6 +27,7 @@ export const QuoteCard = ({
     current_user_likes,
     likes,
     notifications,
+    id,
   });
 
   return (
@@ -70,8 +69,8 @@ export const QuoteCard = ({
           onClick={onLike.bind(null, id)}
           disabled={likeIsLoading}
         >
-          {updatedLikes}
-          <HeartIcon shouldFill={liked} />
+          {likes}
+          <HeartIcon shouldFill={!!current_user_likes} />
         </button>
       </div>
 
