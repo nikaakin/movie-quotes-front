@@ -91,19 +91,20 @@ export const MovieShow = () => {
             <h3 className='text-2xl text-orange-250 font-medium break-all'>
               {movie?.title[locale]} ({movie?.year})
             </h3>
-            <div className='bg-zinc-870 bg-opacity-60 rounded-[10px] px-7 py-3 w-fit flex'>
-              <button
-                className='pr-6 border-r-gray-350 border-r flex items-center '
-                onClick={onModalChange.bind(null, 'edit-movie')}
-              >
-                <PencilIcon />
-              </button>
-              <button
-                className='pl-6 flex items-center'
-                onClick={onDeleteMovie}
-              >
-                <TrashBinIcon />
-              </button>
+            <div className='bg-zinc-870 bg-opacity-60 rounded-[10px] px-5 py-3 sm:px-7 sm:py-3 w-fit flex justify-between'>
+              <div className='sm:pr-6 pr-4  border-r-gray-350 border-r border-opacity-40 '>
+                <button
+                  className=' flex items-center '
+                  onClick={onModalChange.bind(null, 'edit-movie')}
+                >
+                  <PencilIcon />
+                </button>
+              </div>
+              <div className='sm:pl-6 pl-4 '>
+                <button className='flex items-center' onClick={onDeleteMovie}>
+                  <TrashBinIcon />
+                </button>
+              </div>
             </div>
           </div>
           <div className='text-lg font-bold flex gap-2 flex-wrap mb-5'>
