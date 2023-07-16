@@ -4,3 +4,4 @@ export * from './Landing';
 export * from './Profile';
 export * from './Home';
 export * from './Movies';
+export * from './MovieShow';
