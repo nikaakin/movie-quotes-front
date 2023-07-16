@@ -41,13 +41,12 @@ export const useQuoteCard = ({
     likes,
     onSuccess: onLikeUpdate,
   });
-  const { comment, onComment, onCommentChange, updatedComments } = useComment({
+  const { comment, onComment, onCommentChange } = useComment({
     notifications,
   });
 
   return {
     onLike,
-    updatedComments,
     onCommentChange,
     comment,
     onComment,
