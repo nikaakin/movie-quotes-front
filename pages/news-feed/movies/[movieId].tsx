@@ -8,7 +8,7 @@ export default function MovieShowPage() {
   const { isFetching, isFallback, isMovieFetching } = useMovieShowPage();
   return (
     <div className='bg-lg-main min-h-screen text-white'>
-      {!isFetching && !isFallback && !isMovieFetching && (
+      {!isFetching && !isFallback && isMovieFetching && (
         <Fragment>
           <Header shouldhavelinks />
           <main className='flex flex-row sm:ml-105'>
