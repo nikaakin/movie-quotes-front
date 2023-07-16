@@ -81,33 +81,50 @@ export const SearchField = ({
           className={`text-white  cursor-pointer w-full text-base h-full sm:text-xl  sm:h-fit transition-all  block  sm:relative bg-neutral-920 sm:bg-transparent
              ${!isSearchActive && 'hidden sm:block'}
              `}
+          onClick={handleFocus.bind(null, true)}
         >
           <div className='sm:flex sm:items-center sm:gap-4 relative '>
             <div className='hidden sm:block'>
               <SearchIcon />
             </div>
-            <div className='flex gap-6 sm:hidden cursor-pointer  items-center border-b border-white border-opacity-30 px-8 py-6 sm:px-0 sm:py-0'>
+            <div className='flex gap-6 sm:hidden cursor-pointer  items-center border-b border-white border-opacity-30 px-8 sm:px-0 sm:py-0 '>
               <div onClick={onClose} className='h-6 flex items-center'>
                 <ArrowIcon />
               </div>
               {!isFocused ? (
-                <span
-                  className='sm:hidden inline flex-1 text-left'
-                  onClick={handleFocus.bind(null, true)}
-                >
-                  {t('home.search')}
-                </span>
+                <Fragment>
+                  <span className='sm:hidden inline flex-1 text-left  py-6 sm:py-0'>
+                    {t('home.search')}
+                  </span>
+                </Fragment>
               ) : (
                 <input
                   name='search_field'
                   id='search_field'
                   type='text'
-                  className=' bg-transparent  focus:outline-none text-white  w-full '
+                  className=' bg-transparent  focus:outline-none text-white  w-full py-6 sm:py-0'
                   value={searchValue}
                   onChange={handleSearch}
                 />
               )}
             </div>
+            {!isFocused && (
+              <div
+                onClick={handleFocus.bind(null, true)}
+                className='sm:hidden flex text-gray-550 px-16 py-6  flex-col items-start gap-6 text-left'
+              >
+                <span className='block '>
+                  {t('home.enter')!}
+                  <span className='text-white'> @ </span>
+                  {t('home.enter_movies')!}
+                </span>
+                <span className='block'>
+                  {t('home.enter')!}
+                  <span className='text-white'> # </span>
+                  {t('home.enter_quotes')!}
+                </span>
+              </div>
+            )}
             {isSearchActive ? (
               !isOutside ? (
                 <input
@@ -121,16 +138,16 @@ export const SearchField = ({
                 />
               ) : (
                 <div
-                  className='text-gray-550 px-16 py-6 sm:px-0 sm:py-0 flex flex-col items-start gap-6 sm:block text-left'
                   onClick={handleFocus.bind(null, true)}
+                  className='hidden text-gray-550 px-16 py-6 sm:px-0 sm:py-0 sm:block text-left'
                 >
-                  <span className='block sm:inline-block '>
+                  <span className=' sm:inline-block '>
                     {t('home.enter')!}
                     <span className='text-white'> @ </span>
                     {t('home.enter_movies')!}
                   </span>
-                  <span className='hidden sm:inline'>,</span>
-                  <span className='block sm:inline-block'>
+                  <span className='sm:inline'>,</span>
+                  <span className=' sm:inline-block'>
                     {t('home.enter')!}
                     <span className='text-white'> # </span>
                     {t('home.enter_quotes')!}
