@@ -14,11 +14,13 @@ export const useMovieShowPage = () => {
     queryFn: isAuthenticated,
     enabled: !isFallback,
   });
-  const { data } = useQuery({
+  const { data, isFetched: isMovieFetching } = useQuery({
     queryKey: ['movie', movieId],
     queryFn: () => showMovie(movieId as string),
+    onError: () => push('/404'),
+    retry: false,
     enabled: !!movieId,
   });
 
-  return { isFetching, movie: data, isFallback };
+  return { isFetching, movie: data, isFallback, isMovieFetching };
 };

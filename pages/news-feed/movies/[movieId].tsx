@@ -5,10 +5,10 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { Fragment } from 'react';
 
 export default function MovieShowPage() {
-  const { isFetching, isFallback } = useMovieShowPage();
+  const { isFetching, isFallback, isMovieFetching } = useMovieShowPage();
   return (
     <div className='bg-lg-main min-h-screen text-white'>
-      {!isFetching && !isFallback && (
+      {!isFetching && !isFallback && !isMovieFetching && (
         <Fragment>
           <Header shouldhavelinks />
           <main className='flex flex-row sm:ml-105'>
