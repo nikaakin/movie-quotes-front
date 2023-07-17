@@ -14,9 +14,8 @@ export const imageUrls = [
 
   {
     url: '/assets/images/landing3.png',
-    quote:
-      'I think we’re just gonna have to be secretly in love with earch other and leave it that',
-    movie: 'The Royal Tenenbaums,2001 ',
+    quote: "It's a Dangerous Business, Frodo, Going Out Your Door.",
+    movie: 'The Lord of the Rings, 2001 ',
   },
 ];
 
