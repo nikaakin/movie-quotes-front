@@ -27,7 +27,7 @@ export const HeartIcon = ({
       viewBox='0 0 32 32'
       fill='none'
       xmlns='http://www.w3.org/2000/svg'
-      className='w-6 sm:w-8 sm:h-8 h-6 transition-colors duration-100'
+      className='w-6 sm:w-8 sm:h-8 h-6 transition-colors duration-100 '
     >
       <g id='heart-fill' clipPath='url(#clip0_45_281)'>
         <path

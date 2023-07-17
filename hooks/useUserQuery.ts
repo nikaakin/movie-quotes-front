@@ -3,7 +3,6 @@ import { fetchNotifications, getCsrf } from '@/services';
 import { NotificationType, UserType, loginSchemaType } from '@/types';
 import { useQuery, useQueryClient } from '@tanstack/react-query';
 import { AxiosError, AxiosResponse } from 'axios';
-import Echo from 'laravel-echo';
 import { useState } from 'react';
 
 type UserQueryType = {
