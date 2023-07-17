@@ -17,9 +17,14 @@ export function middleware(request: NextRequest) {
     );
   }
 
+  if (
+    request.nextUrl.pathname.includes('/news-feed') &&
+    request.cookies.get('user')?.value === 'false'
+  ) {
+    return NextResponse.redirect(
+      new URL(`${locale}/`, process.env.NEXT_PUBLIC_BASE_URL)
+    );
+  }
+
   return NextResponse.next();
 }
-
-export const config = {
-  matcher: ['/', '/news-feed'],
-};
