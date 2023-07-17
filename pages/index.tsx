@@ -149,10 +149,14 @@ export default function Home() {
               ></div>
             </article>
 
-            <div className=' absolute top-0 pl-[10vw] z-50 flex flex-row sm:pt-[30vh] pt-[40vh] '>
+            <div className=' absolute top-0 pl-[10vw] z-50 flex flex-row  pt-[40vh] '>
               <span className='border-[1px] border-white h-0 sm:w-14 w-4 mt-4 sm:mt-10 sm:mr-4 mr-2 '></span>
               <div className='leading-10'>
-                <h1 className='text-xl font-bold w-68 sm:text-5xl sm:w-1/2 !leading-normal mb-2'>
+                <h1
+                  className={` text-xl font-bold ${
+                    index === 1 ? 'sm:w-200' : 'sm:w-175'
+                  } w-68 sm:text-5xl  !leading-normal mb-2 `}
+                >
                   {quote}
                 </h1>
                 <h3 className='text-zinc-350 font-bold text-base sm:text-3xl'>
