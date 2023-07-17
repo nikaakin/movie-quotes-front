@@ -71,9 +71,9 @@ export const useMovieMutation = <T extends FieldValues>({
     onSuccess: (data: MovieType) => {
       dispatch(setCurrentModal(null));
       const oldMovies = queryClient.getQueryData<MovieType[]>(['movies']) || [];
-      const oldMovie =
-        queryClient.getQueryData<MovieType>(['movie', movieId]) || [];
       if (defaultValues) {
+        const oldMovie =
+          queryClient.getQueryData<MovieType>(['movie', movieId]) || [];
         const newMovies = oldMovies.map((movie) => {
           if (movie.id === data.id) {
             return { ...movie, ...data };
@@ -81,10 +81,11 @@ export const useMovieMutation = <T extends FieldValues>({
           return movie;
         });
         queryClient.setQueryData(['movies'], newMovies);
+        queryClient.setQueryData(['movie', movieId], { ...oldMovie, ...data });
       } else {
         queryClient.setQueryData(['movies'], [...oldMovies, data]);
       }
-      queryClient.setQueryData(['movie', movieId], { ...oldMovie, ...data });
+      queryClient.invalidateQueries(['movies']);
     },
     onError: (error: AxiosError<T>) => {
       const errors = error.response?.data.details || {};
