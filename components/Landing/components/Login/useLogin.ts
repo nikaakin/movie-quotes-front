@@ -10,6 +10,7 @@ import { useMutation } from '@tanstack/react-query';
 import { getCsrf, login } from '@/services';
 import { AxiosError } from 'axios';
 import { useEffect } from 'react';
+import { setCookie } from '@/helpers';
 
 export const useLogin = () => {
   const { t } = useTranslation('modals');
@@ -41,6 +42,7 @@ export const useLogin = () => {
     mutationKey: ['user'],
     mutationFn: login,
     onSuccess: (data) => {
+      setCookie('user', 'true');
       push('/news-feed/home');
     },
     onError: (error: AxiosError<loginSchemaType>) => {
