@@ -23,8 +23,10 @@ export const useUploadImage = <T>({
   };
 
   const onChange = async (file: File) => {
-    const image = await getImageBlob(file);
-    setFieldValue(image);
+    if (file) {
+      const image = await getImageBlob(file);
+      setFieldValue(image);
+    }
   };
 
   return {
