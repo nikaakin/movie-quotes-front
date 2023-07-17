@@ -25,11 +25,11 @@ export const QuoteDisplayCard = ({
   return (
     <div className='bg-neutral-950 px-8 w-full sm:w-200 relative rounded-[10px]'>
       <div
-        className='absolute sm:top-6 sm:right-8 sm:bottom-full bottom-8 right-10 cursor-pointer '
+        className='absolute sm:top-4 sm:right-8 sm:bottom-full bottom-6 right-10 cursor-pointer min-h-5 flex items-center'
         ref={ref}
       >
         {!isOutside && (
-          <div className='w-60 h-48 flex bg-zinc-870 rounded-2xl absolute -top-2 right-0 -translate-y-full sm:right-auto sm:left-0 sm:top-auto  sm:-bottom-2 sm:translate-y-full flex-col justify-between py-6 '>
+          <div className='w-60 h-48 flex gap-4 bg-zinc-870 rounded-2xl absolute -top-2 right-0 -translate-y-full sm:right-auto sm:left-0 sm:top-auto  sm:-bottom-2 sm:translate-y-full flex-col justify-between py-6 cursor-auto '>
             <button
               className='pl-8 flex gap-5 hover:bg-white hover:bg-opacity-5 transition-all py-2'
               onClick={onModalChange.bind(null, 'quote-view')}
