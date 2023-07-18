@@ -23,7 +23,7 @@ export const TextArea = <T,>({
     <div className='flex flex-col'>
       <div
         className={`flex relative  border-gray-550  border focus:shadow-input rounded-[4px] cursor-pointer 
-    ${isDirty && !invalid && 'border-green-750 border-[2px]'}
+    ${isDirty && !invalid && 'border-green-750 '}
     ${labelShouldStay && (fieldValue || isFocused) && 'text-gray-550 text-base'}
     ${error && 'border-red-650 '}`}
       >
@@ -78,7 +78,7 @@ export const TextArea = <T,>({
           </div>
         </div>
       </div>
-      <span className=' min-h-5 text-red-550 text-base'>{error?.message}</span>
+      <span className=' min-h-6 text-red-550 text-base'>{error?.message}</span>
     </div>
   );
 };
