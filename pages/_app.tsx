@@ -28,8 +28,8 @@ function App(props: AppProps) {
             }`}
           >
             <Component {...pageProps} />
+            <div id='modal'></div>
           </div>
-          <div id='modal'></div>
         </Hydrate>
       </QueryClientProvider>
     </Provider>
