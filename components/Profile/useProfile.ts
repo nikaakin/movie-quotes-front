@@ -117,6 +117,7 @@ export const useProfile = () => {
     setEditUsername(false);
     setEditPassword(false);
     setEditEmail(false);
+    setEditData((prev) => ({ ...prev, image: '' }));
   };
   const onClose = () => dispatch(setCurrentModal(null));
   const onPasswordInputChange = (event: ChangeEvent<HTMLInputElement>) => {
