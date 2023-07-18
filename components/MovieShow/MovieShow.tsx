@@ -86,10 +86,13 @@ export const MovieShow = () => {
             className='w-full h-full object-cover rounded-xl'
           />
         </div>
-        <div className='flex-1 sm:max-w-lg max-w-[80vw]'>
+        <div className='flex-1 sm:max-w-lg max-w-[80vw] relative'>
           <div className='flex sm:justify-between sm:flex-row flex-col mb-6 gap-3 items-start'>
-            <h3 className='text-2xl text-orange-250 font-medium break-all'>
-              {movie?.title[locale]} ({movie?.year})
+            <h3 className='text-2xl text-orange-250 font-medium  flex items-center gap-2'>
+              <span className='sm:max-w-68 max-w-56 inline-block text-ellipsis whitespace-nowrap overflow-hidden '>
+                {movie?.title[locale]}
+              </span>
+              <span> ({movie?.year})</span>
             </h3>
             <div className='bg-zinc-870 bg-opacity-60 rounded-[10px] px-5 py-3 sm:px-7 sm:py-3 w-fit flex justify-between'>
               <div className='sm:pr-6 pr-4  border-r-gray-350 border-r border-opacity-40 '>
@@ -126,7 +129,7 @@ export const MovieShow = () => {
               {movie?.director[locale]}
             </span>
           </div>
-          <p className='text-gray-350 text-lg break-words'>
+          <p className='text-gray-350 text-lg break-words sm:absolute '>
             {movie?.description[locale]}
           </p>
         </div>

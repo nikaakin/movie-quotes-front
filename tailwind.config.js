@@ -117,6 +117,11 @@ module.exports = {
       inset: {
         68: '17rem',
       },
+      maxWidth: {
+        32: '8rem',
+        56: '14rem',
+        68: '17rem',
+      },
     },
   },
   plugins: [],

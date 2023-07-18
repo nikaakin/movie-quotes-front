@@ -19,12 +19,7 @@ export const useQuoteDisplayCard = ({
   };
   const quoteText =
     quote.quote[locale as 'en' | 'ka'].length > 100
-      ? quote.quote[locale as 'en' | 'ka']
-          .slice(0, 100)
-          .split(' ')
-          .slice(0, -1)
-          .join(' ')
-          .concat('...')
+      ? quote.quote[locale as 'en' | 'ka'].slice(0, 70) + '...'
       : quote.quote[locale as 'en' | 'ka'];
 
   const onDelete = () => {

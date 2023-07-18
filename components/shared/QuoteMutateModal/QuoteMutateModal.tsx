@@ -89,8 +89,11 @@ export const QuoteMutateModal = ({
               </div>
               <div className='flex-1'>
                 <div className='flex sm:justify-between sm:flex-row flex-col sm:mb-6 gap-3'>
-                  <h3 className='sm:text-2xl text-orange-250 font-medium  text-base'>
-                    {movieTitle} ({movieYear})
+                  <h3 className='sm:text-2xl text-orange-250 font-medium  text-base flex items-center gap-2'>
+                    <span className='sm:max-w-68 max-w-32  inline-block text-ellipsis whitespace-nowrap overflow-hidden'>
+                      {movieTitle}
+                    </span>
+                    <span> ({movieYear})</span>
                   </h3>
                 </div>
                 <div className='sm:text-lg text-xs font-bold flex gap-2 flex-wrap sm:mb-5'>

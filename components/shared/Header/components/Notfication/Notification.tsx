@@ -64,7 +64,7 @@ export const Notification = () => {
                   </div>
                   <div className='flex flex-col sm:flex-row justify-between flex-1 gap-2'>
                     <div>
-                      <h2 className='mb-1 text-xl capitalize break-all'>
+                      <h2 className='mb-1 text-xl capitalize max-w-32 sm:max-w-lg overflow-hidden text-ellipsis whitespace-nowrap'>
                         {notification.user.username}
                       </h2>
                       <div className='flex items-start gap-3  sm:text-xl text-base '>
