@@ -17,7 +17,7 @@ export const HomeHeader = () => {
         onClick={toggleSearchBar.bind(null, true)}
         className={`${
           isSearchActive &&
-          'flex-1 pb-4 border-b border-white border-opacity-30'
+          'flex-1 pb-4 border-b border-white border-opacity-30 '
         } sm:basis-32 `}
       >
         <SearchField isSearchActive={isSearchActive} />

@@ -139,7 +139,7 @@ export const SearchField = ({
               ) : (
                 <div
                   onClick={handleFocus.bind(null, true)}
-                  className='hidden text-gray-550 px-16 py-6 sm:px-0 sm:py-0 sm:block text-left'
+                  className='hidden text-gray-550 -mb-2 sm:block text-left'
                 >
                   <span className=' sm:inline-block '>
                     {t('home.enter')!}
@@ -163,17 +163,21 @@ export const SearchField = ({
         {searchResults.length > 0 && (
           <label
             htmlFor='search_field'
-            className={`absolute z-10 top-0 left-0  translate-y-12 bg-lg-main w-full max-h-full sm:max-h-60 overflow-auto  py-3  rounded-b-sm  ${
+            className={`absolute z-10 top-0 left-0   translate-y-12 bg-lg-main w-full max-h-full sm:max-h-60 overflow-auto  py-3  rounded-b-sm  ${
               isOutside && 'sm:hidden'
             }`}
           >
             {searchResults.map((quote) => (
               <div
                 key={quote.id}
-                className='flex items-center gap-4 hover:bg-white hover:bg-opacity-5 w-full px-4 py-2 text-left'
+                className='flex items-center gap-4 hover:bg-white hover:bg-opacity-5 w-full px-4 py-2 text-left break-all'
                 onClick={onQuoteView.bind(null, quote)}
               >
-                <h3>{quote?.quote[locale]}</h3>
+                <h3>
+                  {quote?.quote[locale].length > 100
+                    ? quote?.quote[locale].slice(0, 100) + '...'
+                    : quote?.quote[locale]}
+                </h3>
               </div>
             ))}
           </label>
