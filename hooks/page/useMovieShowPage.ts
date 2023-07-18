@@ -2,6 +2,7 @@ import { useRouter } from 'next/router';
 import { useUserQuery } from '../useUserQuery';
 import { isAuthenticated, showMovie } from '@/services';
 import { useQuery } from '@tanstack/react-query';
+import { AxiosError } from 'axios';
 
 export const useMovieShowPage = () => {
   const {
@@ -17,8 +18,12 @@ export const useMovieShowPage = () => {
   const { isFetched: isMovieFetched, isError: isMovieError } = useQuery({
     queryKey: ['movie', movieId],
     queryFn: () => showMovie(movieId as string),
-    onError: () => {
-      push('/404');
+    onError: (err: AxiosError<{ message: string }>) => {
+      if (err.response?.data.message === 'Unauthorized') {
+        push('/unauthorized');
+      } else {
+        push('/404');
+      }
     },
     retry: false,
     enabled: !!movieId,
