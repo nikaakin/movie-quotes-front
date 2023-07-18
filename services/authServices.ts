@@ -18,7 +18,7 @@ export const register = (data: registrationSchemaType) =>
   axios().post('/api/register', data);
 
 export const edit = (data: registrationSchemaType) =>
-  axios().post('/api/update', data, {
+  axios().post('/api/update?_method=patch', data, {
     headers: {
       'Content-Type': 'multipart/form-data',
     },
