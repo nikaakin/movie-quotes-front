@@ -36,7 +36,9 @@ export const QuoteCard = ({
             />
           </div>
           <div className='flex justify-center flex-col'>
-            <h3 className='text-base sm:text-2xl'>{user.username}</h3>
+            <h3 className='text-base sm:text-2xl max-w-32 sm:max-w-56 overflow-hidden text-ellipsis whitespace-nowrap'>
+              {user.username}
+            </h3>
           </div>
         </div>
       </div>
@@ -83,7 +85,7 @@ export const QuoteCard = ({
                   />
                 </div>
                 <div className='flex justify-center flex-col'>
-                  <h3 className='text-base sm:text-2xl'>
+                  <h3 className='text-base sm:text-2xl max-w-32 sm:max-w-xl overflow-hidden text-ellipsis whitespace-nowrap'>
                     {comment.user.username}
                   </h3>
                 </div>

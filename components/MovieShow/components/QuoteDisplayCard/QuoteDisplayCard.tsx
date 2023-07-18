@@ -61,7 +61,9 @@ export const QuoteDisplayCard = ({
           alt={quote.quote['en']}
           className='w-full sm:w-56 rounded-sm h-36 object-cover'
         />
-        <h3 className='text-2xl text-gray-350 italic'>"{quoteText}"</h3>
+        <h3 className='text-2xl text-gray-350 italic break-all leading-normal'>
+          "{quoteText}"
+        </h3>
       </div>
       <div className='flex gap-6 text-base sm:text-xl mb-6 '>
         <div className='flex gap-3'>
