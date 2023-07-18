@@ -12,7 +12,12 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { AxiosError } from 'axios';
 import { useRouter } from 'next/router';
-import { FieldValue, FieldValues, useForm } from 'react-hook-form';
+import {
+  FieldValue,
+  FieldValues,
+  UseFormGetFieldState,
+  useForm,
+} from 'react-hook-form';
 import { useDispatch } from 'react-redux';
 import { MovieMutationProps } from './type';
 import { movieSchema } from '@/schema';
@@ -141,7 +146,7 @@ export const useMovieMutation = <T extends FieldValues>({
     handleSubmit,
     setValue,
     control,
-    getFieldState,
+    getFieldState: getFieldState as UseFormGetFieldState<FieldValues>,
     errors,
     isValid,
     genres: genreOptions,

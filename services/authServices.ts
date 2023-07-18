@@ -18,7 +18,11 @@ export const register = (data: registrationSchemaType) =>
   axios().post('/api/register', data);
 
 export const edit = (data: registrationSchemaType) =>
-  axios().patch('/api/update', data);
+  axios().post('/api/update', data, {
+    headers: {
+      'Content-Type': 'multipart/form-data',
+    },
+  });
 
 export const forgotPassword = (data: forgotPasswordSchemaType) =>
   axios().post('/api/forgot-password', data);

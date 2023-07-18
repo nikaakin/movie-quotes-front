@@ -82,7 +82,7 @@ export const useProfile = () => {
       google_id,
       password: data?.password,
       username: data?.username,
-      image: editData.image,
+      image: data?.image,
     });
   };
 
@@ -90,13 +90,16 @@ export const useProfile = () => {
     handleSubmit(onHandleSubmit)();
     dispatch(setCurrentModal('confirmation-notification'));
   };
-  const onSubmit = async (data: typeof editData) => {
+  const onSubmit = async (data: editSchemaType) => {
     dispatch(setCurrentModal(null));
     const formData = new FormData();
     data.username && formData.append('username', data.username);
     data.password && formData.append('password', data.password);
     formData.append('google_id', data.google_id || '');
-    data.image !== image && data.image && formData.append('image', data.image);
+    data.image !== image &&
+      data.image &&
+      data.image[0] &&
+      formData.append('image', data.image[0]);
     data.email && formData.append('newEmail', data.email);
     formData.append('email', email!);
     await getCsrf();
@@ -109,7 +112,7 @@ export const useProfile = () => {
         google_id,
         password: data?.password,
         username: data?.username,
-        image: editData.image,
+        image: data?.image,
       })
     )();
   };
@@ -119,7 +122,10 @@ export const useProfile = () => {
     setEditEmail(false);
     setEditData((prev) => ({ ...prev, image: '' }));
   };
-  const onClose = () => dispatch(setCurrentModal(null));
+  const onClose = () => {
+    resetState();
+    dispatch(setCurrentModal(null));
+  };
   const onPasswordInputChange = (event: ChangeEvent<HTMLInputElement>) => {
     const { value } = event.target;
     setIsMorethen(false);
