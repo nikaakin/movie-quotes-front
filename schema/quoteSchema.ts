@@ -5,14 +5,14 @@ import { z } from 'zod';
 export const createQuoteSchema = (t: TFunction) =>
   z.object({
     quote_en: z.string().regex(
-      /^[A-Za-z\s]+$/,
+      /^[A-Za-z0-9 ,!'\s]+$/,
       t('modals:validation.regex', {
         attribute: t('modals:attributes.description'),
         language: t('modals:attributes.language_en'),
       })!
     ),
     quote_ka: z.string().regex(
-      /^[ა-ჰ\s]+$/,
+      /^[ა-ჰ0-9 ,!'\s]+$/,
       t('modals:validation.regex', {
         attribute: t('modals:attributes.description'),
         language: t('modals:attributes.language_ka'),
