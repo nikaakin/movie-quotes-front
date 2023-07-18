@@ -5,14 +5,14 @@ import { z } from 'zod';
 export const movieSchema = (t: TFunction) =>
   z.object({
     title_en: z.string().regex(
-      /^[A-Za-z\s]+$/,
+      /^[A-Za-z0-9 ,!'\s]+$/,
       t('modals:validation.regex', {
         attribute: t('modals:attributes.title'),
         language: t('modals:attributes.language_en'),
       })!
     ),
     title_ka: z.string().regex(
-      /^[ა-ჰ\s]+$/,
+      /^[ა-ჰ0-9 ,!'\s]+$/,
       t('modals:validation.regex', {
         attribute: t('modals:attributes.title'),
         language: t('modals:attributes.language_ka'),
@@ -33,14 +33,14 @@ export const movieSchema = (t: TFunction) =>
       })!
     ),
     description_en: z.string().regex(
-      /^[A-Za-z0-9 _.,!']+$/,
+      /^[A-Za-z0-9 ,!']+$/,
       t('modals:validation.regex', {
         attribute: t('modals:attributes.description'),
         language: t('modals:attributes.language_en'),
       })!
     ),
     description_ka: z.string().regex(
-      /^[ა-ჰ _.,!']+$/,
+      /^[ა-ჰ0-9 ,!']+$/,
       t('modals:validation.regex', {
         attribute: t('modals:attributes.description'),
         language: t('modals:attributes.language_ka'),
