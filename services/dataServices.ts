@@ -36,11 +36,16 @@ export const storeMovie = (data: FormData) =>
 
 export const updateMovie = (data: FormData, id: string) =>
   axios()
-    .post<{ movie: MovieType }>(`/api/movies/update/${id}`, data, {
-      headers: {
-        'Content-Type': 'multipart/form-data',
-      },
-    })
+    .post<{ movie: MovieType }>(
+      `/api/movies/update/${id}?_method=patch`,
+      data,
+      {
+        headers: {
+          method: 'PATCH',
+          'Content-Type': 'multipart/form-data',
+        },
+      }
+    )
     .then((res) => res.data.movie);
 
 export const deleteMovie = (id: number) =>
@@ -57,11 +62,15 @@ export const storeQuote = (data: FormData) =>
 
 export const updateQuote = (id: number, data: FormData) =>
   axios()
-    .post<{ quote: QuoteType }>(`/api/quotes/update/${id}`, data, {
-      headers: {
-        'Content-Type': 'multipart/form-data',
-      },
-    })
+    .post<{ quote: QuoteType }>(
+      `/api/quotes/update/${id}?_method=patch`,
+      data,
+      {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      }
+    )
     .then((res) => res.data.quote);
 
 export const deleteQuote = (id: number) =>
