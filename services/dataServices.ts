@@ -60,6 +60,11 @@ export const storeQuote = (data: FormData) =>
     })
     .then((res) => res.data.quote);
 
+export const showQuote = (id: number) =>
+  axios()
+    .get<{ quote: QuoteType }>(`/api/quotes/show/${id}`)
+    .then((res) => res.data.quote);
+
 export const updateQuote = (id: number, data: FormData) =>
   axios()
     .post<{ quote: QuoteType }>(

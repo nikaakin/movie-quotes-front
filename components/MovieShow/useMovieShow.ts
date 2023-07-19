@@ -35,6 +35,20 @@ export const useMovieShow = () => {
           return { ...oldData, quotes: newQuotes } as { quotes: QuoteType[] };
         }
       );
+      queryClient.setQueriesData<{ pages: { quotes: QuoteType[] }[] }>(
+        ['quotes'],
+        (oldData) => {
+          const newQuotes = oldData?.pages.map((q) => {
+            const filtered = q.quotes.filter(
+              (qq) => qq.id !== selectedQuote?.id
+            );
+            return { ...q, quotes: filtered };
+          });
+          return { ...oldData, pages: newQuotes } as {
+            pages: { quotes: QuoteType[] }[];
+          };
+        }
+      );
     },
   });
 

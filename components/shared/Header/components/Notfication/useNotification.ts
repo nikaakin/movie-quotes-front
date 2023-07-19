@@ -1,20 +1,31 @@
 import { useOutsideClickDetect, useUserQuery } from '@/hooks';
-import { isAuthenticated, seen, seenAll } from '@/services';
-import { useState } from 'react';
+import {
+  deleteQuote,
+  isAuthenticated,
+  seen,
+  seenAll,
+  showQuote,
+} from '@/services';
 import { useTranslation } from 'next-i18next';
-import { useMutation } from '@tanstack/react-query';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState, setCurrentModal } from '@/state';
+import { QuoteType } from '@/types';
 
 export const useNotification = () => {
   const { t } = useTranslation('common');
-  const [rootMargin, setRootMargin] = useState(1);
+  const queryClient = useQueryClient();
   const { isOutside, ref } = useOutsideClickDetect<HTMLDivElement>();
+  const dispatch = useDispatch();
+  const { currentModal } = useSelector(
+    (state: RootState) => state.currentModal
+  );
 
   const { onNotificationupdate, notifications, onNotificationSeenAll } =
     useUserQuery({
       enabled: false,
       queryFn: isAuthenticated,
       enableNotifications: true,
-      onNotificationSuccess: () => setRootMargin(rootMargin === 1 ? 0 : 1),
     });
 
   const dateCalc = (data: string) => {
@@ -52,17 +63,64 @@ export const useNotification = () => {
     onSuccess: () => onNotificationSeenAll(),
   });
 
+  const { data: selectedQuote, mutate: fetchQuote } = useMutation({
+    mutationFn: (id: number) => showQuote(id),
+    mutationKey: ['selectedQuote'],
+  });
+
+  const onNotificationClick = async (
+    notificationId: number,
+    quoteId: number,
+    seen: boolean,
+    current_user_likes: boolean
+  ) => {
+    !seen && onNotificationSeen(notificationId);
+    fetchQuote(quoteId);
+
+    dispatch(setCurrentModal('quote-view-from-notification'));
+  };
+  const { mutate } = useMutation({
+    mutationFn: () => deleteQuote(selectedQuote?.id || 0),
+    onSuccess: () => {
+      dispatch(setCurrentModal(null));
+      queryClient.setQueriesData<{ pages: { quotes: QuoteType[] }[] }>(
+        ['quotes'],
+        (oldData) => {
+          const newQuotes = oldData?.pages.map((q) => {
+            const filtered = q.quotes.filter(
+              (qq) => qq.id !== selectedQuote?.id
+            );
+            return { ...q, quotes: filtered };
+          });
+          return { ...oldData, pages: newQuotes } as {
+            pages: { quotes: QuoteType[] }[];
+          };
+        }
+      );
+    },
+  });
+
+  const onModalClose = () => dispatch(setCurrentModal(null));
+  const onEdit = () =>
+    dispatch(setCurrentModal('quote-edit-from-notification'));
+  const onDelete = () => mutate();
+
   return {
     isOutside,
     ref,
     notifications: notifications || [],
     dateCalc,
-    onNotificationSeen,
     onNotificationMarkAll,
     newNotifications: notifications?.reduce(
       (acc, curr) => (curr.seen ? acc : acc + 1),
       0
     ),
     t,
+    onNotificationClick,
+    onModalClose,
+    selectedQuote,
+    currentModal,
+    onEdit,
+    onDelete,
   };
 };

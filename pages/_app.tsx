@@ -9,7 +9,7 @@ import Head from 'next/head';
 import { Provider } from 'react-redux';
 
 function App(props: AppProps) {
-  const { dehydratedState, locale, queryClient, Component, pageProps, title } =
+  const { queryClient, dehydratedState, locale, Component, pageProps, title } =
     useApp(props);
 
   return (

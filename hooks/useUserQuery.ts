@@ -13,7 +13,6 @@ type UserQueryType = {
     data?: loginSchemaType
   ) => Promise<AxiosResponse<{ user: UserType }>>;
   enableNotifications?: boolean;
-  onNotificationSuccess?: () => void;
   isLogout?: boolean;
 };
 

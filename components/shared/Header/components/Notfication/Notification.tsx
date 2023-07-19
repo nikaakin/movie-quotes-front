@@ -1,4 +1,11 @@
-import { BellIcon, CommentWithQuoteIcon, HeartIcon } from '@/components';
+import {
+  BellIcon,
+  CommentWithQuoteIcon,
+  HeartIcon,
+  Modal,
+  QuoteMutateModal,
+  QuotesDisplay,
+} from '@/components';
 import { useNotification } from './useNotification';
 import { Fragment } from 'react';
 
@@ -9,12 +16,53 @@ export const Notification = () => {
     notifications,
     dateCalc,
     onNotificationMarkAll,
-    onNotificationSeen,
+    onNotificationClick,
     newNotifications,
     t,
+    currentModal,
+    onModalClose,
+    selectedQuote,
+    onDelete,
+    onEdit,
   } = useNotification();
+
   return (
     <div className='flex items-center relative' ref={ref}>
+      {currentModal === 'quote-view-from-notification' && selectedQuote && (
+        <Modal
+          onClose={onModalClose}
+          shouldHaveX={false}
+          background='lg-modals opacity-70 backdrop-blur-sm '
+        >
+          <QuotesDisplay
+            quote={selectedQuote}
+            onClose={onModalClose}
+            title={t('common:movie_show.view_quote')}
+            commentPlaceholder={t('common:movie_show.comment')!}
+            onQuoteDelete={onDelete}
+            onQuoteEdit={onEdit}
+          />
+        </Modal>
+      )}
+
+      {currentModal === 'quote-edit-from-notification' && (
+        <Modal
+          onClose={onModalClose}
+          shouldHaveX={false}
+          background='lg-modals opacity-70 backdrop-blur-sm '
+        >
+          {selectedQuote && (
+            <QuoteMutateModal
+              defaultImage={selectedQuote?.image || ''}
+              defaultQuoteEng={selectedQuote?.quote['en']}
+              defaultQuoteGeo={selectedQuote?.quote['ka']}
+              movieId={selectedQuote?.movie_id + ''}
+              quoteId={selectedQuote?.id}
+            />
+          )}
+        </Modal>
+      )}
+
       <button className='relative'>
         <BellIcon />
         {newNotifications ? (
@@ -44,11 +92,15 @@ export const Notification = () => {
           <section className='flex flex-col flex-1 overflow-auto gap-2 h-28'>
             {notifications.map((notification) => (
               <div
-                onClick={() => onNotificationSeen(notification.id)}
+                onClick={onNotificationClick.bind(
+                  null,
+                  notification.id,
+                  notification.quote_id,
+                  notification.seen,
+                  notification.isLike || false
+                )}
                 key={notification.id}
-                className={`border border-gray-550 border-opacity-50 sm:px-6 px-4 py-4 ${
-                  !notification.seen && 'cursor-pointer'
-                }`}
+                className='border border-gray-550 border-opacity-50 sm:px-6 px-4 py-4 cursor-pointer'
               >
                 <div className='flex gap-3 sm:gap-6'>
                   <div
