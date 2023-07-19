@@ -59,8 +59,9 @@ export const MovieMutation = ({ t, defaultValues }: MovieMutationProps) => {
           name='title_en'
           register={register('title_en')}
           setValue={setValue}
-          title='Movie name'
+          englishTitle='Movie name'
           language='Eng'
+          isFontEnglish
         />
         <MovieInput
           control={control}
@@ -68,7 +69,7 @@ export const MovieMutation = ({ t, defaultValues }: MovieMutationProps) => {
           name='title_ka'
           register={register('title_ka')}
           setValue={setValue}
-          title='ფილმის სახელი'
+          georgianTitle='ფილმის სახელი'
           language='ქარ'
         />
 
@@ -90,7 +91,8 @@ export const MovieMutation = ({ t, defaultValues }: MovieMutationProps) => {
           type='number'
           register={register('year')}
           setValue={setValue}
-          title='წელი/Year'
+          georgianTitle='წელი'
+          englishTitle='Year'
         />
         <MovieInput
           control={control}
@@ -98,8 +100,9 @@ export const MovieMutation = ({ t, defaultValues }: MovieMutationProps) => {
           name='director_en'
           register={register('director_en')}
           setValue={setValue}
-          title='Director'
+          englishTitle='Director'
           language='Eng'
+          isFontEnglish
         />
         <MovieInput
           control={control}
@@ -107,7 +110,7 @@ export const MovieMutation = ({ t, defaultValues }: MovieMutationProps) => {
           name='director_ka'
           register={register('director_ka')}
           setValue={setValue}
-          title='რეჟისორი'
+          georgianTitle='რეჟისორი'
           language='ქარ'
         />
 
@@ -119,6 +122,7 @@ export const MovieMutation = ({ t, defaultValues }: MovieMutationProps) => {
           title='description'
           language='Eng'
           labelShouldStay
+          isEnglishFont
         />
         <TextArea
           control={control}

@@ -12,6 +12,7 @@ export const TextArea = <T,>({
   language,
   defaultValue = '',
   labelShouldStay = false,
+  isEnglishFont = false,
 }: TextAreaType<T>) => {
   const { error, invalid, isDirty, fieldValue, isFocused, setIsFocused } =
     useTextArea<T>({
@@ -20,7 +21,11 @@ export const TextArea = <T,>({
       control,
     });
   return (
-    <div className='flex flex-col'>
+    <div
+      className={`flex flex-col ${
+        isEnglishFont ? 'font-helvetica-neue' : 'font-helvetica-georgian'
+      }`}
+    >
       <div
         className={`flex relative  border-gray-550  border focus:shadow-input rounded-[4px] cursor-pointer 
     ${isDirty && !invalid && 'border-green-750 '}
