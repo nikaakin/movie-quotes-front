@@ -55,6 +55,20 @@ export const useMovieShow = () => {
   const { mutate: deleteMovieMutation } = useMutation({
     mutationFn: () => deleteMovie(parseInt(movieId as string)),
     onSuccess: () => {
+      queryClient.setQueriesData<{ pages: { quotes: QuoteType[] }[] }>(
+        ['quotes'],
+        (oldData) => {
+          const newQuotes = oldData?.pages.map((q) => {
+            const filtered = q.quotes.filter(
+              (qq) => qq.movie_id !== parseInt(movieId as string)
+            );
+            return { ...q, quotes: filtered };
+          });
+          return { ...oldData, pages: newQuotes } as {
+            pages: { quotes: QuoteType[] }[];
+          };
+        }
+      );
       replace('/news-feed/movies');
     },
   });
