@@ -14,6 +14,7 @@ export type TextAreaType<T> = {
   language?: string;
   defaultValue?: string;
   labelShouldStay?: boolean;
+  isEnglishFont?: boolean;
 };
 
 export type useTextAreaType<T> = {

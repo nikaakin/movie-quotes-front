@@ -6,13 +6,15 @@ import { useMovieInput } from './useMovieInput';
 export const MovieInput = <T,>({
   register,
   name,
-  title,
   type = 'text',
   classNames,
   setValue,
   getFieldState,
   control,
   language,
+  englishTitle,
+  georgianTitle,
+  isFontEnglish = false,
 }: MovieInputType<T>) => {
   const { error, invalid, isDirty, fieldValue, isFocused, setIsFocused } =
     useMovieInput<T>({
@@ -21,7 +23,11 @@ export const MovieInput = <T,>({
       control,
     });
   return (
-    <div className='relative '>
+    <div
+      className={`relative ${
+        isFontEnglish ? 'font-helvetica-neue' : 'font-helvetica-georgian'
+      }`}
+    >
       <label
         htmlFor={name}
         className={` px-3 py-2 font-normal rounded-[4px] cursor-pointer text-base  sm:text-xl flex items-center gap-2 border-gray-550  border focus:shadow-input     
@@ -29,7 +35,10 @@ export const MovieInput = <T,>({
         ${(fieldValue || isFocused) && 'text-gray-550 text-base'}
         ${error && 'border-red-650 '}`}
       >
-        {title} {(fieldValue || isFocused) && ':'}
+        <span className='font-helvetica-georgian'>{georgianTitle}</span>
+        {georgianTitle && englishTitle ? '/' : ''}
+        <span className='font-helvetica-neue'>{englishTitle}</span>
+        {(fieldValue || isFocused) && ':'}
         <div className='relative text-white inline-block flex-1'>
           <input
             type={type}
