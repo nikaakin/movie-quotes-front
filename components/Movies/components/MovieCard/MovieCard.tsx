@@ -18,7 +18,7 @@ export const MovieCard = ({
           className='w-full h-72  object-cover rounded-xl'
         />
       </div>
-      <h1 className='text-2xl font-medium mb-4 break-all sm:pr-16 relative  sm:flex items-center gap-2 '>
+      <h1 className='text-2xl font-medium mb-4 break-all sm:pr-16 relative  flex items-center gap-2 '>
         <span className='sm:max-w-68 max-w-56  inline-block text-ellipsis whitespace-nowrap overflow-hidden'>
           {title[locale]}{' '}
         </span>

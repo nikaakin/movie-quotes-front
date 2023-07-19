@@ -76,7 +76,7 @@ export const Notification = () => {
         <div
           className='
         px-8 sm:pt-10 pt-6  sm:pb-12 pb-9 flex flex-col
-        z-[100] bg-black w-screen h-[85vh] sm:w-250 sm:h-206 absolute -bottom-7 sm:rounded-[12px] -right-9 sm:right-0 translate-y-full sm:translate-x-64 before:w-0 before:-translate-y-full before:h-0 before:absolute before:top-0 before:right-12 sm:before:right-68 before:translate-x-1/2 before:border-l-[12px] before:border-l-transparent before:border-r-[12px] before:border-r-transparent before:border-b-[20px] sm:before:border-b-[30px] before:border-b-black'
+        z-[100] bg-black w-screen h-[85vh] sm:w-250 sm:h-206 absolute -bottom-7 sm:rounded-[12px] -right-8 sm:right-0 translate-y-full sm:translate-x-64 before:w-0 before:-translate-y-full before:h-0 before:absolute before:top-0 before:right-10 sm:before:right-68 before:translate-x-1/2 before:border-l-[12px] before:border-l-transparent before:border-r-[12px] before:border-r-transparent before:border-b-[20px] sm:before:border-b-[30px] before:border-b-black'
         >
           <header className='flex justify-between mb-6'>
             <h1 className='text-xl sm:text-3xl font-medium'>
