@@ -25,11 +25,13 @@ export const SearchField = ({
     currentModal,
     quote,
     onCloseModal,
-    ref,
-    isOutside,
     onDelete,
     onQuoteEdit,
     t,
+    inputRef,
+    searchValBigScreen,
+    handleSearchBigScreen,
+    onSearchSubmit,
   } = useSearchField({ isSearchActive });
   return (
     <Fragment>
@@ -73,17 +75,18 @@ export const SearchField = ({
         className={`sm:relative w-full sm:h-full fixed top-0 left-0  h-[80vh] ${
           isSearchActive ? 'z-50' : '-z-10 sm:z-0'
         }`}
-        ref={ref}
       >
         <label
           htmlFor='search_field'
-          className={`text-white  cursor-pointer w-full text-base h-full sm:text-xl  sm:h-fit transition-all  block  sm:relative bg-neutral-920 sm:bg-transparent
+          className={`text-white   cursor-pointer w-full text-base h-full sm:text-xl  sm:h-fit transition-all  block  sm:relative bg-neutral-920 sm:bg-transparent
              ${!isSearchActive && 'hidden sm:block'}
              `}
-          onClick={handleFocus.bind(null, true)}
         >
           <div className='sm:flex sm:items-center sm:gap-4 relative '>
-            <div className='hidden sm:block'>
+            <div
+              className='hidden sm:block'
+              onClick={handleFocus.bind(null, true)}
+            >
               <SearchIcon />
             </div>
             <div className='flex gap-6 sm:hidden cursor-pointer  items-center border-b border-white border-opacity-30 px-8 sm:px-0 sm:py-0 '>
@@ -92,7 +95,10 @@ export const SearchField = ({
               </div>
               {!isFocused ? (
                 <Fragment>
-                  <span className='sm:hidden inline flex-1 text-left  py-6 sm:py-0'>
+                  <span
+                    className='sm:hidden inline flex-1 text-left  py-6 sm:py-0'
+                    onClick={handleFocus.bind(null, true)}
+                  >
                     {t('home.search')}
                   </span>
                 </Fragment>
@@ -125,16 +131,18 @@ export const SearchField = ({
               </div>
             )}
             {isSearchActive ? (
-              !isOutside ? (
-                <input
-                  name='search_field'
-                  id='search_field'
-                  type='text'
-                  className='z-50 absolute top-0 left-8 bg-transparent  focus:outline-none text-white  w-full  hidden sm:!block pr-10 search '
-                  value={searchValue}
-                  onChange={handleSearch}
-                  ref={(input) => input && setTimeout(() => input.focus(), 0)}
-                />
+              isFocused ? (
+                <form onSubmit={onSearchSubmit}>
+                  <input
+                    name='search_field'
+                    id='search_field'
+                    type='text'
+                    className='z-50 absolute top-0 left-8 bg-transparent  focus:outline-none text-white  w-full  hidden sm:!block pr-10 search '
+                    value={searchValBigScreen}
+                    onChange={handleSearchBigScreen}
+                    ref={inputRef}
+                  />
+                </form>
               ) : (
                 <div
                   onClick={handleFocus.bind(null, true)}
@@ -162,9 +170,7 @@ export const SearchField = ({
         {searchResults.length > 0 && (
           <label
             htmlFor='search_field'
-            className={`absolute z-10 top-0 left-0   translate-y-12 bg-lg-main w-full max-h-full sm:max-h-60 overflow-auto  py-3  rounded-b-sm  ${
-              isOutside && 'sm:hidden'
-            }`}
+            className='absolute z-10 top-7 left-0 translate-y-12 bg-lg-main w-full max-h-full  overflow-auto  py-3  rounded-b-sm sm:hidden'
           >
             {searchResults.map((quote) => (
               <div
