@@ -63,7 +63,7 @@ export const MovieInput = <T,>({
           </div>
         </div>
       </label>
-      <span className='min-h-5 block text-red-550 text-base'>
+      <span className='min-h-6 block text-red-550 text-base'>
         {error?.message}
       </span>
     </div>
