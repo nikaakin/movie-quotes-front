@@ -24,7 +24,7 @@ export const MovieShow = () => {
   } = useMovieShow();
   return (
     <div className='flex-1  sm:pl-0 sm:pr-16 pt-4 sm:pt-8 pb-52 text-white'>
-      {currentModal && (
+      {currentModal && !currentModal.includes('notification') && (
         <Modal
           onClose={onModalChange.bind(null, null)}
           shouldHaveX={false}

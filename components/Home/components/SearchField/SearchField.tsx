@@ -39,7 +39,7 @@ export const SearchField = ({
         } fixed top-0 left-0 w-full h-full blur-0.75 bg-lg-main opacity-50 z-40 `}
         onClick={onClose}
       ></div>
-      {currentModal && (
+      {currentModal && !currentModal.includes('notification') && (
         <div onClick={(e) => e.stopPropagation()}>
           <Modal
             onClose={onCloseModal}
@@ -62,7 +62,6 @@ export const SearchField = ({
                 defaultQuoteGeo={quote?.quote['ka']}
                 movieId={quote?.movie_id + ''}
                 quoteId={quote?.id}
-                fromSearch
               />
             ) : currentModal === 'add-quote' ? (
               <QuoteMutateModal />

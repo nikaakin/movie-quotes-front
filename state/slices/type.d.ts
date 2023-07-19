@@ -15,4 +15,6 @@ export type currentModalType =
   | 'quote-view'
   | 'edit-quote'
   | 'edit-movie'
+  | 'quote-view-from-notification'
+  | 'quote-edit-from-notification'
   | null;

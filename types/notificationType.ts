@@ -9,4 +9,6 @@ export type NotificationType = {
     image: string;
   };
   created_at: string;
+  user_id: number;
+  quote_id: number;
 };

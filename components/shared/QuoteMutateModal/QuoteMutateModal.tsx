@@ -20,7 +20,6 @@ export const QuoteMutateModal = ({
   movieGenres,
   movieImage,
   movieYear,
-  fromSearch = false,
 }: QuoteMutateModalProps) => {
   const {
     options,
@@ -40,7 +39,6 @@ export const QuoteMutateModal = ({
     defaultQuoteEng,
     defaultQuoteGeo,
     quoteId,
-    fromSearch,
   });
   return (
     <Fragment>

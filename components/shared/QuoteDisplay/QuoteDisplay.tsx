@@ -28,9 +28,9 @@ export const QuotesDisplay = ({
     updatedComments,
     updatedLikes,
   } = useQuoteDisplay({
-    current_user_likes: quote.current_user_likes,
-    likes: quote.likes,
-    notifications: quote.notifications,
+    current_user_likes: quote?.current_user_likes,
+    likes: quote?.likes,
+    notifications: quote?.notifications,
     movieId,
     quote,
   });
