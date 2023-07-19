@@ -1,13 +1,17 @@
 import { MovieType, NotificationType, QuoteType, languageType } from '@/types';
 import axios from './axios';
 
-export const fetchQuotes = (page: number) =>
+export const fetchQuotes = (page: number, query: string) =>
   axios()
     .get<{
       quotes: QuoteType[];
       has_more_pages: boolean;
       current_page: number;
-    }>(`/api/quotes/${page}`)
+    }>(
+      `/api/quotes/${page}/?search=${
+        query.includes('#') ? `%23${query.slice(1)}` : query
+      }`
+    )
     .then((res) => res.data);
 
 export const fetchMovies = () =>

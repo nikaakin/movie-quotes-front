@@ -1,18 +1,25 @@
 import { useIntersectionObserver } from '@/hooks';
 import { fetchQuotes } from '@/services';
 import { QuoteType } from '@/types';
-import { useInfiniteQuery } from '@tanstack/react-query';
+import { useInfiniteQuery, useQueryClient } from '@tanstack/react-query';
 import { useTranslation } from 'next-i18next';
 import { useRouter } from 'next/router';
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 export const useHome = () => {
   const lastQuoteRef = useRef<HTMLDivElement>(null);
   const [rootMargin, setRootMargin] = useState(10);
+  const { query } = useRouter();
+  const queryClient = useQueryClient();
+
+  useEffect(() => {
+    queryClient.removeQueries(['quotes']);
+  }, [query]);
 
   const { data: infiniteQuotes, fetchNextPage } = useInfiniteQuery({
     queryKey: ['quotes'],
-    queryFn: ({ pageParam = 0 }) => fetchQuotes(pageParam),
+    queryFn: ({ pageParam = 0 }) =>
+      fetchQuotes(pageParam, (query.search || '') as string),
     getNextPageParam: (lastPage) => {
       if (lastPage.has_more_pages) {
         return lastPage.current_page + 1;

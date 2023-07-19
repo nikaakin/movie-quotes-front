@@ -1,11 +1,17 @@
-import { ChangeEvent, SyntheticEvent, useEffect, useState } from 'react';
+import {
+  ChangeEvent,
+  FormEvent,
+  SyntheticEvent,
+  useEffect,
+  useRef,
+  useState,
+} from 'react';
 import { useTranslation } from 'next-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState, setCurrentModal, setIsSearchBarOn } from '@/state';
 import { deleteQuote, search } from '@/services';
 import { QuoteType } from '@/types';
 import { useRouter } from 'next/router';
-import { useOutsideClickDetect } from '@/hooks';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 
 export const useSearchField = ({
@@ -15,16 +21,17 @@ export const useSearchField = ({
 }) => {
   const { t } = useTranslation('common');
   const [searchValue, setSearchValue] = useState('');
+  const [searchValBigScreen, setSearchValBigScreen] = useState('');
   const [searchResults, setSearchResults] = useState<QuoteType[]>([]);
   const [isFocused, setIsFocused] = useState(false);
   const [quote, setQuote] = useState<QuoteType | null>(null);
   const dispatch = useDispatch();
-  const { locale } = useRouter();
+  const { locale, push } = useRouter();
   const { currentModal } = useSelector(
     (state: RootState) => state.currentModal
   );
   const queryClient = useQueryClient();
-  const { ref, isOutside } = useOutsideClickDetect<HTMLDivElement>();
+  const inputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     let debouncedSearch: NodeJS.Timeout;
@@ -32,7 +39,7 @@ export const useSearchField = ({
       onClose();
     }
     setSearchResults([]);
-    if (isOutside) {
+    if (!isFocused) {
       setSearchValue('');
     } else {
       debouncedSearch = setTimeout(() => {
@@ -43,7 +50,7 @@ export const useSearchField = ({
       }, 500);
     }
     return () => clearTimeout(debouncedSearch);
-  }, [isSearchActive, searchValue, isOutside]);
+  }, [isSearchActive, searchValue, isFocused]);
 
   const { mutate } = useMutation({
     mutationFn: () => deleteQuote(quote?.id || 0),
@@ -69,13 +76,20 @@ export const useSearchField = ({
   const handleSearch = (e: ChangeEvent<HTMLInputElement>) =>
     setSearchValue(e.target.value);
 
-  const handleFocus = (val: boolean) => setIsFocused(val);
+  const handleSearchBigScreen = (e: ChangeEvent<HTMLInputElement>) =>
+    setSearchValBigScreen(e.target.value);
+
+  const handleFocus = (val: boolean) => {
+    setIsFocused(val);
+    setTimeout(() => inputRef.current?.focus(), 0);
+  };
   const onClose = (e?: SyntheticEvent<HTMLDivElement | HTMLLabelElement>) => {
     e && e.stopPropagation();
     dispatch(setIsSearchBarOn(false));
     setIsFocused(false);
     setSearchResults([]);
     setSearchValue('');
+    setSearchValBigScreen('');
   };
 
   const onCloseModal = () => dispatch(setCurrentModal(null));
@@ -86,6 +100,18 @@ export const useSearchField = ({
   };
 
   const onQuoteEdit = () => dispatch(setCurrentModal('edit-quote'));
+
+  const onSearchSubmit = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    push(
+      `/news-feed/home?search=${
+        searchValBigScreen.includes('#')
+          ? `%23${searchValBigScreen.slice(1)}`
+          : searchValBigScreen
+      }`
+    );
+    setSearchValBigScreen('');
+  };
 
   return {
     searchValue,
@@ -99,10 +125,12 @@ export const useSearchField = ({
     currentModal,
     quote,
     onCloseModal,
-    ref,
-    isOutside,
     onDelete,
     onQuoteEdit,
     t,
+    inputRef,
+    searchValBigScreen,
+    onSearchSubmit,
+    handleSearchBigScreen,
   };
 };
