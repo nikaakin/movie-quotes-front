@@ -9,11 +9,15 @@ import { useEffect, useRef, useState } from 'react';
 export const useHome = () => {
   const lastQuoteRef = useRef<HTMLDivElement>(null);
   const [rootMargin, setRootMargin] = useState(10);
+  const [oldQuery, setOldQuery] = useState<string>('');
   const { query } = useRouter();
   const queryClient = useQueryClient();
 
   useEffect(() => {
-    queryClient.removeQueries(['quotes']);
+    console.log('query.search', query.search, oldQuery);
+    if (oldQuery !== (query.search || '')) {
+      queryClient.removeQueries(['quotes']);
+    }
   }, [query]);
 
   const { data: infiniteQuotes, fetchNextPage } = useInfiniteQuery({
@@ -29,6 +33,7 @@ export const useHome = () => {
     },
     onSuccess: () => {
       setRootMargin(rootMargin === 10 ? 9 : 10);
+      setOldQuery(query.search as string);
     },
     staleTime: Infinity,
   });
