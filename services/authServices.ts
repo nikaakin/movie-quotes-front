@@ -1,4 +1,5 @@
 import {
+  UserType,
   forgotPasswordSchemaType,
   loginSchemaType,
   registrationSchemaType,
@@ -10,7 +11,9 @@ import { AuthorizerCallback } from 'pusher-js';
 import { SocketIoChannel } from 'laravel-echo/dist/channel';
 
 export const login = (data: loginSchemaType) =>
-  axios().post('/api/login', data);
+  axios()
+    .post<{ user: UserType }>('/api/login', data)
+    .then((res) => res.data.user);
 
 export const logout = () => axios().get('/api/logout');
 
