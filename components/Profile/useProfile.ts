@@ -121,6 +121,7 @@ export const useProfile = () => {
     setEditPassword(false);
     setEditEmail(false);
     setEditData((prev) => ({ ...prev, image: '' }));
+    setValue('image', '');
   };
   const onClose = () => {
     resetState();
