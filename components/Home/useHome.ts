@@ -14,7 +14,6 @@ export const useHome = () => {
   const queryClient = useQueryClient();
 
   useEffect(() => {
-    console.log('query.search', query.search, oldQuery);
     if (oldQuery !== (query.search || '')) {
       queryClient.removeQueries(['quotes']);
     }
