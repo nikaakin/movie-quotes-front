@@ -70,7 +70,7 @@ export const useProfile = () => {
   useEffect(() => {
     if (query.newEmail) {
       mutate({ email: query.email, verifiedEmail: query.newEmail });
-
+      queryClient.invalidateQueries(['user']);
       replace(`/${locale}/news-feed/profile`);
     }
   }, [query, replace, locale, mutate]);
