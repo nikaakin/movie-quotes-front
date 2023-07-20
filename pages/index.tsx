@@ -29,7 +29,11 @@ export default function Home() {
   } = useLandingPage();
 
   return (
-    <div className=' relative pt-107 sm:pt-200 text-white '>
+    <div
+      className={` relative pt-107 sm:pt-200 text-white ${
+        currentModal && 'overflow-hidden h-screen sm:h-auto sm:overflow-auto'
+      }`}
+    >
       {currentModal && (
         <Modal
           onClose={onClose}

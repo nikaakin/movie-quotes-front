@@ -5,10 +5,14 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { Fragment } from 'react';
 
 export default function MovieShowPage() {
-  const { isFetching, isFallback, isMovieFetched, isMovieError } =
+  const { isFetching, isFallback, isMovieFetched, isMovieError, currentModal } =
     useMovieShowPage();
   return (
-    <div className='bg-lg-main min-h-screen text-white'>
+    <div
+      className={`bg-lg-main min-h-screen text-white ${
+        currentModal && 'overflow-hidden h-screen sm:h-auto sm:overflow-auto'
+      }`}
+    >
       {!isFetching && !isFallback && isMovieFetched && !isMovieError && (
         <Fragment>
           <Header shouldhavelinks />

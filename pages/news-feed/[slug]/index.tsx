@@ -4,9 +4,13 @@ import { GetStaticProps } from 'next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
 export default function NewsFeed() {
-  const { isFetching, slug } = useNewsFeed();
+  const { isFetching, slug, currentModal } = useNewsFeed();
   return (
-    <div className='bg-lg-main min-h-screen text-white'>
+    <div
+      className={`bg-lg-main min-h-screen text-white ${
+        currentModal && 'overflow-hidden h-screen sm:h-auto sm:overflow-auto'
+      } `}
+    >
       {isFetching ? null : (
         <div>
           <Header shouldhavelinks />

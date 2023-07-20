@@ -90,7 +90,7 @@ export const Input = ({
           )}
         </div>
       </div>
-      <span className='min-h-6 block text-red-550 text-base'>
+      <span className='min-h-7 block text-red-550 text-base'>
         {error?.message}
       </span>
     </div>

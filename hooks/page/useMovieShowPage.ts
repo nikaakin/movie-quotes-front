@@ -3,6 +3,8 @@ import { useUserQuery } from '../useUserQuery';
 import { isAuthenticated, showMovie } from '@/services';
 import { useQuery } from '@tanstack/react-query';
 import { AxiosError } from 'axios';
+import { useSelector } from 'react-redux';
+import { RootState } from '@/state';
 
 export const useMovieShowPage = () => {
   const {
@@ -15,6 +17,11 @@ export const useMovieShowPage = () => {
     queryFn: isAuthenticated,
     enabled: !isFallback,
   });
+
+  const { currentModal } = useSelector(
+    (state: RootState) => state.currentModal
+  );
+
   const { isFetched: isMovieFetched, isError: isMovieError } = useQuery({
     queryKey: ['movie', movieId],
     queryFn: () => showMovie(movieId as string),
@@ -28,5 +35,5 @@ export const useMovieShowPage = () => {
     retry: false,
     enabled: !!movieId,
   });
-  return { isFetching, isFallback, isMovieFetched, isMovieError };
+  return { isFetching, isFallback, isMovieFetched, isMovieError, currentModal };
 };
