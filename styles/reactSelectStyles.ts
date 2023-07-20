@@ -5,9 +5,6 @@ export const reactSelectStyles = (borderColor: string) => ({
     ...styles,
     color: '#fff',
     fontSize: '1rem',
-    '@media only screen and (min-width: 640px)': {
-      fontSize: '1.25rem',
-    },
   }),
   control: (styles: CSSObjectWithLabel) => ({
     ...styles,
@@ -85,9 +82,6 @@ export const QuoteMutationSelectStyles = (borderColor: string) => ({
     paddingLeft: '3rem',
     fontSize: '1rem',
     paddingBlock: '1.5rem',
-    '@media only screen and (min-width: 640px)': {
-      fontSize: '1.25rem',
-    },
   }),
   control: (styles: CSSObjectWithLabel, props: ControlProps) => ({
     ...styles,
@@ -148,9 +142,6 @@ export const QuoteMutationSelectStyles = (borderColor: string) => ({
     fontSize: '1rem',
     paddingLeft: '3rem',
     paddingBlock: '1.5rem',
-    '@media only screen and (min-width: 640px)': {
-      fontSize: '1.25rem',
-    },
   }),
 });
 
