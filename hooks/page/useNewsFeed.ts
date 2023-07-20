@@ -1,7 +1,7 @@
-import { setCurrentModal } from '@/state';
+import { RootState, setCurrentModal } from '@/state';
 import { useRouter } from 'next/router';
 import { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useUserQuery } from '@/hooks';
 import { isAuthenticated } from '@/services';
 
@@ -10,6 +10,9 @@ export const useNewsFeed = () => {
     push,
     query: { slug },
   } = useRouter();
+  const { currentModal } = useSelector(
+    (state: RootState) => state.currentModal
+  );
   const dispatch = useDispatch();
   const { isFetching } = useUserQuery({
     onError: () => push('/'),
@@ -20,5 +23,5 @@ export const useNewsFeed = () => {
     dispatch(setCurrentModal(null));
   }, [dispatch]);
 
-  return { isFetching, slug };
+  return { isFetching, slug, currentModal };
 };
