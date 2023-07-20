@@ -13,6 +13,7 @@ import { deleteQuote, search } from '@/services';
 import { QuoteType } from '@/types';
 import { useRouter } from 'next/router';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { useOutsideClickDetect } from '@/hooks';
 
 export const useSearchField = ({
   isSearchActive,
@@ -33,10 +34,18 @@ export const useSearchField = ({
   const queryClient = useQueryClient();
   const inputRef = useRef<HTMLInputElement>(null);
 
+  const { ref, isOutside } = useOutsideClickDetect<HTMLDivElement>();
+
   useEffect(() => {
     let debouncedSearch: NodeJS.Timeout;
-    if (!isSearchActive) {
-      onClose();
+
+    if (isOutside) {
+      dispatch(setIsSearchBarOn(false));
+      setIsFocused(false);
+      setSearchResults([]);
+      setSearchValue('');
+    } else {
+      inputRef.current?.focus();
     }
     setSearchResults([]);
     if (!isFocused) {
@@ -50,7 +59,7 @@ export const useSearchField = ({
       }, 500);
     }
     return () => clearTimeout(debouncedSearch);
-  }, [isSearchActive, searchValue, isFocused]);
+  }, [searchValue, isFocused, isOutside]);
 
   const { mutate } = useMutation({
     mutationFn: () => deleteQuote(quote?.id || 0),
@@ -132,5 +141,7 @@ export const useSearchField = ({
     searchValBigScreen,
     onSearchSubmit,
     handleSearchBigScreen,
+    ref,
+    isOutside,
   };
 };

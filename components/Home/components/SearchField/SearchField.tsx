@@ -32,7 +32,10 @@ export const SearchField = ({
     searchValBigScreen,
     handleSearchBigScreen,
     onSearchSubmit,
+    isOutside,
+    ref,
   } = useSearchField({ isSearchActive });
+
   return (
     <Fragment>
       <div
@@ -75,6 +78,7 @@ export const SearchField = ({
         className={`sm:relative w-full sm:h-full fixed top-0 left-0  h-[80vh] ${
           isSearchActive ? 'z-50' : '-z-10 sm:z-0'
         }`}
+        ref={ref}
       >
         <label
           htmlFor='search_field'
@@ -131,7 +135,7 @@ export const SearchField = ({
               </div>
             )}
             {isSearchActive ? (
-              isFocused ? (
+              !isOutside ? (
                 <form onSubmit={onSearchSubmit}>
                   <input
                     name='search_field'
@@ -141,6 +145,7 @@ export const SearchField = ({
                     value={searchValBigScreen}
                     onChange={handleSearchBigScreen}
                     ref={inputRef}
+                    placeholder={t('home.placeholder')!}
                   />
                 </form>
               ) : (

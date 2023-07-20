@@ -50,7 +50,8 @@
     "enter": "Enter",
     "enter_movies": "to search movies",
     "enter_quotes": "to search quotes",
-    "search_by": "Search by"
+    "search_by": "Search by",
+    "placeholder": "Enter @ to search movies, Enter # to search quotes "
   },
 
   "403": {
