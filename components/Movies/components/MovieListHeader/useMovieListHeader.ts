@@ -1,7 +1,7 @@
-import { useState } from 'react';
+import { useOutsideClickDetect } from '@/hooks';
 
 export const useMovieListHeader = () => {
-  const [isSeachOpen, setIsSearchOpen] = useState(false);
+  const { isOutside, ref } = useOutsideClickDetect<HTMLLabelElement>();
 
-  return { isSeachOpen, setIsSearchOpen };
+  return { isOutside, ref };
 };

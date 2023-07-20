@@ -9,7 +9,7 @@ export const MovieListHeader = ({
   searchValue,
   onAddMovieClick,
 }: MovieListHeaderProps) => {
-  const { isSeachOpen, setIsSearchOpen } = useMovieListHeader();
+  const { isOutside, ref } = useMovieListHeader();
 
   return (
     <div className='flex justify-between items-start mb-8 gap-4'>
@@ -24,14 +24,13 @@ export const MovieListHeader = ({
       <div className='flex items-center sm:gap-8 flex-1 justify-end '>
         <label
           className={`text-gray-350 hidden sm:flex justify-center gap-2 items-center text-xl cursor-pointer ${
-            isSeachOpen &&
-            'flex-1  border-b border-white border-opacity-30 pb-2'
+            !isOutside && 'flex-1  border-b border-white border-opacity-30 pb-2'
           } `}
           htmlFor='search_field'
-          onClick={setIsSearchOpen.bind(null, !isSeachOpen)}
+          ref={ref}
         >
           <SearchIcon />
-          {isSeachOpen ? (
+          {!isOutside ? (
             <input
               name='search_field'
               id='search_field'
