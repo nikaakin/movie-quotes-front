@@ -31,9 +31,9 @@ export const useHeader = () => {
   const onShowRegister = () => disaptch(setCurrentModal('register'));
   const onLogout = async () => {
     await getCsrf();
+    window.Echo.leaveChannel('notification.' + data?.id);
     await logoutUser();
     setCookie('user', 'false');
-    window.Echo.leaveChannel('notification.' + data?.id);
     push('/');
   };
   const onSearchBarClick = () => disaptch(setIsSearchBarOn(true));

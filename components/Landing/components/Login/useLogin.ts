@@ -6,7 +6,7 @@ import { useRouter } from 'next/router';
 import { useForm } from 'react-hook-form';
 import { useTranslation } from 'next-i18next';
 import { useDispatch } from 'react-redux';
-import { useMutation } from '@tanstack/react-query';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { getCsrf, login } from '@/services';
 import { AxiosError } from 'axios';
 import { useEffect } from 'react';
@@ -26,7 +26,7 @@ export const useLogin = () => {
     mode: 'onChange',
     resolver: zodResolver(loginSchema(t)),
   });
-
+  const queryClient = useQueryClient();
   const invalidCredentialsError =
     errors?.['invalid_credentials']?.message || '';
   const { push, query, replace, locale } = useRouter();
@@ -43,6 +43,8 @@ export const useLogin = () => {
     mutationFn: login,
     onSuccess: (data) => {
       setCookie('user', 'true');
+      queryClient.setQueryData(['user'], data);
+      queryClient.invalidateQueries(['user']);
       push('/news-feed/home');
     },
     onError: (error: AxiosError<loginSchemaType>) => {
