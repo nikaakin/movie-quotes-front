@@ -32,7 +32,6 @@ export const SearchField = ({
     searchValBigScreen,
     handleSearchBigScreen,
     onSearchSubmit,
-    isOutside,
     ref,
   } = useSearchField({ isSearchActive });
 
