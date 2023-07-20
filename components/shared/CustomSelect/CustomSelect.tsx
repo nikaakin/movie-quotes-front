@@ -63,7 +63,7 @@ export const CustomSelect = <T,>({
           </div>
         )}
       </div>
-      <span className='block min-h-5 text-red-550 text-base'>
+      <span className='block min-h-6 text-red-550 text-base'>
         {error?.message}
       </span>
     </div>
