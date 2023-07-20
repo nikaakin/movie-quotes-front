@@ -32,7 +32,7 @@ export const useHeader = () => {
   const onShowRegister = () => disaptch(setCurrentModal('register'));
   const onLogout = async () => {
     await getCsrf();
-    window.Echo.leaveChannel('notification.' + data?.id);
+    window.Echo.leave('notification.' + data?.id);
     await logoutUser();
     setCookie('user', 'false');
     queryClient.removeQueries(['user']);
