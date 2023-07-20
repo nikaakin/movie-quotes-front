@@ -13,7 +13,6 @@ type UserQueryType = {
     data?: loginSchemaType
   ) => Promise<AxiosResponse<{ user: UserType }>>;
   enableNotifications?: boolean;
-  isLogout?: boolean;
 };
 
 export const useUserQuery = ({
@@ -22,7 +21,6 @@ export const useUserQuery = ({
   enabled,
   queryFn,
   enableNotifications = false,
-  isLogout = false,
 }: UserQueryType) => {
   const [firstInit, setFirstInit] = useState(false);
   const queryClient = useQueryClient();
@@ -71,7 +69,7 @@ export const useUserQuery = ({
       }),
     onSuccess: (data) => {
       onSuccess && onSuccess();
-      if (!isLogout && !firstInit) {
+      if (!firstInit) {
         setCookie('user', 'true');
         setFirstInit(true);
         initializeWebsocket();

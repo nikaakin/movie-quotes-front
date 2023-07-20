@@ -3,6 +3,7 @@ import { useUserQuery } from '@/hooks';
 import { getCsrf, isAuthenticated, logout } from '@/services';
 import { setCurrentModal } from '@/state';
 import { setIsSearchBarOn } from '@/state';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useTranslation } from 'next-i18next';
 import { useRouter } from 'next/router';
 import { useDispatch } from 'react-redux';
@@ -15,15 +16,15 @@ export const useHeader = () => {
     query: { slug },
   } = useRouter();
 
+  const queryClient = useQueryClient();
+
   const { data } = useUserQuery({
     enabled: false,
     queryFn: isAuthenticated,
   });
 
-  const { refetch: logoutUser } = useUserQuery({
-    queryFn: () => logout(),
-    enabled: false,
-    isLogout: true,
+  const { mutate: logoutUser } = useMutation({
+    mutationFn: () => logout(),
   });
 
   const username = data?.username;
@@ -34,8 +35,10 @@ export const useHeader = () => {
     window.Echo.leaveChannel('notification.' + data?.id);
     await logoutUser();
     setCookie('user', 'false');
+    queryClient.removeQueries(['user']);
     push('/');
   };
+
   const onSearchBarClick = () => disaptch(setIsSearchBarOn(true));
 
   return {
