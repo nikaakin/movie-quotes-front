@@ -135,37 +135,18 @@ export const SearchField = ({
               </div>
             )}
             {isSearchActive ? (
-              !isOutside ? (
-                <form onSubmit={onSearchSubmit}>
-                  <input
-                    name='search_field'
-                    id='search_field'
-                    type='text'
-                    className='z-50 absolute top-0 left-8 bg-transparent  focus:outline-none text-white  w-full  hidden sm:!block pr-10 search '
-                    value={searchValBigScreen}
-                    onChange={handleSearchBigScreen}
-                    ref={inputRef}
-                    placeholder={t('home.placeholder')!}
-                  />
-                </form>
-              ) : (
-                <div
-                  onClick={handleFocus.bind(null, true)}
-                  className='hidden text-gray-550 -mb-2 sm:block text-left'
-                >
-                  <span className=' sm:inline-block '>
-                    {t('home.enter')!}
-                    <span className='text-white'> @ </span>
-                    {t('home.enter_movies')!}
-                  </span>
-                  <span className='sm:inline'>,</span>
-                  <span className=' sm:inline-block'>
-                    {t('home.enter')!}
-                    <span className='text-white'> # </span>
-                    {t('home.enter_quotes')!}
-                  </span>
-                </div>
-              )
+              <form onSubmit={onSearchSubmit}>
+                <input
+                  name='search_field'
+                  id='search_field'
+                  type='text'
+                  className='z-50 absolute top-0 left-8 bg-transparent  focus:outline-none text-white  w-full  hidden sm:!block pr-10 search '
+                  value={searchValBigScreen}
+                  onChange={handleSearchBigScreen}
+                  ref={inputRef}
+                  placeholder={t('home.placeholder')!}
+                />
+              </form>
             ) : (
               <span className=' whitespace-nowrap'>{t('home.search_by')}</span>
             )}
