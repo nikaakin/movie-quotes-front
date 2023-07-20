@@ -12,8 +12,8 @@ export const MovieInput = <T,>({
   getFieldState,
   control,
   language,
-  englishTitle,
-  georgianTitle,
+  englishTitle = '',
+  georgianTitle = '',
   isFontEnglish = false,
 }: MovieInputType<T>) => {
   const { error, invalid, isDirty, fieldValue, isFocused, setIsFocused } =
@@ -30,14 +30,18 @@ export const MovieInput = <T,>({
     >
       <label
         htmlFor={name}
-        className={` px-3 py-2 font-normal rounded-[4px] cursor-pointer text-base  sm:text-xl flex items-center gap-2 border-gray-550  border focus:shadow-input     
+        className={` px-3 pr-2 sm:pr-1 py-2 font-normal rounded-[4px] cursor-pointer text-base  flex items-center gap-2 border-gray-550  border focus:shadow-input     
         ${isDirty && !invalid && 'border-green-750 border-[2px]'}
         ${(fieldValue || isFocused) && 'text-gray-550 text-base'}
         ${error && 'border-red-650 '}`}
       >
-        <span className='font-helvetica-georgian'>{georgianTitle}</span>
+        {georgianTitle && (
+          <span className='font-helvetica-georgian'>{georgianTitle}</span>
+        )}
         {georgianTitle && englishTitle ? '/' : ''}
-        <span className='font-helvetica-neue'>{englishTitle}</span>
+        {englishTitle && (
+          <span className='font-helvetica-neue'>{englishTitle}</span>
+        )}
         {(fieldValue || isFocused) && ':'}
         <div className='relative text-white inline-block flex-1'>
           <input
@@ -65,9 +69,7 @@ export const MovieInput = <T,>({
             {error && <InvalidIcon />}
             {isDirty && !invalid && <CheckMarkIcon />}
             {language && (
-              <span className='text-gray-550 sm:text-xl text-base'>
-                {language}
-              </span>
+              <span className='text-gray-550  text-base'>{language}</span>
             )}
           </div>
         </div>

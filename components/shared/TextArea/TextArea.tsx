@@ -41,7 +41,7 @@ export const TextArea = <T,>({
             : `${title} ${fieldValue || isFocused ? ':' : ''}`}
         </label>
 
-        <div className='relative text-white inline-block flex-1 '>
+        <div className='relative text-white inline-block flex-1 py-1'>
           <Controller
             name={name}
             control={control}
@@ -62,7 +62,7 @@ export const TextArea = <T,>({
             )}
           />
 
-          <div className='absolute top-2 right-2   flex flex-row  gap-1 items-center'>
+          <div className='absolute top-2 sm:right-4 right-2   flex flex-row  gap-1 items-center'>
             {fieldValue !== '' && isDirty && (
               <button
                 type='button'
@@ -76,9 +76,7 @@ export const TextArea = <T,>({
             {error && <InvalidIcon />}
             {isDirty && !invalid && <CheckMarkIcon />}
             {language && (
-              <span className='text-gray-550 sm:text-xl text-base'>
-                {language}
-              </span>
+              <span className='text-gray-550 text-base'>{language}</span>
             )}
           </div>
         </div>
