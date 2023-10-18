@@ -1,0 +1,9 @@
+{
+  "routes": {
+    "headers": {
+      "Access-Control-Allow-Origin": "*",
+      "Access-Control-Allow-Methods": "GET, POST, PUT, PATCH, DELETE, OPTIONS",
+      "Access-Control-Allow-Headers": "Origin, X-Requested-With, Content-Type, Accept, Authorization, X-Forwarded-For, X-Forwarded-Proto, X-Forwarded-Port, X-Forwarded-Host, X-CSRF-TOKEN, laravel_session, x-xsrf-token, x-csrf-token, x-csrfp-token, x-csrftoken, csrf-token, xsrf-token"
+    }
+  }
+}
