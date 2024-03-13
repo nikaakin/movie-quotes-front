@@ -105,10 +105,10 @@ export default function Home() {
         <Header />
       </div>
       <article
-        className='h-screen w-full absolute bg-lg-landing-first top-0 '
+        className='w-full absolute bg-lg-landing-first h-206 sm:h-300  top-0 '
         ref={backgrounfRef}
       >
-        <div className='top-1/3  left-1/2 -translate-x-1/2 absolute w-72 sm:w-175 z-50 text-center'>
+        <div className='md:top-1/3 top-1/4  left-1/2 -translate-x-1/2 absolute w-72 sm:w-175 z-50 text-center'>
           <h1 className='mb-8 sm:mb-6 text-2xl sm:text-6xl font-bold text-orange-250'>
             {t('landing.main_title')}
           </h1>
@@ -130,7 +130,7 @@ export default function Home() {
         return (
           <div
             key={url}
-            className=' h-screen   sticky top-0 overflow-x-hidden'
+            className='h-screen sticky top-0 overflow-x-hidden'
             onClick={changeIndex.bind(null, index + 1)}
           >
             <div
