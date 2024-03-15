@@ -85,7 +85,7 @@ export const SearchField = ({
              ${!isSearchActive && 'hidden sm:block'}
              `}
         >
-          <div className='sm:flex sm:items-center sm:gap-4 relative '>
+          <div className='sm:flex sm:items-center sm:gap-4 relative w-full '>
             <div
               className='hidden sm:block'
               onClick={handleFocus.bind(null, true)}
@@ -139,7 +139,7 @@ export const SearchField = ({
                   name='search_field'
                   id='search_field'
                   type='text'
-                  className='z-50 absolute top-0 left-8 bg-transparent  focus:outline-none text-white  w-full  hidden sm:!block pr-10 search '
+                  className='z-50 absolute top-0 left-8 bg-transparent  focus:outline-none text-white  w-full  hidden sm:!block search '
                   value={searchValBigScreen}
                   onChange={handleSearchBigScreen}
                   ref={inputRef}

@@ -4,7 +4,7 @@ import { useHome } from './useHome';
 export const Home = () => {
   const { data, t, locale, lastQuoteRef } = useHome();
   return (
-    <div className='text-white sm:bg-transparent h-full w-250'>
+    <div className='text-white sm:bg-transparent h-full md:w-175 xl:w-200 2xl:w-250 w-full'>
       <HomeHeader />
       {data &&
         data?.map((quote, i) => (

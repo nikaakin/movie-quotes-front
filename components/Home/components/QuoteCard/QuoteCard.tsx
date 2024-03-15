@@ -25,7 +25,7 @@ export const QuoteCard = ({
     });
 
   return (
-    <div className='sm:w-250 w-full p-9 sm:p-6 bg-neutral-950 rounded-[12px] backdrop-blur-xl mb-10'>
+    <div className='2xl:w-250 sm:w-11/12 w-full p-9 sm:p-6 bg-neutral-950 rounded-[12px] backdrop-blur-xl mb-10'>
       <div className='mb-4'>
         <div className='flex flex-row  items-center gap-5'>
           <div className='bg-white rounded-[50%] w-10 h-10 sm:w-12 sm:h-12 overflow-hidden'>
