@@ -29,7 +29,7 @@ export const MovieMutation = ({ t, defaultValues }: MovieMutationProps) => {
     defaultValues,
   });
   return (
-    <div className=' sm:max-h-[90vh] rounded-[12px] relative w-full h-full sm:w-250 hide-scrollbar max-h-screen pt-8 pb-16 sm:pb-12 bg-neutral-950 text-white overflow-auto'>
+    <div className=' xl:max-h-[90vh] rounded-[12px] relative w-full h-full sm:h-screen sm:w-screen xl:w-250 hide-scrollbar max-h-screen pt-8 pb-16 sm:pb-12 bg-neutral-950 text-white overflow-auto'>
       <button className='absolute right-6 top-8 ' onClick={onClose}>
         <XIcon />
       </button>
