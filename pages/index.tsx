@@ -30,7 +30,7 @@ export default function Home() {
 
   return (
     <div
-      className={` relative pt-107 sm:pt-200 text-white ${
+      className={`overflow-hidden w-full relative pt-107 sm:pt-200 text-white ${
         currentModal && 'overflow-hidden h-screen sm:h-auto sm:overflow-auto'
       }`}
     >
@@ -105,7 +105,7 @@ export default function Home() {
         <Header />
       </div>
       <article
-        className='w-full absolute bg-lg-landing-first h-206 sm:h-300  top-0 '
+        className='w-full  absolute bg-lg-landing-first h-206 sm:h-300 top-0 '
         ref={backgrounfRef}
       >
         <div className='md:top-1/3 top-1/4  left-1/2 -translate-x-1/2 absolute w-72 sm:w-175 z-50 text-center'>
