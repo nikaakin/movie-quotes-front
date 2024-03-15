@@ -46,7 +46,7 @@ export const QuoteMutateModal = ({
         className='fixed top-0 left-0 w-full h-full opacity-50  sm:hidden'
         onClick={onClose}
       ></div>
-      <div className='h-full  sm:max-h-[90vh] rounded-[12px]  relative w-full  sm:w-250 hide-scrollbar  pt-8 pb-16 sm:pb-12 bg-neutral-950 text-white overflow-auto '>
+      <div className='h-full  xl:max-h-[90vh] rounded-[12px]  relative w-full  sm:w-screen  xl:w-250 hide-scrollbar  pt-8 pb-16 sm:pb-12 bg-neutral-950 text-white overflow-auto '>
         <button className='absolute right-6 top-8 ' onClick={onClose}>
           <XIcon />
         </button>
