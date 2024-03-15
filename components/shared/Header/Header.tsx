@@ -3,6 +3,7 @@ import React, { Fragment } from 'react';
 import { Dropdown } from './components';
 import { Burgerbar, Button, SearchIcon, Notification } from '@/components';
 import { useHeader } from './useHeader';
+import Link from 'next/link';
 
 export const Header = ({ shouldhavelinks = false }) => {
   const {
@@ -21,13 +22,14 @@ export const Header = ({ shouldhavelinks = false }) => {
         shouldhavelinks ? 'px-8' : 'px-4'
       } ${username && 'bg-zinc-850 bg-opacity-80'}`}
     >
-      <h1
+      <Link
+        href='/'
         className={`uppercase text-orange-250 text-base font-medium hidden sm:block ${
           !shouldhavelinks && '!block'
         }`}
       >
         movie quotes
-      </h1>
+      </Link>
       <Burgerbar shouldShowLinks={shouldhavelinks} onLogout={onLogout} />
       <div className='flex flex-row justify-between gap-2 sm:gap-4'>
         {username ? (
