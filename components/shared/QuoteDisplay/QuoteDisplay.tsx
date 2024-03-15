@@ -35,7 +35,7 @@ export const QuotesDisplay = ({
     quote,
   });
   return (
-    <div className='max-h-screen sm:max-h-[90vh] rounded-[12px] relative w-full  sm:w-250 hide-scrollbar h-full pt-8 pb-16 sm:pb-12 bg-neutral-950 text-white overflow-auto'>
+    <div className='max-h-screen sm:max-h-[90vh] rounded-[12px] relative w-full md:w-screen  xl:w-250 hide-scrollbar h-full pt-8 pb-16 sm:pb-12 bg-neutral-950 text-white overflow-auto'>
       <div
         className={`flex items-center px-8 border-b border-zinc-150 border-opacity-20 pb-6 
       ${userId === quote.user?.id ? 'justify-between' : 'justify-end'}`}
