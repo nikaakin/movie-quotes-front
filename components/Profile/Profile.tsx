@@ -85,9 +85,9 @@ export const Profile = () => {
           >
             <ArrowIcon />
           </button>
-          <section className='w-full h-full sm:w-250 sm:h-auto relative sm:mt-20 bg-zinc-870 sm:bg-neutral-950 backdrop-blur-xl sm:rounded-[12px] rounded-t-[12px] mb-20 sm:pl-48 sm:pt-48 sm:pr-72 pb-16 sm:pb-36 px-8'>
+          <section className='w-full h-full xl:w-11/12 2xl:w-250 sm:h-auto relative sm:mt-20 bg-zinc-870 sm:bg-neutral-950 backdrop-blur-xl sm:rounded-[12px] rounded-t-[12px] sm:pl-10 sm:pr-24 mb-20 2xl:pl-48 sm:pt-48 2xl:pr-72 pb-16 sm:pb-36 px-8'>
             <div
-              className={`absolute top-0 left-1/2 -translate-x-1/2 sm:translate-x-0 sm:left-auto sm:right-96 sm:-translate-y-1/3 translate-y-7 ${
+              className={`absolute top-0 left-1/2 -translate-x-1/2   sm:-translate-y-1/3 translate-y-7 ${
                 (editPassword || editUsername || editEmail) && 'hidden'
               } sm:!block`}
             >
@@ -271,7 +271,7 @@ export const Profile = () => {
             </form>
           </section>
           <div
-            className={`text-xl sm:mr-105 flex justify-between sm:justify-end pr-8 sm:pr-0 pl-14 pb-10 sm:gap-8 ${
+            className={`text-xl xl:mr-10 2xl:mr-105 flex justify-between sm:justify-end pr-8 sm:pr-0 pl-14 pb-10 sm:gap-8 ${
               !(editPassword || editUsername || editEmail || editData.image) &&
               'hidden'
             }`}
