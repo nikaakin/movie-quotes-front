@@ -14,7 +14,7 @@ export default function NewsFeed() {
       {isFetching ? null : (
         <div>
           <Header shouldhavelinks />
-          <main className=' flex flex-row sm:ml-125'>
+          <main className=' flex flex-row sm:ml-80 xl:ml-125'>
             {slug === 'home' ? (
               <Home />
             ) : slug === 'profile' ? (

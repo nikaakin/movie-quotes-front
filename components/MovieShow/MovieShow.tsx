@@ -23,7 +23,7 @@ export const MovieShow = () => {
     deleteQuoteMutation,
   } = useMovieShow();
   return (
-    <div className='flex-1  sm:pl-0 sm:pr-16 pt-4 sm:pt-8 pb-52 text-white'>
+    <div className='flex-1  sm:pl-0 sm:pr-16 pt-4 sm:pt-8 pb-52 text-white overflow-hidden'>
       {currentModal && !currentModal.includes('notification') && (
         <Modal
           onClose={onModalChange.bind(null, null)}
@@ -78,8 +78,8 @@ export const MovieShow = () => {
       <h1 className='text-2xl font-medium hidden sm:block mb-8 px-8'>
         {t('common:movie_show.title')}
       </h1>
-      <div className='flex sm:gap-5 gap-6 flex-col sm:flex-row sm:pt-0 pt-5 sm:mb-10 mb-8 px-8'>
-        <div className='w-full sm:w-200 sm:h-107 h-72  '>
+      <div className='flex sm:gap-5 gap-6 flex-col xl:flex-row sm:pt-0 pt-5 sm:mb-10 mb-8 px-8 '>
+        <div className='w-full  md:w-125 xl:w-175 xl:h-107 md:h-96 h-72  '>
           <img
             src={movie?.image}
             alt='movie'

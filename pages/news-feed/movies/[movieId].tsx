@@ -16,7 +16,7 @@ export default function MovieShowPage() {
       {!isFetching && !isFallback && isMovieFetched && !isMovieError && (
         <Fragment>
           <Header shouldhavelinks />
-          <main className='flex flex-row sm:ml-105'>
+          <main className='flex flex-row sm:ml-80 xl:ml-125'>
             <MovieShow />
           </main>
         </Fragment>
